@@ -152,6 +152,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
+        jTextField2 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -809,15 +810,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Configuración", new javax.swing.ImageIcon(getClass().getResource("/iconos/Configuracion.png")), PanelConfiguracion); // NOI18N
 
+        jTextField2.setText("jTextField2");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 987, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(232, 232, 232)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(696, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(449, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Utilidad", jPanel1);
@@ -1315,6 +1324,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPaneTablaPago;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JButton jbPagoAceptar;
     private javax.swing.JButton jbPagoCancelar;
     private javax.swing.JComboBox<String> jcbClienteAPagar;
