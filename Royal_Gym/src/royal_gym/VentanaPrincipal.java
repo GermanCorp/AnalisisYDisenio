@@ -31,13 +31,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     Validaciones ValidarLetras = new Validaciones();
     Validaciones ValidarNumeros = new Validaciones();
     private final Conexion con;
-<<<<<<< HEAD
 
     int  filaseleccionadatablapagos;
-
-=======
->>>>>>> parent of 84f2f12... Barra de busqueda funcional
-    
     
         // columnas de la tabla pagos
         private final String[] columnasPagos = {
@@ -368,11 +363,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPagosLayout.createSequentialGroup()
                 .addComponent(panelDatosPago, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPaneTablaPago, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
-=======
                 .addGroup(PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelPagosLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -384,7 +377,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(97, 97, 97))))
->>>>>>> ede4a7a344a17b4f85c16ff9ed4dcf11c4cfe07d
         );
         PanelPagosLayout.setVerticalGroup(
             PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

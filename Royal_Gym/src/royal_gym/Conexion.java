@@ -258,6 +258,7 @@ public class Conexion {
                     res.getString("tpo_plan"),
                     res.getString("fecha_pago"),});
             }
+<<<<<<< HEAD
 
             datos = new Object[d.size()][];
             d.toArray(datos);
@@ -267,4 +268,40 @@ public class Conexion {
         return datos;
     }
 
+=======
+         return datosCliente;
+         }
+
+        
+        public Object[][] getNombreCliente(String nombre) {
+
+					Object[][] datos = null;
+
+					try {
+						String sql = "Select * from pagos where cliente LIKE '%" + nombre +"%'";
+						PreparedStatement consulta = conexion.prepareStatement(sql); // PrepareStatement se utiliza cuando se utilizan consultas que llevan signo de ?
+						consulta.setString(1, nombre); 
+						ResultSet res = consulta.executeQuery();
+
+						ArrayList<Object[]> d = new ArrayList<>();
+
+						while (res.next()) {
+							d.add(new Object[] { 
+									res.getString("Cliente"),
+                                                                        res.getDouble("Monto"),
+                                                                        res.getInt("Tiempo"),
+                                                                        res.getString("tipo_tiempo"),
+                                                                        res.getString("tpo_plan"),
+                                                                        res.getString("fecha_pago"),
+									});
+						}
+
+						datos = new Object[d.size()][];
+						d.toArray(datos); 
+					} catch (Exception e) {
+						System.out.println(e.getMessage());
+					}
+					return datos;
+				}
+>>>>>>> 254b00c251e3e42ccc604630b2e1ca57b0ab2c86
 }
