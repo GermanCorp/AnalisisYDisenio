@@ -56,8 +56,6 @@ public class Conexion {
         }
     }// fin de insertar pago
 
-    
-    
     // Método para insertar nuevo clinte
     public void insertarCliente(String nombres, String apellidos, String fechaNacimiento, String altura, String peso) {
         try {
@@ -73,8 +71,6 @@ public class Conexion {
             System.out.println(e.getMessage());
         }
     }// fin del metodo para insertar cliente
-    
-    
 
     //Método para insertar artículos al inventario
     public void insertarInventario(String NombreEquipo, String CantidadEquipo, String Descripcion) {
@@ -89,51 +85,47 @@ public class Conexion {
             System.out.println(e.getMessage());
         }
     }// fin del metodo para insertar inventario
-    
 
     void insertarPagos(String text, String text0, Object selectedItem) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
     // método para llenar la tabla de pagos
-        public Object[][] getPago(){
-         Object[][] datosPago = null;
-         
-         try {
-             String consulta = "SELECT cliente,monto,tiempo,tipo_tiempo,tpo_plan,fecha_pago  FROM pagos order by id_pago DESC ";
-             statement = conexion.createStatement();
-             resultado = statement.executeQuery(consulta);
-             
-             ArrayList<Object[]> filas = new ArrayList<>();
-             
-             while (resultado.next()) {
-                 filas.add(
-                 new Object[]{
-                     resultado.getString("Cliente"),
-                     resultado.getDouble("Monto"),
-                     resultado.getInt("Tiempo"),
-                     resultado.getString("tipo_tiempo"),
-                     resultado.getString("tpo_plan"),
-                     resultado.getString("fecha_pago"),
-                 }
-                 );
-             }
-                 datosPago = new Object[filas.size()][];
-                 filas.toArray(datosPago);             
-         } catch (Exception e) {
-                 System.out.println(e.getMessage());
-            }
-         return datosPago;
-         }
+    public Object[][] getPago() {
+        Object[][] datosPago = null;
 
-        
-        // método para llenar combobox de clientes
+        try {
+            String consulta = "SELECT cliente,monto,tiempo,tipo_tiempo,tpo_plan,fecha_pago  FROM pagos order by id_pago DESC ";
+            statement = conexion.createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                            resultado.getString("Cliente"),
+                            resultado.getDouble("Monto"),
+                            resultado.getInt("Tiempo"),
+                            resultado.getString("tipo_tiempo"),
+                            resultado.getString("tpo_plan"),
+                            resultado.getString("fecha_pago"),}
+                );
+            }
+            datosPago = new Object[filas.size()][];
+            filas.toArray(datosPago);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosPago;
+    }
+
+    // método para llenar combobox de clientes
     public static ArrayList<String> llenarCombo() {
         ArrayList<String> lista = new ArrayList<String>();
         String q = "Select * from cliente ORDER BY Nombres ASC";
-       //String q = "SELECT CONCAT(nombres,', ',apellidos) AS NombreCompleto FROM cliente";
-        
+        //String q = "SELECT CONCAT(nombres,', ',apellidos) AS NombreCompleto FROM cliente";
+
         try {
             resultado = statement.executeQuery(q);
             System.out.println("Correcto");
@@ -150,136 +142,129 @@ public class Conexion {
         }
         return lista;
     }
-    
-    
+
     // método para llenar la tabla de clientes
-     public Object[][] getCliente(){
-         Object[][] datosCliente = null;
-         
-         try {
-             String consulta = "Select nombres, apellidos, fechaNacimiento, altura, peso FROM cliente ORDER BY nombres";
-             statement = conexion.createStatement();
-             resultado = statement.executeQuery(consulta);
-             
-             ArrayList<Object[]> filas = new ArrayList<>();
-             
-             while (resultado.next()) {
-                 filas.add(
-                 new Object[]{
-                     resultado.getString("Nombres"),
-                     resultado.getString("Apellidos"),
-                     resultado.getString("FechaNacimiento"),
-                     resultado.getDouble("Altura"),
-                     resultado.getDouble("Peso")
-                 }
-                 );
-             }
-                 datosCliente = new Object[filas.size()][];
-                 filas.toArray(datosCliente);             
-         } catch (Exception e) {
-                 System.out.println(e.getMessage());
+    public Object[][] getCliente() {
+        Object[][] datosCliente = null;
+
+        try {
+            String consulta = "Select nombres, apellidos, fechaNacimiento, altura, peso FROM cliente ORDER BY nombres";
+            statement = conexion.createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                            resultado.getString("Nombres"),
+                            resultado.getString("Apellidos"),
+                            resultado.getString("FechaNacimiento"),
+                            resultado.getDouble("Altura"),
+                            resultado.getDouble("Peso")
+                        }
+                );
             }
-         return datosCliente;
-         }
-     
-     
-       // método para llenar la tabla de Inventario
-        public Object[][] getInventario(){
-         Object[][] datosInventario = null;
-         
-         try {
-             String consulta = "SELECT nombre, cantidad, descripcion FROM inventario";
-             statement = conexion.createStatement();
-             resultado = statement.executeQuery(consulta);
-             
-             ArrayList<Object[]> filas = new ArrayList<>();
-             
-             while (resultado.next()) {
-                 filas.add(
-                 new Object[]{
-                     resultado.getString("nombre"),
-                     resultado.getInt("cantidad"),
-                     resultado.getString("descripcion")
-                 }
-                 );
-             }
-                 datosInventario = new Object[filas.size()][];
-                 filas.toArray(datosInventario);             
-         } catch (Exception e) {
-                 System.out.println(e.getMessage());
-            }
-         return datosInventario;
+            datosCliente = new Object[filas.size()][];
+            filas.toArray(datosCliente);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-<<<<<<< HEAD
+        return datosCliente;
+    }
 
+    // método para llenar la tabla de Inventario
+    public Object[][] getInventario() {
+        Object[][] datosInventario = null;
 
-            // método para llenar la tabla de clientes
-     public Object[][] buscarCliente(String nombres, String apellidos){
-         Object[][] datosCliente = null;
-         
-         try {
-             String consulta = "SELECT nombres, apellidos, fechaNacimiento, altura, peso FROM cliente WHERE nombres LIKE '%"+nombres+"%' OR apellidos LIKE '%"+apellidos+"%' ORDER BY nombres";
-             statement = conexion.createStatement();
-             resultado = statement.executeQuery(consulta);
-             int numeroLista=1;
-             double imc = 0;
-             DecimalFormat df = new DecimalFormat("0.00");
-             
-             ArrayList<Object[]> filas = new ArrayList<>();
-             
-             while (resultado.next()) {
-                 filas.add(
-                 new Object[]{
-                     numeroLista++,
-                     resultado.getString("Nombres"),
-                     resultado.getString("Apellidos"),
-                     resultado.getString("FechaNacimiento"),
-                     resultado.getDouble("Altura"),
-                     resultado.getDouble("Peso"),
-                     df.format(resultado.getDouble("Peso") / (resultado.getDouble("Altura")  * resultado.getDouble("Altura")))  
-                 }
-                 );
-             }
-                 datosCliente = new Object[filas.size()][];
-                 filas.toArray(datosCliente);             
-         } catch (Exception e) {
-                 System.out.println(e.getMessage());
+        try {
+            String consulta = "SELECT nombre, cantidad, descripcion FROM inventario";
+            statement = conexion.createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                            resultado.getString("nombre"),
+                            resultado.getInt("cantidad"),
+                            resultado.getString("descripcion")
+                        }
+                );
             }
-         return datosCliente;
-         }
+            datosInventario = new Object[filas.size()][];
+            filas.toArray(datosInventario);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosInventario;
+    }
+ // método para llenar la tabla de clientes
 
-        
-        public Object[][] getNombreCliente(String nombre) {
 
-					Object[][] datos = null;
+    public Object[][] buscarCliente(String nombres, String apellidos) {
+        Object[][] datosCliente = null;
 
-					try {
-						String sql = "Select * from pagos where cliente LIKE '%" + nombre +"%'";
-						PreparedStatement consulta = conexion.prepareStatement(sql); // PrepareStatement se utiliza cuando se utilizan consultas que llevan signo de ?
-						consulta.setString(1, nombre); 
-						ResultSet res = consulta.executeQuery();
+        try {
+            String consulta = "SELECT nombres, apellidos, fechaNacimiento, altura, peso FROM cliente WHERE nombres LIKE '%" + nombres + "%' OR apellidos LIKE '%" + apellidos + "%' ORDER BY nombres";
+            statement = conexion.createStatement();
+            resultado = statement.executeQuery(consulta);
+            int numeroLista = 1;
+            double imc = 0;
+            DecimalFormat df = new DecimalFormat("0.00");
 
-						ArrayList<Object[]> d = new ArrayList<>();
+            ArrayList<Object[]> filas = new ArrayList<>();
 
-						while (res.next()) {
-							d.add(new Object[] { 
-									res.getString("Cliente"),
-                                                                        res.getDouble("Monto"),
-                                                                        res.getInt("Tiempo"),
-                                                                        res.getString("tipo_tiempo"),
-                                                                        res.getString("tpo_plan"),
-                                                                        res.getString("fecha_pago"),
-									});
-						}
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                            numeroLista++,
+                            resultado.getString("Nombres"),
+                            resultado.getString("Apellidos"),
+                            resultado.getString("FechaNacimiento"),
+                            resultado.getDouble("Altura"),
+                            resultado.getDouble("Peso"),
+                            df.format(resultado.getDouble("Peso") / (resultado.getDouble("Altura") * resultado.getDouble("Altura")))
+                        }
+                );
+            }
+            datosCliente = new Object[filas.size()][];
+            filas.toArray(datosCliente);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosCliente;
+    }
 
-						datos = new Object[d.size()][];
-						d.toArray(datos); 
-					} catch (Exception e) {
-						System.out.println(e.getMessage());
-					}
-					return datos;
-				}
-     
-=======
->>>>>>> parent of 84f2f12... Barra de busqueda funcional
+    public Object[][] getNombreCliente(String nombre) {
+
+        Object[][] datos = null;
+
+        try {
+            String sql = "Select * from pagos where cliente LIKE '%" + nombre + "%'";
+            PreparedStatement consulta = conexion.prepareStatement(sql); // PrepareStatement se utiliza cuando se utilizan consultas que llevan signo de ?
+            consulta.setString(1, nombre);
+            ResultSet res = consulta.executeQuery();
+
+            ArrayList<Object[]> d = new ArrayList<>();
+
+            while (res.next()) {
+                d.add(new Object[]{
+                    res.getString("Cliente"),
+                    res.getDouble("Monto"),
+                    res.getInt("Tiempo"),
+                    res.getString("tipo_tiempo"),
+                    res.getString("tpo_plan"),
+                    res.getString("fecha_pago"),});
+            }
+
+            datos = new Object[d.size()][];
+            d.toArray(datos);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datos;
+    }
+
 }
