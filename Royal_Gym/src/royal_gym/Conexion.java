@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -160,17 +161,22 @@ public class Conexion {
              String consulta = "Select nombres, apellidos, fechaNacimiento, altura, peso FROM cliente ORDER BY nombres";
              statement = conexion.createStatement();
              resultado = statement.executeQuery(consulta);
+             int numeroLista = 1;
+             double imc = 0;
+             DecimalFormat df = new DecimalFormat("0.00");
              
              ArrayList<Object[]> filas = new ArrayList<>();
              
              while (resultado.next()) {
                  filas.add(
                  new Object[]{
+                     numeroLista++,
                      resultado.getString("Nombres"),
                      resultado.getString("Apellidos"),
                      resultado.getString("FechaNacimiento"),
                      resultado.getDouble("Altura"),
-                     resultado.getDouble("Peso")
+                     resultado.getDouble("Peso"),
+                     df.format(resultado.getDouble("Peso") / (resultado.getDouble("Altura")  * resultado.getDouble("Altura")))
                  }
                  );
              }
@@ -210,4 +216,42 @@ public class Conexion {
             }
          return datosInventario;
         }
+        
+
+            // método para llenar la tabla de clientes
+     public Object[][] buscarCliente(String nombres, String apellidos){
+         Object[][] datosCliente = null;
+         
+         try {
+             String consulta = "SELECT nombres, apellidos, fechaNacimiento, altura, peso FROM cliente WHERE nombres LIKE '%"+nombres+"%' OR apellidos LIKE '%"+apellidos+"%' ORDER BY nombres";
+             statement = conexion.createStatement();
+             resultado = statement.executeQuery(consulta);
+             int numeroLista=1;
+             double imc = 0;
+             DecimalFormat df = new DecimalFormat("0.00");
+             
+             ArrayList<Object[]> filas = new ArrayList<>();
+             
+             while (resultado.next()) {
+                 filas.add(
+                 new Object[]{
+                     numeroLista++,
+                     resultado.getString("Nombres"),
+                     resultado.getString("Apellidos"),
+                     resultado.getString("FechaNacimiento"),
+                     resultado.getDouble("Altura"),
+                     resultado.getDouble("Peso"),
+                     df.format(resultado.getDouble("Peso") / (resultado.getDouble("Altura")  * resultado.getDouble("Altura")))  
+                 }
+                 );
+             }
+                 datosCliente = new Object[filas.size()][];
+                 filas.toArray(datosCliente);             
+         } catch (Exception e) {
+                 System.out.println(e.getMessage());
+            }
+         return datosCliente;
+         }
+
+
 }
