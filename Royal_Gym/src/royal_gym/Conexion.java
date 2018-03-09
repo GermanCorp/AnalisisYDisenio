@@ -216,8 +216,7 @@ public class Conexion {
             }
          return datosInventario;
         }
-        
-<<<<<<< HEAD
+
 
             // método para llenar la tabla de clientes
      public Object[][] buscarCliente(String nombres, String apellidos){
@@ -254,8 +253,6 @@ public class Conexion {
          return datosCliente;
          }
 
-
-=======
         
         public Object[][] getNombreCliente(String nombre) {
 
@@ -287,6 +284,5 @@ public class Conexion {
 					}
 					return datos;
 				}
-        
->>>>>>> ede4a7a344a17b4f85c16ff9ed4dcf11c4cfe07d
+     
 }

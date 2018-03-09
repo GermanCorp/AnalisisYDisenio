@@ -32,11 +32,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     Validaciones ValidarLetras = new Validaciones();
     Validaciones ValidarNumeros = new Validaciones();
     private final Conexion con;
-<<<<<<< HEAD
-    int anchocolumnasClientes[] ={10, 30, 30, 30, 10, 10, 10 };
-=======
+
     int  filaseleccionadatablapagos;
->>>>>>> ede4a7a344a17b4f85c16ff9ed4dcf11c4cfe07d
+
     
     
         // columnas de la tabla pagos
