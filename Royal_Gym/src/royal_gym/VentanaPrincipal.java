@@ -36,7 +36,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     int  filaseleccionadatablapagos;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
 =======
 >>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
 

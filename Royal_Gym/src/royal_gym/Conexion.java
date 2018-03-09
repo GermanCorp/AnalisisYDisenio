@@ -234,9 +234,12 @@ public class Conexion {
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         return datosInventario;
     }
  // método para llenar la tabla de clientes
+=======
+>>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
 =======
 >>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
 
@@ -348,8 +351,11 @@ public class Conexion {
 >>>>>>> 254b00c251e3e42ccc604630b2e1ca57b0ab2c86
 =======
      
+<<<<<<< HEAD
 >>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
 =======
      
+>>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
+=======
 >>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
 }
