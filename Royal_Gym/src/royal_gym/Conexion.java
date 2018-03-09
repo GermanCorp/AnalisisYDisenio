@@ -279,7 +279,4 @@ public class Conexion {
 					}
 					return datos;
 				}
-     
-=======
->>>>>>> parent of 84f2f12... Barra de busqueda funcional
 }
