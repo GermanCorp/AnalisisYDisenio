@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -161,22 +160,17 @@ public class Conexion {
              String consulta = "Select nombres, apellidos, fechaNacimiento, altura, peso FROM cliente ORDER BY nombres";
              statement = conexion.createStatement();
              resultado = statement.executeQuery(consulta);
-             int numeroLista = 1;
-             double imc = 0;
-             DecimalFormat df = new DecimalFormat("0.00");
              
              ArrayList<Object[]> filas = new ArrayList<>();
              
              while (resultado.next()) {
                  filas.add(
                  new Object[]{
-                     numeroLista++,
                      resultado.getString("Nombres"),
                      resultado.getString("Apellidos"),
                      resultado.getString("FechaNacimiento"),
                      resultado.getDouble("Altura"),
-                     resultado.getDouble("Peso"),
-                     df.format(resultado.getDouble("Peso") / (resultado.getDouble("Altura")  * resultado.getDouble("Altura")))
+                     resultado.getDouble("Peso")
                  }
                  );
              }
@@ -216,6 +210,7 @@ public class Conexion {
             }
          return datosInventario;
         }
+<<<<<<< HEAD
 
 
             // método para llenar la tabla de clientes
@@ -285,4 +280,6 @@ public class Conexion {
 					return datos;
 				}
      
+=======
+>>>>>>> parent of 84f2f12... Barra de busqueda funcional
 }
