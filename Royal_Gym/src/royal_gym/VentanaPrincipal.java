@@ -31,6 +31,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     Validaciones ValidarLetras = new Validaciones();
     Validaciones ValidarNumeros = new Validaciones();
     private final Conexion con;
+    int  filaseleccionadatablapagos;
     
     
         // columnas de la tabla pagos
@@ -181,6 +182,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             }
         ));
+        tablaPagos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaPagosMouseClicked(evt);
+            }
+        });
         jScrollPaneTablaPago.setViewportView(tablaPagos);
 
         panelDatosPago.setBackground(new java.awt.Color(85, 96, 128));
@@ -1287,6 +1293,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void tablaPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPagosMouseClicked
+        // TODO add your handling code here:
+       filaseleccionadatablapagos = tablaPagos.getSelectedRow();
+     
+      jcbClienteAPagar.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 0));
+      jtfMontoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 1).toString());
+      jtfTiempoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 2).toString());
+      jcbTiempoPago.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 3));
+      jcbPagoPlan.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 4));
+      
+    }//GEN-LAST:event_tablaPagosMouseClicked
 
     public class PresionarTecla extends KeyAdapter {
       @Override
