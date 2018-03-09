@@ -217,6 +217,7 @@ public class Conexion {
          return datosInventario;
         }
         
+<<<<<<< HEAD
 
             // método para llenar la tabla de clientes
      public Object[][] buscarCliente(String nombres, String apellidos){
@@ -254,4 +255,38 @@ public class Conexion {
          }
 
 
+=======
+        
+        public Object[][] getNombreCliente(String nombre) {
+
+					Object[][] datos = null;
+
+					try {
+						String sql = "Select * from pagos where cliente LIKE '%" + nombre +"%'";
+						PreparedStatement consulta = conexion.prepareStatement(sql); // PrepareStatement se utiliza cuando se utilizan consultas que llevan signo de ?
+						consulta.setString(1, nombre); 
+						ResultSet res = consulta.executeQuery();
+
+						ArrayList<Object[]> d = new ArrayList<>();
+
+						while (res.next()) {
+							d.add(new Object[] { 
+									res.getString("Cliente"),
+                                                                        res.getDouble("Monto"),
+                                                                        res.getInt("Tiempo"),
+                                                                        res.getString("tipo_tiempo"),
+                                                                        res.getString("tpo_plan"),
+                                                                        res.getString("fecha_pago"),
+									});
+						}
+
+						datos = new Object[d.size()][];
+						d.toArray(datos); 
+					} catch (Exception e) {
+						System.out.println(e.getMessage());
+					}
+					return datos;
+				}
+        
+>>>>>>> ede4a7a344a17b4f85c16ff9ed4dcf11c4cfe07d
 }
