@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -144,6 +145,7 @@ public class Conexion {
     }
 
     // método para llenar la tabla de clientes
+<<<<<<< HEAD
     public Object[][] getCliente() {
         Object[][] datosCliente = null;
 
@@ -164,6 +166,38 @@ public class Conexion {
                             resultado.getDouble("Peso")
                         }
                 );
+=======
+     public Object[][] getCliente(){
+         Object[][] datosCliente = null;
+         
+         try {
+             String consulta = "Select nombres, apellidos, fechaNacimiento, altura, peso FROM cliente ORDER BY nombres";
+             statement = conexion.createStatement();
+             resultado = statement.executeQuery(consulta);
+             int numeroLista = 1;
+             double imc = 0;
+             DecimalFormat df = new DecimalFormat("0.00");
+             
+             ArrayList<Object[]> filas = new ArrayList<>();
+             
+             while (resultado.next()) {
+                 filas.add(
+                 new Object[]{
+                     numeroLista++,
+                     resultado.getString("Nombres"),
+                     resultado.getString("Apellidos"),
+                     resultado.getString("FechaNacimiento"),
+                     resultado.getDouble("Altura"),
+                     resultado.getDouble("Peso"),
+                     df.format(resultado.getDouble("Peso") / (resultado.getDouble("Altura")  * resultado.getDouble("Altura")))
+                 }
+                 );
+             }
+                 datosCliente = new Object[filas.size()][];
+                 filas.toArray(datosCliente);             
+         } catch (Exception e) {
+                 System.out.println(e.getMessage());
+>>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
             }
             datosCliente = new Object[filas.size()][];
             filas.toArray(datosCliente);
@@ -198,9 +232,19 @@ public class Conexion {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
         return datosInventario;
     }
  // método para llenar la tabla de clientes
+=======
+>>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
+=======
+>>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
+=======
+>>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
 
 
     public Object[][] buscarCliente(String nombres, String apellidos) {
@@ -240,6 +284,8 @@ public class Conexion {
     public Object[][] getNombreCliente(String nombre) {
 
         Object[][] datos = null;
+=======
+>>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
 
         try {
             String sql = "Select * from pagos where cliente LIKE '%" + nombre + "%'";
@@ -303,5 +349,19 @@ public class Conexion {
 					}
 					return datos;
 				}
+<<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 254b00c251e3e42ccc604630b2e1ca57b0ab2c86
+=======
+     
+<<<<<<< HEAD
+>>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
+=======
+     
+<<<<<<< HEAD
+>>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
+=======
+>>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
+=======
+>>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
 }
