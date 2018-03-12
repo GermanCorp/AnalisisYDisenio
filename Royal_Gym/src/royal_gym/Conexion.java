@@ -238,9 +238,12 @@ public class Conexion {
         Object[][] datosCliente = null;
 
         try {
-            String consulta = "SELECT nombres, apellidos, fechaNacimiento, altura, peso FROM cliente WHERE nombres LIKE '%" + nombres + "%' OR apellidos LIKE '%" + apellidos + "%' ORDER BY nombres";
-            statement = conexion.createStatement();
-            resultado = statement.executeQuery(consulta);
+            String consulta = "SELECT nombres ||' '||apellidos as NombreCompleto, fechaNacimiento, altura, peso, Peso/ Altura * Altura as imc FROM cliente WHERE nombres ||' '||apellidos LIKE '%' || ? || '%' ORDER BY nombres";
+            PreparedStatement statement = conexion.prepareStatement(consulta);
+            statement.setString(1, nombres);
+            //statement.setString(2, apellidos);
+            
+            resultado = statement.executeQuery();
             int numeroLista = 1;
 
             DecimalFormat df = new DecimalFormat("0.00");
@@ -251,20 +254,19 @@ public class Conexion {
                 filas.add(
                         new Object[]{
                             numeroLista++,
-                            resultado.getString("Nombres") + " " +
-                            resultado.getString("Apellidos"),
+                            resultado.getString("NombreCompleto"),
                             resultado.getString("FechaNacimiento"),
                             resultado.getDouble("Altura"),
                             resultado.getDouble("Peso"),
-                            df.format(resultado.getDouble("Peso") / (resultado.getDouble("Altura") * resultado.getDouble("Altura"))),
-                            clasificaciónIMC((resultado.getDouble("Peso") / (resultado.getDouble("Altura") * resultado.getDouble("Altura"))))
+                            df.format(resultado.getDouble("imc")),
+                            clasificaciónIMC(resultado.getDouble("imc"))
                         }
                 );
             }
             datosCliente = new Object[filas.size()][];
             filas.toArray(datosCliente);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("buscarCliente:"+e.getMessage());
         }
         return datosCliente;
     }
@@ -274,7 +276,7 @@ public class Conexion {
 
         Object[][] datos = null;
         try {
-            String sql = "Select * from pagos where cliente LIKE '%" + nombre + "%'";
+            String sql = "Select * from pagos where cliente LIKE '%' | ? |'%'";
             PreparedStatement consulta = conexion.prepareStatement(sql); // PrepareStatement se utiliza cuando se utilizan consultas que llevan signo de ?
             consulta.setString(1, nombre);
             ResultSet res = consulta.executeQuery();
@@ -294,7 +296,7 @@ public class Conexion {
             datos = new Object[d.size()][];
             d.toArray(datos);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("getNombreCliente:"+e.getMessage());
         }
         return datos;
     }
