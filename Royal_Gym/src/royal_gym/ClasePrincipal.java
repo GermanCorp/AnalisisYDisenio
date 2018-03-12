@@ -23,5 +23,5 @@ public class ClasePrincipal {
     ventana.setVisible(true);
     ventana.setLocationRelativeTo(null);
     ventana.setDefaultCloseOperation(EXIT_ON_CLOSE);
-    }   
+    }
 }

@@ -2,6 +2,7 @@ package royal_gym;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Event;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;
@@ -34,21 +35,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private final Conexion con;
 
     int  filaseleccionadatablapagos;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
-=======
->>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
-=======
->>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
-
-    
->>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
-    
         // columnas de la tabla pagos
         private final String[] columnasPagos = {
         "Cliente",
@@ -64,11 +50,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private final String[] columnasClientes = {
         "No.",
         "Nombres",
-        "Apellidos",
         "Fecha Nac.",
         "Altura",
         "Peso",
-        "Masa Corporal"
+        "Masa Corporal",
+        "Clasificación"
     };
     
      // columnas de la tabla Inventario
@@ -78,13 +64,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         "Descripción"
     };
     
+    
+    
+    // Constructor
     public VentanaPrincipal() {
-        setTitle("Royal Gym");
         initComponents();
+        setTitle("Royal Gym");
         this.con = new Conexion();
         con.conectar();
-        
-        
+       
+
         ArrayList<String> lista =new ArrayList<String>();
             lista =  con.llenarCombo();
             for(int i = 0; i<lista.size(); i++){
@@ -104,15 +93,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         tablaInventarioEquipo.setModel(modeloTablaInventario);
         
       InputMap map2 = jtfMontoAPagar.getInputMap(jtfMontoAPagar.WHEN_FOCUSED);
-      map2.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
-      
-      
+      map2.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null"); 
     }
     
-    
+
     // metodo para cambiar el acho de columnas
     private void setAnchoColumna(int[] ancho){
         int x = tablaClientes.getColumnCount()-1;
+        int tamanio = tablaClientes.getWidth();
         for(int i = 0 ; i<=x; i++){
             TableColumn columnas = tablaClientes.getColumnModel().getColumn(i);
             columnas.setPreferredWidth(ancho[i]);
@@ -392,20 +380,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPagosLayout.createSequentialGroup()
                 .addComponent(panelDatosPago, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPaneTablaPago, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
                 .addGroup(PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelPagosLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPaneTablaPago, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
-                        .addGap(20, 20, 20))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPagosLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                         .addComponent(labelbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(97, 97, 97))))
+                        .addGap(97, 97, 97))
+                    .addGroup(PanelPagosLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPaneTablaPago)
+                        .addGap(20, 20, 20))))
         );
         PanelPagosLayout.setVerticalGroup(
             PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -648,6 +633,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         ));
         tablaClientes.setAutoscrolls(true);
+        tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaClientesMouseClicked(evt);
+            }
+        });
         scrollTablaClientes.setViewportView(tablaClientes);
 
         jtfBuscarCliente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -1376,19 +1366,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
       
     }//GEN-LAST:event_tablaPagosMouseClicked
 
+    // Buscar pagos
     private void jtfbuscarpagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfbuscarpagoKeyPressed
         // TODO add your handling code here:
-        if(jtfbuscarpago.getText().isEmpty()){ //si el filtro esta vacio
-				DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(),columnasPagos);
-                                tablaPagos.setModel(modeloTablaPagos);
-
-			}else{
-				
-					//String idt = filtro.getText();
-					DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getNombreCliente(jtfbuscarpago.getText()), columnasPagos);
-					tablaPagos.setModel(modeloTablaPagos);
+        if (jtfbuscarpago.getText().isEmpty()) { //si el filtro esta vacio
+            DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(), columnasPagos);
+            tablaPagos.setModel(modeloTablaPagos);
+        } else {
+            //String idt = filtro.getText();
+            DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getNombreCliente(jtfbuscarpago.getText()), columnasPagos);
+            tablaPagos.setModel(modeloTablaPagos);
         }
     }//GEN-LAST:event_jtfbuscarpagoKeyPressed
+
+    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
+        
+    }//GEN-LAST:event_tablaClientesMouseClicked
 
     public class PresionarTecla extends KeyAdapter {
       @Override
@@ -1410,6 +1403,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return plan;
     }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelClientes;
     private javax.swing.JPanel PanelConfiguracion;

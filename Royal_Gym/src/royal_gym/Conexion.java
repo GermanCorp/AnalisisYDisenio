@@ -38,6 +38,28 @@ public class Conexion {
         }
     }
 
+    public String clasificaciónIMC(double imc){
+       String tipoIMC = "";
+       if (imc <16){
+           tipoIMC = "Delgadez Severa";
+       } else if (imc >=16 && imc <=16.99){
+           tipoIMC = "Delgadez Moderada";
+       }else if (imc >=17 && imc <=18.49){
+           tipoIMC = "Delgadez Aceptable";
+       }else if (imc >=18.50 && imc <=24.99){
+           tipoIMC = "Peso Normal";
+       }else if (imc >=25 && imc <=29.99){
+           tipoIMC = "Sobrepeso";
+       }else if (imc >=30 && imc <=34.99){
+           tipoIMC = "Obeso Tipo I";
+       }else if (imc >=35 && imc <=40){
+           tipoIMC = "Obeso Tipo II";
+       }else{
+           tipoIMC = "Obeso Tipo III";
+       }
+       return tipoIMC;
+    }
+        
     // método para insertar pagos a la base de datos
     public void insertarPagos(String cliente, String monto, String tiempo, String tipotiempo, String tipoplan, String fecha) {
         try {
@@ -144,36 +166,15 @@ public class Conexion {
         return lista;
     }
 
-    // método para llenar la tabla de clientes
-<<<<<<< HEAD
-    public Object[][] getCliente() {
-        Object[][] datosCliente = null;
-
-        try {
-            String consulta = "Select nombres, apellidos, fechaNacimiento, altura, peso FROM cliente ORDER BY nombres";
-            statement = conexion.createStatement();
-            resultado = statement.executeQuery(consulta);
-
-            ArrayList<Object[]> filas = new ArrayList<>();
-
-            while (resultado.next()) {
-                filas.add(
-                        new Object[]{
-                            resultado.getString("Nombres"),
-                            resultado.getString("Apellidos"),
-                            resultado.getString("FechaNacimiento"),
-                            resultado.getDouble("Altura"),
-                            resultado.getDouble("Peso")
-                        }
-                );
-=======
+    // método para llenar la tabla de clientes                
      public Object[][] getCliente(){
          Object[][] datosCliente = null;
          
          try {
-             String consulta = "Select nombres, apellidos, fechaNacimiento, altura, peso FROM cliente ORDER BY nombres";
+             String consulta = "Select nombres, apellidos, fechaNacimiento, altura, peso FROM cliente AS a ORDER BY nombres";
              statement = conexion.createStatement();
              resultado = statement.executeQuery(consulta);
+
              int numeroLista = 1;
              double imc = 0;
              DecimalFormat df = new DecimalFormat("0.00");
@@ -184,26 +185,24 @@ public class Conexion {
                  filas.add(
                  new Object[]{
                      numeroLista++,
-                     resultado.getString("Nombres"),
+                     resultado.getString("Nombres") + " " +
                      resultado.getString("Apellidos"),
                      resultado.getString("FechaNacimiento"),
                      resultado.getDouble("Altura"),
                      resultado.getDouble("Peso"),
-                     df.format(resultado.getDouble("Peso") / (resultado.getDouble("Altura")  * resultado.getDouble("Altura")))
+                     df.format(resultado.getDouble("Peso") / (resultado.getDouble("Altura")  * resultado.getDouble("Altura"))),
+                     clasificaciónIMC((resultado.getDouble("Peso") / (resultado.getDouble("Altura") * resultado.getDouble("Altura"))))
                  }
                  );
              }
                  datosCliente = new Object[filas.size()][];
                  filas.toArray(datosCliente);             
-         } catch (Exception e) {
-                 System.out.println(e.getMessage());
->>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
-            }
+
             datosCliente = new Object[filas.size()][];
             filas.toArray(datosCliente);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+                     } catch (Exception e) {
+                 System.out.println(e.getMessage());
+         }
         return datosCliente;
     }
 
@@ -232,21 +231,9 @@ public class Conexion {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         return datosInventario;
     }
  // método para llenar la tabla de clientes
-=======
->>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
-=======
->>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
-=======
->>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
-
-
     public Object[][] buscarCliente(String nombres, String apellidos) {
         Object[][] datosCliente = null;
 
@@ -255,7 +242,7 @@ public class Conexion {
             statement = conexion.createStatement();
             resultado = statement.executeQuery(consulta);
             int numeroLista = 1;
-            double imc = 0;
+
             DecimalFormat df = new DecimalFormat("0.00");
 
             ArrayList<Object[]> filas = new ArrayList<>();
@@ -264,12 +251,13 @@ public class Conexion {
                 filas.add(
                         new Object[]{
                             numeroLista++,
-                            resultado.getString("Nombres"),
+                            resultado.getString("Nombres") + " " +
                             resultado.getString("Apellidos"),
                             resultado.getString("FechaNacimiento"),
                             resultado.getDouble("Altura"),
                             resultado.getDouble("Peso"),
-                            df.format(resultado.getDouble("Peso") / (resultado.getDouble("Altura") * resultado.getDouble("Altura")))
+                            df.format(resultado.getDouble("Peso") / (resultado.getDouble("Altura") * resultado.getDouble("Altura"))),
+                            clasificaciónIMC((resultado.getDouble("Peso") / (resultado.getDouble("Altura") * resultado.getDouble("Altura"))))
                         }
                 );
             }
@@ -280,13 +268,11 @@ public class Conexion {
         }
         return datosCliente;
     }
+    
 
     public Object[][] getNombreCliente(String nombre) {
 
         Object[][] datos = null;
-=======
->>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
-
         try {
             String sql = "Select * from pagos where cliente LIKE '%" + nombre + "%'";
             PreparedStatement consulta = conexion.prepareStatement(sql); // PrepareStatement se utiliza cuando se utilizan consultas que llevan signo de ?
@@ -304,7 +290,6 @@ public class Conexion {
                     res.getString("tpo_plan"),
                     res.getString("fecha_pago"),});
             }
-<<<<<<< HEAD
 
             datos = new Object[d.size()][];
             d.toArray(datos);
@@ -313,55 +298,4 @@ public class Conexion {
         }
         return datos;
     }
-
-=======
-         return datosCliente;
-         }
-
-        
-        public Object[][] getNombreCliente(String nombre) {
-
-					Object[][] datos = null;
-
-					try {
-						String sql = "Select * from pagos where cliente LIKE '%" + nombre +"%'";
-						PreparedStatement consulta = conexion.prepareStatement(sql); // PrepareStatement se utiliza cuando se utilizan consultas que llevan signo de ?
-						consulta.setString(1, nombre); 
-						ResultSet res = consulta.executeQuery();
-
-						ArrayList<Object[]> d = new ArrayList<>();
-
-						while (res.next()) {
-							d.add(new Object[] { 
-									res.getString("Cliente"),
-                                                                        res.getDouble("Monto"),
-                                                                        res.getInt("Tiempo"),
-                                                                        res.getString("tipo_tiempo"),
-                                                                        res.getString("tpo_plan"),
-                                                                        res.getString("fecha_pago"),
-									});
-						}
-
-						datos = new Object[d.size()][];
-						d.toArray(datos); 
-					} catch (Exception e) {
-						System.out.println(e.getMessage());
-					}
-					return datos;
-				}
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 254b00c251e3e42ccc604630b2e1ca57b0ab2c86
-=======
-     
-<<<<<<< HEAD
->>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
-=======
-     
-<<<<<<< HEAD
->>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
-=======
->>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
-=======
->>>>>>> parent of 006daf9... Revert "Barra de busqueda funcional"
 }
