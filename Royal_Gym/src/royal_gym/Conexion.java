@@ -1,5 +1,6 @@
 package royal_gym;
 
+import com.toedter.calendar.JDateChooser;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -300,4 +301,68 @@ public class Conexion {
         }
         return datos;
     }
-}
+    
+            public Object[][] getNombreClientepago(String nombre) {
+
+	    Object[][] datos = null;
+
+	    try { 
+                 String filtro = ""+nombre+"_%";
+	         String sql = "Select * from pagos where cliente LIKE "+'"'+ filtro +'"';
+                 //String sql = "Select * from pagos where cliente LIKE '"+ nombre +"%'";
+                 System.out.println(sql);
+                 PreparedStatement consulta = conexion.prepareStatement(sql); // PrepareStatement se utiliza cuando se utilizan consultas que llevan signo de ?
+                 ResultSet res = consulta.executeQuery();
+
+	         ArrayList<Object[]> d = new ArrayList<>();
+
+		while (res.next()) {
+                   d.add(new Object[] { 
+		   res.getString("Cliente"),
+                   res.getDouble("Monto"),
+                   res.getInt("Tiempo"),
+                   res.getString("tipo_tiempo"),
+                   res.getString("tpo_plan"),
+                   res.getString("fecha_pago"),
+	           });
+	       }
+
+		datos = new Object[d.size()][];
+		d.toArray(datos); 
+	    } catch (Exception e) {
+		System.out.println(e.getMessage());
+	        }
+	        return datos;
+
+       }
+            
+            public Object[][] getIngresosGastos(String fechaInicio, String fechaFinal) {
+        Object[][] datosPago = null;
+ 
+        try {
+            String consulta = "select Nombres,monto from cliente join pagos ";
+            statement = conexion.createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                            resultado.getString("Nombres"),
+                            resultado.getDouble("Monto"),
+                            }
+                );
+            }
+            datosPago = new Object[filas.size()][];
+            filas.toArray(datosPago);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosPago;
+    }
+
+
+    }
+
+

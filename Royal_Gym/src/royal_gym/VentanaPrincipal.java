@@ -1,5 +1,6 @@
 package royal_gym;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -62,6 +63,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         "Nombres",
         "Cantidad",
         "Descripción"
+    };
+    
+    private final String[] columnasUtilidad = {
+        "Ingresos",
+        "Gastos"
     };
     
     
@@ -132,7 +138,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jlRegistroClientes1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jtfbuscarpago = new javax.swing.JTextField();
-        labelbuscarpago = new javax.swing.JLabel();
         PanelClientes = new javax.swing.JPanel();
         panelDatosCliente = new javax.swing.JPanel();
         btnCancelarRegistroCliente = new javax.swing.JButton();
@@ -173,12 +178,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PanelConfiguracion = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jdcfechaInicio = new com.toedter.calendar.JDateChooser();
+        jdcfechaFinal = new com.toedter.calendar.JDateChooser();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtableIngresosGastos = new javax.swing.JTable();
+        jbmostraringresosgastos = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -192,6 +201,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         PanelPagos.setBackground(new java.awt.Color(85, 96, 128));
+        PanelPagos.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        PanelPagos.setToolTipText("");
+        PanelPagos.setPreferredSize(new java.awt.Dimension(644, 533));
 
         tablaPagos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -209,7 +221,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jScrollPaneTablaPago.setViewportView(tablaPagos);
 
         panelDatosPago.setBackground(new java.awt.Color(85, 96, 128));
-        panelDatosPago.setPreferredSize(new java.awt.Dimension(344, 460));
+        panelDatosPago.setBorder(javax.swing.BorderFactory.createTitledBorder("Pago"));
+        panelDatosPago.setPreferredSize(new java.awt.Dimension(352, 533));
 
         jtfClienteAPagar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfClienteAPagar.setForeground(new java.awt.Color(255, 255, 255));
@@ -358,54 +371,51 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jtfPagoTipodePlan)
                 .addGap(0, 0, 0)
                 .addComponent(jcbPagoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbPagoAceptar)
                     .addComponent(jbPagoCancelar))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
+        jtfbuscarpago.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jtfbuscarpagoCaretUpdate(evt);
+            }
+        });
         jtfbuscarpago.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtfbuscarpagoKeyPressed(evt);
             }
         });
 
-        labelbuscarpago.setText("BUSCAR");
-        labelbuscarpago.setMaximumSize(new java.awt.Dimension(70, 70));
-
         javax.swing.GroupLayout PanelPagosLayout = new javax.swing.GroupLayout(PanelPagos);
         PanelPagos.setLayout(PanelPagosLayout);
         PanelPagosLayout.setHorizontalGroup(
             PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPagosLayout.createSequentialGroup()
-                .addComponent(panelDatosPago, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelDatosPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
                 .addGroup(PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelPagosLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
-                        .addComponent(labelbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(97, 97, 97))
-                    .addGroup(PanelPagosLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPaneTablaPago)
-                        .addGap(20, 20, 20))))
+                    .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPaneTablaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         PanelPagosLayout.setVerticalGroup(
             PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPagosLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPaneTablaPago, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
-                .addGap(100, 100, 100))
-            .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
+                .addGap(74, 74, 74)
+                .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPaneTablaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(69, Short.MAX_VALUE))
+            .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
         );
 
+        panelDatosPago.getAccessibleContext().setAccessibleName("Pago");
+
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/RegistrarPago_3.png")), PanelPagos); // NOI18N
+        PanelPagos.getAccessibleContext().setAccessibleName("");
 
         PanelClientes.setBackground(new java.awt.Color(85, 96, 128));
         PanelClientes.setPreferredSize(new java.awt.Dimension(1257, 500));
@@ -890,27 +900,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Configuración", new javax.swing.ImageIcon(getClass().getResource("/iconos/Configuracion.png")), PanelConfiguracion); // NOI18N
 
-        jTextField2.setText("jTextField2");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(232, 232, 232)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(767, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(449, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Utilidad", jPanel1);
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -951,6 +940,61 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Cumpleañeros", jPanel3);
+
+        jtableIngresosGastos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(jtableIngresosGastos);
+
+        jbmostraringresosgastos.setText("Mostrar");
+        jbmostraringresosgastos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbmostraringresosgastosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jdcfechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jdcfechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(370, 370, 370)
+                        .addComponent(jbmostraringresosgastos, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(337, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jdcfechaFinal, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(jdcfechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(jbmostraringresosgastos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(238, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Utilidad", jPanel1);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -1383,6 +1427,40 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_tablaClientesMouseClicked
 
+    private void jtfbuscarpagoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfbuscarpagoCaretUpdate
+        // TODO add your handling code here:
+                if(jtfbuscarpago.getText().isEmpty()){ //si el filtro esta vacio
+				DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(),columnasPagos);
+                                tablaPagos.setModel(modeloTablaPagos);
+
+			}else{
+				
+					//String idt = filtro.getText();
+					DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getNombreClientepago(jtfbuscarpago.getText()), columnasPagos);
+					tablaPagos.setModel(modeloTablaPagos);
+                }
+    }//GEN-LAST:event_jtfbuscarpagoCaretUpdate
+
+    private void jbmostraringresosgastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbmostraringresosgastosActionPerformed
+        // TODO add your handling code here:
+        String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH));
+        String anio = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.YEAR));
+        String fechaIni = (dia + "-" + mes + "-" + anio);
+        
+        String d = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String m = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.MONTH));
+        String a = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.YEAR));
+        String fechaFin = (d + "-" + m + "-" + a);
+        
+        
+        
+        
+        DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getIngresosGastos(fechaIni, fechaFin),columnasUtilidad);
+                                jtableIngresosGastos.setModel(modeloTablaPagos);
+
+    }//GEN-LAST:event_jbmostraringresosgastosActionPerformed
+
     public class PresionarTecla extends KeyAdapter {
       @Override
       public void keyPressed(KeyEvent ke) {
@@ -1401,6 +1479,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             plan[3] = "Estudiante";
         }
         return plan;
+    }
+    
+    
+    public void calcularUtilidad(JDateChooser fechaInicio, JDateChooser fechaFinal){
+       if(fechaInicio.getDate() != null && fechaFinal.getDate()!= null){
+           Calendar fecha_inicio = fechaInicio.getCalendar();
+           Calendar fecha_final = fechaFinal.getCalendar();
+           
+           while(fecha_inicio.before(fecha_final)|| fecha_inicio.equals(fecha_final)){
+               
+               
+               
+           }
+       }
+   
     }
 
     
@@ -1437,16 +1530,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPaneTablaPago;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JButton jbPagoAceptar;
     private javax.swing.JButton jbPagoCancelar;
+    private javax.swing.JButton jbmostraringresosgastos;
     private javax.swing.JComboBox<String> jcbClienteAPagar;
     private javax.swing.JComboBox<String> jcbPagoPlan;
     private javax.swing.JComboBox<String> jcbTiempoPago;
     private com.toedter.calendar.JDateChooser jdcFecha;
+    private com.toedter.calendar.JDateChooser jdcfechaFinal;
+    private com.toedter.calendar.JDateChooser jdcfechaInicio;
     private javax.swing.JLabel jlCantidadEquipo;
     private javax.swing.JLabel jlDescripcionEquipo;
     private javax.swing.JLabel jlMontoPagar;
@@ -1454,6 +1550,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jlRegistroClientes;
     private javax.swing.JLabel jlRegistroClientes1;
     private javax.swing.JLabel jlTiempoPago;
+    private javax.swing.JTable jtableIngresosGastos;
     private javax.swing.JTextField jtfAltura;
     private javax.swing.JTextField jtfApellidoCliente;
     private javax.swing.JTextField jtfBuscarCliente;
@@ -1466,7 +1563,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jtfPeso;
     private javax.swing.JTextField jtfTiempoAPagar;
     private javax.swing.JTextField jtfbuscarpago;
-    private javax.swing.JLabel labelbuscarpago;
     private javax.swing.JPanel panelDatosCliente;
     private javax.swing.JPanel panelDatosPago;
     private javax.swing.JScrollPane scrollTablaClientes;
