@@ -1,6 +1,5 @@
 package royal_gym;
 
-import com.toedter.calendar.JDateChooser;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,7 +18,7 @@ public class Conexion {
     private static Statement statement;
     static ResultSet resultado;
 
-    //conectarse a la base de datos
+    // método para conectarse a la base de datos
     public void conectar() {
         try {
             Class.forName("org.sqlite.JDBC");
@@ -39,7 +38,6 @@ public class Conexion {
         }
     }
 
-    // Clasifica el peso de acuerdo al imc
     public String clasificaciónIMC(double imc){
        String tipoIMC = "";
        if (imc <16){
@@ -111,9 +109,9 @@ public class Conexion {
         }
     }// fin del metodo para insertar inventario
 
-    //void insertarPagos(String text, String text0, Object selectedItem) {
-    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    //}
+    void insertarPagos(String text, String text0, Object selectedItem) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     // método para llenar la tabla de pagos
     public Object[][] getPago() {
@@ -173,7 +171,7 @@ public class Conexion {
          Object[][] datosCliente = null;
          
          try {
-             String consulta = "Select nombres ||' '||apellidos as NombreCompleto, fechaNacimiento, altura, peso, Peso / (Altura * Altura) as imc FROM cliente AS a ORDER BY nombres";
+             String consulta = "Select nombres, apellidos, fechaNacimiento, altura, peso FROM cliente AS a ORDER BY nombres";
              statement = conexion.createStatement();
              resultado = statement.executeQuery(consulta);
 
@@ -187,12 +185,13 @@ public class Conexion {
                  filas.add(
                  new Object[]{
                      numeroLista++,
-                     resultado.getString("NombreCompleto"),
+                     resultado.getString("Nombres") + " " +
+                     resultado.getString("Apellidos"),
                      resultado.getString("FechaNacimiento"),
                      resultado.getDouble("Altura"),
                      resultado.getDouble("Peso"),
-                     df.format(resultado.getDouble("imc")),
-                     clasificaciónIMC(resultado.getDouble("imc"))
+                     df.format(resultado.getDouble("Peso") / (resultado.getDouble("Altura")  * resultado.getDouble("Altura"))),
+                     clasificaciónIMC((resultado.getDouble("Peso") / (resultado.getDouble("Altura") * resultado.getDouble("Altura"))))
                  }
                  );
              }
@@ -234,38 +233,38 @@ public class Conexion {
         }
         return datosInventario;
     }
-    
  // método para llenar la tabla de clientes
     public Object[][] buscarCliente(String nombres, String apellidos) {
         Object[][] datosCliente = null;
+
         try {
-            String consulta = "SELECT nombres ||' '||apellidos as NombreCompleto, fechaNacimiento, altura, peso, Peso / (Altura * Altura) as imc FROM cliente WHERE nombres ||' '||apellidos LIKE '%' || ? || '%' ORDER BY nombres";
-            PreparedStatement statement = conexion.prepareStatement(consulta);
-            statement.setString(1, nombres);
-            //statement.setString(2, apellidos);
-            
-            resultado = statement.executeQuery();
+            String consulta = "SELECT nombres, apellidos, fechaNacimiento, altura, peso FROM cliente WHERE nombres LIKE '%" + nombres + "%' OR apellidos LIKE '%" + apellidos + "%' ORDER BY nombres";
+            statement = conexion.createStatement();
+            resultado = statement.executeQuery(consulta);
             int numeroLista = 1;
+
             DecimalFormat df = new DecimalFormat("0.00");
 
             ArrayList<Object[]> filas = new ArrayList<>();
+
             while (resultado.next()) {
                 filas.add(
                         new Object[]{
                             numeroLista++,
-                            resultado.getString("NombreCompleto"),
+                            resultado.getString("Nombres") + " " +
+                            resultado.getString("Apellidos"),
                             resultado.getString("FechaNacimiento"),
                             resultado.getDouble("Altura"),
                             resultado.getDouble("Peso"),
-                            df.format(resultado.getDouble("imc")),
-                            clasificaciónIMC(resultado.getDouble("imc"))
+                            df.format(resultado.getDouble("Peso") / (resultado.getDouble("Altura") * resultado.getDouble("Altura"))),
+                            clasificaciónIMC((resultado.getDouble("Peso") / (resultado.getDouble("Altura") * resultado.getDouble("Altura"))))
                         }
                 );
             }
             datosCliente = new Object[filas.size()][];
             filas.toArray(datosCliente);
         } catch (Exception e) {
-            System.out.println("buscarCliente:"+e.getMessage());
+            System.out.println(e.getMessage());
         }
         return datosCliente;
     }
@@ -275,7 +274,7 @@ public class Conexion {
 
         Object[][] datos = null;
         try {
-            String sql = "Select * from pagos where cliente LIKE '%' | ? |'%'";
+            String sql = "Select * from pagos where cliente LIKE '%" + nombre + "%'";
             PreparedStatement consulta = conexion.prepareStatement(sql); // PrepareStatement se utiliza cuando se utilizan consultas que llevan signo de ?
             consulta.setString(1, nombre);
             ResultSet res = consulta.executeQuery();
@@ -295,72 +294,8 @@ public class Conexion {
             datos = new Object[d.size()][];
             d.toArray(datos);
         } catch (Exception e) {
-            System.out.println("getNombreCliente:"+e.getMessage());
+            System.out.println(e.getMessage());
         }
         return datos;
     }
-    
-            public Object[][] getNombreClientepago(String nombre) {
-
-	    Object[][] datos = null;
-
-	    try { 
-                 String filtro = ""+nombre+"_%";
-	         String sql = "Select * from pagos where cliente LIKE "+'"'+ filtro +'"';
-                 //String sql = "Select * from pagos where cliente LIKE '"+ nombre +"%'";
-                 System.out.println(sql);
-                 PreparedStatement consulta = conexion.prepareStatement(sql); // PrepareStatement se utiliza cuando se utilizan consultas que llevan signo de ?
-                 ResultSet res = consulta.executeQuery();
-
-	         ArrayList<Object[]> d = new ArrayList<>();
-
-		while (res.next()) {
-                   d.add(new Object[] { 
-		   res.getString("Cliente"),
-                   res.getDouble("Monto"),
-                   res.getInt("Tiempo"),
-                   res.getString("tipo_tiempo"),
-                   res.getString("tpo_plan"),
-                   res.getString("fecha_pago"),
-	           });
-	       }
-
-		datos = new Object[d.size()][];
-		d.toArray(datos); 
-	    } catch (Exception e) {
-		System.out.println(e.getMessage());
-	        }
-	        return datos;
-
-       }
-            
-            public Object[][] getIngresosGastos(String fechaInicio, String fechaFinal) {
-        Object[][] datosPago = null;
- 
-        try {
-            String consulta = "select Nombres,monto from cliente join pagos ";
-            statement = conexion.createStatement();
-            resultado = statement.executeQuery(consulta);
-
-            ArrayList<Object[]> filas = new ArrayList<>();
-
-            while (resultado.next()) {
-                filas.add(
-                        new Object[]{
-                            resultado.getString("Nombres"),
-                            resultado.getDouble("Monto"),
-                            }
-                );
-            }
-            datosPago = new Object[filas.size()][];
-            filas.toArray(datosPago);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return datosPago;
-    }
-
-
-    }
-
-
+}

@@ -1,6 +1,5 @@
 package royal_gym;
 
-import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -60,15 +59,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
      // columnas de la tabla Inventario
     private final String[] columnasInventario = {
-        "N°",
         "Nombres",
         "Cantidad",
         "Descripción"
-    };
-    
-    private final String[] columnasUtilidad = {
-        "Ingresos",
-        "Gastos"
     };
     
     
@@ -389,7 +382,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(panelDatosPago, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelPagosLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                         .addComponent(labelbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -617,7 +610,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 63, Short.MAX_VALUE)
                 .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarRegistroCliente)
                     .addComponent(btnCancelarRegistroCliente))
@@ -829,6 +822,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jtfNombreEquipo.getAccessibleContext().setAccessibleParent(jlNombreEquipo);
+        jLabel10.getAccessibleContext().setAccessibleName("<html>\n<center>Inventario de<center>\n <center> Equipo<center>");
+
         tablaInventarioEquipo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -857,7 +853,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addComponent(PanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(PanelInventarioLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addGap(100, 100, 100))
         );
 
@@ -951,7 +947,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addGap(38, 38, 38)
                 .addComponent(jButton3)
-                .addContainerGap(448, Short.MAX_VALUE))
+                .addContainerGap(446, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cumpleañeros", jPanel3);
@@ -972,11 +968,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
+
+        jTabbedPane1.getAccessibleContext().setAccessibleName("Registrar Pago");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jtfNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNombreClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfNombreClienteActionPerformed
+
+    private void jtfApellidoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfApellidoClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfApellidoClienteActionPerformed
+
+    private void jtfAlturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfAlturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfAlturaActionPerformed
 
     // método para obtener la fecha desde el jcalendar
     private Date fecha() {
@@ -986,246 +996,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return fecha;
     }
 
-    boolean validarInformacion() {
-        int errores = 0;
-        String m = jtfMontoAPagar.getText(),
-                t = jtfTiempoAPagar.getText();
-
-        if (m.equals("")) {
-            errores++;
-        }
-
-        if (t.equals("")) {
-            errores++;
-        }
-
-        return errores == 0;
-    }
-
-    private void jtfbuscarpagoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfbuscarpagoCaretUpdate
-        // TODO add your handling code here:
-                if(jtfbuscarpago.getText().isEmpty()){ //si el filtro esta vacio
-				DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(),columnasPagos);
-                                tablaPagos.setModel(modeloTablaPagos);
-
-			}else{
-				
-					//String idt = filtro.getText();
-					DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getNombreClientepago(jtfbuscarpago.getText()), columnasPagos);
-					tablaPagos.setModel(modeloTablaPagos);
-                }
-    }//GEN-LAST:event_jtfbuscarpagoCaretUpdate
-
-    private void jbmostraringresosgastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbmostraringresosgastosActionPerformed
-        // TODO add your handling code here:
-        String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH));
-        String anio = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.YEAR));
-        String fechaIni = (dia + "-" + mes + "-" + anio);
-        
-        String d = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String m = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.MONTH));
-        String a = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.YEAR));
-        String fechaFin = (d + "-" + m + "-" + a);
-        
-        
-        
-        
-        DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getIngresosGastos(fechaIni, fechaFin),columnasUtilidad);
-                                jtableIngresosGastos.setModel(modeloTablaPagos);
-
-    }//GEN-LAST:event_jbmostraringresosgastosActionPerformed
-
-    private void jtfBuscarInventarioCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarInventarioCaretUpdate
-
-        //DefaultTableModel modeloBuscarInventario = new DefaultTableModel(con.busquedainventario(jtfBuscarInventario.getText()),columnasInventario);
-        //tablaInventarioEquipo.setModel(modeloBuscarInventario);
-    }//GEN-LAST:event_jtfBuscarInventarioCaretUpdate
-
-    private void jtfbuscarpagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfbuscarpagoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfbuscarpagoActionPerformed
-
-    private void tablaPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPagosMouseClicked
-        // TODO add your handling code here:
-        filaseleccionadatablapagos = tablaPagos.getSelectedRow();
-
-        jcbClienteAPagar.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 0));
-        jtfMontoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 1).toString());
-        jtfTiempoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 2).toString());
-        jcbTiempoPago.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 3));
-        jcbPagoPlan.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 4));
-    }//GEN-LAST:event_tablaPagosMouseClicked
-
-    private void jcbClienteAPagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbClienteAPagarMouseClicked
-        jcbClienteAPagar.removeAllItems();
-        ArrayList<String> lista =new ArrayList<String>();
-        lista =  con.llenarCombo();
-        for(int i = 0; i<lista.size(); i++){
-            jcbClienteAPagar.addItem(lista.get(i));
-        }
-    }//GEN-LAST:event_jcbClienteAPagarMouseClicked
-
-    private void jcbClienteAPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClienteAPagarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbClienteAPagarActionPerformed
-
-    private void jtfMontoAPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfMontoAPagarKeyTyped
-        char c = evt.getKeyChar();
-        if(c<'0' || c>'9') evt.consume();
-
-        else
-        if((int)evt.getKeyChar()>=32 && (int)evt.getKeyChar()<=47 ||
-            (int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64 ||
-            (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
-        {
-            getToolkit().beep();
-            evt.consume();
-        }
-        jtfMontoAPagar.setCursor(null);
-    }//GEN-LAST:event_jtfMontoAPagarKeyTyped
-
-    private void jtfTiempoAPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTiempoAPagarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfTiempoAPagarActionPerformed
-
-    private void jtfTiempoAPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTiempoAPagarKeyTyped
-        char c = evt.getKeyChar();
-        if(c<'0' || c>'9') evt.consume();
-
-        else
-        if((int)evt.getKeyChar()>=32 && (int)evt.getKeyChar()<=47 ||
-            (int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64 ||
-            (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
-        {
-            getToolkit().beep();
-            evt.consume();
-        }
-        jtfTiempoAPagar.setCursor(null);
-    }//GEN-LAST:event_jtfTiempoAPagarKeyTyped
-
-    private void jcbPagoPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbPagoPlanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbPagoPlanActionPerformed
-
-    private void jbPagoAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoAceptarActionPerformed
-        Calendar c;
-        c = Calendar.getInstance();
-        int d = c.get(Calendar.DATE), m = 1 + (c.get(Calendar.MONTH)), a = c.get(Calendar.YEAR);
-
-        String dia = Integer.toString(d);
-        String mes = Integer.toString(m);
-        String anio = Integer.toString(a);
-        String fecha = (dia + "-" + mes + "-" + anio);
-
-        if (validarInformacion() == true) {
-
-            if (jcbPagoPlan.getSelectedItem() != null) {
-                con.insertarPagos(jcbClienteAPagar.getSelectedItem().toString(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
-                    jcbTiempoPago.getSelectedItem().toString(), jcbPagoPlan.getSelectedItem().toString(), fecha);
-            } else {
-                con.insertarPagos(jcbClienteAPagar.getSelectedItem().toString(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
-                    jcbTiempoPago.getSelectedItem().toString(), "No aplica", fecha);
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(this, "Ingrese toda la informacion");
-        }
-
-        jcbClienteAPagar.setSelectedIndex(0);
-        jtfMontoAPagar.setText("");
-        jtfTiempoAPagar.setText("");
-        jcbTiempoPago.setSelectedIndex(0);
-        jcbPagoPlan.setSelectedIndex(0);
-
-        DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(),columnasPagos);
-        tablaPagos.setModel(modeloTablaPagos);
-    }//GEN-LAST:event_jbPagoAceptarActionPerformed
-
-    private void jbPagoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoCancelarActionPerformed
-        jcbClienteAPagar.setSelectedIndex(0);
-        jtfMontoAPagar.setText("");
-        jtfTiempoAPagar.setText("");
-        jcbTiempoPago.setSelectedIndex(0);
-        jcbPagoPlan.setSelectedIndex(0);
-    }//GEN-LAST:event_jbPagoCancelarActionPerformed
-
-    private void jcbTiempoPagoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbTiempoPagoItemStateChanged
-        if(evt.getStateChange() == ItemEvent.SELECTED)
-        {
-            if(this.jcbTiempoPago.getSelectedIndex()>0)
-            {
-                this.jcbPagoPlan.setModel(new DefaultComboBoxModel
-                    (this.getTipoTiempo(this.jcbTiempoPago.getSelectedItem().toString())));
-            }
-        }
-    }//GEN-LAST:event_jcbTiempoPagoItemStateChanged
-
-    private void jcbTiempoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTiempoPagoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbTiempoPagoActionPerformed
-
-    private void jtfbuscarpagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfbuscarpagoKeyPressed
-        // TODO add your handling code here:
-        if (jtfbuscarpago.getText().isEmpty()) { //si el filtro esta vacio
-            DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(), columnasPagos);
-            tablaPagos.setModel(modeloTablaPagos);
-        } else {
-            //String idt = filtro.getText();
-            DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getNombreCliente(jtfbuscarpago.getText()), columnasPagos);
-            tablaPagos.setModel(modeloTablaPagos);
-        }
-    }//GEN-LAST:event_jtfbuscarpagoKeyPressed
-
-    private void btnCancelarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRegistroClienteActionPerformed
-        jtfNombreCliente.setText("");
-        jtfApellidoCliente.setText("");
-        jdcFecha.setDate(null);
-        jtfPeso.setText("");
-        jtfAltura.setText("");
-    }//GEN-LAST:event_btnCancelarRegistroClienteActionPerformed
-
-    private void jtfNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNombreClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfNombreClienteActionPerformed
-
-    private void jtfNombreClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreClienteKeyTyped
-        char cTeclaPresionada = evt.getKeyChar();
-        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-            btnAceptarRegistroCliente.doClick();
-        }
-    }//GEN-LAST:event_jtfNombreClienteKeyTyped
-
-    private void jtfApellidoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfApellidoClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfApellidoClienteActionPerformed
-
-    private void jtfApellidoClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfApellidoClienteKeyTyped
-
-        char cTeclaPresionada = evt.getKeyChar();
-        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-            btnAceptarRegistroCliente.doClick();
-        }
-    }//GEN-LAST:event_jtfApellidoClienteKeyTyped
-
-    private void jtfAlturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfAlturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfAlturaActionPerformed
-
-    private void jtfAlturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAlturaKeyTyped
-
-        char cTeclaPresionada = evt.getKeyChar();
-        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-            btnAceptarRegistroCliente.doClick();
-        }
-        if(!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.'){
-            evt.consume();
-        }
-        if(evt.getKeyChar()== '.'&&jtfAltura.getText().contains(".")){
-            evt.consume();
-        }
-    }//GEN-LAST:event_jtfAlturaKeyTyped
-
+    // Evento del boton aceptar para guardar cliente en la base de datos
     private void btnAceptarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteActionPerformed
         con.conectar();
         Calendar cal = Calendar.getInstance();
@@ -1234,10 +1005,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         int anioViejo = anio - 100;
 
         if (jtfNombreCliente.getText().isEmpty()
-            && jtfApellidoCliente.getText().isEmpty()
-            && jdcFecha.getDate() == null
-            && jtfAltura.getText().isEmpty()
-            && jtfPeso.getText().isEmpty()) {
+                && jtfApellidoCliente.getText().isEmpty()
+                && jdcFecha.getDate() == null
+                && jtfAltura.getText().isEmpty()
+                && jtfPeso.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "ingrese Toda la Información", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jtfNombreCliente.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el NOMBRE del Cliente", "Error!", JOptionPane.ERROR_MESSAGE);
@@ -1256,75 +1027,37 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } else {
 
             con.insertarCliente(
-                jtfNombreCliente.getText(),
-                jtfApellidoCliente.getText(),
-                fecha().toString(),
-                jtfAltura.getText(),
-                jtfPeso.getText());
+                    jtfNombreCliente.getText(),
+                    jtfApellidoCliente.getText(),
+                    fecha().toString(),
+                    jtfAltura.getText(),
+                    jtfPeso.getText());
 
             jtfNombreCliente.setText("");
             jtfApellidoCliente.setText("");
             jdcFecha.setDate(null);
             jtfAltura.setText("");
             jtfPeso.setText("");
-
+            
             DefaultTableModel modeloTablaClientes = new DefaultTableModel(con.getCliente(),columnasClientes);
             tablaClientes.setModel(modeloTablaClientes);
             JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
         }
+
     }//GEN-LAST:event_btnAceptarRegistroClienteActionPerformed
-
-    private void btnAceptarRegistroClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteKeyPressed
-
-    }//GEN-LAST:event_btnAceptarRegistroClienteKeyPressed
 
     private void jtfPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPesoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfPesoActionPerformed
 
-    private void jtfPesoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyReleased
-        if(!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.'){
-            evt.consume();
-        }
-        if(evt.getKeyChar()== '.'&&jtfAltura.getText().contains(".")){
-            evt.consume();
-        }
-    }//GEN-LAST:event_jtfPesoKeyReleased
+    private void btnCancelarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRegistroClienteActionPerformed
+        jtfNombreCliente.setText("");
+        jtfApellidoCliente.setText("");
+        jdcFecha.setDate(null);
+        jtfPeso.setText("");
+        jtfAltura.setText("");
 
-    private void jtfPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyTyped
-        char cTeclaPresionada = evt.getKeyChar();
-        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-            btnAceptarRegistroCliente.doClick();
-        }
-    }//GEN-LAST:event_jtfPesoKeyTyped
-
-    private void jdcFechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdcFechaKeyTyped
-        char cTeclaPresionada = evt.getKeyChar();
-        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-            btnAceptarRegistroCliente.doClick();
-        }
-    }//GEN-LAST:event_jdcFechaKeyTyped
-
-    private void panelDatosClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelDatosClienteFocusGained
-
-    }//GEN-LAST:event_panelDatosClienteFocusGained
-
-    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
-
-    }//GEN-LAST:event_tablaClientesMouseClicked
-
-    private void jtfBuscarClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarClienteCaretUpdate
-        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(con.buscarCliente(jtfBuscarCliente.getText(), jtfBuscarCliente.getText()),columnasClientes);
-        tablaClientes.setModel(modeloTablaBuscarClientes);
-    }//GEN-LAST:event_jtfBuscarClienteCaretUpdate
-
-    private void jtfBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfBuscarClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfBuscarClienteActionPerformed
-
-    private void jtfBuscarClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfBuscarClienteKeyPressed
-
-    }//GEN-LAST:event_jtfBuscarClienteKeyPressed
+    }//GEN-LAST:event_btnCancelarRegistroClienteActionPerformed
 
     private void jtfNombreEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNombreEquipoActionPerformed
         // TODO add your handling code here:
@@ -1337,8 +1070,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         ValidarLetras.soloLetras(evt);
         if ((int) evt.getKeyChar() > 32 && (int) evt.getKeyChar() <= 47
-            || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
-            || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
+                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
+                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
             evt.consume();
 
             jtfNombreEquipo.setCursor(null);
@@ -1359,27 +1092,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ValidarNumeros.soloNumeros(evt);
 
         if ((int) evt.getKeyChar() >= 32 && (int) evt.getKeyChar() <= 47
-            || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
-            || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
+                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
+                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
             evt.consume();
 
             jtfCantidadEquipo.setCursor(null);
         }
     }//GEN-LAST:event_jtfCantidadEquipoKeyTyped
 
-    private void taDescripcionEquipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taDescripcionEquipoKeyTyped
-        if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
-            evt.consume();
-        }
-        if ((int) evt.getKeyChar() > 32 && (int) evt.getKeyChar() <= 47
-            || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
-            || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
-            evt.consume();
-
-            taDescripcionEquipo.setCursor(null);
-        }
-    }//GEN-LAST:event_taDescripcionEquipoKeyTyped
-
+    // Evento del boton aceptar para guardar inventario en la base de datos
     private void btnAceptarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarInventarioActionPerformed
         con.conectar();
         //validaciones para los JTextField 1,2 y textArea1 para campos vacios
@@ -1394,32 +1115,273 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } else {
             //metodogo getText para cada los JTextField 1,2 y textArea1 y asi obtener el texto
             con.insertarInventario(
-                jtfNombreEquipo.getText(),
-                jtfCantidadEquipo.getText(),
-                taDescripcionEquipo.getText());
-
-            DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(),columnasInventario);
-            tablaInventarioEquipo.setModel(modeloTablaInventario);
-
+                    jtfNombreEquipo.getText(),
+                    jtfCantidadEquipo.getText(),
+                    taDescripcionEquipo.getText());
+            
+        DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(),columnasInventario);
+        tablaInventarioEquipo.setModel(modeloTablaInventario);
+        
             jtfNombreEquipo.setText("");
             jtfCantidadEquipo.setText("");
-            taDescripcionEquipo.setText("");
+            taDescripcionEquipo.setText("");   
         }
     }//GEN-LAST:event_btnAceptarInventarioActionPerformed
 
     private void btnCancelarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarInventarioActionPerformed
-        jtfNombreEquipo.setText("");
-        jtfCantidadEquipo.setText("");
-        taDescripcionEquipo.setText("");
+         jtfNombreEquipo.setText("");
+            jtfCantidadEquipo.setText("");
+            taDescripcionEquipo.setText("");
     }//GEN-LAST:event_btnCancelarInventarioActionPerformed
+
+    private void taDescripcionEquipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taDescripcionEquipoKeyTyped
+        if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
+            evt.consume();
+        }
+        if ((int) evt.getKeyChar() > 32 && (int) evt.getKeyChar() <= 47
+                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
+                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
+            evt.consume();
+
+            taDescripcionEquipo.setCursor(null);
+        }
+    }//GEN-LAST:event_taDescripcionEquipoKeyTyped
+
+    private void jcbPagoPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbPagoPlanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbPagoPlanActionPerformed
+
+    private void jbPagoAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoAceptarActionPerformed
+        Calendar c;
+        c = Calendar.getInstance();
+        int d = c.get(Calendar.DATE), m = 1 + (c.get(Calendar.MONTH)), a = c.get(Calendar.YEAR);
+
+        String dia = Integer.toString(d);
+        String mes = Integer.toString(m);
+        String anio = Integer.toString(a);
+        String fecha = (dia + "-" + mes + "-" + anio);
+
+        if (validarInformacion() == true) {
+
+            if (jcbPagoPlan.getSelectedItem() != null) {
+                con.insertarPagos(jcbClienteAPagar.getSelectedItem().toString(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
+                        jcbTiempoPago.getSelectedItem().toString(), jcbPagoPlan.getSelectedItem().toString(), fecha);
+            } else {
+                con.insertarPagos(jcbClienteAPagar.getSelectedItem().toString(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
+                        jcbTiempoPago.getSelectedItem().toString(), "No aplica", fecha);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese toda la informacion");
+        }
+
+        jcbClienteAPagar.setSelectedIndex(0);
+        jtfMontoAPagar.setText("");
+        jtfTiempoAPagar.setText("");
+        jcbTiempoPago.setSelectedIndex(0);
+        jcbPagoPlan.setSelectedIndex(0);
+
+       DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(),columnasPagos);
+       tablaPagos.setModel(modeloTablaPagos);
+
+    }//GEN-LAST:event_jbPagoAceptarActionPerformed
+
+    boolean validarInformacion() {
+        int errores = 0;
+        String m = jtfMontoAPagar.getText(),
+                t = jtfTiempoAPagar.getText();
+
+        if (m.equals("")) {
+            errores++;
+        }
+
+        if (t.equals("")) {
+            errores++;
+        }
+
+        return errores == 0;
+    }
+
+    private void jbPagoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoCancelarActionPerformed
+        jcbClienteAPagar.setSelectedIndex(0);
+        jtfMontoAPagar.setText("");
+        jtfTiempoAPagar.setText("");
+        jcbTiempoPago.setSelectedIndex(0);
+        jcbPagoPlan.setSelectedIndex(0);
+    }//GEN-LAST:event_jbPagoCancelarActionPerformed
+
+    private void jcbClienteAPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClienteAPagarActionPerformed
+            // TODO add your handling code here:
+    }//GEN-LAST:event_jcbClienteAPagarActionPerformed
+
+    private void jcbClienteAPagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbClienteAPagarMouseClicked
+        jcbClienteAPagar.removeAllItems();
+        ArrayList<String> lista =new ArrayList<String>();
+            lista =  con.llenarCombo();
+            for(int i = 0; i<lista.size(); i++){
+                jcbClienteAPagar.addItem(lista.get(i));
+            }
+    }//GEN-LAST:event_jcbClienteAPagarMouseClicked
+
+    private void jtfAlturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAlturaKeyTyped
+        
+          char cTeclaPresionada = evt.getKeyChar();
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+             btnAceptarRegistroCliente.doClick();
+      }
+        if(!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.'){
+            evt.consume();  
+        }
+         if(evt.getKeyChar()== '.'&&jtfAltura.getText().contains(".")){
+            evt.consume();  
+        }
+    }//GEN-LAST:event_jtfAlturaKeyTyped
+
+    private void jtfPesoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyReleased
+        if(!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.'){
+            evt.consume();  
+        }
+         if(evt.getKeyChar()== '.'&&jtfAltura.getText().contains(".")){
+            evt.consume();  
+        }
+    }//GEN-LAST:event_jtfPesoKeyReleased
+
+    private void jtfTiempoAPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTiempoAPagarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfTiempoAPagarActionPerformed
+
+    private void jtfTiempoAPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTiempoAPagarKeyTyped
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+        
+        else
+            if((int)evt.getKeyChar()>=32 && (int)evt.getKeyChar()<=47 ||
+               (int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64 ||
+               (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+            {
+                getToolkit().beep();
+                evt.consume();
+            }
+               jtfTiempoAPagar.setCursor(null);
+    }//GEN-LAST:event_jtfTiempoAPagarKeyTyped
+
+    private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTabbedPane1FocusGained
+
+    private void jtfMontoAPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfMontoAPagarKeyTyped
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+        
+        else
+            if((int)evt.getKeyChar()>=32 && (int)evt.getKeyChar()<=47 ||
+               (int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64 ||
+               (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+            {
+                getToolkit().beep();
+                evt.consume();
+            }
+               jtfMontoAPagar.setCursor(null);        
+    }//GEN-LAST:event_jtfMontoAPagarKeyTyped
+
+    private void btnAceptarRegistroClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteKeyPressed
+
+    }//GEN-LAST:event_btnAceptarRegistroClienteKeyPressed
+
+    private void panelDatosClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelDatosClienteFocusGained
+
+    }//GEN-LAST:event_panelDatosClienteFocusGained
+
+    private void jtfNombreClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreClienteKeyTyped
+       char cTeclaPresionada = evt.getKeyChar();
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+             btnAceptarRegistroCliente.doClick();
+      }
+    }//GEN-LAST:event_jtfNombreClienteKeyTyped
+
+    private void jtfApellidoClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfApellidoClienteKeyTyped
+        
+         char cTeclaPresionada = evt.getKeyChar();
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+             btnAceptarRegistroCliente.doClick();
+      }
+    }//GEN-LAST:event_jtfApellidoClienteKeyTyped
+
+    private void jdcFechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdcFechaKeyTyped
+         char cTeclaPresionada = evt.getKeyChar();
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+             btnAceptarRegistroCliente.doClick();
+      }
+    }//GEN-LAST:event_jdcFechaKeyTyped
+
+    private void jtfPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyTyped
+          char cTeclaPresionada = evt.getKeyChar();
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+             btnAceptarRegistroCliente.doClick();
+      }
+    }//GEN-LAST:event_jtfPesoKeyTyped
+
+    private void jcbTiempoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTiempoPagoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbTiempoPagoActionPerformed
+
+    private void jcbTiempoPagoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbTiempoPagoItemStateChanged
+        if(evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            if(this.jcbTiempoPago.getSelectedIndex()>0)
+            {
+                this.jcbPagoPlan.setModel(new DefaultComboBoxModel
+                (this.getTipoTiempo(this.jcbTiempoPago.getSelectedItem().toString())));
+            }
+        }
+    }//GEN-LAST:event_jcbTiempoPagoItemStateChanged
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
+    private void jtfBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfBuscarClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTabbedPane1FocusGained
+    }//GEN-LAST:event_jtfBuscarClienteActionPerformed
+
+    private void jtfBuscarClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfBuscarClienteKeyPressed
+
+        
+    }//GEN-LAST:event_jtfBuscarClienteKeyPressed
+
+    private void jtfBuscarClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarClienteCaretUpdate
+        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(con.buscarCliente(jtfBuscarCliente.getText(), jtfBuscarCliente.getText()),columnasClientes);
+    tablaClientes.setModel(modeloTablaBuscarClientes);
+    }//GEN-LAST:event_jtfBuscarClienteCaretUpdate
+
+    private void tablaPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPagosMouseClicked
+        // TODO add your handling code here:
+       filaseleccionadatablapagos = tablaPagos.getSelectedRow();
+     
+      jcbClienteAPagar.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 0));
+      jtfMontoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 1).toString());
+      jtfTiempoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 2).toString());
+      jcbTiempoPago.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 3));
+      jcbPagoPlan.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 4));
+      
+    }//GEN-LAST:event_tablaPagosMouseClicked
+
+    // Buscar pagos
+    private void jtfbuscarpagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfbuscarpagoKeyPressed
+        // TODO add your handling code here:
+        if (jtfbuscarpago.getText().isEmpty()) { //si el filtro esta vacio
+            DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(), columnasPagos);
+            tablaPagos.setModel(modeloTablaPagos);
+        } else {
+            //String idt = filtro.getText();
+            DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getNombreCliente(jtfbuscarpago.getText()), columnasPagos);
+            tablaPagos.setModel(modeloTablaPagos);
+        }
+    }//GEN-LAST:event_jtfbuscarpagoKeyPressed
+
+    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
+        
+    }//GEN-LAST:event_tablaClientesMouseClicked
 
     public class PresionarTecla extends KeyAdapter {
       @Override
@@ -1439,17 +1401,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             plan[3] = "Estudiante";
         }
         return plan;
-    }
-    
-    
-    public void calcularUtilidad(JDateChooser fechaInicio, JDateChooser fechaFinal){
-       if(fechaInicio.getDate() != null && fechaFinal.getDate()!= null){
-           Calendar fecha_inicio = fechaInicio.getCalendar();
-           Calendar fecha_final = fechaFinal.getCalendar();
-           
-           while(fecha_inicio.before(fecha_final)|| fecha_inicio.equals(fecha_final)){
-           }
-       }
     }
 
     
