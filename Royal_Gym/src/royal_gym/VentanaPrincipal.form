@@ -102,11 +102,8 @@
                           <Component id="jtfbuscarpago" min="-2" pref="387" max="-2" attributes="0"/>
                           <Component id="jScrollPaneTablaPago" min="-2" pref="581" max="-2" attributes="0"/>
                       </Group>
-<<<<<<< HEAD
                       <EmptySpace pref="81" max="32767" attributes="0"/>
-=======
                       <EmptySpace pref="84" max="32767" attributes="0"/>
->>>>>>> 5be7adf252d90d48f47489a5760eca8d8ee6bcd7
                   </Group>
               </Group>
             </DimensionLayout>
@@ -117,15 +114,12 @@
                       <Component id="jtfbuscarpago" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPaneTablaPago" min="-2" pref="357" max="-2" attributes="0"/>
-<<<<<<< HEAD
                       <EmptySpace pref="69" max="32767" attributes="0"/>
                   </Group>
                   <Component id="panelDatosPago" alignment="0" pref="568" max="32767" attributes="0"/>
-=======
                       <EmptySpace pref="184" max="32767" attributes="0"/>
                   </Group>
                   <Component id="panelDatosPago" alignment="0" pref="683" max="32767" attributes="0"/>
->>>>>>> 5be7adf252d90d48f47489a5760eca8d8ee6bcd7
               </Group>
             </DimensionLayout>
           </Layout>
@@ -245,20 +239,14 @@
                           <Component id="jtfPagoTipodePlan" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="jcbPagoPlan" min="-2" pref="30" max="-2" attributes="0"/>
-<<<<<<< HEAD
                           <EmptySpace pref="56" max="32767" attributes="0"/>
-=======
                           <EmptySpace pref="115" max="32767" attributes="0"/>
->>>>>>> 5be7adf252d90d48f47489a5760eca8d8ee6bcd7
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jbPagoAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jbPagoCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-<<<<<<< HEAD
                           <EmptySpace pref="61" max="32767" attributes="0"/>
-=======
                           <EmptySpace pref="116" max="32767" attributes="0"/>
->>>>>>> 5be7adf252d90d48f47489a5760eca8d8ee6bcd7
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -427,10 +415,7 @@
             <Component class="javax.swing.JTextField" name="jtfbuscarpago">
               <Events>
                 <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="jtfbuscarpagoCaretUpdate"/>
-<<<<<<< HEAD
-=======
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfbuscarpagoActionPerformed"/>
->>>>>>> 5be7adf252d90d48f47489a5760eca8d8ee6bcd7
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtfbuscarpagoKeyPressed"/>
               </Events>
             </Component>
@@ -1536,7 +1521,6 @@
             </Container>
           </SubComponents>
         </Container>
-<<<<<<< HEAD
         <Container class="javax.swing.JPanel" name="PanelConfiguracion">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -1747,8 +1731,6 @@
             </Component>
           </SubComponents>
         </Container>
-=======
->>>>>>> 5be7adf252d90d48f47489a5760eca8d8ee6bcd7
       </SubComponents>
     </Container>
   </SubComponents>

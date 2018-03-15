@@ -193,7 +193,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaInventarioEquipo = new javax.swing.JTable();
-<<<<<<< HEAD
         PanelConfiguracion = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -207,8 +206,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jtableIngresosGastos = new javax.swing.JTable();
         jbmostraringresosgastos = new javax.swing.JButton();
-=======
->>>>>>> 5be7adf252d90d48f47489a5760eca8d8ee6bcd7
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -392,19 +389,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jtfPagoTipodePlan)
                 .addGap(0, 0, 0)
                 .addComponent(jcbPagoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbPagoAceptar)
                     .addComponent(jbPagoCancelar))
                 .addContainerGap(61, Short.MAX_VALUE))
-=======
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbPagoAceptar)
                     .addComponent(jbPagoCancelar))
                 .addContainerGap(116, Short.MAX_VALUE))
->>>>>>> 5be7adf252d90d48f47489a5760eca8d8ee6bcd7
         );
 
         jtfbuscarpago.addCaretListener(new javax.swing.event.CaretListener() {
@@ -412,14 +406,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 jtfbuscarpagoCaretUpdate(evt);
             }
         });
-<<<<<<< HEAD
-=======
         jtfbuscarpago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfbuscarpagoActionPerformed(evt);
             }
         });
->>>>>>> 5be7adf252d90d48f47489a5760eca8d8ee6bcd7
         jtfbuscarpago.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtfbuscarpagoKeyPressed(evt);
@@ -436,11 +427,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPaneTablaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE))
-<<<<<<< HEAD
                 .addContainerGap(81, Short.MAX_VALUE))
-=======
                 .addContainerGap(84, Short.MAX_VALUE))
->>>>>>> 5be7adf252d90d48f47489a5760eca8d8ee6bcd7
         );
         PanelPagosLayout.setVerticalGroup(
             PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -449,13 +437,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPaneTablaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
                 .addContainerGap(69, Short.MAX_VALUE))
             .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
-=======
                 .addContainerGap(184, Short.MAX_VALUE))
             .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
->>>>>>> 5be7adf252d90d48f47489a5760eca8d8ee6bcd7
         );
 
         panelDatosPago.getAccessibleContext().setAccessibleName("Pago");
@@ -1113,7 +1098,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("<html>\n<center>Inventario de<center>\n<center>Maquinaria<center>", new javax.swing.ImageIcon(getClass().getResource("/iconos/Inventario_2.png")), PanelInventario); // NOI18N
 
-<<<<<<< HEAD
         jLabel8.setText("Edad Permitida para pago:");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -1240,9 +1224,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Utilidad", jPanel1);
-
-=======
->>>>>>> 5be7adf252d90d48f47489a5760eca8d8ee6bcd7
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
 
@@ -1710,19 +1691,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jbmostraringresosgastosActionPerformed
 
-<<<<<<< HEAD
-=======
     private void jtfBuscarInventarioCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarInventarioCaretUpdate
 
-        DefaultTableModel modeloBuscarInventario = new DefaultTableModel(con.busquedainventario(jtfBuscarInventario.getText()),columnasInventario);
-        tablaInventarioEquipo.setModel(modeloBuscarInventario);
+        //DefaultTableModel modeloBuscarInventario = new DefaultTableModel(con.busquedainventario(jtfBuscarInventario.getText()),columnasInventario);
+        //tablaInventarioEquipo.setModel(modeloBuscarInventario);
     }//GEN-LAST:event_jtfBuscarInventarioCaretUpdate
 
     private void jtfbuscarpagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfbuscarpagoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfbuscarpagoActionPerformed
 
->>>>>>> 5be7adf252d90d48f47489a5760eca8d8ee6bcd7
     public class PresionarTecla extends KeyAdapter {
       @Override
       public void keyPressed(KeyEvent ke) {
@@ -1794,10 +1772,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-<<<<<<< HEAD
-=======
     private javax.swing.JScrollPane jScrollPane3;
->>>>>>> 5be7adf252d90d48f47489a5760eca8d8ee6bcd7
     private javax.swing.JScrollPane jScrollPaneTablaPago;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
