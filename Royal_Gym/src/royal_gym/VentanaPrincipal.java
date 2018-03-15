@@ -176,6 +176,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
+        panelDatosCliente1 = new javax.swing.JPanel();
+        btnCancelarRegistroCliente1 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jtfNombreCliente1 = new javax.swing.JTextField();
+        jtfApellidoCliente1 = new javax.swing.JTextField();
+        btnAceptarRegistroCliente1 = new javax.swing.JButton();
+        jdcFecha1 = new com.toedter.calendar.JDateChooser();
+        jLabel22 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
@@ -358,11 +369,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jtfPagoTipodePlan)
                 .addGap(0, 0, 0)
                 .addComponent(jcbPagoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbPagoAceptar)
                     .addComponent(jbPagoCancelar))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         jtfbuscarpago.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -382,7 +393,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(panelDatosPago, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelPagosLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
                         .addComponent(labelbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -400,9 +411,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(jScrollPaneTablaPago, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                .addComponent(jScrollPaneTablaPago, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
                 .addGap(100, 100, 100))
-            .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
+            .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/RegistrarPago_3.png")), PanelPagos); // NOI18N
@@ -610,7 +621,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)))
-                .addGap(18, 63, Short.MAX_VALUE)
+                .addGap(18, 96, Short.MAX_VALUE)
                 .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarRegistroCliente)
                     .addComponent(btnCancelarRegistroCliente))
@@ -670,7 +681,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel14))
-                    .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE))
+                    .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
         PanelTablaLayout.setVerticalGroup(
@@ -681,7 +692,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jtfBuscarCliente)
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
 
@@ -876,7 +887,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(823, Short.MAX_VALUE))
+                .addContainerGap(1022, Short.MAX_VALUE))
         );
         PanelConfiguracionLayout.setVerticalGroup(
             PanelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -885,7 +896,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(PanelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(514, Short.MAX_VALUE))
+                .addContainerGap(548, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Configuración", new javax.swing.ImageIcon(getClass().getResource("/iconos/Configuracion.png")), PanelConfiguracion); // NOI18N
@@ -899,27 +910,176 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(232, 232, 232)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(767, Short.MAX_VALUE))
+                .addContainerGap(966, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(104, 104, 104)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(449, Short.MAX_VALUE))
+                .addContainerGap(483, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Utilidad", jPanel1);
+
+        jPanel2.setBackground(new java.awt.Color(85, 96, 128));
+
+        panelDatosCliente1.setBackground(new java.awt.Color(85, 96, 128));
+        panelDatosCliente1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Registro de Gasto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        panelDatosCliente1.setToolTipText("");
+        panelDatosCliente1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                panelDatosCliente1FocusGained(evt);
+            }
+        });
+
+        btnCancelarRegistroCliente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Cancelar.png"))); // NOI18N
+        btnCancelarRegistroCliente1.setText("Cancelar");
+        btnCancelarRegistroCliente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarRegistroCliente1ActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Descripción:");
+
+        jLabel16.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Monto:");
+
+        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Fecha:");
+
+        jtfNombreCliente1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfNombreCliente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfNombreCliente1ActionPerformed(evt);
+            }
+        });
+        jtfNombreCliente1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfNombreCliente1KeyTyped(evt);
+            }
+        });
+
+        jtfApellidoCliente1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfApellidoCliente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfApellidoCliente1ActionPerformed(evt);
+            }
+        });
+        jtfApellidoCliente1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfApellidoCliente1KeyTyped(evt);
+            }
+        });
+
+        btnAceptarRegistroCliente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Aceptar.png"))); // NOI18N
+        btnAceptarRegistroCliente1.setText("Aceptar");
+        btnAceptarRegistroCliente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarRegistroCliente1ActionPerformed(evt);
+            }
+        });
+        btnAceptarRegistroCliente1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnAceptarRegistroCliente1KeyPressed(evt);
+            }
+        });
+
+        jdcFecha1.setDateFormatString("dd-MM-yyyy");
+        jdcFecha1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jdcFecha1.setInheritsPopupMenu(true);
+        jdcFecha1.setPreferredSize(new java.awt.Dimension(100, 100));
+        jdcFecha1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jdcFecha1KeyTyped(evt);
+            }
+        });
+
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/RegistroNuevoCliente.png"))); // NOI18N
+
+        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox1.setText("Personalizar");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelDatosCliente1Layout = new javax.swing.GroupLayout(panelDatosCliente1);
+        panelDatosCliente1.setLayout(panelDatosCliente1Layout);
+        panelDatosCliente1Layout.setHorizontalGroup(
+            panelDatosCliente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDatosCliente1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(panelDatosCliente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jtfNombreCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16)
+                    .addComponent(jtfApellidoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17)
+                    .addGroup(panelDatosCliente1Layout.createSequentialGroup()
+                        .addComponent(btnAceptarRegistroCliente1)
+                        .addGap(65, 65, 65)
+                        .addComponent(btnCancelarRegistroCliente1))
+                    .addComponent(jLabel15)
+                    .addGroup(panelDatosCliente1Layout.createSequentialGroup()
+                        .addComponent(jdcFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(22, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosCliente1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel22)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelDatosCliente1Layout.setVerticalGroup(
+            panelDatosCliente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDatosCliente1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel22)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jtfNombreCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jtfApellidoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel17)
+                .addGap(0, 0, 0)
+                .addGroup(panelDatosCliente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jdcFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                .addGroup(panelDatosCliente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAceptarRegistroCliente1)
+                    .addComponent(btnCancelarRegistroCliente1))
+                .addGap(13, 13, 13))
+        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1058, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(panelDatosCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(883, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(panelDatosCliente1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
 
         jTabbedPane1.addTab("Gastos", jPanel2);
@@ -938,7 +1098,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton3)
                     .addComponent(jLabel13))
-                .addContainerGap(796, Short.MAX_VALUE))
+                .addContainerGap(995, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -947,7 +1107,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addGap(38, 38, 38)
                 .addComponent(jButton3)
-                .addContainerGap(446, Short.MAX_VALUE))
+                .addContainerGap(482, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cumpleañeros", jPanel3);
@@ -1383,6 +1543,46 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_tablaClientesMouseClicked
 
+    private void btnCancelarRegistroCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRegistroCliente1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarRegistroCliente1ActionPerformed
+
+    private void jtfNombreCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNombreCliente1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfNombreCliente1ActionPerformed
+
+    private void jtfNombreCliente1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreCliente1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfNombreCliente1KeyTyped
+
+    private void jtfApellidoCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfApellidoCliente1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfApellidoCliente1ActionPerformed
+
+    private void jtfApellidoCliente1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfApellidoCliente1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfApellidoCliente1KeyTyped
+
+    private void btnAceptarRegistroCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroCliente1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAceptarRegistroCliente1ActionPerformed
+
+    private void btnAceptarRegistroCliente1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroCliente1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAceptarRegistroCliente1KeyPressed
+
+    private void jdcFecha1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdcFecha1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jdcFecha1KeyTyped
+
+    private void panelDatosCliente1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelDatosCliente1FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_panelDatosCliente1FocusGained
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
     public class PresionarTecla extends KeyAdapter {
       @Override
       public void keyPressed(KeyEvent ke) {
@@ -1413,16 +1613,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel PanelTabla;
     private javax.swing.JButton btnAceptarInventario;
     private javax.swing.JButton btnAceptarRegistroCliente;
+    private javax.swing.JButton btnAceptarRegistroCliente1;
     private javax.swing.JButton btnCancelarInventario;
     private javax.swing.JButton btnCancelarRegistroCliente;
+    private javax.swing.JButton btnCancelarRegistroCliente1;
     private javax.swing.JButton jButton3;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1447,6 +1654,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbPagoPlan;
     private javax.swing.JComboBox<String> jcbTiempoPago;
     private com.toedter.calendar.JDateChooser jdcFecha;
+    private com.toedter.calendar.JDateChooser jdcFecha1;
     private javax.swing.JLabel jlCantidadEquipo;
     private javax.swing.JLabel jlDescripcionEquipo;
     private javax.swing.JLabel jlMontoPagar;
@@ -1456,11 +1664,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jlTiempoPago;
     private javax.swing.JTextField jtfAltura;
     private javax.swing.JTextField jtfApellidoCliente;
+    private javax.swing.JTextField jtfApellidoCliente1;
     private javax.swing.JTextField jtfBuscarCliente;
     private javax.swing.JTextField jtfCantidadEquipo;
     private javax.swing.JLabel jtfClienteAPagar;
     private javax.swing.JTextField jtfMontoAPagar;
     private javax.swing.JTextField jtfNombreCliente;
+    private javax.swing.JTextField jtfNombreCliente1;
     private javax.swing.JTextField jtfNombreEquipo;
     private javax.swing.JLabel jtfPagoTipodePlan;
     private javax.swing.JTextField jtfPeso;
@@ -1468,6 +1678,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jtfbuscarpago;
     private javax.swing.JLabel labelbuscarpago;
     private javax.swing.JPanel panelDatosCliente;
+    private javax.swing.JPanel panelDatosCliente1;
     private javax.swing.JPanel panelDatosPago;
     private javax.swing.JScrollPane scrollTablaClientes;
     private java.awt.TextArea taDescripcionEquipo;
