@@ -1728,12 +1728,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
            Calendar fecha_final = fechaFinal.getCalendar();
            
            while(fecha_inicio.before(fecha_final)|| fecha_inicio.equals(fecha_final)){
-               
-               
-               
            }
        }
-   
     }
 
     
