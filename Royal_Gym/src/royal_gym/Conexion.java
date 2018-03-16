@@ -301,7 +301,7 @@ public class Conexion {
     public void ModificarInventario(String nombremaquina, String cantidad, String descripcion) {
 
         try {
-            String sql = "update inventario set nombre = ?, nombre = ?, cantidad = ?, descripcion = ? where nombre,cantidad,descripcion = ???";
+            String sql = "update inventario set nombre = ?, cantidad = ?, descripcion = ? where nombre,cantidad,descripcion = ???";
             PreparedStatement consulta = conexion.prepareStatement(sql);
             consulta.setString(1, nombremaquina);
             consulta.setString(2, cantidad);

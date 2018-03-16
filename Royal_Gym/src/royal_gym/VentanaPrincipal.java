@@ -845,6 +845,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         jbModificar.setText("Modificar");
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarActionPerformed(evt);
+            }
+        });
 
         jbEliminar.setText("Eliminar");
         jbEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -1458,6 +1463,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 			
                         }
     }//GEN-LAST:event_jbEliminarActionPerformed
+
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        // TODO add your handling code here:
+        		int filaSelect = tablaInventarioEquipo.getSelectedRow();
+		
+		if (filaSelect == -1){
+			JOptionPane.showMessageDialog(null, "Debe seleccionar un articulo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+		}else{
+		/*jbModificar.jtNombreMaquina.setText(tablaInventarioEquipo.getValueAt(filaSelect, 0).toString());
+		jbModificar.jtfIdentidad.setText(tablaInventarioEquipo.getValueAt(filaSelect, 1).toString());
+		jbModificar.jtfNombres.setText(tablaInventarioEquipo.getValueAt(filaSelect, 2).toString());
+		
+		
+		jbModificar.setModel(bm);
+		jbModificar.setVisible(true);
+		}
+		
+		modeloTablaCliente =  new DefaultTableModel(con.ModificarInventario(nombremaquina, cantidad, descripcion), columnasInventario);
+		tablaInventarioEquipola.setModel(modeloTablaCliente);*/
+	}
+
+    }//GEN-LAST:event_jbModificarActionPerformed
     
     
     public class PresionarTecla extends KeyAdapter {
