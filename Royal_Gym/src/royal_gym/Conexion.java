@@ -123,12 +123,14 @@ public class Conexion {
             String consulta = "SELECT cliente,monto,tiempo,tipo_tiempo,tpo_plan,fecha_pago  FROM pagos order by id_pago DESC ";
             statement = conexion.createStatement();
             resultado = statement.executeQuery(consulta);
+            int numeroLista = 1;
 
             ArrayList<Object[]> filas = new ArrayList<>();
 
             while (resultado.next()) {
                 filas.add(
                         new Object[]{
+                            numeroLista++,
                             resultado.getString("Cliente"),
                             resultado.getDouble("Monto"),
                             resultado.getInt("Tiempo"),
@@ -271,85 +273,58 @@ public class Conexion {
     }
     
 
-    public Object[][] getNombreCliente(String nombre) {
-
-        Object[][] datos = null;
+    
+    public Object[][] buscarPago(String nombre) {
+        Object[][] datosCliente = null;
         try {
-            String sql = "Select * from pagos where cliente LIKE '%' | ? |'%'";
-            PreparedStatement consulta = conexion.prepareStatement(sql); // PrepareStatement se utiliza cuando se utilizan consultas que llevan signo de ?
-            consulta.setString(1, nombre);
-            ResultSet res = consulta.executeQuery();
-
-            ArrayList<Object[]> d = new ArrayList<>();
-
-            while (res.next()) {
-                d.add(new Object[]{
-                    res.getString("Cliente"),
-                    res.getDouble("Monto"),
-                    res.getInt("Tiempo"),
-                    res.getString("tipo_tiempo"),
-                    res.getString("tpo_plan"),
-                    res.getString("fecha_pago"),});
+            String consulta = "SELECT *  FROM pagos WHERE  cliente LIKE '%' || ? || '%' ORDER BY cliente";
+            PreparedStatement statement = conexion.prepareStatement(consulta);
+            statement.setString(1, nombre);
+            
+            resultado = statement.executeQuery();
+            int numeroLista = 1;
+            
+            ArrayList<Object[]> filas = new ArrayList<>();
+            while (resultado.next()) {
+                filas.add(
+                    new Object[]{
+                        numeroLista++,
+                        resultado.getString("Cliente"),
+                        resultado.getDouble("Monto"),
+                        resultado.getInt("Tiempo"),
+                        resultado.getString("tipo_tiempo"),
+                        resultado.getString("tpo_plan"),
+                        resultado.getString("fecha_pago"),
+	           });
             }
-
-            datos = new Object[d.size()][];
-            d.toArray(datos);
+            datosCliente = new Object[filas.size()][];
+            filas.toArray(datosCliente);
         } catch (Exception e) {
-            System.out.println("getNombreCliente:"+e.getMessage());
+            System.out.println("buscar:"+e.getMessage());
         }
-        return datos;
+        return datosCliente;
     }
     
-            public Object[][] getNombreClientepago(String nombre) {
-
-	    Object[][] datos = null;
-
-	    try { 
-                 String filtro = ""+nombre+"_%";
-	         String sql = "Select * from pagos where cliente LIKE "+'"'+ filtro +'"';
-                 //String sql = "Select * from pagos where cliente LIKE '"+ nombre +"%'";
-                 System.out.println(sql);
-                 PreparedStatement consulta = conexion.prepareStatement(sql); // PrepareStatement se utiliza cuando se utilizan consultas que llevan signo de ?
-                 ResultSet res = consulta.executeQuery();
-
-	         ArrayList<Object[]> d = new ArrayList<>();
-
-		while (res.next()) {
-                   d.add(new Object[] { 
-		   res.getString("Cliente"),
-                   res.getDouble("Monto"),
-                   res.getInt("Tiempo"),
-                   res.getString("tipo_tiempo"),
-                   res.getString("tpo_plan"),
-                   res.getString("fecha_pago"),
-	           });
-	       }
-
-		datos = new Object[d.size()][];
-		d.toArray(datos); 
-	    } catch (Exception e) {
-		System.out.println(e.getMessage());
-	        }
-	        return datos;
-
-       }
-            
-            public Object[][] getIngresosGastos(String fechaInicio, String fechaFinal) {
+    public Object[][] getIngresos( String fechaInicio , String fechaFin) {
         Object[][] datosPago = null;
- 
-        try {
-            String consulta = "select Nombres,monto from cliente join pagos ";
-            statement = conexion.createStatement();
-            resultado = statement.executeQuery(consulta);
 
+        try {
+            String consulta = "SELECT monto,fecha_pago FROM pagos where fecha_pago between ? and ? ";
+            
+           PreparedStatement statement  = conexion.prepareStatement(consulta);
+           statement.setString(1, fechaInicio);
+           statement.setString(2, fechaFin);
+            resultado = statement.executeQuery();
+            
             ArrayList<Object[]> filas = new ArrayList<>();
 
             while (resultado.next()) {
                 filas.add(
                         new Object[]{
-                            resultado.getString("Nombres"),
-                            resultado.getDouble("Monto"),
-                            }
+                         
+                      resultado.getDouble("monto"),       
+                    resultado.getString("fecha_pago"),
+                   }
                 );
             }
             datosPago = new Object[filas.size()][];
@@ -359,8 +334,8 @@ public class Conexion {
         }
         return datosPago;
     }
-
-
-    }
+     
+    
+}
 
 
