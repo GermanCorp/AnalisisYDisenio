@@ -270,6 +270,35 @@ public class Conexion {
         return datosCliente;
     }
     
+    //metodo para buscar inventario
+    public Object[][] buscarInventario(String nombresmaquina) {
+        Object[][] datosInventario = null;
+        try {
+            String consulta = "SELECT nombre, cantidad, descripcion FROM inventario where nombre like'%' || ? || '%'";
+            PreparedStatement statement = conexion.prepareStatement(consulta);
+            statement.setString(1, nombresmaquina);
+            
+            resultado = statement.executeQuery();
+            int numeroLista = 1;
+          
+            ArrayList<Object[]> filas = new ArrayList<>();
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                            numeroLista++,
+                            resultado.getString("nombre"),
+                            resultado.getString("cantidad"),
+                            resultado.getDouble("descripcion")
+                        }
+                );
+            }
+            datosInventario = new Object[filas.size()][];
+            filas.toArray(datosInventario);
+        } catch (Exception e) {
+        }
+        return datosInventario;
+    }
+    
 
     public Object[][] getNombreCliente(String nombre) {
 
