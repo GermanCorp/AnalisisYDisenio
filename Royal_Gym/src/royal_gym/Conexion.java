@@ -299,7 +299,7 @@ public class Conexion {
         return datosInventario;
     }
     
-    /*
+    
     // método para eliminar
 	public void eliminarInventario(String nombremaquina,String cantidad,String descripcion) {
 
@@ -314,7 +314,7 @@ public class Conexion {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-	}*/
+	}
 
     
 
