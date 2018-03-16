@@ -299,6 +299,24 @@ public class Conexion {
         return datosInventario;
     }
     
+    /*
+    // método para eliminar
+	public void eliminarInventario(String nombremaquina,String cantidad,String descripcion) {
+
+		try {
+			String sql = "Delete nombre,cantidad,descripcion from inventario where nombre,cantidad,descripcion = ?";
+			PreparedStatement consulta = conexion.prepareStatement(sql);
+			consulta.setString(1, nombremaquina);
+                        consulta.setString(2, cantidad);
+                        consulta.setString(3, descripcion);
+			consulta.execute();
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}*/
+
+    
 
     public Object[][] getNombreCliente(String nombre) {
 
