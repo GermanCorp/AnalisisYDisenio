@@ -8,12 +8,8 @@ import java.awt.Event;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-<<<<<<< HEAD
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-=======
-import java.sql.ResultSet;
->>>>>>> JulioDiaz
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -32,28 +28,22 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import static royal_gym.Conexion.resultado;
 
+/**
+ *
+ * @author alxcr
+ */
+
+
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     // variables
     Validaciones ValidarLetras = new Validaciones();
     Validaciones ValidarNumeros = new Validaciones();
     private final Conexion con;
-    DefaultTableModel modeloTablaIngresos;
-    DefaultTableModel modeloTablaGastos;
-     DefaultTableModel modeloTablaUtilidad;
-    
-    
 
-<<<<<<< HEAD
-    int filaseleccionadatablapagos;
-    // columnas de la tabla pagos
-    private final String[] columnasPagos = {
-=======
     int  filaseleccionadatablapagos;
         // columnas de la tabla pagos
         private final String[] columnasPagos = {
-        "No.",
->>>>>>> AnaVargas
         "Cliente",
         "Monto",
         "Tiempo",
@@ -61,6 +51,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         "Tipo de Plan",
         "Fecha de Pago"
     };
+
 
     // columnas de la tabla Cliente
     private final String[] columnasClientes = {
@@ -72,17 +63,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         "Masa Corporal",
         "Clasificación"
     };
-
-    // columnas de la tabla Inventario
+    
+     // columnas de la tabla Inventario
     private final String[] columnasInventario = {
-        "No.",
         "Nombres",
         "Cantidad",
         "Descripción"
     };
-<<<<<<< HEAD
     
-<<<<<<< HEAD
          // columnas de la tabla Gastos
     private final String[] columnasGastos = {
         "N°",
@@ -90,60 +78,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         "Monto",
         "Fecha"
     };
-=======
-     private final String[] columnasUtilidad= {
-            "No.",
-            "Fecha ",
-            "Ingresos",
-            "Gastos"
-           
-     };
-     
-     private final String[] columnasIngresos= {
-            "No.",
-            "Fecha ",
-            "Monto"
-    };
-     
-     private final String[] columnasGastos= {
-            "No.",
-            "Fecha ",
-            "Monto"
-    };
-    
->>>>>>> AnaVargas
     
     
     private static DefaultTableCellRenderer tcr;
-=======
-        // columnas de la tabla Cumpleaneros
-    private final String[] columnasCumpleaneros = {
-        "No.",
-        "Nombre",
-        "Fecha de Nacimiento",
-        "Edad"
-    };
-
->>>>>>> JulioDiaz
     // Constructor
     public VentanaPrincipal() {
         initComponents();
         setTitle("Royal Gym");
         this.con = new Conexion();
-<<<<<<< HEAD
-<<<<<<< HEAD
         con.conectar(); 
         jdcFechaGasto.setEnabled(false);
-=======
-        con.conectar();
-        
-        jScrollPane3.setVisible(false);
-        jScrollPane4.setVisible(false);
-       PaneltablaUtilidad.setVisible(false);
-       Paneltotales.setVisible(false);
-        
-       
->>>>>>> AnaVargas
 
         
         // alinear columnas a la derecha
@@ -156,35 +100,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             for(int i = 0; i<lista.size(); i++){
                 jcbClienteAPagar.addItem(lista.get(i));
             }
-=======
-        con.conectar();
-
-        ArrayList<String> lista = new ArrayList<String>();
-        lista = con.llenarCombo();
-        for (int i = 0; i < lista.size(); i++) {
-            jcbClienteAPagar.addItem(lista.get(i));
-        }
->>>>>>> JulioDiaz
 
         // Modelo de la tabla de Clientes
-        DefaultTableModel modeloTablaClientes = new DefaultTableModel(con.getCliente(), columnasClientes);
+        DefaultTableModel modeloTablaClientes = new DefaultTableModel(con.getCliente(),columnasClientes);
         tablaClientes.setModel(modeloTablaClientes);
-<<<<<<< HEAD
         int aligTablaClientes [] = {3,4,5,6};
         alinearColumnaDerecha(tablaClientes, aligTablaClientes);
         
-=======
-
->>>>>>> JulioDiaz
         // Modelo de la tabla de Pagos
-        DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(), columnasPagos);
+         DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(),columnasPagos);
         tablaPagos.setModel(modeloTablaPagos);
-
+        
         // Modelo de la tabla de Inventario
-        DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(), columnasInventario);
+         DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(),columnasInventario);
         tablaInventarioEquipo.setModel(modeloTablaInventario);
         
-<<<<<<< HEAD
         // Modelo de la tabla de Gastos
          DefaultTableModel modeloTablaGastos = new DefaultTableModel(con.getGasto(),columnasGastos);
         tablaGastos.setModel(modeloTablaGastos);
@@ -198,28 +128,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
     return formateador.format(ahora);
 }
-=======
-        // Modelo de la tabla de cumpleaneros
-        DefaultTableModel modeloTablaCumpleaneros = new DefaultTableModel(con.getCumpleaneros(), columnasCumpleaneros);
-        tablaCumpleaneros.setModel(modeloTablaCumpleaneros);
-        
-        
-
-        InputMap map2 = jtfMontoAPagar.getInputMap(jtfMontoAPagar.WHEN_FOCUSED);
-        map2.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
-    }
->>>>>>> JulioDiaz
 
     // metodo para cambiar el acho de columnas
-    private void setAnchoColumna(int[] ancho) {
-        int x = tablaClientes.getColumnCount() - 1;
+    private void setAnchoColumna(int[] ancho){
+        int x = tablaClientes.getColumnCount()-1;
         int tamanio = tablaClientes.getWidth();
-        for (int i = 0; i <= x; i++) {
+        for(int i = 0 ; i<=x; i++){
             TableColumn columnas = tablaClientes.getColumnModel().getColumn(i);
             columnas.setPreferredWidth(ancho[i]);
         }
     }
-<<<<<<< HEAD
     
     
     // método para alinear las columnas a la derecha
@@ -234,16 +152,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
 
      
-=======
->>>>>>> JulioDiaz
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         PanelPagos = new javax.swing.JPanel();
+        jScrollPaneTablaPago = new javax.swing.JScrollPane();
+        tablaPagos = new javax.swing.JTable();
         panelDatosPago = new javax.swing.JPanel();
         jtfClienteAPagar = new javax.swing.JLabel();
         jcbClienteAPagar = new javax.swing.JComboBox<>();
@@ -258,11 +175,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jcbTiempoPago = new javax.swing.JComboBox<>();
         jlRegistroClientes1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        PanelTablaPagos = new javax.swing.JPanel();
         jtfbuscarpago = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tablaPagos = new javax.swing.JTable();
-        jLabel15 = new javax.swing.JLabel();
+        labelbuscarpago = new javax.swing.JLabel();
         PanelClientes = new javax.swing.JPanel();
         panelDatosCliente = new javax.swing.JPanel();
         btnCancelarRegistroCliente = new javax.swing.JButton();
@@ -297,16 +211,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnAceptarInventario = new javax.swing.JButton();
         btnCancelarInventario = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaInventarioEquipo = new javax.swing.JTable();
-        jLabel15 = new javax.swing.JLabel();
-        jtfBuscarInventario = new javax.swing.JTextField();
-        jbModificar = new javax.swing.JButton();
-        jbEliminar = new javax.swing.JButton();
         PanelConfiguracion = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jTextField2 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         panelDatosGasto = new javax.swing.JPanel();
         btnCancelarRegistroGasto = new javax.swing.JButton();
@@ -325,34 +237,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jtfBuscarGasto = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-<<<<<<< HEAD
-        jPanel5 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tablaCumpleaneros = new javax.swing.JTable();
-        cumpleanerosDelMes = new javax.swing.JButton();
-=======
         jLabel13 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        PanelUtilidad = new javax.swing.JPanel();
-        Panelfecha = new javax.swing.JPanel();
-        jdcfechaInicio = new com.toedter.calendar.JDateChooser();
-        jdcfechaFinal = new com.toedter.calendar.JDateChooser();
-        cbingresos = new javax.swing.JCheckBox();
-        cbgastos = new javax.swing.JCheckBox();
-        cbtodo = new javax.swing.JCheckBox();
-        PaneltablaUtilidad = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tablautilidadingresos = new javax.swing.JTable();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tablautilidadgastos = new javax.swing.JTable();
-        Paneltotales = new javax.swing.JPanel();
-        txttotalgastos = new javax.swing.JTextField();
-        txttotalingresos = new javax.swing.JTextField();
-        labeltotalingresos = new javax.swing.JLabel();
-        labeltotalgastos = new javax.swing.JLabel();
-        labelutilidad = new javax.swing.JLabel();
-        txtutilidad = new javax.swing.JTextField();
->>>>>>> AnaVargas
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -366,10 +252,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         PanelPagos.setBackground(new java.awt.Color(85, 96, 128));
-        PanelPagos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        tablaPagos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tablaPagos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaPagosMouseClicked(evt);
+            }
+        });
+        jScrollPaneTablaPago.setViewportView(tablaPagos);
 
         panelDatosPago.setBackground(new java.awt.Color(85, 96, 128));
-        panelDatosPago.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registrar Pago", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         panelDatosPago.setPreferredSize(new java.awt.Dimension(344, 460));
 
         jtfClienteAPagar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -393,15 +292,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jlMontoPagar.setText("Monto:");
 
         jtfMontoAPagar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jtfMontoAPagar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfMontoAPagarActionPerformed(evt);
-            }
-        });
         jtfMontoAPagar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtfMontoAPagarKeyPressed(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfMontoAPagarKeyTyped(evt);
             }
@@ -418,9 +309,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         jtfTiempoAPagar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtfTiempoAPagarKeyPressed(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfTiempoAPagarKeyTyped(evt);
             }
@@ -479,35 +367,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelDatosPagoLayout.createSequentialGroup()
-                        .addComponent(jcbClienteAPagar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(20, 20, 20))
-                    .addComponent(jlMontoPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelDatosPagoLayout.createSequentialGroup()
-                        .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelDatosPagoLayout.createSequentialGroup()
-                                .addComponent(jlTiempoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(90, 90, 90))
-                            .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jcbPagoPlan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jtfMontoAPagar, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(panelDatosPagoLayout.createSequentialGroup()
-                                    .addComponent(jbPagoAceptar)
-                                    .addGap(46, 46, 46)
-                                    .addComponent(jbPagoCancelar)))
-                            .addGroup(panelDatosPagoLayout.createSequentialGroup()
-                                .addComponent(jtfTiempoAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(jcbTiempoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 18, Short.MAX_VALUE))
-                    .addGroup(panelDatosPagoLayout.createSequentialGroup()
                         .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelDatosPagoLayout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(20, 20, 20)
-                                .addComponent(jlRegistroClientes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jtfPagoTipodePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfClienteAPagar))
-                        .addContainerGap())))
+                            .addComponent(jlMontoPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelDatosPagoLayout.createSequentialGroup()
+                                    .addComponent(jLabel11)
+                                    .addGap(20, 20, 20)
+                                    .addComponent(jlRegistroClientes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtfPagoTipodePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jcbClienteAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jcbPagoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtfClienteAPagar)
+                                    .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelDatosPagoLayout.createSequentialGroup()
+                                            .addComponent(jtfTiempoAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jcbTiempoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jlTiempoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(20, 20, 20))
+                    .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(panelDatosPagoLayout.createSequentialGroup()
+                            .addComponent(jbPagoAceptar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbPagoCancelar))
+                        .addComponent(jtfMontoAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         panelDatosPagoLayout.setVerticalGroup(
             panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,111 +416,33 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jcbTiempoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(jtfPagoTipodePlan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jcbPagoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
-<<<<<<< HEAD
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbPagoAceptar)
                     .addComponent(jbPagoCancelar))
                 .addContainerGap(82, Short.MAX_VALUE))
-=======
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
-                .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbPagoAceptar)
-                    .addComponent(jbPagoCancelar))
-                .addContainerGap(107, Short.MAX_VALUE))
->>>>>>> JulioDiaz
-=======
-                .addGap(68, 68, 68)
-                .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbPagoAceptar)
-                    .addComponent(jbPagoCancelar))
-                .addGap(20, 20, 20))
->>>>>>> AnaVargas
         );
 
-        PanelTablaPagos.setBackground(new java.awt.Color(85, 96, 128));
-        PanelTablaPagos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pagos Registrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
-        PanelTablaPagos.setPreferredSize(new java.awt.Dimension(1213, 830));
-
-        jtfbuscarpago.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jtfbuscarpagoCaretUpdate(evt);
-            }
-        });
-        jtfbuscarpago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfbuscarpagoActionPerformed(evt);
-            }
-        });
         jtfbuscarpago.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtfbuscarpagoKeyPressed(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtfbuscarpagoKeyTyped(evt);
-            }
         });
 
-        tablaPagos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        tablaPagos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaPagosMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tablaPagos);
-
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Buscar.png"))); // NOI18N
-
-        javax.swing.GroupLayout PanelTablaPagosLayout = new javax.swing.GroupLayout(PanelTablaPagos);
-        PanelTablaPagos.setLayout(PanelTablaPagosLayout);
-        PanelTablaPagosLayout.setHorizontalGroup(
-            PanelTablaPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelTablaPagosLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(PanelTablaPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(PanelTablaPagosLayout.createSequentialGroup()
-                        .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel15)))
-                .addGap(20, 20, 20))
-        );
-        PanelTablaPagosLayout.setVerticalGroup(
-            PanelTablaPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelTablaPagosLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(PanelTablaPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        labelbuscarpago.setText("BUSCAR");
+        labelbuscarpago.setMaximumSize(new java.awt.Dimension(70, 70));
 
         javax.swing.GroupLayout PanelPagosLayout = new javax.swing.GroupLayout(PanelPagos);
         PanelPagos.setLayout(PanelPagosLayout);
         PanelPagosLayout.setHorizontalGroup(
             PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPagosLayout.createSequentialGroup()
-<<<<<<< HEAD
                 .addComponent(panelDatosPago, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelPagosLayout.createSequentialGroup()
-<<<<<<< HEAD
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
-=======
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
->>>>>>> JulioDiaz
                         .addComponent(labelbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -645,39 +451,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jScrollPaneTablaPago)
                         .addGap(20, 20, 20))))
-=======
-                .addGap(20, 20, 20)
-                .addComponent(panelDatosPago, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(PanelTablaPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(232, Short.MAX_VALUE))
->>>>>>> AnaVargas
         );
         PanelPagosLayout.setVerticalGroup(
             PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPagosLayout.createSequentialGroup()
-<<<<<<< HEAD
                 .addGap(36, 36, 36)
                 .addGroup(PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-<<<<<<< HEAD
                 .addComponent(jScrollPaneTablaPago, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
                 .addGap(100, 100, 100))
             .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
-=======
-                .addComponent(jScrollPaneTablaPago, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
-                .addGap(100, 100, 100))
-            .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
->>>>>>> JulioDiaz
-=======
-                .addGap(20, 20, 20)
-                .addGroup(PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
-                    .addComponent(PanelTablaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
->>>>>>> AnaVargas
         );
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/RegistrarPago_3.png")), PanelPagos); // NOI18N
@@ -885,15 +670,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)))
-<<<<<<< HEAD
-<<<<<<< HEAD
                 .addGap(18, 81, Short.MAX_VALUE)
-=======
-                .addGap(18, 127, Short.MAX_VALUE)
->>>>>>> JulioDiaz
-=======
-                .addGap(18, 464, Short.MAX_VALUE)
->>>>>>> AnaVargas
                 .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarRegistroCliente)
                     .addComponent(btnCancelarRegistroCliente))
@@ -949,40 +726,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(PanelTablaLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollTablaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PanelTablaLayout.createSequentialGroup()
                         .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-<<<<<<< HEAD
                         .addComponent(jLabel14))
-<<<<<<< HEAD
                     .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE))
-=======
-                    .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE))
->>>>>>> JulioDiaz
                 .addGap(20, 20, 20))
-=======
-                        .addComponent(jLabel14)))
-                .addContainerGap(29, Short.MAX_VALUE))
->>>>>>> AnaVargas
         );
         PanelTablaLayout.setVerticalGroup(
             PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelTablaLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jtfBuscarCliente))
+                    .addComponent(jtfBuscarCliente)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-<<<<<<< HEAD
-<<<<<<< HEAD
                 .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
-=======
-                .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
->>>>>>> JulioDiaz
-=======
-                .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
->>>>>>> AnaVargas
                 .addGap(20, 20, 20))
         );
 
@@ -991,11 +750,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PanelClientesLayout.setHorizontalGroup(
             PanelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelClientesLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(22, 22, 22)
                 .addComponent(panelDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(PanelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addComponent(PanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
         PanelClientesLayout.setVerticalGroup(
             PanelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1012,7 +771,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PanelInventario.setBackground(new java.awt.Color(85, 96, 128));
 
         PanelDatos.setBackground(new java.awt.Color(85, 96, 128));
-        PanelDatos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Inventario Registrado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 20), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jlNombreEquipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlNombreEquipo.setForeground(new java.awt.Color(255, 255, 255));
@@ -1070,59 +828,62 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/RegistroNuevoInventario.png"))); // NOI18N
 
+        jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("<html> <center>Inventario de<center> <center> Equipo<center>");
+
         javax.swing.GroupLayout PanelDatosLayout = new javax.swing.GroupLayout(PanelDatos);
         PanelDatos.setLayout(PanelDatosLayout);
         PanelDatosLayout.setHorizontalGroup(
             PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDatosLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlCantidadEquipo)
+                    .addComponent(jlDescripcionEquipo)
+                    .addComponent(jlNombreEquipo)
                     .addGroup(PanelDatosLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
                         .addGap(20, 20, 20)
-                        .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlCantidadEquipo)
-                            .addComponent(jlDescripcionEquipo)
-                            .addComponent(jlNombreEquipo)
-                            .addComponent(jtfNombreEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfCantidadEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelDatosLayout.createSequentialGroup()
-                                    .addComponent(btnAceptarInventario)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnCancelarInventario))
-                                .addComponent(taDescripcionEquipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(PanelDatosLayout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(jLabel12)))
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfNombreEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfCantidadEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelDatosLayout.createSequentialGroup()
+                            .addComponent(btnAceptarInventario)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCancelarInventario))
+                        .addComponent(taDescripcionEquipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
         );
         PanelDatosLayout.setVerticalGroup(
             PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12)
-                .addGap(24, 24, 24)
-                .addComponent(jlNombreEquipo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfNombreEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jlCantidadEquipo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfCantidadEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
+                .addComponent(jlNombreEquipo)
+                .addGap(0, 0, 0)
+                .addComponent(jtfNombreEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jlCantidadEquipo)
+                .addGap(0, 0, 0)
+                .addComponent(jtfCantidadEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addComponent(jlDescripcionEquipo)
-                .addGap(1, 1, 1)
+                .addGap(0, 0, 0)
                 .addComponent(taDescripcionEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addGap(75, 75, 75)
                 .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarInventario)
                     .addComponent(btnCancelarInventario))
-                .addGap(26, 26, 26))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jtfNombreEquipo.getAccessibleContext().setAccessibleParent(jlNombreEquipo);
-
-        jPanel4.setBackground(new java.awt.Color(85, 96, 126));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Inventario Registrado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 20), new java.awt.Color(255, 255, 255))); // NOI18N
+        jLabel10.getAccessibleContext().setAccessibleName("<html>\n<center>Inventario de<center>\n <center> Equipo<center>");
 
         tablaInventarioEquipo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1135,89 +896,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tablaInventarioEquipo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaInventarioEquipoMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(tablaInventarioEquipo);
-
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Buscar.png"))); // NOI18N
-
-        jtfBuscarInventario.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jtfBuscarInventarioCaretUpdate(evt);
-            }
-        });
-
-        jbModificar.setText("Modificar");
-        jbModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbModificarActionPerformed(evt);
-            }
-        });
-
-        jbEliminar.setText("Eliminar");
-        jbEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbEliminarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jtfBuscarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(22, 22, 22))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jtfBuscarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33))
-        );
 
         javax.swing.GroupLayout PanelInventarioLayout = new javax.swing.GroupLayout(PanelInventario);
         PanelInventario.setLayout(PanelInventarioLayout);
         PanelInventarioLayout.setHorizontalGroup(
             PanelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelInventarioLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
                 .addComponent(PanelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1)
+                .addGap(20, 20, 20))
         );
         PanelInventarioLayout.setVerticalGroup(
             PanelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInventarioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(PanelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(30, 30, 30))
+            .addComponent(PanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(PanelInventarioLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1)
+                .addGap(100, 100, 100))
         );
 
         jTabbedPane1.addTab("<html>\n<center>Inventario de<center>\n<center>Maquinaria<center>", new javax.swing.ImageIcon(getClass().getResource("/iconos/Inventario_2.png")), PanelInventario); // NOI18N
@@ -1239,15 +936,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
-<<<<<<< HEAD
                 .addContainerGap(1022, Short.MAX_VALUE))
-=======
-                .addContainerGap(857, Short.MAX_VALUE))
->>>>>>> JulioDiaz
-=======
-                .addContainerGap(1054, Short.MAX_VALUE))
->>>>>>> AnaVargas
         );
         PanelConfiguracionLayout.setVerticalGroup(
             PanelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1256,20 +945,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(PanelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-<<<<<<< HEAD
-<<<<<<< HEAD
                 .addContainerGap(532, Short.MAX_VALUE))
-=======
-                .addContainerGap(580, Short.MAX_VALUE))
->>>>>>> JulioDiaz
-=======
-                .addContainerGap(916, Short.MAX_VALUE))
->>>>>>> AnaVargas
         );
 
         jTabbedPane1.addTab("Configuración", new javax.swing.ImageIcon(getClass().getResource("/iconos/Configuracion.png")), PanelConfiguracion); // NOI18N
 
-<<<<<<< HEAD
         jTextField2.setText("jTextField2");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1279,22 +959,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(232, 232, 232)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
                 .addContainerGap(966, Short.MAX_VALUE))
-=======
-                .addContainerGap(821, Short.MAX_VALUE))
->>>>>>> JulioDiaz
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(104, 104, 104)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
                 .addContainerGap(467, Short.MAX_VALUE))
-=======
-                .addContainerGap(513, Short.MAX_VALUE))
->>>>>>> JulioDiaz
         );
 
         jTabbedPane1.addTab("Utilidad", jPanel1);
@@ -1522,14 +1194,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-=======
->>>>>>> AnaVargas
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-<<<<<<< HEAD
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(panelDatosGasto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1545,85 +1213,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(PanelTablaGastos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelDatosGasto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
-=======
-            .addGap(0, 1122, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 639, Short.MAX_VALUE)
->>>>>>> JulioDiaz
-=======
-            .addGap(0, 1289, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 975, Short.MAX_VALUE)
->>>>>>> AnaVargas
         );
 
         jTabbedPane1.addTab("Gastos", new javax.swing.ImageIcon(getClass().getResource("/iconos/Registro_Gasto.png")), jPanel2); // NOI18N
 
-        jPanel5.setBackground(new java.awt.Color(85, 96, 128));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Cumpleaneros Del Mes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 20), new java.awt.Color(255, 255, 255))); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel13.setText("Lista de cumpleañeros del mes");
 
-        tablaCumpleaneros.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(tablaCumpleaneros);
-
-        cumpleanerosDelMes.setText("Calcular Edad A Cumplir ");
-        cumpleanerosDelMes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cumpleanerosDelMesActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1086, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(440, 440, 440)
-                .addComponent(cumpleanerosDelMes)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(cumpleanerosDelMes)
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
+        jButton3.setText("jButton3");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton3)
                     .addComponent(jLabel13))
-<<<<<<< HEAD
                 .addContainerGap(995, Short.MAX_VALUE))
-=======
-                .addContainerGap(1027, Short.MAX_VALUE))
->>>>>>> AnaVargas
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1632,251 +1240,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addGap(38, 38, 38)
                 .addComponent(jButton3)
-<<<<<<< HEAD
                 .addContainerGap(466, Short.MAX_VALUE))
-=======
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
->>>>>>> JulioDiaz
-=======
-                .addContainerGap(850, Short.MAX_VALUE))
->>>>>>> AnaVargas
         );
 
         jTabbedPane1.addTab("Cumpleañeros", jPanel3);
-
-        PanelUtilidad.setBackground(new java.awt.Color(85, 96, 128));
-
-        Panelfecha.setBackground(new java.awt.Color(85, 96, 128));
-        Panelfecha.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Rangos De Fecha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        jdcfechaInicio.setDateFormatString("dd-MM-yyyy");
-
-        jdcfechaFinal.setDateFormatString("dd-MM-yyyy");
-
-        buttonGroup1.add(cbingresos);
-        cbingresos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cbingresos.setForeground(new java.awt.Color(255, 255, 255));
-        cbingresos.setText("Ingresos");
-        cbingresos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        cbingresos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbingresosActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(cbgastos);
-        cbgastos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cbgastos.setForeground(new java.awt.Color(255, 255, 255));
-        cbgastos.setText("Gastos");
-        cbgastos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        cbgastos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbgastosActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(cbtodo);
-        cbtodo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cbtodo.setForeground(new java.awt.Color(255, 255, 255));
-        cbtodo.setText("Todo");
-        cbtodo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        cbtodo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbtodoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout PanelfechaLayout = new javax.swing.GroupLayout(Panelfecha);
-        Panelfecha.setLayout(PanelfechaLayout);
-        PanelfechaLayout.setHorizontalGroup(
-            PanelfechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelfechaLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(PanelfechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(PanelfechaLayout.createSequentialGroup()
-                        .addComponent(jdcfechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addComponent(jdcfechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PanelfechaLayout.createSequentialGroup()
-                        .addComponent(cbingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cbgastos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelfechaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cbtodo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(182, 182, 182))
-        );
-        PanelfechaLayout.setVerticalGroup(
-            PanelfechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelfechaLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(PanelfechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jdcfechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(jdcfechaFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(50, 50, 50)
-                .addGroup(PanelfechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbgastos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(cbtodo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-        );
-
-        PaneltablaUtilidad.setBackground(new java.awt.Color(85, 96, 128));
-        PaneltablaUtilidad.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Ingresos y Gastos Registrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        tablautilidadingresos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane3.setViewportView(tablautilidadingresos);
-
-        tablautilidadgastos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane4.setViewportView(tablautilidadgastos);
-
-        javax.swing.GroupLayout PaneltablaUtilidadLayout = new javax.swing.GroupLayout(PaneltablaUtilidad);
-        PaneltablaUtilidad.setLayout(PaneltablaUtilidadLayout);
-        PaneltablaUtilidadLayout.setHorizontalGroup(
-            PaneltablaUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PaneltablaUtilidadLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-        PaneltablaUtilidadLayout.setVerticalGroup(
-            PaneltablaUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PaneltablaUtilidadLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(PaneltablaUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
-        );
-
-        Paneltotales.setBackground(new java.awt.Color(85, 96, 128));
-        Paneltotales.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Total Utilidad", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        txttotalgastos.setEditable(false);
-        txttotalgastos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txttotalgastosActionPerformed(evt);
-            }
-        });
-
-        txttotalingresos.setEditable(false);
-        txttotalingresos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txttotalingresosActionPerformed(evt);
-            }
-        });
-
-        labeltotalingresos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labeltotalingresos.setForeground(new java.awt.Color(255, 255, 255));
-        labeltotalingresos.setText("Total Ingresos:");
-
-        labeltotalgastos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labeltotalgastos.setForeground(new java.awt.Color(255, 255, 255));
-        labeltotalgastos.setText("Total Gastos:");
-
-        labelutilidad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelutilidad.setForeground(new java.awt.Color(255, 255, 255));
-        labelutilidad.setText("Utilidad:");
-
-        txtutilidad.setEditable(false);
-
-        javax.swing.GroupLayout PaneltotalesLayout = new javax.swing.GroupLayout(Paneltotales);
-        Paneltotales.setLayout(PaneltotalesLayout);
-        PaneltotalesLayout.setHorizontalGroup(
-            PaneltotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PaneltotalesLayout.createSequentialGroup()
-                .addGroup(PaneltotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PaneltotalesLayout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(txttotalgastos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PaneltotalesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labeltotalingresos)
-                        .addGap(18, 18, 18)
-                        .addComponent(txttotalingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
-            .addGroup(PaneltotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PaneltotalesLayout.createSequentialGroup()
-                    .addGap(21, 21, 21)
-                    .addGroup(PaneltotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(labeltotalgastos)
-                        .addComponent(labelutilidad))
-                    .addGap(18, 18, 18)
-                    .addComponent(txtutilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(24, Short.MAX_VALUE)))
-        );
-        PaneltotalesLayout.setVerticalGroup(
-            PaneltotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PaneltotalesLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(PaneltotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labeltotalingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txttotalingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txttotalgastos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(99, Short.MAX_VALUE))
-            .addGroup(PaneltotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PaneltotalesLayout.createSequentialGroup()
-                    .addGap(82, 82, 82)
-                    .addComponent(labeltotalgastos)
-                    .addGap(18, 18, 18)
-                    .addGroup(PaneltotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelutilidad)
-                        .addComponent(txtutilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(48, Short.MAX_VALUE)))
-        );
-
-        javax.swing.GroupLayout PanelUtilidadLayout = new javax.swing.GroupLayout(PanelUtilidad);
-        PanelUtilidad.setLayout(PanelUtilidadLayout);
-        PanelUtilidadLayout.setHorizontalGroup(
-            PanelUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelUtilidadLayout.createSequentialGroup()
-                .addGroup(PanelUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelUtilidadLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(Panelfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(PaneltablaUtilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PanelUtilidadLayout.createSequentialGroup()
-                        .addGap(312, 312, 312)
-                        .addComponent(Paneltotales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(250, Short.MAX_VALUE))
-        );
-        PanelUtilidadLayout.setVerticalGroup(
-            PanelUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelUtilidadLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(PanelUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Panelfecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PaneltablaUtilidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20)
-                .addComponent(Paneltotales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(415, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Utilidad", PanelUtilidad);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -1890,11 +1257,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1127, Short.MAX_VALUE)
-=======
-            .addComponent(jTabbedPane1)
->>>>>>> AnaVargas
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1063, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1968,8 +1331,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jdcFecha.setDate(null);
             jtfAltura.setText("");
             jtfPeso.setText("");
-
-            DefaultTableModel modeloTablaClientes = new DefaultTableModel(con.getCliente(), columnasClientes);
+            
+            DefaultTableModel modeloTablaClientes = new DefaultTableModel(con.getCliente(),columnasClientes);
             tablaClientes.setModel(modeloTablaClientes);
             JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -2048,22 +1411,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     jtfNombreEquipo.getText(),
                     jtfCantidadEquipo.getText(),
                     taDescripcionEquipo.getText());
-
-            DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(), columnasInventario);
-            tablaInventarioEquipo.setModel(modeloTablaInventario);
-
+            
+        DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(),columnasInventario);
+        tablaInventarioEquipo.setModel(modeloTablaInventario);
+        
             jtfNombreEquipo.setText("");
             jtfCantidadEquipo.setText("");
-            taDescripcionEquipo.setText("");
-            
-            JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            taDescripcionEquipo.setText("");   
         }
     }//GEN-LAST:event_btnAceptarInventarioActionPerformed
 
     private void btnCancelarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarInventarioActionPerformed
-        jtfNombreEquipo.setText("");
-        jtfCantidadEquipo.setText("");
-        taDescripcionEquipo.setText("");
+         jtfNombreEquipo.setText("");
+            jtfCantidadEquipo.setText("");
+            taDescripcionEquipo.setText("");
     }//GEN-LAST:event_btnCancelarInventarioActionPerformed
 
     private void taDescripcionEquipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taDescripcionEquipoKeyTyped
@@ -2113,8 +1474,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jcbTiempoPago.setSelectedIndex(0);
         jcbPagoPlan.setSelectedIndex(0);
 
-        DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(), columnasPagos);
-        tablaPagos.setModel(modeloTablaPagos);
+       DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(),columnasPagos);
+       tablaPagos.setModel(modeloTablaPagos);
 
     }//GEN-LAST:event_jbPagoAceptarActionPerformed
 
@@ -2143,38 +1504,38 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbPagoCancelarActionPerformed
 
     private void jcbClienteAPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClienteAPagarActionPerformed
-        // TODO add your handling code here:
+            // TODO add your handling code here:
     }//GEN-LAST:event_jcbClienteAPagarActionPerformed
 
     private void jcbClienteAPagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbClienteAPagarMouseClicked
         jcbClienteAPagar.removeAllItems();
-        ArrayList<String> lista = new ArrayList<String>();
-        lista = con.llenarCombo();
-        for (int i = 0; i < lista.size(); i++) {
-            jcbClienteAPagar.addItem(lista.get(i));
-        }
+        ArrayList<String> lista =new ArrayList<String>();
+            lista =  con.llenarCombo();
+            for(int i = 0; i<lista.size(); i++){
+                jcbClienteAPagar.addItem(lista.get(i));
+            }
     }//GEN-LAST:event_jcbClienteAPagarMouseClicked
 
     private void jtfAlturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAlturaKeyTyped
-
-        char cTeclaPresionada = evt.getKeyChar();
+        
+          char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-            btnAceptarRegistroCliente.doClick();
+             btnAceptarRegistroCliente.doClick();
+      }
+        if(!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.'){
+            evt.consume();  
         }
-        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
-            evt.consume();
-        }
-        if (evt.getKeyChar() == '.' && jtfAltura.getText().contains(".")) {
-            evt.consume();
+         if(evt.getKeyChar()== '.'&&jtfAltura.getText().contains(".")){
+            evt.consume();  
         }
     }//GEN-LAST:event_jtfAlturaKeyTyped
 
     private void jtfPesoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyReleased
-        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
-            evt.consume();
+        if(!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.'){
+            evt.consume();  
         }
-        if (evt.getKeyChar() == '.' && jtfAltura.getText().contains(".")) {
-            evt.consume();
+         if(evt.getKeyChar()== '.'&&jtfAltura.getText().contains(".")){
+            evt.consume();  
         }
     }//GEN-LAST:event_jtfPesoKeyReleased
 
@@ -2183,29 +1544,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfTiempoAPagarActionPerformed
 
     private void jtfTiempoAPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTiempoAPagarKeyTyped
-<<<<<<< HEAD
         char c = evt.getKeyChar();
-        if (c < '0' || c > '9') {
-            evt.consume();
-        } else if ((int) evt.getKeyChar() >= 32 && (int) evt.getKeyChar() <= 47
-                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
-                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
-            getToolkit().beep();
-            evt.consume();
-        }
-        jtfTiempoAPagar.setCursor(null);
-=======
-        Number n = evt.getKeyCode();
-        if(!Character.isDigit(evt.getKeyChar())){
-            evt.consume();
-        }
+        if(c<'0' || c>'9') evt.consume();
         
-        int limit = 2;
-        if (jtfTiempoAPagar.getText().length() == limit) {
-            evt.consume();
-
-        }
->>>>>>> AnaVargas
+        else
+            if((int)evt.getKeyChar()>=32 && (int)evt.getKeyChar()<=47 ||
+               (int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64 ||
+               (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+            {
+                getToolkit().beep();
+                evt.consume();
+            }
+               jtfTiempoAPagar.setCursor(null);
     }//GEN-LAST:event_jtfTiempoAPagarKeyTyped
 
     private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
@@ -2213,30 +1563,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTabbedPane1FocusGained
 
     private void jtfMontoAPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfMontoAPagarKeyTyped
-<<<<<<< HEAD
         char c = evt.getKeyChar();
-        if (c < '0' || c > '9') {
-            evt.consume();
-        } else if ((int) evt.getKeyChar() >= 32 && (int) evt.getKeyChar() <= 47
-                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
-                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
-            getToolkit().beep();
-            evt.consume();
-        }
-        jtfMontoAPagar.setCursor(null);
-=======
-        Number n = evt.getKeyCode();
-        if(!Character.isDigit(evt.getKeyChar())){
-            evt.consume();
-            
-        } 
+        if(c<'0' || c>'9') evt.consume();
         
-        int limit = 4;
-        if (jtfMontoAPagar.getText().length() == limit) {
-            evt.consume();
-
-        }
->>>>>>> AnaVargas
+        else
+            if((int)evt.getKeyChar()>=32 && (int)evt.getKeyChar()<=47 ||
+               (int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64 ||
+               (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+            {
+                getToolkit().beep();
+                evt.consume();
+            }
+               jtfMontoAPagar.setCursor(null);        
     }//GEN-LAST:event_jtfMontoAPagarKeyTyped
 
     private void btnAceptarRegistroClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteKeyPressed
@@ -2248,32 +1586,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_panelDatosClienteFocusGained
 
     private void jtfNombreClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreClienteKeyTyped
-        char cTeclaPresionada = evt.getKeyChar();
+       char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-            btnAceptarRegistroCliente.doClick();
-        }
+             btnAceptarRegistroCliente.doClick();
+      }
     }//GEN-LAST:event_jtfNombreClienteKeyTyped
 
     private void jtfApellidoClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfApellidoClienteKeyTyped
-
-        char cTeclaPresionada = evt.getKeyChar();
+        
+         char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-            btnAceptarRegistroCliente.doClick();
-        }
+             btnAceptarRegistroCliente.doClick();
+      }
     }//GEN-LAST:event_jtfApellidoClienteKeyTyped
 
     private void jdcFechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdcFechaKeyTyped
-        char cTeclaPresionada = evt.getKeyChar();
+         char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-            btnAceptarRegistroCliente.doClick();
-        }
+             btnAceptarRegistroCliente.doClick();
+      }
     }//GEN-LAST:event_jdcFechaKeyTyped
 
     private void jtfPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyTyped
-        char cTeclaPresionada = evt.getKeyChar();
+          char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-            btnAceptarRegistroCliente.doClick();
-        }
+             btnAceptarRegistroCliente.doClick();
+      }
     }//GEN-LAST:event_jtfPesoKeyTyped
 
     private void jcbTiempoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTiempoPagoActionPerformed
@@ -2281,9 +1619,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbTiempoPagoActionPerformed
 
     private void jcbTiempoPagoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbTiempoPagoItemStateChanged
-        if (evt.getStateChange() == ItemEvent.SELECTED) {
-            if (this.jcbTiempoPago.getSelectedIndex() > 0) {
-                this.jcbPagoPlan.setModel(new DefaultComboBoxModel(this.getTipoTiempo(this.jcbTiempoPago.getSelectedItem().toString())));
+        if(evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            if(this.jcbTiempoPago.getSelectedIndex()>0)
+            {
+                this.jcbPagoPlan.setModel(new DefaultComboBoxModel
+                (this.getTipoTiempo(this.jcbTiempoPago.getSelectedItem().toString())));
             }
         }
     }//GEN-LAST:event_jcbTiempoPagoItemStateChanged
@@ -2298,198 +1639,43 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jtfBuscarClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfBuscarClienteKeyPressed
 
-
+        
     }//GEN-LAST:event_jtfBuscarClienteKeyPressed
 
     private void jtfBuscarClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarClienteCaretUpdate
-        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(con.buscarCliente(jtfBuscarCliente.getText(), jtfBuscarCliente.getText()), columnasClientes);
-        tablaClientes.setModel(modeloTablaBuscarClientes);
+        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(con.buscarCliente(jtfBuscarCliente.getText(), jtfBuscarCliente.getText()),columnasClientes);
+    tablaClientes.setModel(modeloTablaBuscarClientes);
     }//GEN-LAST:event_jtfBuscarClienteCaretUpdate
+
+    private void tablaPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPagosMouseClicked
+        // TODO add your handling code here:
+       filaseleccionadatablapagos = tablaPagos.getSelectedRow();
+     
+      jcbClienteAPagar.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 0));
+      jtfMontoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 1).toString());
+      jtfTiempoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 2).toString());
+      jcbTiempoPago.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 3));
+      jcbPagoPlan.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 4));
+      
+    }//GEN-LAST:event_tablaPagosMouseClicked
 
     // Buscar pagos
     private void jtfbuscarpagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfbuscarpagoKeyPressed
-
-        if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
-            evt.consume();
+        // TODO add your handling code here:
+        if (jtfbuscarpago.getText().isEmpty()) { //si el filtro esta vacio
+            DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(), columnasPagos);
+            tablaPagos.setModel(modeloTablaPagos);
+        } else {
+            //String idt = filtro.getText();
+            DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getNombreCliente(jtfbuscarpago.getText()), columnasPagos);
+            tablaPagos.setModel(modeloTablaPagos);
         }
-
     }//GEN-LAST:event_jtfbuscarpagoKeyPressed
 
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
         
     }//GEN-LAST:event_tablaClientesMouseClicked
 
-    private void jtfbuscarpagoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfbuscarpagoCaretUpdate
-        // TODO add your handling code here:
-        
-        
-    
-        
-        DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.buscarPago(jtfbuscarpago.getText()), columnasPagos);
-            tablaPagos.setModel(modeloTablaPagos);
-            
-            
-        
-        
-    }//GEN-LAST:event_jtfbuscarpagoCaretUpdate
-
-    private void tablaPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPagosMouseClicked
-        // TODO add your handling code here:
-        filaseleccionadatablapagos = tablaPagos.getSelectedRow();
-<<<<<<< HEAD
-
-        jcbClienteAPagar.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 0));
-        jtfMontoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 1).toString());
-        jtfTiempoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 2).toString());
-        jcbTiempoPago.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 3));
-        jcbPagoPlan.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 4));
-=======
-     
-      jcbClienteAPagar.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 1));
-      jtfMontoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 2).toString());
-      jtfTiempoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 3).toString());
-      jcbTiempoPago.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 4));
-      jcbPagoPlan.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 5));
->>>>>>> AnaVargas
-
-    }//GEN-LAST:event_tablaPagosMouseClicked
-
-    private void cbingresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbingresosActionPerformed
-        // TODO add your handling code here:
-        PaneltablaUtilidad.setVisible(true);
-         jScrollPane3.setVisible(true);
-        Paneltotales.setVisible(true);
-        
-        if(cbingresos.isSelected()){
-           
-        String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH)+1);
-        String anio = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.YEAR));
-        String fechaInicio = (dia+ "-" + mes + "-" + anio);
-        
-        String d = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String m = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.MONTH)+1);
-        String a = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.YEAR));
-        String fechaFin = (d + "-" + m + "-" + a);
-        
-        
-        modeloTablaIngresos = new DefaultTableModel(con.getIngresos( fechaInicio,fechaFin),columnasIngresos);
-        tablautilidadingresos.setModel(modeloTablaIngresos);
-        
-        
-        } 
-    }//GEN-LAST:event_cbingresosActionPerformed
-
-    private void cbgastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbgastosActionPerformed
-        // TODO add your handling code here:
-        
-         PaneltablaUtilidad.setVisible(true);
-         jScrollPane3.setVisible(true);
-         
-        String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH)+1);
-        String anio = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.YEAR));
-        String fechaInicio = (dia+ "-" + mes + "-" + anio);
-        
-        String d = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String m = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.MONTH)+1);
-        String a = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.YEAR));
-        String fechaFin = (d + "-" + m + "-" + a);
-        
-        
-         modeloTablaGastos = new DefaultTableModel(con.getGastos( fechaInicio,fechaFin),columnasGastos);
-         tablautilidadingresos.setModel(modeloTablaGastos);
-        
-        
-    }//GEN-LAST:event_cbgastosActionPerformed
-
-    private void jtfMontoAPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfMontoAPagarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfMontoAPagarActionPerformed
-
-    private void jtfMontoAPagarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfMontoAPagarKeyPressed
-        // TODO add your handling code here:
-        if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
-            evt.consume();
-        }
-    }//GEN-LAST:event_jtfMontoAPagarKeyPressed
-
-<<<<<<< HEAD
-    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
-
-    }//GEN-LAST:event_tablaClientesMouseClicked
-=======
-    private void jtfTiempoAPagarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTiempoAPagarKeyPressed
-        // TODO add your handling code here:
-        if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
-            evt.consume();
-        }
-    }//GEN-LAST:event_jtfTiempoAPagarKeyPressed
-
-    private void cbtodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbtodoActionPerformed
-        // TODO add your handling code here:
-        
-         PaneltablaUtilidad.setVisible(true);
-         jScrollPane3.setVisible(true);
-         jScrollPane4.setVisible(true);
-        
-        String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH)+1);
-        String anio = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.YEAR));
-        String fechaInicio = (dia+ "-" + mes + "-" + anio);
-        
-        String d = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String m = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.MONTH)+1);
-        String a = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.YEAR));
-        String fechaFin = (d + "-" + m + "-" + a);
-        
-        
-        modeloTablaUtilidad = new DefaultTableModel(con.getIngresos(fechaInicio,fechaFin),columnasIngresos);
-        tablautilidadingresos.setModel(modeloTablaUtilidad);
-         
-        modeloTablaUtilidad = new DefaultTableModel(con.getGastos(fechaInicio,fechaFin),columnasGastos);
-        tablautilidadgastos.setModel(modeloTablaUtilidad);
-         
-        
-         
-            
-    }//GEN-LAST:event_cbtodoActionPerformed
-
-    private void txttotalingresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalingresosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txttotalingresosActionPerformed
-
-    private void txttotalgastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalgastosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txttotalgastosActionPerformed
-
-    private void jtfbuscarpagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfbuscarpagoActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jtfbuscarpagoActionPerformed
-
-    private void jtfbuscarpagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfbuscarpagoKeyTyped
-        // TODO add your handling code here:
-        Character s = evt.getKeyChar();
-        
-        if(!Character.isLetter(s) && s != KeyEvent.VK_SPACE){
-            evt.consume();   
-        }
-        
-        
-        int limit = 10;
-        if (jtfbuscarpago.getText().length() == limit) {
-            evt.consume();
-
-        }
-        
-         
-        
-    
-    }//GEN-LAST:event_jtfbuscarpagoKeyTyped
->>>>>>> AnaVargas
-
-<<<<<<< HEAD
     private void btnCancelarRegistroGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRegistroGastoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarRegistroGastoActionPerformed
@@ -2603,71 +1789,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
        jdcFechaGasto.setEnabled(false);
     }
     }//GEN-LAST:event_jcbPersonalizarFechaGastoItemStateChanged
-=======
-    private void jtfBuscarInventarioCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarInventarioCaretUpdate
-        // TODO add your handling code here:
-        DefaultTableModel modeloTablaBuscarInventario = new DefaultTableModel(con.buscarInventario(jtfBuscarInventario.getText()), columnasInventario);
-        tablaInventarioEquipo.setModel(modeloTablaBuscarInventario);
-    }//GEN-LAST:event_jtfBuscarInventarioCaretUpdate
-
-
-    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
-        // TODO add your handling code here:
-        int r = tablaInventarioEquipo.getSelectedRow();
-
-        if (r == -1) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        } else {
-            String nombremaquina = tablaInventarioEquipo.getValueAt(r, 1).toString();
-            con.eliminarInventario(nombremaquina);
-            DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(), columnasInventario);
-            tablaInventarioEquipo.setModel(modeloTablaInventario);
-
-        }
-    }//GEN-LAST:event_jbEliminarActionPerformed
-
-    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-        // TODO add your handling code here:
-        int filaSelect = tablaInventarioEquipo.getSelectedRow();
-
-        if (filaSelect == -1) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un articulo", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        } else {
-            con.ModificarInventario(jtfNombreEquipo.getText(), jtfCantidadEquipo.getText(), taDescripcionEquipo.getText(),tablaInventarioEquipo.getValueAt(filaSelect,4).toString());
-            DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(), columnasInventario);
-            tablaInventarioEquipo.setModel(modeloTablaInventario);
-            jtfNombreEquipo.setText("");
-            jtfCantidadEquipo.setText("");
-            taDescripcionEquipo.setText("");
-        }
-    }//GEN-LAST:event_jbModificarActionPerformed
-
-    private void tablaInventarioEquipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaInventarioEquipoMouseClicked
-        // TODO add your handling code here:
-        int filaseleccionada = tablaInventarioEquipo.getSelectedRow();
-        jtfNombreEquipo.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 1).toString());
-        jtfCantidadEquipo.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 2).toString());
-        taDescripcionEquipo.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 3).toString());
-
-    }//GEN-LAST:event_tablaInventarioEquipoMouseClicked
-
-    private void cumpleanerosDelMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cumpleanerosDelMesActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel modeloTablaCumpleaneros = new DefaultTableModel(con.getCumpleaneros(), columnasCumpleaneros);
-        tablaCumpleaneros.setModel(modeloTablaCumpleaneros);  
-    }//GEN-LAST:event_cumpleanerosDelMesActionPerformed
->>>>>>> JulioDiaz
 
     public class PresionarTecla extends KeyAdapter {
-
-        @Override
-        public void keyPressed(KeyEvent ke) {
-            if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                btnAceptarRegistroCliente.doClick();
-            }
-        }
-    }
-
+      @Override
+      public void keyPressed(KeyEvent ke) {
+          if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+             btnAceptarRegistroCliente.doClick();
+          }
+      }
+}
+    
     public String[] getTipoTiempo(String tiempo) {
         String[] plan = new String[4];
         if (tiempo.equalsIgnoreCase("Mes")) {
@@ -2676,11 +1807,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             plan[2] = "Grupo";
             plan[3] = "Estudiante";
         }
-        return plan;	
+        return plan;
     }
-		 
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelClientes;
     private javax.swing.JPanel PanelConfiguracion;
@@ -2688,46 +1818,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel PanelInventario;
     private javax.swing.JPanel PanelPagos;
     private javax.swing.JPanel PanelTabla;
-<<<<<<< HEAD
     private javax.swing.JPanel PanelTablaGastos;
-=======
-    private javax.swing.JPanel PanelTablaPagos;
-    private javax.swing.JPanel PanelUtilidad;
-    private javax.swing.JPanel Panelfecha;
-    private javax.swing.JPanel PaneltablaUtilidad;
-    private javax.swing.JPanel Paneltotales;
->>>>>>> AnaVargas
     private javax.swing.JButton btnAceptarInventario;
     private javax.swing.JButton btnAceptarRegistroCliente;
     private javax.swing.JButton btnAceptarRegistroGasto;
     private javax.swing.JButton btnCancelarInventario;
     private javax.swing.JButton btnCancelarRegistroCliente;
-<<<<<<< HEAD
-<<<<<<< HEAD
     private javax.swing.JButton btnCancelarRegistroGasto;
-=======
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JCheckBox cbgastos;
-    private javax.swing.JCheckBox cbingresos;
-    private javax.swing.JCheckBox cbtodo;
->>>>>>> AnaVargas
     private javax.swing.JButton jButton3;
-=======
-    private javax.swing.JButton cumpleanerosDelMes;
->>>>>>> JulioDiaz
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-<<<<<<< HEAD
-<<<<<<< HEAD
     private javax.swing.JLabel jLabel18;
-=======
-    private javax.swing.JLabel jLabel15;
->>>>>>> JulioDiaz
-=======
-    private javax.swing.JLabel jLabel15;
->>>>>>> AnaVargas
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -2739,25 +1844,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-<<<<<<< HEAD
     private javax.swing.JScrollPane jScrollPaneTablaPago;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton jbEliminar;
-    private javax.swing.JButton jbModificar;
-=======
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
->>>>>>> AnaVargas
     private javax.swing.JButton jbPagoAceptar;
     private javax.swing.JButton jbPagoCancelar;
     private javax.swing.JComboBox<String> jcbClienteAPagar;
@@ -2765,12 +1859,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JCheckBox jcbPersonalizarFechaGasto;
     private javax.swing.JComboBox<String> jcbTiempoPago;
     private com.toedter.calendar.JDateChooser jdcFecha;
-<<<<<<< HEAD
     private com.toedter.calendar.JDateChooser jdcFechaGasto;
-=======
-    private com.toedter.calendar.JDateChooser jdcfechaFinal;
-    private com.toedter.calendar.JDateChooser jdcfechaInicio;
->>>>>>> AnaVargas
     private javax.swing.JLabel jlCantidadEquipo;
     private javax.swing.JLabel jlDescripcionEquipo;
     private javax.swing.JLabel jlDescripcionGAsto;
@@ -2785,11 +1874,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jtfAltura;
     private javax.swing.JTextField jtfApellidoCliente;
     private javax.swing.JTextField jtfBuscarCliente;
-<<<<<<< HEAD
     private javax.swing.JTextField jtfBuscarGasto;
-=======
-    private javax.swing.JTextField jtfBuscarInventario;
->>>>>>> JulioDiaz
     private javax.swing.JTextField jtfCantidadEquipo;
     private javax.swing.JLabel jtfClienteAPagar;
     private javax.swing.JTextField jtfDescripcionGasto;
@@ -2801,9 +1886,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jtfPeso;
     private javax.swing.JTextField jtfTiempoAPagar;
     private javax.swing.JTextField jtfbuscarpago;
-    private javax.swing.JLabel labeltotalgastos;
-    private javax.swing.JLabel labeltotalingresos;
-    private javax.swing.JLabel labelutilidad;
+    private javax.swing.JLabel labelbuscarpago;
     private javax.swing.JPanel panelDatosCliente;
     private javax.swing.JPanel panelDatosGasto;
     private javax.swing.JPanel panelDatosPago;
@@ -2811,17 +1894,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollTablaClientes1;
     private java.awt.TextArea taDescripcionEquipo;
     private javax.swing.JTable tablaClientes;
-<<<<<<< HEAD
     private javax.swing.JTable tablaGastos;
-=======
-    private javax.swing.JTable tablaCumpleaneros;
->>>>>>> JulioDiaz
     private javax.swing.JTable tablaInventarioEquipo;
     private javax.swing.JTable tablaPagos;
-    private javax.swing.JTable tablautilidadgastos;
-    private javax.swing.JTable tablautilidadingresos;
-    private javax.swing.JTextField txttotalgastos;
-    private javax.swing.JTextField txttotalingresos;
-    private javax.swing.JTextField txtutilidad;
     // End of variables declaration//GEN-END:variables
 }
