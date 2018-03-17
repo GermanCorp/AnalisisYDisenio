@@ -2,6 +2,7 @@ package royal_gym;
 
 // método principal
 
+import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -22,6 +23,7 @@ public class ClasePrincipal {
     VentanaPrincipal ventana = new VentanaPrincipal();
     ventana.setVisible(true);
     ventana.setLocationRelativeTo(null);
+    ventana.setExtendedState(JFrame.MAXIMIZED_BOTH); 
     ventana.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 }
