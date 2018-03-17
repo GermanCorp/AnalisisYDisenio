@@ -39,6 +39,12 @@ public class Conexion {
         }
     }
 
+    // formatea lo numeros doubles
+        public String formatearNumero(double numero){
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        return df.format(numero);
+    }
+    
     // Clasifica el peso de acuerdo al imc
     public String clasificaciónIMC(double imc){
        String tipoIMC = "";
@@ -178,9 +184,6 @@ public class Conexion {
              resultado = statement.executeQuery(consulta);
 
              int numeroLista = 1;
-             double imc = 0;
-             DecimalFormat df = new DecimalFormat("0.00");
-             
              ArrayList<Object[]> filas = new ArrayList<>();
              
              while (resultado.next()) {
@@ -189,9 +192,9 @@ public class Conexion {
                      numeroLista++,
                      resultado.getString("NombreCompleto"),
                      resultado.getString("FechaNacimiento"),
-                     resultado.getDouble("Altura"),
-                     resultado.getDouble("Peso"),
-                     df.format(resultado.getDouble("imc")),
+                     formatearNumero(resultado.getDouble("Altura")),
+                     formatearNumero(resultado.getDouble("Peso")),
+                     formatearNumero(resultado.getDouble("imc")),
                      clasificaciónIMC(resultado.getDouble("imc"))
                  }
                  );
@@ -359,6 +362,53 @@ public class Conexion {
         }
         return datosPago;
     }
+
+            // método para llenar la tabla de gastos
+ public Object[][] getGasto(){
+         Object[][] datosCliente = null;
+         
+         try {
+             String consulta = "Select Descripcion, Monto, Fecha FROM gasto ORDER BY fecha desc";
+             statement = conexion.createStatement();
+             resultado = statement.executeQuery(consulta);
+
+             int numeroLista = 1;
+             ArrayList<Object[]> filas = new ArrayList<>();
+             
+             while (resultado.next()) {
+                 filas.add(
+                 new Object[]{
+                     numeroLista++,
+                     resultado.getString("Descripcion"),
+                     formatearNumero(resultado.getDouble("Monto")),
+                     resultado.getString("Fecha")
+                 }
+                 );
+             }
+                 datosCliente = new Object[filas.size()][];
+                 filas.toArray(datosCliente);             
+
+            datosCliente = new Object[filas.size()][];
+            filas.toArray(datosCliente);
+                     } catch (Exception e) {
+                 System.out.println(e.getMessage());
+         }
+        return datosCliente;
+    }
+ 
+ // Método para insertar nuevo gasto
+    public void insertarGasto(String descripcion, String monto, String fecha) {
+        try {
+            String sql = "insert into gasto (Descripcion, Monto, Fecha) values (?,?,?)";
+            PreparedStatement consulta = conexion.prepareStatement(sql);
+            consulta.setString(1, descripcion);
+            consulta.setString(2, monto);
+            consulta.setString(3, fecha);
+            consulta.execute();
+        } catch (Exception e) {
+            System.out.println("Metodo Insertar gasto" + e.getMessage());
+        }
+    }// fin del metodo para insertar cliente
 
 
     }
