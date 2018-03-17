@@ -186,6 +186,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaCumpleaneros = new javax.swing.JTable();
+        cumpleanerosDelMes = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -1009,6 +1010,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablaCumpleaneros);
 
+        cumpleanerosDelMes.setText("Calcular Edad A Cumplir ");
+        cumpleanerosDelMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cumpleanerosDelMesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -1017,13 +1025,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1086, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(440, 440, 440)
+                .addComponent(cumpleanerosDelMes)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(cumpleanerosDelMes)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -1212,6 +1226,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jtfNombreEquipo.setText("");
             jtfCantidadEquipo.setText("");
             taDescripcionEquipo.setText("");
+            
+            JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnAceptarInventarioActionPerformed
 
@@ -1509,7 +1525,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         taDescripcionEquipo.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 3).toString());
 
     }//GEN-LAST:event_tablaInventarioEquipoMouseClicked
-
+/*
+    private void cumpleanerosDelMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cumpleanerosDelMesActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel modeloTablaCumpleaneros = new DefaultTableModel(con.restar_fecha(fecha_nacimiento), columnasCumpleaneros);
+        tablaCumpleaneros.setModel(modeloTablaCumpleaneros);
+        
+    }//GEN-LAST:event_cumpleanerosDelMesActionPerformed
+*/
     public class PresionarTecla extends KeyAdapter {
 
         @Override
@@ -1543,6 +1566,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAceptarRegistroCliente;
     private javax.swing.JButton btnCancelarInventario;
     private javax.swing.JButton btnCancelarRegistroCliente;
+    private javax.swing.JButton cumpleanerosDelMes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

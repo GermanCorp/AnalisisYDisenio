@@ -1,13 +1,18 @@
 package royal_gym;
 
+
 import com.toedter.calendar.JDateChooser;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,6 +66,26 @@ public class Conexion {
         }
         return tipoIMC;
     }
+    /*
+    public String restar_fecha(String fecha_nacimiento){
+        
+        String FechaNacimiento = fecha_nacimiento;
+        String FechaActual = "";
+        Date date = new Date(0);
+        DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
+        FechaActual = df.format(date);
+        
+        String[] aFechaIng = FechaNacimiento.split("/");
+        Integer anioInicio = Integer.parseInt(aFechaIng[3]);
+        
+        String[] aFecha = FechaActual.split("/");
+        Integer anioActual = Integer.parseInt(aFechaIng[3]);
+        
+        System.out.println("Anos: "+ anioActual);
+        
+        return "Anios=";
+            
+    }*/
 
     // método para insertar pagos a la base de datos
     public void insertarPagos(String cliente, String monto, String tiempo, String tipotiempo, String tipoplan, String fecha) {
