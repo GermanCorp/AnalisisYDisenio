@@ -98,6 +98,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setTitle("Royal Gym");
         this.con = new Conexion();
         con.conectar();
+        
+        jScrollPane3.setVisible(false);
+        jScrollPane4.setVisible(false);
+       PaneltablaUtilidad.setVisible(false);
+       Paneltotales.setVisible(false);
+        
        
 
         ArrayList<String> lista =new ArrayList<String>();
@@ -214,7 +220,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         cbtodo = new javax.swing.JCheckBox();
         PaneltablaUtilidad = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tablautilidad = new javax.swing.JTable();
+        tablautilidadingresos = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tablautilidadgastos = new javax.swing.JTable();
         Paneltotales = new javax.swing.JPanel();
         txttotalgastos = new javax.swing.JTextField();
         txttotalingresos = new javax.swing.JTextField();
@@ -485,15 +493,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(panelDatosPago, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(PanelTablaPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(232, Short.MAX_VALUE))
         );
         PanelPagosLayout.setVerticalGroup(
             PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPagosLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
-                    .addComponent(PanelTablaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE))
+                    .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
+                    .addComponent(PanelTablaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
 
@@ -702,7 +710,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)))
-                .addGap(18, 454, Short.MAX_VALUE)
+                .addGap(18, 464, Short.MAX_VALUE)
                 .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarRegistroCliente)
                     .addComponent(btnCancelarRegistroCliente))
@@ -773,7 +781,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jtfBuscarCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
+                .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
 
@@ -786,7 +794,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(panelDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(PanelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
         PanelClientesLayout.setVerticalGroup(
             PanelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -968,7 +976,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1013, Short.MAX_VALUE))
+                .addContainerGap(1054, Short.MAX_VALUE))
         );
         PanelConfiguracionLayout.setVerticalGroup(
             PanelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -977,7 +985,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(PanelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(906, Short.MAX_VALUE))
+                .addContainerGap(916, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Configuración", new javax.swing.ImageIcon(getClass().getResource("/iconos/Configuracion.png")), PanelConfiguracion); // NOI18N
@@ -986,11 +994,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1248, Short.MAX_VALUE)
+            .addGap(0, 1289, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 965, Short.MAX_VALUE)
+            .addGap(0, 975, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Gastos", jPanel2);
@@ -1009,7 +1017,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton3)
                     .addComponent(jLabel13))
-                .addContainerGap(986, Short.MAX_VALUE))
+                .addContainerGap(1027, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1018,7 +1026,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addGap(38, 38, 38)
                 .addComponent(jButton3)
-                .addContainerGap(840, Short.MAX_VALUE))
+                .addContainerGap(850, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cumpleañeros", jPanel3);
@@ -1099,13 +1107,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(cbingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(cbtodo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         PaneltablaUtilidad.setBackground(new java.awt.Color(85, 96, 128));
         PaneltablaUtilidad.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Ingresos y Gastos Registrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        tablautilidad.setModel(new javax.swing.table.DefaultTableModel(
+        tablautilidadingresos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1113,23 +1121,37 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane3.setViewportView(tablautilidad);
+        jScrollPane3.setViewportView(tablautilidadingresos);
+
+        tablautilidadgastos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane4.setViewportView(tablautilidadgastos);
 
         javax.swing.GroupLayout PaneltablaUtilidadLayout = new javax.swing.GroupLayout(PaneltablaUtilidad);
         PaneltablaUtilidad.setLayout(PaneltablaUtilidadLayout);
         PaneltablaUtilidadLayout.setHorizontalGroup(
             PaneltablaUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PaneltablaUtilidadLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         PaneltablaUtilidadLayout.setVerticalGroup(
             PaneltablaUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PaneltablaUtilidadLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(PaneltablaUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         Paneltotales.setBackground(new java.awt.Color(85, 96, 128));
@@ -1221,20 +1243,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(PaneltablaUtilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelUtilidadLayout.createSequentialGroup()
-                        .addGap(307, 307, 307)
+                        .addGap(312, 312, 312)
                         .addComponent(Paneltotales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(247, Short.MAX_VALUE))
+                .addContainerGap(250, Short.MAX_VALUE))
         );
         PanelUtilidadLayout.setVerticalGroup(
             PanelUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelUtilidadLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(PanelUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PaneltablaUtilidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Panelfecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Panelfecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PaneltablaUtilidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20)
                 .addComponent(Paneltotales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(366, Short.MAX_VALUE))
+                .addContainerGap(415, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Utilidad", PanelUtilidad);
@@ -1251,7 +1273,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1253, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1294, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1679,7 +1701,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void cbingresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbingresosActionPerformed
         // TODO add your handling code here:
-        
+        PaneltablaUtilidad.setVisible(true);
+         jScrollPane3.setVisible(true);
+        Paneltotales.setVisible(true);
         
         if(cbingresos.isSelected()){
            
@@ -1694,16 +1718,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String fechaFin = (d + "-" + m + "-" + a);
         
         
-          modeloTablaIngresos = new DefaultTableModel(con.getIngresos( fechaInicio,fechaFin),columnasIngresos);
-         tablautilidad.setModel(modeloTablaIngresos);
-         	       
+        modeloTablaIngresos = new DefaultTableModel(con.getIngresos( fechaInicio,fechaFin),columnasIngresos);
+        tablautilidadingresos.setModel(modeloTablaIngresos);
+        
+        
         } 
     }//GEN-LAST:event_cbingresosActionPerformed
 
     private void cbgastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbgastosActionPerformed
         // TODO add your handling code here:
         
-       
+         PaneltablaUtilidad.setVisible(true);
+         jScrollPane3.setVisible(true);
+         
         String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH)+1);
         String anio = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.YEAR));
@@ -1715,10 +1742,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String fechaFin = (d + "-" + m + "-" + a);
         
         
-          modeloTablaGastos = new DefaultTableModel(con.getGastos( fechaInicio,fechaFin),columnasGastos);
-         tablautilidad.setModel(modeloTablaGastos);
-         
-         
+         modeloTablaGastos = new DefaultTableModel(con.getGastos( fechaInicio,fechaFin),columnasGastos);
+         tablautilidadingresos.setModel(modeloTablaGastos);
         
         
     }//GEN-LAST:event_cbgastosActionPerformed
@@ -1744,6 +1769,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void cbtodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbtodoActionPerformed
         // TODO add your handling code here:
         
+         PaneltablaUtilidad.setVisible(true);
+         jScrollPane3.setVisible(true);
+         jScrollPane4.setVisible(true);
+        
         String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH)+1);
         String anio = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.YEAR));
@@ -1755,10 +1784,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String fechaFin = (d + "-" + m + "-" + a);
         
         
-          modeloTablaUtilidad = new DefaultTableModel(con.getIngresosGastos(fechaInicio,fechaFin),columnasUtilidad);
-         tablautilidad.setModel(modeloTablaUtilidad);
+        modeloTablaUtilidad = new DefaultTableModel(con.getIngresos(fechaInicio,fechaFin),columnasIngresos);
+        tablautilidadingresos.setModel(modeloTablaUtilidad);
          
-         sumaTotalIngresos();
+        modeloTablaUtilidad = new DefaultTableModel(con.getGastos(fechaInicio,fechaFin),columnasGastos);
+        tablautilidadgastos.setModel(modeloTablaUtilidad);
+         
+        
+         
             
     }//GEN-LAST:event_cbtodoActionPerformed
 
@@ -1812,28 +1845,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             plan[2] = "Grupo";
             plan[3] = "Estudiante";
         }
-        return plan;
-    }
-    
-    
-    public void sumaTotalIngresos(){
-        /*
-        int total = 0;
-			 
-            for( int i=0 ; i< tablautilidad.getRowCount() ; i++)
-            {
-		total = total + (Integer)tablautilidad.getValueAt(i, 2);
-                String totalsuma = Integer.toString(total);
-                txttotalingresos.setText(totalsuma); 
-            }*/
-        
-        int total = 0;
-        for( int i=0 ; i< tablautilidad.getRowCount() ; i++){
-            total = total + Integer.parseInt(modeloTablaUtilidad.getValueAt(i, 2).toString());
-        }
-        txttotalingresos.setText(String.valueOf(total));
-        
-		
+        return plan;	
     }
 		 
 
@@ -1882,6 +1894,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbPagoAceptar;
@@ -1921,7 +1934,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable tablaClientes;
     private javax.swing.JTable tablaInventarioEquipo;
     private javax.swing.JTable tablaPagos;
-    private javax.swing.JTable tablautilidad;
+    private javax.swing.JTable tablautilidadgastos;
+    private javax.swing.JTable tablautilidadingresos;
     private javax.swing.JTextField txttotalgastos;
     private javax.swing.JTextField txttotalingresos;
     private javax.swing.JTextField txtutilidad;

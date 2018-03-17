@@ -18,6 +18,7 @@ public class Conexion {
     private Connection conexion;
     private static Statement statement;
     static ResultSet resultado;
+    int totalIngresos = 0;
 
     //conectarse a la base de datos
     public void conectar() {
@@ -309,22 +310,24 @@ public class Conexion {
         Object[][] datosPago = null;
 
         try {
-            String consulta = "SELECT monto,fecha_pago FROM pagos where fecha_pago between ? and ? ";
-            
-           PreparedStatement statement  = conexion.prepareStatement(consulta);
+            String consulta ="Select i.fecha_pago,sum(i.monto) as montoIngreso from pagos as i where i.fecha_pago between ? and ? group by i.fecha_pago"; 
+           
+            PreparedStatement statement  = conexion.prepareStatement(consulta);
            statement.setString(1, fechaInicio);
            statement.setString(2, fechaFin);
             resultado = statement.executeQuery();
             int numeroLista = 1;
+           
             
             ArrayList<Object[]> filas = new ArrayList<>();
 
             while (resultado.next()) {
+                totalIngresos +=resultado.getInt("montoIngreso");
                 filas.add(
-                        new Object[]{
+                    new Object[]{
                     numeroLista++,
                     resultado.getString("fecha_pago"),
-                    resultado.getDouble("monto"),       
+                    resultado.getInt("montoIngreso"),       
                     
                    }
                 );
@@ -342,7 +345,7 @@ public class Conexion {
         Object[][] datosPago = null;
 
         try {
-            String consulta = "SELECT monto_gasto,fecha FROM gastos where fecha between ? and ? ";
+            String consulta = "Select g.fecha,sum(g.monto_gasto) as montoGasto from gastos as g where g.fecha between ? and ? group by g.fecha";
             
            PreparedStatement statement  = conexion.prepareStatement(consulta);
            statement.setString(1, fechaInicio);
@@ -357,7 +360,7 @@ public class Conexion {
                         new Object[]{
                     numeroLista++,  
                     resultado.getString("fecha"),        
-                    resultado.getDouble("monto_gasto"),       
+                    resultado.getDouble("montoGasto"),       
                     
                    }
                 );
@@ -375,8 +378,10 @@ public class Conexion {
         Object[][] datosPago = null;
 
         try {
-            String consulta = "SELECT fecha, monto ,monto_gasto FROM pagos JOIN gastos "
-                    + "ON pagos.fecha_pago= gastos.fecha where fecha between ? and ?; ";
+            String consulta = "Select i.fecha_pago,sum(i.monto) as montoIngreso from pagos as i where i.fecha_pago between ? and ? group by i.fecha_pago";
+            //"SELECT fecha, monto ,monto_gasto FROM pagos JOIN gastos "
+                    //+ "ON pagos.fecha_pago= gastos.fecha where fecha between ? and ?; ";
+            
             
            PreparedStatement statement  = conexion.prepareStatement(consulta);
            statement.setString(1, fechaInicio);
@@ -403,6 +408,40 @@ public class Conexion {
             System.out.println(e.getMessage());
         }
         return datosPago;
+    }
+     
+     
+    public void sumar(){
+        
+    }
+    
+    
+    
+     public Object[][] getSumaIngresos() {
+        Object[][] datosSumaIngresos = null;
+
+        try {
+            String consulta = "SELECT sum(monto) from pagos";
+            statement = conexion.createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                           
+                            resultado.getInt("monto")
+                            
+                        }
+                );
+            }
+            datosSumaIngresos = new Object[filas.size()][];
+            filas.toArray(datosSumaIngresos);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosSumaIngresos;
     }
      
      
