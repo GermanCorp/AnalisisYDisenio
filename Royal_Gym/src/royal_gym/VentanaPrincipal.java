@@ -1528,9 +1528,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void cumpleanerosDelMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cumpleanerosDelMesActionPerformed
         // TODO add your handling code here:
-        /*DefaultTableModel modeloTablaCumpleaneros = new DefaultTableModel(con.restar_fecha(fecha_nacimiento), columnasCumpleaneros);
-        tablaCumpleaneros.setModel(modeloTablaCumpleaneros);*/
-        
+        DefaultTableModel modeloTablaCumpleaneros = new DefaultTableModel(con.getCumpleaneros(), columnasCumpleaneros);
+        tablaCumpleaneros.setModel(modeloTablaCumpleaneros);  
     }//GEN-LAST:event_cumpleanerosDelMesActionPerformed
 
     public class PresionarTecla extends KeyAdapter {
