@@ -19,6 +19,7 @@ public class Conexion {
     private static Statement statement;
     static ResultSet resultado;
     int totalIngresos = 0;
+    int totalGastos = 0;
 
     //conectarse a la base de datos
     public void conectar() {
@@ -112,10 +113,7 @@ public class Conexion {
         }
     }// fin del metodo para insertar inventario
 
-    //void insertarPagos(String text, String text0, Object selectedItem) {
-    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    //}
-
+    
     // método para llenar la tabla de pagos
     public Object[][] getPago() {
         Object[][] datosPago = null;
@@ -274,7 +272,7 @@ public class Conexion {
     }
     
 
-    
+    //metodo para buscar en la tabla pagos
     public Object[][] buscarPago(String nombre) {
         Object[][] datosCliente = null;
         try {
@@ -306,11 +304,13 @@ public class Conexion {
         return datosCliente;
     }
     
+    //metodo para llenar la tabla con los ingresos(pagos) segun el rango de fecha seleccionado
     public Object[][] getIngresos( String fechaInicio , String fechaFin) {
         Object[][] datosPago = null;
 
         try {
-            String consulta ="Select i.fecha_pago,sum(i.monto) as montoIngreso from pagos as i where i.fecha_pago between ? and ? group by i.fecha_pago"; 
+            String consulta ="Select i.fecha_pago,sum(i.monto) as montoIngreso from pagos "
+                    + "as i where i.fecha_pago between ? and ? group by i.fecha_pago"; 
            
             PreparedStatement statement  = conexion.prepareStatement(consulta);
            statement.setString(1, fechaInicio);
@@ -340,7 +340,7 @@ public class Conexion {
         return datosPago;
     }
     
-    
+    //metodo para llenar la tabla con los gastos  que hubieron  segun el rango de fecha seleccionado
     public Object[][] getGastos( String fechaInicio , String fechaFin) {
         Object[][] datosPago = null;
 
@@ -372,67 +372,54 @@ public class Conexion {
         }
         return datosPago;
     }
-    
-    
-     public Object[][] getIngresosGastos( String fechaInicio , String fechaFin) {
-        Object[][] datosPago = null;
-
-        try {
-            String consulta = "Select i.fecha_pago,sum(i.monto) as montoIngreso from pagos as i where i.fecha_pago between ? and ? group by i.fecha_pago";
-            //"SELECT fecha, monto ,monto_gasto FROM pagos JOIN gastos "
-                    //+ "ON pagos.fecha_pago= gastos.fecha where fecha between ? and ?; ";
-            
-            
-           PreparedStatement statement  = conexion.prepareStatement(consulta);
-           statement.setString(1, fechaInicio);
-           statement.setString(2, fechaFin);
-            resultado = statement.executeQuery();
-            int numeroLista = 1;
-            
-            ArrayList<Object[]> filas = new ArrayList<>();
-
-            while (resultado.next()) {
-                filas.add(
-                        new Object[]{
-                    numeroLista++, 
-                    resultado.getString("fecha"),
-                    resultado.getDouble("monto"),
-                    resultado.getDouble("monto_gasto"),       
-                    
-                   }
-                );
-            }
-            datosPago = new Object[filas.size()][];
-            filas.toArray(datosPago);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return datosPago;
-    }
-     
-     
-    public void sumar(){
-        
-    }
-    
-    
-    
+   
+    //metodo para sumar los ingresos que hubieron segun el rango de fecha seleccionado
      public Object[][] getSumaIngresos() {
         Object[][] datosSumaIngresos = null;
 
         try {
-            String consulta = "SELECT sum(monto) from pagos";
+            String consulta = "SELECT monto from pagos";
             statement = conexion.createStatement();
             resultado = statement.executeQuery(consulta);
 
             ArrayList<Object[]> filas = new ArrayList<>();
 
             while (resultado.next()) {
+                totalIngresos +=  resultado.getInt("monto");
                 filas.add(
                         new Object[]{
                            
                             resultado.getInt("monto")
                             
+                        }
+                );
+            }
+            datosSumaIngresos = new Object[filas.size()][];
+            filas.toArray(datosSumaIngresos);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosSumaIngresos;
+    }
+     
+     //metodo para sumar los gastos que hubieron segun el rango de fecha seleccionado
+     public Object[][] getSumaGastos() {
+        Object[][] datosSumaIngresos = null;
+
+        try {
+            String consulta = "SELECT monto_gasto from gastos";
+            statement = conexion.createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+               totalGastos +=  resultado.getInt("monto_gasto");
+                filas.add(
+                        new Object[]{
+                           
+                            resultado.getInt("monto_gasto")
+                             
                         }
                 );
             }

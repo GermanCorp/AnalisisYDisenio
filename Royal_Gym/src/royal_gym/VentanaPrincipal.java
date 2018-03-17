@@ -1721,6 +1721,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         modeloTablaIngresos = new DefaultTableModel(con.getIngresos( fechaInicio,fechaFin),columnasIngresos);
         tablautilidadingresos.setModel(modeloTablaIngresos);
         
+        int totali = con.totalIngresos;
+        String totalIngresoss = Integer.toString(totali);
+        txttotalingresos.setText(totalIngresoss);
+        
         
         } 
     }//GEN-LAST:event_cbingresosActionPerformed
@@ -1730,6 +1734,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
          PaneltablaUtilidad.setVisible(true);
          jScrollPane3.setVisible(true);
+         Paneltotales.setVisible(true);
          
         String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH)+1);
@@ -1744,6 +1749,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
          modeloTablaGastos = new DefaultTableModel(con.getGastos( fechaInicio,fechaFin),columnasGastos);
          tablautilidadingresos.setModel(modeloTablaGastos);
+        
+        int totalg = con.totalGastos;
+        String totalGastoss = Integer.toString(totalg);
+        txttotalgastos.setText(totalGastoss);
+        
+       
         
         
     }//GEN-LAST:event_cbgastosActionPerformed
@@ -1772,6 +1783,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
          PaneltablaUtilidad.setVisible(true);
          jScrollPane3.setVisible(true);
          jScrollPane4.setVisible(true);
+         Paneltotales.setVisible(true);
         
         String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH)+1);
@@ -1791,7 +1803,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         tablautilidadgastos.setModel(modeloTablaUtilidad);
          
         
-         
+        int totalu = con.totalIngresos - con.totalGastos;
+        String totalUtilidad = Integer.toString( totalu);
+        txtutilidad.setText(totalUtilidad);
+        
+         int totalg = con.totalGastos;
+        String totalGastoss = Integer.toString(totalg);
+        txttotalgastos.setText(totalGastoss);
+        
+        int totali = con.totalIngresos;
+        String totalIngresoss = Integer.toString(totali);
+        txttotalingresos.setText(totalIngresoss);
             
     }//GEN-LAST:event_cbtodoActionPerformed
 
@@ -1823,9 +1845,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         }
         
-         
-        
-    
     }//GEN-LAST:event_jtfbuscarpagoKeyTyped
 
     public class PresionarTecla extends KeyAdapter {
