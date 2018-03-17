@@ -33,6 +33,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     Validaciones ValidarLetras = new Validaciones();
     Validaciones ValidarNumeros = new Validaciones();
     private final Conexion con;
+    DefaultTableModel modeloTablaIngresos;
+    DefaultTableModel modeloTablaGastos;
+     DefaultTableModel modeloTablaUtilidad;
+    
+    
 
     int  filaseleccionadatablapagos;
         // columnas de la tabla pagos
@@ -66,9 +71,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     };
     
      private final String[] columnasUtilidad= {
-            "Monto",
-            "Fecha "
+            "No.",
+            "Fecha ",
+            "Ingresos",
+            "Gastos"
+           
      };
+     
+     private final String[] columnasIngresos= {
+            "No.",
+            "Fecha ",
+            "Monto"
+    };
+     
+     private final String[] columnasGastos= {
+            "No.",
+            "Fecha ",
+            "Monto"
+    };
     
     
     
@@ -119,6 +139,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         PanelPagos = new javax.swing.JPanel();
         panelDatosPago = new javax.swing.JPanel();
@@ -190,9 +211,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jdcfechaFinal = new com.toedter.calendar.JDateChooser();
         cbingresos = new javax.swing.JCheckBox();
         cbgastos = new javax.swing.JCheckBox();
+        cbtodo = new javax.swing.JCheckBox();
         PaneltablaUtilidad = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tablaGastosIngresosUtilidad = new javax.swing.JTable();
+        tablautilidad = new javax.swing.JTable();
+        Paneltotales = new javax.swing.JPanel();
+        txttotalgastos = new javax.swing.JTextField();
+        txttotalingresos = new javax.swing.JTextField();
+        labeltotalingresos = new javax.swing.JLabel();
+        labeltotalgastos = new javax.swing.JLabel();
+        labelutilidad = new javax.swing.JLabel();
+        txtutilidad = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -390,9 +419,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 jtfbuscarpagoCaretUpdate(evt);
             }
         });
+        jtfbuscarpago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfbuscarpagoActionPerformed(evt);
+            }
+        });
         jtfbuscarpago.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtfbuscarpagoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfbuscarpagoKeyTyped(evt);
             }
         });
 
@@ -455,12 +492,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(PanelPagosLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelPagosLayout.createSequentialGroup()
-                        .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
-                        .addGap(20, 20, 20))
-                    .addGroup(PanelPagosLayout.createSequentialGroup()
-                        .addComponent(PanelTablaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
-                        .addGap(20, 20, 20))))
+                    .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
+                    .addComponent(PanelTablaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/RegistrarPago_3.png")), PanelPagos); // NOI18N
@@ -998,17 +1032,36 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jdcfechaFinal.setDateFormatString("dd-MM-yyyy");
 
+        buttonGroup1.add(cbingresos);
+        cbingresos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cbingresos.setForeground(new java.awt.Color(255, 255, 255));
         cbingresos.setText("Ingresos");
+        cbingresos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         cbingresos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbingresosActionPerformed(evt);
             }
         });
 
+        buttonGroup1.add(cbgastos);
+        cbgastos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cbgastos.setForeground(new java.awt.Color(255, 255, 255));
         cbgastos.setText("Gastos");
+        cbgastos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         cbgastos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbgastosActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(cbtodo);
+        cbtodo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cbtodo.setForeground(new java.awt.Color(255, 255, 255));
+        cbtodo.setText("Todo");
+        cbtodo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        cbtodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbtodoActionPerformed(evt);
             }
         });
 
@@ -1016,18 +1069,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Panelfecha.setLayout(PanelfechaLayout);
         PanelfechaLayout.setHorizontalGroup(
             PanelfechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelfechaLayout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(cbingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cbgastos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelfechaLayout.createSequentialGroup()
-                .addGap(50, 54, Short.MAX_VALUE)
-                .addComponent(jdcfechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(jdcfechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addGap(20, 20, 20)
+                .addGroup(PanelfechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PanelfechaLayout.createSequentialGroup()
+                        .addComponent(jdcfechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addComponent(jdcfechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelfechaLayout.createSequentialGroup()
+                        .addComponent(cbingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbgastos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelfechaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cbtodo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(182, 182, 182))
         );
         PanelfechaLayout.setVerticalGroup(
             PanelfechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1040,13 +1097,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(PanelfechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbgastos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(cbtodo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         PaneltablaUtilidad.setBackground(new java.awt.Color(85, 96, 128));
-        PaneltablaUtilidad.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Resultado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        PaneltablaUtilidad.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Ingresos y Gastos Registrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        tablaGastosIngresosUtilidad.setModel(new javax.swing.table.DefaultTableModel(
+        tablautilidad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1054,23 +1113,100 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane3.setViewportView(tablaGastosIngresosUtilidad);
+        jScrollPane3.setViewportView(tablautilidad);
 
         javax.swing.GroupLayout PaneltablaUtilidadLayout = new javax.swing.GroupLayout(PaneltablaUtilidad);
         PaneltablaUtilidad.setLayout(PaneltablaUtilidadLayout);
         PaneltablaUtilidadLayout.setHorizontalGroup(
             PaneltablaUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PaneltablaUtilidadLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
         PaneltablaUtilidadLayout.setVerticalGroup(
             PaneltablaUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PaneltablaUtilidadLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        Paneltotales.setBackground(new java.awt.Color(85, 96, 128));
+        Paneltotales.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Total Utilidad", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        txttotalgastos.setEditable(false);
+        txttotalgastos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txttotalgastosActionPerformed(evt);
+            }
+        });
+
+        txttotalingresos.setEditable(false);
+        txttotalingresos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txttotalingresosActionPerformed(evt);
+            }
+        });
+
+        labeltotalingresos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labeltotalingresos.setForeground(new java.awt.Color(255, 255, 255));
+        labeltotalingresos.setText("Total Ingresos:");
+
+        labeltotalgastos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labeltotalgastos.setForeground(new java.awt.Color(255, 255, 255));
+        labeltotalgastos.setText("Total Gastos:");
+
+        labelutilidad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelutilidad.setForeground(new java.awt.Color(255, 255, 255));
+        labelutilidad.setText("Utilidad:");
+
+        txtutilidad.setEditable(false);
+
+        javax.swing.GroupLayout PaneltotalesLayout = new javax.swing.GroupLayout(Paneltotales);
+        Paneltotales.setLayout(PaneltotalesLayout);
+        PaneltotalesLayout.setHorizontalGroup(
+            PaneltotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PaneltotalesLayout.createSequentialGroup()
+                .addGroup(PaneltotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PaneltotalesLayout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addComponent(txttotalgastos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PaneltotalesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(labeltotalingresos)
+                        .addGap(18, 18, 18)
+                        .addComponent(txttotalingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(21, Short.MAX_VALUE))
+            .addGroup(PaneltotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PaneltotalesLayout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addGroup(PaneltotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(labeltotalgastos)
+                        .addComponent(labelutilidad))
+                    .addGap(18, 18, 18)
+                    .addComponent(txtutilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(24, Short.MAX_VALUE)))
+        );
+        PaneltotalesLayout.setVerticalGroup(
+            PaneltotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PaneltotalesLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(PaneltotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labeltotalingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txttotalingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txttotalgastos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(99, Short.MAX_VALUE))
+            .addGroup(PaneltotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PaneltotalesLayout.createSequentialGroup()
+                    .addGap(82, 82, 82)
+                    .addComponent(labeltotalgastos)
+                    .addGap(18, 18, 18)
+                    .addGroup(PaneltotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelutilidad)
+                        .addComponent(txtutilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(48, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout PanelUtilidadLayout = new javax.swing.GroupLayout(PanelUtilidad);
@@ -1078,20 +1214,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PanelUtilidadLayout.setHorizontalGroup(
             PanelUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelUtilidadLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(Panelfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PaneltablaUtilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addGroup(PanelUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelUtilidadLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(Panelfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(PaneltablaUtilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelUtilidadLayout.createSequentialGroup()
+                        .addGap(307, 307, 307)
+                        .addComponent(Paneltotales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(247, Short.MAX_VALUE))
         );
         PanelUtilidadLayout.setVerticalGroup(
             PanelUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelUtilidadLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(PanelUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Panelfecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PaneltablaUtilidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(617, Short.MAX_VALUE))
+                    .addComponent(PaneltablaUtilidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Panelfecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(Paneltotales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(366, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Utilidad", PanelUtilidad);
@@ -1395,18 +1538,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfTiempoAPagarActionPerformed
 
     private void jtfTiempoAPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTiempoAPagarKeyTyped
-        char c = evt.getKeyChar();
-        if(c<'0' || c>'9') evt.consume();
+        Number n = evt.getKeyCode();
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+        }
         
-        else
-            if((int)evt.getKeyChar()>=32 && (int)evt.getKeyChar()<=47 ||
-               (int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64 ||
-               (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
-            {
-                getToolkit().beep();
-                evt.consume();
-            }
-               jtfTiempoAPagar.setCursor(null);
+        int limit = 2;
+        if (jtfTiempoAPagar.getText().length() == limit) {
+            evt.consume();
+
+        }
     }//GEN-LAST:event_jtfTiempoAPagarKeyTyped
 
     private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
@@ -1414,18 +1555,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTabbedPane1FocusGained
 
     private void jtfMontoAPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfMontoAPagarKeyTyped
-        char c = evt.getKeyChar();
-        if(c<'0' || c>'9') evt.consume();
+        Number n = evt.getKeyCode();
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+            
+        } 
         
-        else
-            if((int)evt.getKeyChar()>=32 && (int)evt.getKeyChar()<=47 ||
-               (int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64 ||
-               (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
-            {
-                getToolkit().beep();
-                evt.consume();
-            }
-               jtfMontoAPagar.setCursor(null);        
+        int limit = 4;
+        if (jtfMontoAPagar.getText().length() == limit) {
+            evt.consume();
+
+        }
     }//GEN-LAST:event_jtfMontoAPagarKeyTyped
 
     private void btnAceptarRegistroClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteKeyPressed
@@ -1500,7 +1640,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Buscar pagos
     private void jtfbuscarpagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfbuscarpagoKeyPressed
-                        
+
+        if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+            evt.consume();
+        }
 
     }//GEN-LAST:event_jtfbuscarpagoKeyPressed
 
@@ -1510,8 +1653,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jtfbuscarpagoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfbuscarpagoCaretUpdate
         // TODO add your handling code here:
+        
+        
+    
+        
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.buscarPago(jtfbuscarpago.getText()), columnasPagos);
             tablaPagos.setModel(modeloTablaPagos);
+            
+            
         
         
     }//GEN-LAST:event_jtfbuscarpagoCaretUpdate
@@ -1530,29 +1679,48 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void cbingresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbingresosActionPerformed
         // TODO add your handling code here:
+        
+        
         if(cbingresos.isSelected()){
-       
+           
         String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH)+1);
         String anio = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.YEAR));
-        String fechaInicio = (anio+ "-" + mes + "-" + dia);
+        String fechaInicio = (dia+ "-" + mes + "-" + anio);
         
         String d = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH));
         String m = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.MONTH)+1);
         String a = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.YEAR));
-        String fechaFin = (a + "-" + m + "-" + d);
+        String fechaFin = (d + "-" + m + "-" + a);
         
         
-         DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getIngresos( fechaInicio,fechaFin),columnasUtilidad);
-         tablaGastosIngresosUtilidad.setModel(modeloTablaPagos);
-        }else {
-          
-        }
-        
+          modeloTablaIngresos = new DefaultTableModel(con.getIngresos( fechaInicio,fechaFin),columnasIngresos);
+         tablautilidad.setModel(modeloTablaIngresos);
+         	       
+        } 
     }//GEN-LAST:event_cbingresosActionPerformed
 
     private void cbgastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbgastosActionPerformed
         // TODO add your handling code here:
+        
+       
+        String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH)+1);
+        String anio = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.YEAR));
+        String fechaInicio = (dia+ "-" + mes + "-" + anio);
+        
+        String d = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String m = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.MONTH)+1);
+        String a = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.YEAR));
+        String fechaFin = (d + "-" + m + "-" + a);
+        
+        
+          modeloTablaGastos = new DefaultTableModel(con.getGastos( fechaInicio,fechaFin),columnasGastos);
+         tablautilidad.setModel(modeloTablaGastos);
+         
+         
+        
+        
     }//GEN-LAST:event_cbgastosActionPerformed
 
     private void jtfMontoAPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfMontoAPagarActionPerformed
@@ -1573,6 +1741,60 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jtfTiempoAPagarKeyPressed
 
+    private void cbtodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbtodoActionPerformed
+        // TODO add your handling code here:
+        
+        String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH)+1);
+        String anio = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.YEAR));
+        String fechaInicio = (dia+ "-" + mes + "-" + anio);
+        
+        String d = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String m = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.MONTH)+1);
+        String a = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.YEAR));
+        String fechaFin = (d + "-" + m + "-" + a);
+        
+        
+          modeloTablaUtilidad = new DefaultTableModel(con.getIngresosGastos(fechaInicio,fechaFin),columnasUtilidad);
+         tablautilidad.setModel(modeloTablaUtilidad);
+         
+         sumaTotalIngresos();
+            
+    }//GEN-LAST:event_cbtodoActionPerformed
+
+    private void txttotalingresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalingresosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txttotalingresosActionPerformed
+
+    private void txttotalgastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalgastosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txttotalgastosActionPerformed
+
+    private void jtfbuscarpagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfbuscarpagoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jtfbuscarpagoActionPerformed
+
+    private void jtfbuscarpagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfbuscarpagoKeyTyped
+        // TODO add your handling code here:
+        Character s = evt.getKeyChar();
+        
+        if(!Character.isLetter(s) && s != KeyEvent.VK_SPACE){
+            evt.consume();   
+        }
+        
+        
+        int limit = 10;
+        if (jtfbuscarpago.getText().length() == limit) {
+            evt.consume();
+
+        }
+        
+         
+        
+    
+    }//GEN-LAST:event_jtfbuscarpagoKeyTyped
+
     public class PresionarTecla extends KeyAdapter {
       @Override
       public void keyPressed(KeyEvent ke) {
@@ -1592,6 +1814,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
         return plan;
     }
+    
+    
+    public void sumaTotalIngresos(){
+        /*
+        int total = 0;
+			 
+            for( int i=0 ; i< tablautilidad.getRowCount() ; i++)
+            {
+		total = total + (Integer)tablautilidad.getValueAt(i, 2);
+                String totalsuma = Integer.toString(total);
+                txttotalingresos.setText(totalsuma); 
+            }*/
+        
+        int total = 0;
+        for( int i=0 ; i< tablautilidad.getRowCount() ; i++){
+            total = total + Integer.parseInt(modeloTablaUtilidad.getValueAt(i, 2).toString());
+        }
+        txttotalingresos.setText(String.valueOf(total));
+        
+		
+    }
+		 
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1605,12 +1849,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel PanelUtilidad;
     private javax.swing.JPanel Panelfecha;
     private javax.swing.JPanel PaneltablaUtilidad;
+    private javax.swing.JPanel Paneltotales;
     private javax.swing.JButton btnAceptarInventario;
     private javax.swing.JButton btnAceptarRegistroCliente;
     private javax.swing.JButton btnCancelarInventario;
     private javax.swing.JButton btnCancelarRegistroCliente;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox cbgastos;
     private javax.swing.JCheckBox cbingresos;
+    private javax.swing.JCheckBox cbtodo;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1664,13 +1911,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jtfPeso;
     private javax.swing.JTextField jtfTiempoAPagar;
     private javax.swing.JTextField jtfbuscarpago;
+    private javax.swing.JLabel labeltotalgastos;
+    private javax.swing.JLabel labeltotalingresos;
+    private javax.swing.JLabel labelutilidad;
     private javax.swing.JPanel panelDatosCliente;
     private javax.swing.JPanel panelDatosPago;
     private javax.swing.JScrollPane scrollTablaClientes;
     private java.awt.TextArea taDescripcionEquipo;
     private javax.swing.JTable tablaClientes;
-    private javax.swing.JTable tablaGastosIngresosUtilidad;
     private javax.swing.JTable tablaInventarioEquipo;
     private javax.swing.JTable tablaPagos;
+    private javax.swing.JTable tablautilidad;
+    private javax.swing.JTextField txttotalgastos;
+    private javax.swing.JTextField txttotalingresos;
+    private javax.swing.JTextField txtutilidad;
     // End of variables declaration//GEN-END:variables
 }

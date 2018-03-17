@@ -315,15 +315,17 @@ public class Conexion {
            statement.setString(1, fechaInicio);
            statement.setString(2, fechaFin);
             resultado = statement.executeQuery();
+            int numeroLista = 1;
             
             ArrayList<Object[]> filas = new ArrayList<>();
 
             while (resultado.next()) {
                 filas.add(
                         new Object[]{
-                         
-                      resultado.getDouble("monto"),       
+                    numeroLista++,
                     resultado.getString("fecha_pago"),
+                    resultado.getDouble("monto"),       
+                    
                    }
                 );
             }
@@ -334,6 +336,75 @@ public class Conexion {
         }
         return datosPago;
     }
+    
+    
+    public Object[][] getGastos( String fechaInicio , String fechaFin) {
+        Object[][] datosPago = null;
+
+        try {
+            String consulta = "SELECT monto_gasto,fecha FROM gastos where fecha between ? and ? ";
+            
+           PreparedStatement statement  = conexion.prepareStatement(consulta);
+           statement.setString(1, fechaInicio);
+           statement.setString(2, fechaFin);
+            resultado = statement.executeQuery();
+            int numeroLista = 1;
+            
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                    numeroLista++,  
+                    resultado.getString("fecha"),        
+                    resultado.getDouble("monto_gasto"),       
+                    
+                   }
+                );
+            }
+            datosPago = new Object[filas.size()][];
+            filas.toArray(datosPago);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosPago;
+    }
+    
+    
+     public Object[][] getIngresosGastos( String fechaInicio , String fechaFin) {
+        Object[][] datosPago = null;
+
+        try {
+            String consulta = "SELECT fecha, monto ,monto_gasto FROM pagos JOIN gastos "
+                    + "ON pagos.fecha_pago= gastos.fecha where fecha between ? and ?; ";
+            
+           PreparedStatement statement  = conexion.prepareStatement(consulta);
+           statement.setString(1, fechaInicio);
+           statement.setString(2, fechaFin);
+            resultado = statement.executeQuery();
+            int numeroLista = 1;
+            
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                    numeroLista++, 
+                    resultado.getString("fecha"),
+                    resultado.getDouble("monto"),
+                    resultado.getDouble("monto_gasto"),       
+                    
+                   }
+                );
+            }
+            datosPago = new Object[filas.size()][];
+            filas.toArray(datosPago);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosPago;
+    }
+     
      
     
 }
