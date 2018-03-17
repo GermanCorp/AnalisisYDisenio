@@ -57,7 +57,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private final String[] columnasClientes = {
         "No.",
         "Nombres",
-        "Fecha Nac.",
+        "Fecha de Nacimiento",
         "Altura",
         "Peso",
         "Masa Corporal",
@@ -87,8 +87,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setTitle("Royal Gym");
         this.con = new Conexion();
         con.conectar(); 
-        jdcFechaGasto.setEnabled(false);       
-        
+        jdcFechaGasto.setEnabled(false);
+
         
         // alinear columnas a la derecha
         tcr = new DefaultTableCellRenderer();
