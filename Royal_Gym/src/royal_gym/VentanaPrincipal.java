@@ -7,6 +7,7 @@ import java.awt.Event;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -21,7 +22,6 @@ import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     // variables
@@ -29,9 +29,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     Validaciones ValidarNumeros = new Validaciones();
     private final Conexion con;
 
-    int  filaseleccionadatablapagos;
-        // columnas de la tabla pagos
-        private final String[] columnasPagos = {
+    int filaseleccionadatablapagos;
+    // columnas de la tabla pagos
+    private final String[] columnasPagos = {
         "Cliente",
         "Monto",
         "Tiempo",
@@ -39,7 +39,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         "Tipo de Plan",
         "Fecha de Pago"
     };
-
 
     // columnas de la tabla Cliente
     private final String[] columnasClientes = {
@@ -51,59 +50,66 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         "Masa Corporal",
         "Clasificación"
     };
-    
-     // columnas de la tabla Inventario
+
+    // columnas de la tabla Inventario
     private final String[] columnasInventario = {
         "No.",
         "Nombres",
         "Cantidad",
         "Descripción"
     };
-    
-    
-    
+        // columnas de la tabla Cumpleaneros
+    private final String[] columnasCumpleaneros = {
+        "No.",
+        "Nombre",
+        "Fecha de Nacimiento",
+        "Edad"
+    };
+
     // Constructor
     public VentanaPrincipal() {
         initComponents();
         setTitle("Royal Gym");
         this.con = new Conexion();
         con.conectar();
-       
 
-        ArrayList<String> lista =new ArrayList<String>();
-            lista =  con.llenarCombo();
-            for(int i = 0; i<lista.size(); i++){
-                jcbClienteAPagar.addItem(lista.get(i));
-            }
+        ArrayList<String> lista = new ArrayList<String>();
+        lista = con.llenarCombo();
+        for (int i = 0; i < lista.size(); i++) {
+            jcbClienteAPagar.addItem(lista.get(i));
+        }
 
         // Modelo de la tabla de Clientes
-        DefaultTableModel modeloTablaClientes = new DefaultTableModel(con.getCliente(),columnasClientes);
+        DefaultTableModel modeloTablaClientes = new DefaultTableModel(con.getCliente(), columnasClientes);
         tablaClientes.setModel(modeloTablaClientes);
-        
+
         // Modelo de la tabla de Pagos
-         DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(),columnasPagos);
+        DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(), columnasPagos);
         tablaPagos.setModel(modeloTablaPagos);
-        
+
         // Modelo de la tabla de Inventario
-         DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(),columnasInventario);
+        DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(), columnasInventario);
         tablaInventarioEquipo.setModel(modeloTablaInventario);
         
-      InputMap map2 = jtfMontoAPagar.getInputMap(jtfMontoAPagar.WHEN_FOCUSED);
-      map2.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null"); 
+        // Modelo de la tabla de cumpleaneros
+        DefaultTableModel modeloTablaCumpleaneros = new DefaultTableModel(con.getCumpleaneros(), columnasCumpleaneros);
+        tablaCumpleaneros.setModel(modeloTablaCumpleaneros);
+        
+        
+
+        InputMap map2 = jtfMontoAPagar.getInputMap(jtfMontoAPagar.WHEN_FOCUSED);
+        map2.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
     }
-    
 
     // metodo para cambiar el acho de columnas
-    private void setAnchoColumna(int[] ancho){
-        int x = tablaClientes.getColumnCount()-1;
+    private void setAnchoColumna(int[] ancho) {
+        int x = tablaClientes.getColumnCount() - 1;
         int tamanio = tablaClientes.getWidth();
-        for(int i = 0 ; i<=x; i++){
+        for (int i = 0; i <= x; i++) {
             TableColumn columnas = tablaClientes.getColumnModel().getColumn(i);
             columnas.setPreferredWidth(ancho[i]);
         }
     }
-    
-     
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -177,8 +183,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaCumpleaneros = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -834,6 +841,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaInventarioEquipo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaInventarioEquipoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaInventarioEquipo);
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Buscar.png"))); // NOI18N
@@ -981,30 +993,48 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Gastos", jPanel2);
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel13.setText("Lista de cumpleañeros del mes");
+        jPanel5.setBackground(new java.awt.Color(85, 96, 128));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Cumpleaneros Del Mes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 20), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jButton3.setText("jButton3");
+        tablaCumpleaneros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaCumpleaneros);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1086, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(95, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addComponent(jLabel13))
-                .addContainerGap(860, Short.MAX_VALUE))
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jLabel13)
-                .addGap(38, 38, 38)
-                .addComponent(jButton3)
-                .addContainerGap(512, Short.MAX_VALUE))
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Cumpleañeros", jPanel3);
@@ -1095,8 +1125,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jdcFecha.setDate(null);
             jtfAltura.setText("");
             jtfPeso.setText("");
-            
-            DefaultTableModel modeloTablaClientes = new DefaultTableModel(con.getCliente(),columnasClientes);
+
+            DefaultTableModel modeloTablaClientes = new DefaultTableModel(con.getCliente(), columnasClientes);
             tablaClientes.setModel(modeloTablaClientes);
             JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -1175,20 +1205,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     jtfNombreEquipo.getText(),
                     jtfCantidadEquipo.getText(),
                     taDescripcionEquipo.getText());
-            
-        DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(),columnasInventario);
-        tablaInventarioEquipo.setModel(modeloTablaInventario);
-        
+
+            DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(), columnasInventario);
+            tablaInventarioEquipo.setModel(modeloTablaInventario);
+
             jtfNombreEquipo.setText("");
             jtfCantidadEquipo.setText("");
-            taDescripcionEquipo.setText("");   
+            taDescripcionEquipo.setText("");
         }
     }//GEN-LAST:event_btnAceptarInventarioActionPerformed
 
     private void btnCancelarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarInventarioActionPerformed
-         jtfNombreEquipo.setText("");
-            jtfCantidadEquipo.setText("");
-            taDescripcionEquipo.setText("");
+        jtfNombreEquipo.setText("");
+        jtfCantidadEquipo.setText("");
+        taDescripcionEquipo.setText("");
     }//GEN-LAST:event_btnCancelarInventarioActionPerformed
 
     private void taDescripcionEquipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taDescripcionEquipoKeyTyped
@@ -1238,8 +1268,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jcbTiempoPago.setSelectedIndex(0);
         jcbPagoPlan.setSelectedIndex(0);
 
-       DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(),columnasPagos);
-       tablaPagos.setModel(modeloTablaPagos);
+        DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(), columnasPagos);
+        tablaPagos.setModel(modeloTablaPagos);
 
     }//GEN-LAST:event_jbPagoAceptarActionPerformed
 
@@ -1268,38 +1298,38 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbPagoCancelarActionPerformed
 
     private void jcbClienteAPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClienteAPagarActionPerformed
-            // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jcbClienteAPagarActionPerformed
 
     private void jcbClienteAPagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbClienteAPagarMouseClicked
         jcbClienteAPagar.removeAllItems();
-        ArrayList<String> lista =new ArrayList<String>();
-            lista =  con.llenarCombo();
-            for(int i = 0; i<lista.size(); i++){
-                jcbClienteAPagar.addItem(lista.get(i));
-            }
+        ArrayList<String> lista = new ArrayList<String>();
+        lista = con.llenarCombo();
+        for (int i = 0; i < lista.size(); i++) {
+            jcbClienteAPagar.addItem(lista.get(i));
+        }
     }//GEN-LAST:event_jcbClienteAPagarMouseClicked
 
     private void jtfAlturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAlturaKeyTyped
-        
-          char cTeclaPresionada = evt.getKeyChar();
+
+        char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-             btnAceptarRegistroCliente.doClick();
-      }
-        if(!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.'){
-            evt.consume();  
+            btnAceptarRegistroCliente.doClick();
         }
-         if(evt.getKeyChar()== '.'&&jtfAltura.getText().contains(".")){
-            evt.consume();  
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && jtfAltura.getText().contains(".")) {
+            evt.consume();
         }
     }//GEN-LAST:event_jtfAlturaKeyTyped
 
     private void jtfPesoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyReleased
-        if(!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.'){
-            evt.consume();  
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
         }
-         if(evt.getKeyChar()== '.'&&jtfAltura.getText().contains(".")){
-            evt.consume();  
+        if (evt.getKeyChar() == '.' && jtfAltura.getText().contains(".")) {
+            evt.consume();
         }
     }//GEN-LAST:event_jtfPesoKeyReleased
 
@@ -1309,17 +1339,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jtfTiempoAPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTiempoAPagarKeyTyped
         char c = evt.getKeyChar();
-        if(c<'0' || c>'9') evt.consume();
-        
-        else
-            if((int)evt.getKeyChar()>=32 && (int)evt.getKeyChar()<=47 ||
-               (int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64 ||
-               (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
-            {
-                getToolkit().beep();
-                evt.consume();
-            }
-               jtfTiempoAPagar.setCursor(null);
+        if (c < '0' || c > '9') {
+            evt.consume();
+        } else if ((int) evt.getKeyChar() >= 32 && (int) evt.getKeyChar() <= 47
+                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
+                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
+            getToolkit().beep();
+            evt.consume();
+        }
+        jtfTiempoAPagar.setCursor(null);
     }//GEN-LAST:event_jtfTiempoAPagarKeyTyped
 
     private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
@@ -1328,17 +1356,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jtfMontoAPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfMontoAPagarKeyTyped
         char c = evt.getKeyChar();
-        if(c<'0' || c>'9') evt.consume();
-        
-        else
-            if((int)evt.getKeyChar()>=32 && (int)evt.getKeyChar()<=47 ||
-               (int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64 ||
-               (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
-            {
-                getToolkit().beep();
-                evt.consume();
-            }
-               jtfMontoAPagar.setCursor(null);        
+        if (c < '0' || c > '9') {
+            evt.consume();
+        } else if ((int) evt.getKeyChar() >= 32 && (int) evt.getKeyChar() <= 47
+                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
+                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
+            getToolkit().beep();
+            evt.consume();
+        }
+        jtfMontoAPagar.setCursor(null);
     }//GEN-LAST:event_jtfMontoAPagarKeyTyped
 
     private void btnAceptarRegistroClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteKeyPressed
@@ -1350,32 +1376,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_panelDatosClienteFocusGained
 
     private void jtfNombreClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreClienteKeyTyped
-       char cTeclaPresionada = evt.getKeyChar();
+        char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-             btnAceptarRegistroCliente.doClick();
-      }
+            btnAceptarRegistroCliente.doClick();
+        }
     }//GEN-LAST:event_jtfNombreClienteKeyTyped
 
     private void jtfApellidoClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfApellidoClienteKeyTyped
-        
-         char cTeclaPresionada = evt.getKeyChar();
+
+        char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-             btnAceptarRegistroCliente.doClick();
-      }
+            btnAceptarRegistroCliente.doClick();
+        }
     }//GEN-LAST:event_jtfApellidoClienteKeyTyped
 
     private void jdcFechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdcFechaKeyTyped
-         char cTeclaPresionada = evt.getKeyChar();
+        char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-             btnAceptarRegistroCliente.doClick();
-      }
+            btnAceptarRegistroCliente.doClick();
+        }
     }//GEN-LAST:event_jdcFechaKeyTyped
 
     private void jtfPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyTyped
-          char cTeclaPresionada = evt.getKeyChar();
+        char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-             btnAceptarRegistroCliente.doClick();
-      }
+            btnAceptarRegistroCliente.doClick();
+        }
     }//GEN-LAST:event_jtfPesoKeyTyped
 
     private void jcbTiempoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTiempoPagoActionPerformed
@@ -1383,12 +1409,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbTiempoPagoActionPerformed
 
     private void jcbTiempoPagoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbTiempoPagoItemStateChanged
-        if(evt.getStateChange() == ItemEvent.SELECTED)
-        {
-            if(this.jcbTiempoPago.getSelectedIndex()>0)
-            {
-                this.jcbPagoPlan.setModel(new DefaultComboBoxModel
-                (this.getTipoTiempo(this.jcbTiempoPago.getSelectedItem().toString())));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            if (this.jcbTiempoPago.getSelectedIndex() > 0) {
+                this.jcbPagoPlan.setModel(new DefaultComboBoxModel(this.getTipoTiempo(this.jcbTiempoPago.getSelectedItem().toString())));
             }
         }
     }//GEN-LAST:event_jcbTiempoPagoItemStateChanged
@@ -1403,24 +1426,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jtfBuscarClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfBuscarClienteKeyPressed
 
-        
+
     }//GEN-LAST:event_jtfBuscarClienteKeyPressed
 
     private void jtfBuscarClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarClienteCaretUpdate
-        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(con.buscarCliente(jtfBuscarCliente.getText(), jtfBuscarCliente.getText()),columnasClientes);
-    tablaClientes.setModel(modeloTablaBuscarClientes);
+        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(con.buscarCliente(jtfBuscarCliente.getText(), jtfBuscarCliente.getText()), columnasClientes);
+        tablaClientes.setModel(modeloTablaBuscarClientes);
     }//GEN-LAST:event_jtfBuscarClienteCaretUpdate
 
     private void tablaPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPagosMouseClicked
         // TODO add your handling code here:
-       filaseleccionadatablapagos = tablaPagos.getSelectedRow();
-     
-      jcbClienteAPagar.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 0));
-      jtfMontoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 1).toString());
-      jtfTiempoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 2).toString());
-      jcbTiempoPago.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 3));
-      jcbPagoPlan.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 4));
-      
+        filaseleccionadatablapagos = tablaPagos.getSelectedRow();
+
+        jcbClienteAPagar.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 0));
+        jtfMontoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 1).toString());
+        jtfTiempoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 2).toString());
+        jcbTiempoPago.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 3));
+        jcbPagoPlan.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 4));
+
     }//GEN-LAST:event_tablaPagosMouseClicked
 
     // Buscar pagos
@@ -1437,65 +1460,66 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfbuscarpagoKeyPressed
 
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
-        
+
     }//GEN-LAST:event_tablaClientesMouseClicked
 
     private void jtfBuscarInventarioCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarInventarioCaretUpdate
         // TODO add your handling code here:
-        DefaultTableModel modeloTablaBuscarInventario = new DefaultTableModel(con.buscarInventario(jtfBuscarInventario.getText()),columnasInventario);
-        tablaInventarioEquipo.setModel(modeloTablaBuscarInventario); 
+        DefaultTableModel modeloTablaBuscarInventario = new DefaultTableModel(con.buscarInventario(jtfBuscarInventario.getText()), columnasInventario);
+        tablaInventarioEquipo.setModel(modeloTablaBuscarInventario);
     }//GEN-LAST:event_jtfBuscarInventarioCaretUpdate
 
-    
+
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         // TODO add your handling code here:
         int r = tablaInventarioEquipo.getSelectedRow();
-			
-			if (r == -1){
-				JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Advertencia", JOptionPane.WARNING_MESSAGE);
-			}else{
-			String cuenta = tablaInventarioEquipo.getValueAt(r, 0).toString();
-                       /* con.eliminarInventario(nombremaquina, cantidad, descripcion);
-                       modeloTablaInventario =  new DefaultTableModel(con.getInventario(), columnasInventario);
-			tablaInventarioEquipo.setModel(modeloTablaInventario);
-                                */
-                        
-			
-                        }
+
+        if (r == -1) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else {
+            String nombremaquina = tablaInventarioEquipo.getValueAt(r, 1).toString();
+            con.eliminarInventario(nombremaquina);
+            DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(), columnasInventario);
+            tablaInventarioEquipo.setModel(modeloTablaInventario);
+
+        }
     }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         // TODO add your handling code here:
-        		int filaSelect = tablaInventarioEquipo.getSelectedRow();
-		
-		if (filaSelect == -1){
-			JOptionPane.showMessageDialog(null, "Debe seleccionar un articulo", "Advertencia", JOptionPane.WARNING_MESSAGE);
-		}else{
-		/*jbModificar.jtNombreMaquina.setText(tablaInventarioEquipo.getValueAt(filaSelect, 0).toString());
-		jbModificar.jtfIdentidad.setText(tablaInventarioEquipo.getValueAt(filaSelect, 1).toString());
-		jbModificar.jtfNombres.setText(tablaInventarioEquipo.getValueAt(filaSelect, 2).toString());
-		
-		
-		jbModificar.setModel(bm);
-		jbModificar.setVisible(true);
-		}
-		
-		modeloTablaCliente =  new DefaultTableModel(con.ModificarInventario(nombremaquina, cantidad, descripcion), columnasInventario);
-		tablaInventarioEquipola.setModel(modeloTablaCliente);*/
-	}
+        int filaSelect = tablaInventarioEquipo.getSelectedRow();
 
+        if (filaSelect == -1) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un articulo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else {
+            con.ModificarInventario(jtfNombreEquipo.getText(), jtfCantidadEquipo.getText(), taDescripcionEquipo.getText(),tablaInventarioEquipo.getValueAt(filaSelect,4).toString());
+            DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(), columnasInventario);
+            tablaInventarioEquipo.setModel(modeloTablaInventario);
+            jtfNombreEquipo.setText("");
+            jtfCantidadEquipo.setText("");
+            taDescripcionEquipo.setText("");
+        }
     }//GEN-LAST:event_jbModificarActionPerformed
-    
-    
+
+    private void tablaInventarioEquipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaInventarioEquipoMouseClicked
+        // TODO add your handling code here:
+        int filaseleccionada = tablaInventarioEquipo.getSelectedRow();
+        jtfNombreEquipo.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 1).toString());
+        jtfCantidadEquipo.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 2).toString());
+        taDescripcionEquipo.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 3).toString());
+
+    }//GEN-LAST:event_tablaInventarioEquipoMouseClicked
+
     public class PresionarTecla extends KeyAdapter {
-      @Override
-      public void keyPressed(KeyEvent ke) {
-          if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-             btnAceptarRegistroCliente.doClick();
-          }
-      }
-}
-    
+
+        @Override
+        public void keyPressed(KeyEvent ke) {
+            if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                btnAceptarRegistroCliente.doClick();
+            }
+        }
+    }
+
     public String[] getTipoTiempo(String tiempo) {
         String[] plan = new String[4];
         if (tiempo.equalsIgnoreCase("Mes")) {
@@ -1507,7 +1531,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return plan;
     }
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelClientes;
     private javax.swing.JPanel PanelConfiguracion;
@@ -1519,11 +1543,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAceptarRegistroCliente;
     private javax.swing.JButton btnCancelarInventario;
     private javax.swing.JButton btnCancelarRegistroCliente;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
@@ -1541,7 +1563,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPaneTablaPago;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
@@ -1580,6 +1604,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollTablaClientes;
     private java.awt.TextArea taDescripcionEquipo;
     private javax.swing.JTable tablaClientes;
+    private javax.swing.JTable tablaCumpleaneros;
     private javax.swing.JTable tablaInventarioEquipo;
     private javax.swing.JTable tablaPagos;
     // End of variables declaration//GEN-END:variables

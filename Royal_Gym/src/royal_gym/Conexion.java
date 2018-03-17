@@ -211,18 +211,21 @@ public class Conexion {
         Object[][] datosInventario = null;
 
         try {
-            String consulta = "SELECT nombre, cantidad, descripcion FROM inventario";
+            String consulta = "SELECT nombre, cantidad, descripcion,cod_equipo FROM inventario";
             statement = conexion.createStatement();
             resultado = statement.executeQuery(consulta);
+            int numeroLista = 1;
 
             ArrayList<Object[]> filas = new ArrayList<>();
 
             while (resultado.next()) {
                 filas.add(
                         new Object[]{
+                            numeroLista++,
                             resultado.getString("nombre"),
                             resultado.getInt("cantidad"),
-                            resultado.getString("descripcion")
+                            resultado.getString("descripcion"),
+                            resultado.getString("cod_equipo")
                         }
                 );
             }
@@ -287,7 +290,7 @@ public class Conexion {
                             numeroLista++,
                             resultado.getString("nombre"),
                             resultado.getString("cantidad"),
-                            resultado.getDouble("descripcion")
+                            resultado.getString("descripcion")
                         }
                 );
             }
@@ -298,14 +301,15 @@ public class Conexion {
         return datosInventario;
     }
 
-    public void ModificarInventario(String nombremaquina, String cantidad, String descripcion) {
+    public void ModificarInventario(String nombremaquina, String cantidad, String descripcion,String codigoEquipo) {
 
         try {
-            String sql = "update inventario set nombre = ?, cantidad = ?, descripcion = ? where nombre,cantidad,descripcion = ???";
+            String sql = "update inventario set nombre = ?, cantidad = ?, descripcion = ? where cod_equipo = ?";
             PreparedStatement consulta = conexion.prepareStatement(sql);
             consulta.setString(1, nombremaquina);
             consulta.setString(2, cantidad);
             consulta.setString(3, descripcion);
+            consulta.setString(4, codigoEquipo);
             consulta.execute();
 
         } catch (Exception e) {
@@ -314,14 +318,12 @@ public class Conexion {
     }
 
     // método para eliminar
-    public void eliminarInventario(String nombremaquina, String cantidad, String descripcion) {
+    public void eliminarInventario(String nombremaquina) {
 
         try {
-            String sql = "Delete nombre,cantidad,descripcion from inventario where nombre,cantidad,descripcion = ???";
+            String sql = "Delete from inventario where nombre = ?";
             PreparedStatement consulta = conexion.prepareStatement(sql);
             consulta.setString(1, nombremaquina);
-            consulta.setString(2, cantidad);
-            consulta.setString(3, descripcion);
             consulta.execute();
 
         } catch (Exception e) {
@@ -414,6 +416,37 @@ public class Conexion {
             System.out.println(e.getMessage());
         }
         return datosPago;
+    }
+    
+    public Object[][] getCumpleaneros() {
+        Object[][] datosCliente = null;
+
+        try {
+            String consulta = "Select nombres ||' '||apellidos as NombreCompleto, fechaNacimiento FROM cliente ";
+            statement = conexion.createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            int numeroLista = 1;
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                            numeroLista++,
+                            resultado.getString("NombreCompleto"),
+                            resultado.getString("FechaNacimiento")
+                        }
+                );
+            }
+            datosCliente = new Object[filas.size()][];
+            filas.toArray(datosCliente);
+
+            datosCliente = new Object[filas.size()][];
+            filas.toArray(datosCliente);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosCliente;
     }
 
 }
