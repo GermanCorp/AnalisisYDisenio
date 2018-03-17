@@ -26,6 +26,7 @@ public class Conexion {
     private Connection conexion;
     private static Statement statement;
     static ResultSet resultado;
+    int totalIngresos = 0;
 
     //conectarse a la base de datos
     public void conectar() {
@@ -185,12 +186,14 @@ public class Conexion {
             String consulta = "SELECT cliente,monto,tiempo,tipo_tiempo,tpo_plan,fecha_pago  FROM pagos order by id_pago DESC ";
             statement = conexion.createStatement();
             resultado = statement.executeQuery(consulta);
+            int numeroLista = 1;
 
             ArrayList<Object[]> filas = new ArrayList<>();
 
             while (resultado.next()) {
                 filas.add(
                         new Object[]{
+                            numeroLista++,
                             resultado.getString("Cliente"),
                             resultado.getDouble("Monto"),
                             resultado.getInt("Tiempo"),
@@ -423,34 +426,42 @@ public class Conexion {
         }
     }
 
-    public Object[][] getNombreCliente(String nombre) {
-
-        Object[][] datos = null;
+    
+    public Object[][] buscarPago(String nombre) {
+        Object[][] datosCliente = null;
         try {
-            String sql = "Select * from pagos where cliente LIKE '%' | ? |'%'";
-            PreparedStatement consulta = conexion.prepareStatement(sql); // PrepareStatement se utiliza cuando se utilizan consultas que llevan signo de ?
-            consulta.setString(1, nombre);
-            ResultSet res = consulta.executeQuery();
-
-            ArrayList<Object[]> d = new ArrayList<>();
-
-            while (res.next()) {
-                d.add(new Object[]{
-                    res.getString("Cliente"),
-                    res.getDouble("Monto"),
-                    res.getInt("Tiempo"),
-                    res.getString("tipo_tiempo"),
-                    res.getString("tpo_plan"),
-                    res.getString("fecha_pago"),});
+            String consulta = "SELECT *  FROM pagos WHERE  cliente LIKE '%' || ? || '%' ORDER BY cliente";
+            PreparedStatement statement = conexion.prepareStatement(consulta);
+            statement.setString(1, nombre);
+            
+            resultado = statement.executeQuery();
+            int numeroLista = 1;
+            
+            ArrayList<Object[]> filas = new ArrayList<>();
+            while (resultado.next()) {
+                filas.add(
+                    new Object[]{
+                        numeroLista++,
+                        resultado.getString("Cliente"),
+                        resultado.getDouble("Monto"),
+                        resultado.getInt("Tiempo"),
+                        resultado.getString("tipo_tiempo"),
+                        resultado.getString("tpo_plan"),
+                        resultado.getString("fecha_pago"),
+	           });
             }
-
-            datos = new Object[d.size()][];
-            d.toArray(datos);
+            datosCliente = new Object[filas.size()][];
+            filas.toArray(datosCliente);
         } catch (Exception e) {
+<<<<<<< HEAD
             System.out.println("getNombreCliente:" + e.getMessage());
+=======
+            System.out.println("buscar:"+e.getMessage());
+>>>>>>> AnaVargas
         }
-        return datos;
+        return datosCliente;
     }
+<<<<<<< HEAD
 
     public Object[][] getNombreClientepago(String nombre) {
 
@@ -486,20 +497,32 @@ public class Conexion {
     }
 
     public Object[][] getIngresosGastos(String fechaInicio, String fechaFinal) {
+=======
+    
+    public Object[][] getIngresos( String fechaInicio , String fechaFin) {
         Object[][] datosPago = null;
 
         try {
-            String consulta = "select Nombres,monto from cliente join pagos ";
-            statement = conexion.createStatement();
-            resultado = statement.executeQuery(consulta);
-
+            String consulta ="Select i.fecha_pago,sum(i.monto) as montoIngreso from pagos as i where i.fecha_pago between ? and ? group by i.fecha_pago"; 
+           
+            PreparedStatement statement  = conexion.prepareStatement(consulta);
+           statement.setString(1, fechaInicio);
+           statement.setString(2, fechaFin);
+            resultado = statement.executeQuery();
+            int numeroLista = 1;
+           
+            
             ArrayList<Object[]> filas = new ArrayList<>();
 
             while (resultado.next()) {
+                totalIngresos +=resultado.getInt("montoIngreso");
                 filas.add(
-                        new Object[]{
-                            resultado.getString("Nombres"),
-                            resultado.getDouble("Monto"),}
+                    new Object[]{
+                    numeroLista++,
+                    resultado.getString("fecha_pago"),
+                    resultado.getInt("montoIngreso"),       
+                    
+                   }
                 );
             }
             datosPago = new Object[filas.size()][];
@@ -509,6 +532,83 @@ public class Conexion {
         }
         return datosPago;
     }
+    
+    
+    public Object[][] getGastos( String fechaInicio , String fechaFin) {
+>>>>>>> AnaVargas
+        Object[][] datosPago = null;
+
+        try {
+            String consulta = "Select g.fecha,sum(g.monto_gasto) as montoGasto from gastos as g where g.fecha between ? and ? group by g.fecha";
+            
+           PreparedStatement statement  = conexion.prepareStatement(consulta);
+           statement.setString(1, fechaInicio);
+           statement.setString(2, fechaFin);
+            resultado = statement.executeQuery();
+            int numeroLista = 1;
+            
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                    numeroLista++,  
+                    resultado.getString("fecha"),        
+                    resultado.getDouble("montoGasto"),       
+                    
+                   }
+                );
+            }
+            datosPago = new Object[filas.size()][];
+            filas.toArray(datosPago);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosPago;
+    }
+    
+    
+     public Object[][] getIngresosGastos( String fechaInicio , String fechaFin) {
+        Object[][] datosPago = null;
+
+        try {
+            String consulta = "Select i.fecha_pago,sum(i.monto) as montoIngreso from pagos as i where i.fecha_pago between ? and ? group by i.fecha_pago";
+            //"SELECT fecha, monto ,monto_gasto FROM pagos JOIN gastos "
+                    //+ "ON pagos.fecha_pago= gastos.fecha where fecha between ? and ?; ";
+            
+            
+           PreparedStatement statement  = conexion.prepareStatement(consulta);
+           statement.setString(1, fechaInicio);
+           statement.setString(2, fechaFin);
+            resultado = statement.executeQuery();
+            int numeroLista = 1;
+            
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+<<<<<<< HEAD
+                            resultado.getString("Nombres"),
+                            resultado.getDouble("Monto"),}
+=======
+                    numeroLista++, 
+                    resultado.getString("fecha"),
+                    resultado.getDouble("monto"),
+                    resultado.getDouble("monto_gasto"),       
+                    
+                   }
+>>>>>>> AnaVargas
+                );
+            }
+            datosPago = new Object[filas.size()][];
+            filas.toArray(datosPago);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosPago;
+    }
+<<<<<<< HEAD
     
     public Object[][] getCumpleaneros() {
         Object[][] datosCliente = null;
@@ -582,6 +682,46 @@ public class Conexion {
             }
             datosCliente = new Object[filas.size()][];
             filas.toArray(datosCliente);
+=======
+     
+     
+    public void sumar(){
+        
+    }
+    
+    
+    
+     public Object[][] getSumaIngresos() {
+        Object[][] datosSumaIngresos = null;
+
+        try {
+            String consulta = "SELECT sum(monto) from pagos";
+            statement = conexion.createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                           
+                            resultado.getInt("monto")
+                            
+                        }
+                );
+            }
+            datosSumaIngresos = new Object[filas.size()][];
+            filas.toArray(datosSumaIngresos);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosSumaIngresos;
+    }
+     
+     
+    
+}
+>>>>>>> AnaVargas
 
             datosCliente = new Object[filas.size()][];
             filas.toArray(datosCliente);
