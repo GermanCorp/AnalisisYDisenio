@@ -70,22 +70,6 @@ public class Conexion {
         return tipoIMC;
     }
     
-   public static String getEdad(Date fechaNacimiento) {
-    if (fechaNacimiento != null) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        StringBuilder result = new StringBuilder();
-        if (fechaNacimiento != null) {
-            result.append(sdf.format(fechaNacimiento));
-            result.append(" (");
-            Calendar c = new GregorianCalendar();
-            c.setTime(fechaNacimiento);
-            result.append(calcularEdad(c));
-            result.append(" años)");
-        }
-        return result.toString();
-    }
-    return "";
-}
    
    private static int calcularEdad(Calendar fechaNac) {
     Calendar today = Calendar.getInstance();
@@ -98,26 +82,7 @@ public class Conexion {
     }
     return diffYear;
 }
-    /*
-    public String restar_fecha(String fecha_nacimiento){
-        
-        String FechaNacimiento = fecha_nacimiento;
-        String FechaActual = "";
-        Date date = new Date(0);
-        DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
-        FechaActual = df.format(date);
-        
-        String[] aFechaIng = FechaNacimiento.split("/");
-        Integer anioInicio = Integer.parseInt(aFechaIng[3]);
-        
-        String[] aFecha = FechaActual.split("/");
-        Integer anioActual = Integer.parseInt(aFechaIng[3]);
-        
-        System.out.println("Anos: "+ anioActual);
-        
-        return "Anios=";
-            
-    }*/
+ 
 
     // método para insertar pagos a la base de datos
     public void insertarPagos(String cliente, String monto, String tiempo, String tipotiempo, String tipoplan, String fecha) {
@@ -506,4 +471,40 @@ public class Conexion {
         return datosCliente;
     }
 
+    
+        // método para llenar la tabla de clientes                
+    public Object[][] getEdadClientes() {
+        Object[][] datosCliente = null;
+
+        try {
+            String consulta = "Select * FROM Edad";
+            statement = conexion.createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            int numeroLista = 1;
+            ArrayList<Object[]> filas = new ArrayList<>();
+            DecimalFormat df = new DecimalFormat("###");
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                            numeroLista++,
+                            resultado.getString("Nombre"),
+                            resultado.getString("fechaNacimiento"),
+                            df.format(resultado.getDouble("Edad")) + " años"
+                        }
+                );
+            }
+            datosCliente = new Object[filas.size()][];
+            filas.toArray(datosCliente);
+
+            datosCliente = new Object[filas.size()][];
+            filas.toArray(datosCliente);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosCliente;
+    }
+
+    
 }

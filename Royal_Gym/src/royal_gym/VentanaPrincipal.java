@@ -63,7 +63,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         "No.",
         "Nombre",
         "Fecha de Nacimiento",
-        "Edad"
+        "Edad a Cumplir"
     };
 
     // Constructor
@@ -92,11 +92,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         tablaInventarioEquipo.setModel(modeloTablaInventario);
         
         // Modelo de la tabla de cumpleaneros
-        DefaultTableModel modeloTablaCumpleaneros = new DefaultTableModel(con.getCumpleaneros(), columnasCumpleaneros);
+        DefaultTableModel modeloTablaCumpleaneros = new DefaultTableModel(con.getEdadClientes(), columnasCumpleaneros);
         tablaCumpleaneros.setModel(modeloTablaCumpleaneros);
         
-        
-
+       
         InputMap map2 = jtfMontoAPagar.getInputMap(jtfMontoAPagar.WHEN_FOCUSED);
         map2.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
     }
