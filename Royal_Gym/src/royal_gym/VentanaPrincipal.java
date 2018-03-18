@@ -146,6 +146,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         PanelPagos = new javax.swing.JPanel();
         panelDatosPago = new javax.swing.JPanel();
@@ -491,18 +492,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(PanelPagosLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(panelDatosPago, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(PanelTablaPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addContainerGap(234, Short.MAX_VALUE))
         );
         PanelPagosLayout.setVerticalGroup(
             PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPagosLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
-                    .addComponent(PanelTablaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE))
+                .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
+            .addGroup(PanelPagosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelTablaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 898, Short.MAX_VALUE)
+                .addGap(61, 61, 61))
         );
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/RegistrarPago_3.png")), PanelPagos); // NOI18N
@@ -1041,6 +1044,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jdcfechaFinal.setDateFormatString("yyyy-MM-dd");
 
         tbingresos.setText("Ingresos");
+        tbingresos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tbingresos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                tbingresosItemStateChanged(evt);
+            }
+        });
         tbingresos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbingresosActionPerformed(evt);
@@ -1048,6 +1057,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         tbgastos.setText("Gastos");
+        tbgastos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                tbgastosItemStateChanged(evt);
+            }
+        });
         tbgastos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbgastosActionPerformed(evt);
@@ -1055,6 +1069,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         tbtodo.setText("Todo");
+        tbtodo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                tbtodoItemStateChanged(evt);
+            }
+        });
         tbtodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbtodoActionPerformed(evt);
@@ -1660,16 +1679,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jtfbuscarpagoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfbuscarpagoCaretUpdate
         // TODO add your handling code here:
-        
-        
-    
-        
+     
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.buscarPago(jtfbuscarpago.getText()), columnasPagos);
-            tablaPagos.setModel(modeloTablaPagos);
-            
-            
-        
-        
+        tablaPagos.setModel(modeloTablaPagos);
+                
     }//GEN-LAST:event_jtfbuscarpagoCaretUpdate
 
     private void tablaPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPagosMouseClicked
@@ -1735,10 +1748,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void tbingresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbingresosActionPerformed
         // TODO add your handling code here:
         
+           
+    }//GEN-LAST:event_tbingresosActionPerformed
+
+    private void tbgastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbgastosActionPerformed
+        // TODO add your handling code here   
+    }//GEN-LAST:event_tbgastosActionPerformed
+
+    private void tbtodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbtodoActionPerformed
+        // TODO add your handling code here:     
+    }//GEN-LAST:event_tbtodoActionPerformed
+
+    private void tbingresosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tbingresosItemStateChanged
+        // TODO add your handling code here:
+        if(evt.getStateChange() == ItemEvent.SELECTED){
+        
         PaneltablaUtilidad.setVisible(true);
         jScrollPane3.setVisible(true);
         Paneltotales.setVisible(true);
-        jScrollPane4.setVisible(false);
            
         String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH)+1);
@@ -1761,11 +1788,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txttotalgastos.setText("");
         txtutilidad.setText("");
         
-           
-    }//GEN-LAST:event_tbingresosActionPerformed
+        } else{
+        PaneltablaUtilidad.setVisible(false);
+        jScrollPane3.setVisible(false);
+        Paneltotales.setVisible(false);
+            
+        }
+        
+    }//GEN-LAST:event_tbingresosItemStateChanged
 
-    private void tbgastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbgastosActionPerformed
+    private void tbgastosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tbgastosItemStateChanged
         // TODO add your handling code here:
+         if(evt.getStateChange() == ItemEvent.SELECTED){
         
         PaneltablaUtilidad.setVisible(true);
          jScrollPane3.setVisible(true);
@@ -1793,13 +1827,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txttotalingresos.setText("");
         txtutilidad.setText("");
         
-    }//GEN-LAST:event_tbgastosActionPerformed
+        } else{
+        PaneltablaUtilidad.setVisible(false);
+        jScrollPane3.setVisible(false);
+        Paneltotales.setVisible(false);
+            
+        }
+    }//GEN-LAST:event_tbgastosItemStateChanged
 
-    private void tbtodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbtodoActionPerformed
+    private void tbtodoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tbtodoItemStateChanged
         // TODO add your handling code here:
+        if(evt.getStateChange() == ItemEvent.SELECTED){
         
-      
-        PaneltablaUtilidad.setVisible(true);
+         PaneltablaUtilidad.setVisible(true);
          jScrollPane3.setVisible(true);
          jScrollPane4.setVisible(true);
          Paneltotales.setVisible(true);
@@ -1833,8 +1873,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         double totali = con.totalIngresos;
         String totalIngresoss = Double.toString(totali);
         txttotalingresos.setText(totalIngresoss);
-             
-    }//GEN-LAST:event_tbtodoActionPerformed
+        
+        
+        System.out.println(totalIngresoss);
+        } else{
+        PaneltablaUtilidad.setVisible(false);
+        jScrollPane3.setVisible(true);
+        jScrollPane4.setVisible(true);
+        Paneltotales.setVisible(true);
+            
+        }
+    }//GEN-LAST:event_tbtodoItemStateChanged
 
     public class PresionarTecla extends KeyAdapter {
       @Override
@@ -1875,6 +1924,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelarInventario;
     private javax.swing.JButton btnCancelarRegistroCliente;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

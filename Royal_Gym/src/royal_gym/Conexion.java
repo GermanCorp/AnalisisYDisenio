@@ -414,7 +414,7 @@ public class Conexion {
             ArrayList<Object[]> filas = new ArrayList<>();
 
             while (resultado.next()) {
-               totalGastos +=  resultado.getDouble("Monto");
+               totalGastos += resultado.getDouble("Monto");
                 filas.add(
                         new Object[]{
                            
