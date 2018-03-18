@@ -215,9 +215,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Panelfecha = new javax.swing.JPanel();
         jdcfechaInicio = new com.toedter.calendar.JDateChooser();
         jdcfechaFinal = new com.toedter.calendar.JDateChooser();
-        cbingresos = new javax.swing.JCheckBox();
-        cbgastos = new javax.swing.JCheckBox();
-        cbtodo = new javax.swing.JCheckBox();
+        tbingresos = new javax.swing.JToggleButton();
+        tbgastos = new javax.swing.JToggleButton();
+        tbtodo = new javax.swing.JToggleButton();
         PaneltablaUtilidad = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablautilidadingresos = new javax.swing.JTable();
@@ -1036,40 +1036,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Panelfecha.setBackground(new java.awt.Color(85, 96, 128));
         Panelfecha.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Rangos De Fecha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jdcfechaInicio.setDateFormatString("dd-MM-yyyy");
+        jdcfechaInicio.setDateFormatString("yyyy-MM-dd");
 
-        jdcfechaFinal.setDateFormatString("dd-MM-yyyy");
+        jdcfechaFinal.setDateFormatString("yyyy-MM-dd");
 
-        buttonGroup1.add(cbingresos);
-        cbingresos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cbingresos.setForeground(new java.awt.Color(255, 255, 255));
-        cbingresos.setText("Ingresos");
-        cbingresos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        cbingresos.addActionListener(new java.awt.event.ActionListener() {
+        tbingresos.setText("Ingresos");
+        tbingresos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbingresosActionPerformed(evt);
+                tbingresosActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(cbgastos);
-        cbgastos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cbgastos.setForeground(new java.awt.Color(255, 255, 255));
-        cbgastos.setText("Gastos");
-        cbgastos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        cbgastos.addActionListener(new java.awt.event.ActionListener() {
+        tbgastos.setText("Gastos");
+        tbgastos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbgastosActionPerformed(evt);
+                tbgastosActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(cbtodo);
-        cbtodo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cbtodo.setForeground(new java.awt.Color(255, 255, 255));
-        cbtodo.setText("Todo");
-        cbtodo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        cbtodo.addActionListener(new java.awt.event.ActionListener() {
+        tbtodo.setText("Todo");
+        tbtodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbtodoActionPerformed(evt);
+                tbtodoActionPerformed(evt);
             }
         });
 
@@ -1077,22 +1065,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Panelfecha.setLayout(PanelfechaLayout);
         PanelfechaLayout.setHorizontalGroup(
             PanelfechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelfechaLayout.createSequentialGroup()
+            .addGroup(PanelfechaLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(PanelfechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(PanelfechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelfechaLayout.createSequentialGroup()
                         .addComponent(jdcfechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addComponent(jdcfechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelfechaLayout.createSequentialGroup()
-                        .addComponent(cbingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tbingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addComponent(tbgastos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cbgastos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tbtodo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelfechaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cbtodo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(182, 182, 182))
         );
         PanelfechaLayout.setVerticalGroup(
             PanelfechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1101,13 +1087,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(PanelfechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jdcfechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                     .addComponent(jdcfechaFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(50, 50, 50)
+                .addGap(69, 69, 69)
                 .addGroup(PanelfechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbgastos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(cbtodo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                    .addComponent(tbgastos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tbingresos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tbtodo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70))
         );
 
         PaneltablaUtilidad.setBackground(new java.awt.Color(85, 96, 128));
@@ -1273,7 +1258,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1294, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1468,7 +1453,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String dia = Integer.toString(d);
         String mes = Integer.toString(m);
         String anio = Integer.toString(a);
-        String fecha = (dia + "-" + mes + "-" + anio);
+        String fecha = (anio + "-" + mes + "-" + dia);
 
         if (validarInformacion() == true) {
 
@@ -1699,66 +1684,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tablaPagosMouseClicked
 
-    private void cbingresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbingresosActionPerformed
-        // TODO add your handling code here:
-        PaneltablaUtilidad.setVisible(true);
-         jScrollPane3.setVisible(true);
-        Paneltotales.setVisible(true);
-        
-        if(cbingresos.isSelected()){
-           
-        String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH)+1);
-        String anio = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.YEAR));
-        String fechaInicio = (dia+ "-" + mes + "-" + anio);
-        
-        String d = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String m = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.MONTH)+1);
-        String a = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.YEAR));
-        String fechaFin = (d + "-" + m + "-" + a);
-        
-        
-        modeloTablaIngresos = new DefaultTableModel(con.getIngresos( fechaInicio,fechaFin),columnasIngresos);
-        tablautilidadingresos.setModel(modeloTablaIngresos);
-        
-        int totali = con.totalIngresos;
-        String totalIngresoss = Integer.toString(totali);
-        txttotalingresos.setText(totalIngresoss);
-        
-        
-        } 
-    }//GEN-LAST:event_cbingresosActionPerformed
-
-    private void cbgastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbgastosActionPerformed
-        // TODO add your handling code here:
-        
-         PaneltablaUtilidad.setVisible(true);
-         jScrollPane3.setVisible(true);
-         Paneltotales.setVisible(true);
-         
-        String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH)+1);
-        String anio = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.YEAR));
-        String fechaInicio = (dia+ "-" + mes + "-" + anio);
-        
-        String d = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String m = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.MONTH)+1);
-        String a = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.YEAR));
-        String fechaFin = (d + "-" + m + "-" + a);
-        
-        
-         modeloTablaGastos = new DefaultTableModel(con.getGastos( fechaInicio,fechaFin),columnasGastos);
-         tablautilidadingresos.setModel(modeloTablaGastos);
-        
-        int totalg = con.totalGastos;
-        String totalGastoss = Integer.toString(totalg);
-        txttotalgastos.setText(totalGastoss);
-        
-       
-        
-        
-    }//GEN-LAST:event_cbgastosActionPerformed
-
     private void jtfMontoAPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfMontoAPagarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfMontoAPagarActionPerformed
@@ -1776,46 +1701,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jtfTiempoAPagarKeyPressed
-
-    private void cbtodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbtodoActionPerformed
-        // TODO add your handling code here:
-        
-         PaneltablaUtilidad.setVisible(true);
-         jScrollPane3.setVisible(true);
-         jScrollPane4.setVisible(true);
-         Paneltotales.setVisible(true);
-        
-        String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH)+1);
-        String anio = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.YEAR));
-        String fechaInicio = (dia+ "-" + mes + "-" + anio);
-        
-        String d = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String m = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.MONTH)+1);
-        String a = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.YEAR));
-        String fechaFin = (d + "-" + m + "-" + a);
-        
-        
-        modeloTablaUtilidad = new DefaultTableModel(con.getIngresos(fechaInicio,fechaFin),columnasIngresos);
-        tablautilidadingresos.setModel(modeloTablaUtilidad);
-         
-        modeloTablaUtilidad = new DefaultTableModel(con.getGastos(fechaInicio,fechaFin),columnasGastos);
-        tablautilidadgastos.setModel(modeloTablaUtilidad);
-         
-        
-        int totalu = con.totalIngresos - con.totalGastos;
-        String totalUtilidad = Integer.toString( totalu);
-        txtutilidad.setText(totalUtilidad);
-        
-         int totalg = con.totalGastos;
-        String totalGastoss = Integer.toString(totalg);
-        txttotalgastos.setText(totalGastoss);
-        
-        int totali = con.totalIngresos;
-        String totalIngresoss = Integer.toString(totali);
-        txttotalingresos.setText(totalIngresoss);
-            
-    }//GEN-LAST:event_cbtodoActionPerformed
 
     private void txttotalingresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalingresosActionPerformed
         // TODO add your handling code here:
@@ -1846,6 +1731,110 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jtfbuscarpagoKeyTyped
+
+    private void tbingresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbingresosActionPerformed
+        // TODO add your handling code here:
+        
+        PaneltablaUtilidad.setVisible(true);
+        jScrollPane3.setVisible(true);
+        Paneltotales.setVisible(true);
+        jScrollPane4.setVisible(false);
+           
+        String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH)+1);
+        String anio = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.YEAR));
+        String fechaInicio = (anio+ "-" + mes + "-" + dia);
+        
+        String d = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String m = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.MONTH)+1);
+        String a = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.YEAR));
+        String fechaFin = (a + "-" + m + "-" + d);
+        
+        
+        modeloTablaIngresos = new DefaultTableModel(con.getIngresos( fechaInicio,fechaFin),columnasIngresos);
+        tablautilidadingresos.setModel(modeloTablaIngresos);
+        
+        double totali = con.totalIngresos;
+        String totalIngresoss = Double.toString(totali);
+        txttotalingresos.setText(totalIngresoss);
+        
+        txttotalgastos.setText("");
+        txtutilidad.setText("");
+        
+           
+    }//GEN-LAST:event_tbingresosActionPerformed
+
+    private void tbgastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbgastosActionPerformed
+        // TODO add your handling code here:
+        
+        PaneltablaUtilidad.setVisible(true);
+         jScrollPane3.setVisible(true);
+         Paneltotales.setVisible(true);
+         jScrollPane4.setVisible(false);
+         
+        String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH)+1);
+        String anio = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.YEAR));
+        String fechaInicio = (anio+ "-" + mes + "-" + dia);
+        
+        String d = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String m = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.MONTH)+1);
+        String a = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.YEAR));
+        String fechaFin = (anio + "-" + m + "-" + d);
+        
+        
+         modeloTablaGastos = new DefaultTableModel(con.getGastos( fechaInicio,fechaFin),columnasGastos);
+         tablautilidadingresos.setModel(modeloTablaGastos);
+        
+        double totalg = con.totalGastos;
+        String totalGastoss = Double.toString(totalg);
+        txttotalgastos.setText(totalGastoss);
+        
+        txttotalingresos.setText("");
+        txtutilidad.setText("");
+        
+    }//GEN-LAST:event_tbgastosActionPerformed
+
+    private void tbtodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbtodoActionPerformed
+        // TODO add your handling code here:
+        
+      
+        PaneltablaUtilidad.setVisible(true);
+         jScrollPane3.setVisible(true);
+         jScrollPane4.setVisible(true);
+         Paneltotales.setVisible(true);
+        
+        String dia = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.MONTH)+1);
+        String anio = Integer.toString(jdcfechaInicio.getCalendar().get(Calendar.YEAR));
+        String fechaInicio = (anio+ "-" + mes + "-" + dia);
+        
+        String d = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String m = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.MONTH)+1);
+        String a = Integer.toString(jdcfechaFinal.getCalendar().get(Calendar.YEAR));
+        String fechaFin = (a + "-" + m + "-" + d);
+        
+        
+        modeloTablaUtilidad = new DefaultTableModel(con.getIngresos(fechaInicio,fechaFin),columnasIngresos);
+        tablautilidadingresos.setModel(modeloTablaUtilidad);
+         
+        modeloTablaUtilidad = new DefaultTableModel(con.getGastos(fechaInicio,fechaFin),columnasGastos);
+        tablautilidadgastos.setModel(modeloTablaUtilidad);
+         
+        
+        double totalu = con.totalIngresos - con.totalGastos;
+        String totalUtilidad = Double.toString( totalu);
+        txtutilidad.setText(totalUtilidad);
+        
+         double totalg = con.totalGastos;
+        String totalGastoss = Double.toString(totalg);
+        txttotalgastos.setText(totalGastoss);
+        
+        double totali = con.totalIngresos;
+        String totalIngresoss = Double.toString(totali);
+        txttotalingresos.setText(totalIngresoss);
+             
+    }//GEN-LAST:event_tbtodoActionPerformed
 
     public class PresionarTecla extends KeyAdapter {
       @Override
@@ -1886,9 +1875,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelarInventario;
     private javax.swing.JButton btnCancelarRegistroCliente;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JCheckBox cbgastos;
-    private javax.swing.JCheckBox cbingresos;
-    private javax.swing.JCheckBox cbtodo;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1955,6 +1941,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable tablaPagos;
     private javax.swing.JTable tablautilidadgastos;
     private javax.swing.JTable tablautilidadingresos;
+    private javax.swing.JToggleButton tbgastos;
+    private javax.swing.JToggleButton tbingresos;
+    private javax.swing.JToggleButton tbtodo;
     private javax.swing.JTextField txttotalgastos;
     private javax.swing.JTextField txttotalingresos;
     private javax.swing.JTextField txtutilidad;

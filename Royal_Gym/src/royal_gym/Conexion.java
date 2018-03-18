@@ -18,8 +18,8 @@ public class Conexion {
     private Connection conexion;
     private static Statement statement;
     static ResultSet resultado;
-    int totalIngresos = 0;
-    int totalGastos = 0;
+    double totalIngresos = 0;
+    double totalGastos = 0;
 
     //conectarse a la base de datos
     public void conectar() {
@@ -322,12 +322,12 @@ public class Conexion {
             ArrayList<Object[]> filas = new ArrayList<>();
 
             while (resultado.next()) {
-                totalIngresos +=resultado.getInt("montoIngreso");
+                totalIngresos +=resultado.getDouble("montoIngreso");
                 filas.add(
                     new Object[]{
                     numeroLista++,
                     resultado.getString("fecha_pago"),
-                    resultado.getInt("montoIngreso"),       
+                    resultado.getDouble("montoIngreso"),       
                     
                    }
                 );
@@ -345,7 +345,7 @@ public class Conexion {
         Object[][] datosPago = null;
 
         try {
-            String consulta = "Select g.fecha,sum(g.monto_gasto) as montoGasto from gastos as g where g.fecha between ? and ? group by g.fecha";
+            String consulta = "Select g.Fecha,sum(g.Monto) as montoGasto from gasto as g where g.Fecha between ? and ? group by g.Fecha";
             
            PreparedStatement statement  = conexion.prepareStatement(consulta);
            statement.setString(1, fechaInicio);
@@ -359,7 +359,7 @@ public class Conexion {
                 filas.add(
                         new Object[]{
                     numeroLista++,  
-                    resultado.getString("fecha"),        
+                    resultado.getString("Fecha"),        
                     resultado.getDouble("montoGasto"),       
                     
                    }
@@ -385,11 +385,11 @@ public class Conexion {
             ArrayList<Object[]> filas = new ArrayList<>();
 
             while (resultado.next()) {
-                totalIngresos +=  resultado.getInt("monto");
+                totalIngresos +=  resultado.getDouble("monto");
                 filas.add(
                         new Object[]{
                            
-                            resultado.getInt("monto")
+                            resultado.getDouble("monto")
                             
                         }
                 );
@@ -404,31 +404,31 @@ public class Conexion {
      
      //metodo para sumar los gastos que hubieron segun el rango de fecha seleccionado
      public Object[][] getSumaGastos() {
-        Object[][] datosSumaIngresos = null;
+        Object[][] datosSumaGastos = null;
 
         try {
-            String consulta = "SELECT monto_gasto from gastos";
+            String consulta = "SELECT Monto from gasto";
             statement = conexion.createStatement();
             resultado = statement.executeQuery(consulta);
 
             ArrayList<Object[]> filas = new ArrayList<>();
 
             while (resultado.next()) {
-               totalGastos +=  resultado.getInt("monto_gasto");
+               totalGastos +=  resultado.getDouble("Monto");
                 filas.add(
                         new Object[]{
                            
-                            resultado.getInt("monto_gasto")
+                            resultado.getDouble("Monto")
                              
                         }
                 );
             }
-            datosSumaIngresos = new Object[filas.size()][];
-            filas.toArray(datosSumaIngresos);
+            datosSumaGastos = new Object[filas.size()][];
+            filas.toArray(datosSumaGastos);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return datosSumaIngresos;
+        return datosSumaGastos;
     }
      
      
