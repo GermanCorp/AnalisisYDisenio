@@ -17,6 +17,7 @@ public class Validaciones
         
     }
     
+    
     public void soloNumeros (KeyEvent evt)
     {
         n = evt.getKeyCode();
