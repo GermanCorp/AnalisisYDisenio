@@ -38,11 +38,6 @@ import static royal_gym.Conexion.resultado;
  *
  * @author alxcr
  */
-<<<<<<< HEAD
-
-
-=======
->>>>>>> German
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     // variables
@@ -51,16 +46,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private final Conexion con;
     
 
-<<<<<<< HEAD
-    int  filaseleccionadatablapagos;
-        // columnas de la tabla pagos
-        private final String[] columnasPagos = {
-=======
     int filaseleccionadatablapagos;
     // columnas de la tabla pagos
     private final String[] columnasPagos = {
         "No.",
->>>>>>> German
         "Cliente",
         "Monto",
         "Tiempo",
@@ -68,7 +57,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         "Tipo de Plan",
         "Fecha de Pago"
     };
-
 
     // columnas de la tabla Cliente
     private final String[] columnasClientes = {
@@ -80,36 +68,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         "Masa Corporal",
         "Clasificación"
     };
-    
-     // columnas de la tabla Inventario
+
+    // columnas de la tabla Inventario
     private final String[] columnasInventario = {
-<<<<<<< HEAD
-=======
         "N°",
->>>>>>> German
         "Nombres",
         "Cantidad",
         "Descripción"
     };
-<<<<<<< HEAD
-    
-         // columnas de la tabla Gastos
-=======
 
     // columnas de la tabla Gastos
->>>>>>> German
     private final String[] columnasGastos = {
         "N°",
         "Descripcion",
         "Monto",
         "Fecha"
     };
-<<<<<<< HEAD
-    
-    
-    private static DefaultTableCellRenderer tcr;
-    // Constructor
-=======
 
     // columnas de la tabla Cumpleaneros
     private final String[] columnasCumpleaneros = {
@@ -129,16 +103,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private static DefaultTableCellRenderer tcr;
 
 // Constructor
->>>>>>> German
     public VentanaPrincipal() {
         initComponents();
         setTitle("Royal Gym");
         this.con = new Conexion();
-<<<<<<< HEAD
-        con.conectar(); 
-=======
         con.conectar();
->>>>>>> German
         jdcFechaGasto.setEnabled(false);
         
         PanelRegistroPagos panelPagos = new PanelRegistroPagos();
@@ -154,15 +123,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // alinear columnas a la derecha
         tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.RIGHT); //CENTER o LEFT        
-<<<<<<< HEAD
-        
-        
-        ArrayList<String> lista =new ArrayList<String>();
-            lista =  con.llenarCombo();
-            for(int i = 0; i<lista.size(); i++){
-                jcbClienteAPagar.addItem(lista.get(i));
-            }
-=======
 
         //llenar combobox
         ArrayList<String> lista = new ArrayList<String>();
@@ -174,51 +134,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // Modelo de la tabla de Pagos
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(), columnasPagos);
         tablaPagos.setModel(modeloTablaPagos);
->>>>>>> German
 
         // Modelo de la tabla de Clientes
-        DefaultTableModel modeloTablaClientes = new DefaultTableModel(con.getCliente(),columnasClientes);
+        DefaultTableModel modeloTablaClientes = new DefaultTableModel(con.getCliente(), columnasClientes);
         tablaClientes.setModel(modeloTablaClientes);
-<<<<<<< HEAD
-        int aligTablaClientes [] = {3,4,5,6};
-        alinearColumnaDerecha(tablaClientes, aligTablaClientes);
-        
-        // Modelo de la tabla de Pagos
-         DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(),columnasPagos);
-        tablaPagos.setModel(modeloTablaPagos);
-        
-=======
         int aligTablaClientes[] = {3, 4, 5, 6};
         alinearColumnaDerecha(tablaClientes, aligTablaClientes);
 
->>>>>>> German
         // Modelo de la tabla de Inventario
-         DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(),columnasInventario);
+        DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(), columnasInventario);
         tablaInventarioEquipo.setModel(modeloTablaInventario);
-<<<<<<< HEAD
-        
-=======
 
         // Modelo de la tabla de cumpleaneros
         DefaultTableModel modeloTablaCumpleaneros = new DefaultTableModel(con.getEdadClientes(), columnasCumpleaneros);
         tablaDeCumpleaneros.setModel(modeloTablaCumpleaneros);
 
->>>>>>> German
         // Modelo de la tabla de Gastos
         DefaultTableModel modeloTablaGastos = new DefaultTableModel(con.getGasto(), columnasGastos);
         tablaGastos.setModel(modeloTablaGastos);
         int aligTablaGastos[] = {2, 3};
         alinearColumnaDerecha(tablaGastos, aligTablaGastos);
     }
-<<<<<<< HEAD
- 
-    // obtienene la hora del sistema
-    public static String getFechaActual() {
-    Date ahora = new Date();
-    SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-    return formateador.format(ahora);
-}
-=======
 
     // obtienene la hora actual del sistema
     public static String getFechaActual() {
@@ -226,23 +162,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
         return formateador.format(ahora);
     }
->>>>>>> German
 
     // metodo para cambiar el acho de columnas
-    private void setAnchoColumna(int[] ancho){
-        int x = tablaClientes.getColumnCount()-1;
+    private void setAnchoColumna(int[] ancho) {
+        int x = tablaClientes.getColumnCount() - 1;
         int tamanio = tablaClientes.getWidth();
-        for(int i = 0 ; i<=x; i++){
+        for (int i = 0; i <= x; i++) {
             TableColumn columnas = tablaClientes.getColumnModel().getColumn(i);
             columnas.setPreferredWidth(ancho[i]);
         }
     }
-<<<<<<< HEAD
-    
-    
-=======
 
->>>>>>> German
     // método para alinear las columnas a la derecha
     private void alinearColumnaDerecha(JTable tabla, int[] columnas) {
         tcr = new DefaultTableCellRenderer();
@@ -251,13 +181,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             tabla.getColumnModel().getColumn(columnas[i]).setCellRenderer(tcr);
         }
     }
-<<<<<<< HEAD
-    
-    
-
-     
-=======
->>>>>>> German
 
         // método para obtener la fecha desde el jcalendar
     private Date fechaJCalendar(JDateChooser calendario) {
@@ -336,16 +259,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnCancelarInventario = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-<<<<<<< HEAD
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaInventarioEquipo = new javax.swing.JTable();
-        PanelConfiguracion = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-=======
         jScrollPane4 = new javax.swing.JScrollPane();
         taDescripcionEquipo = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
@@ -360,7 +273,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jbModificar = new javax.swing.JButton();
         jbEliminar = new javax.swing.JButton();
         panelGastos = new javax.swing.JPanel();
->>>>>>> German
         panelDatosGasto = new javax.swing.JPanel();
         btnCancelarRegistroGasto = new javax.swing.JButton();
         jlDescripcionGAsto = new javax.swing.JLabel();
@@ -381,11 +293,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         };
         jtfBuscarGasto = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-<<<<<<< HEAD
-        jPanel3 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-=======
         panelCumpleaneros = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -424,7 +331,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jlTotalUtilidad = new javax.swing.JLabel();
         jlTotalGastos = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
->>>>>>> German
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -617,19 +523,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jtfPagoTipodePlan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jcbPagoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbPagoAceptar)
-                    .addComponent(jbPagoCancelar))
-                .addContainerGap(82, Short.MAX_VALUE))
-=======
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbPagoAceptar)
                     .addComponent(jbPagoCancelar))
                 .addContainerGap(30, Short.MAX_VALUE))
->>>>>>> German
         );
 
         PanelTablaPagos.setBackground(new java.awt.Color(85, 96, 128));
@@ -704,46 +602,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PanelPagosLayout.setHorizontalGroup(
             PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPagosLayout.createSequentialGroup()
-<<<<<<< HEAD
-                .addComponent(panelDatosPago, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelPagosLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
-                        .addComponent(labelbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(97, 97, 97))
-                    .addGroup(PanelPagosLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPaneTablaPago)
-                        .addGap(20, 20, 20))))
-=======
                 .addGap(20, 20, 20)
                 .addComponent(panelDatosPago, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(PanelTablaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
->>>>>>> German
         );
         PanelPagosLayout.setVerticalGroup(
             PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPagosLayout.createSequentialGroup()
-<<<<<<< HEAD
-                .addGap(36, 36, 36)
-                .addGroup(PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPaneTablaPago, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
-                .addGap(100, 100, 100))
-            .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
-=======
                 .addGap(20, 20, 20)
                 .addGroup(PanelPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
                     .addComponent(PanelTablaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
->>>>>>> German
         );
 
         jTabbedPane1.addTab("<html> <center>Registro<center> <center>Pagos<center>", new javax.swing.ImageIcon(getClass().getResource("/iconos/RegistrarPago_3.png")), PanelPagos); // NOI18N
@@ -951,11 +823,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)))
-<<<<<<< HEAD
-                .addGap(18, 81, Short.MAX_VALUE)
-=======
                 .addGap(18, 64, Short.MAX_VALUE)
->>>>>>> German
                 .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarRegistroCliente)
                     .addComponent(btnCancelarRegistroCliente))
@@ -1015,11 +883,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel14))
-<<<<<<< HEAD
-                    .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE))
-=======
                     .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE))
->>>>>>> German
                 .addGap(20, 20, 20))
         );
         PanelTablaLayout.setVerticalGroup(
@@ -1030,11 +894,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jtfBuscarCliente)
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-<<<<<<< HEAD
-                .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
-=======
                 .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
->>>>>>> German
                 .addGap(20, 20, 20))
         );
 
@@ -1118,24 +978,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("<html> <center>Inventario de<center> <center> Equipo<center>");
 
-<<<<<<< HEAD
-=======
         taDescripcionEquipo.setColumns(20);
         taDescripcionEquipo.setRows(5);
         jScrollPane4.setViewportView(taDescripcionEquipo);
 
->>>>>>> German
         javax.swing.GroupLayout PanelDatosLayout = new javax.swing.GroupLayout(PanelDatos);
         PanelDatos.setLayout(PanelDatosLayout);
         PanelDatosLayout.setHorizontalGroup(
             PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDatosLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-<<<<<<< HEAD
-                .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-=======
                 .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
->>>>>>> German
                     .addComponent(jlCantidadEquipo)
                     .addComponent(jlDescripcionEquipo)
                     .addComponent(jlNombreEquipo)
@@ -1143,16 +996,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel12)
                         .addGap(20, 20, 20)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-<<<<<<< HEAD
-                    .addComponent(jtfNombreEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfCantidadEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelDatosLayout.createSequentialGroup()
-                            .addComponent(btnAceptarInventario)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCancelarInventario))
-                        .addComponent(taDescripcionEquipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-=======
                     .addComponent(jtfNombreEquipo)
                     .addComponent(jtfCantidadEquipo)
                     .addGroup(PanelDatosLayout.createSequentialGroup()
@@ -1160,7 +1003,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(66, 66, 66)
                         .addComponent(btnCancelarInventario))
                     .addComponent(jScrollPane4))
->>>>>>> German
                 .addGap(20, 20, 20))
         );
         PanelDatosLayout.setVerticalGroup(
@@ -1180,15 +1022,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jtfCantidadEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jlDescripcionEquipo)
-<<<<<<< HEAD
-                .addGap(0, 0, 0)
-                .addComponent(taDescripcionEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
-                .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptarInventario)
-                    .addComponent(btnCancelarInventario))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-=======
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
@@ -1196,17 +1029,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(btnAceptarInventario)
                     .addComponent(btnCancelarInventario))
                 .addContainerGap(57, Short.MAX_VALUE))
->>>>>>> German
         );
 
         jtfNombreEquipo.getAccessibleContext().setAccessibleParent(jlNombreEquipo);
         jLabel10.getAccessibleContext().setAccessibleName("<html>\n<center>Inventario de<center>\n <center> Equipo<center>");
-<<<<<<< HEAD
-=======
 
         jPanel4.setBackground(new java.awt.Color(85, 96, 126));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Inventario Registrado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 20), new java.awt.Color(255, 255, 255))); // NOI18N
->>>>>>> German
 
         tablaInventarioEquipo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tablaInventarioEquipo.setModel(new javax.swing.table.DefaultTableModel(
@@ -1220,10 +1049,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-<<<<<<< HEAD
-        jScrollPane1.setViewportView(tablaInventarioEquipo);
-
-=======
         tablaInventarioEquipo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tablaInventarioEquipoFocusGained(evt);
@@ -1296,7 +1121,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(33, 33, 33))
         );
 
->>>>>>> German
         javax.swing.GroupLayout PanelInventarioLayout = new javax.swing.GroupLayout(PanelInventario);
         PanelInventario.setLayout(PanelInventarioLayout);
         PanelInventarioLayout.setHorizontalGroup(
@@ -1304,11 +1128,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(PanelInventarioLayout.createSequentialGroup()
                 .addComponent(PanelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-<<<<<<< HEAD
-                .addComponent(jScrollPane1)
-=======
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
->>>>>>> German
                 .addGap(20, 20, 20))
         );
         PanelInventarioLayout.setVerticalGroup(
@@ -1316,74 +1136,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addComponent(PanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(PanelInventarioLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-<<<<<<< HEAD
-                .addComponent(jScrollPane1)
-                .addGap(100, 100, 100))
-=======
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
->>>>>>> German
         );
 
         jTabbedPane1.addTab("<html>\n<center>Inventario de<center>\n<center>Maquinaria<center>", new javax.swing.ImageIcon(getClass().getResource("/iconos/Inventario_2.png")), PanelInventario); // NOI18N
 
-<<<<<<< HEAD
-        jLabel8.setText("Edad Permitida para pago:");
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout PanelConfiguracionLayout = new javax.swing.GroupLayout(PanelConfiguracion);
-        PanelConfiguracion.setLayout(PanelConfiguracionLayout);
-        PanelConfiguracionLayout.setHorizontalGroup(
-            PanelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelConfiguracionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1022, Short.MAX_VALUE))
-        );
-        PanelConfiguracionLayout.setVerticalGroup(
-            PanelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelConfiguracionLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(PanelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(532, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Configuración", new javax.swing.ImageIcon(getClass().getResource("/iconos/Configuracion.png")), PanelConfiguracion); // NOI18N
-
-        jTextField2.setText("jTextField2");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(232, 232, 232)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(966, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(467, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Utilidad", jPanel1);
-
-        jPanel2.setBackground(new java.awt.Color(85, 96, 128));
-=======
         panelGastos.setBackground(new java.awt.Color(85, 96, 128));
->>>>>>> German
 
         panelDatosGasto.setBackground(new java.awt.Color(85, 96, 128));
         panelDatosGasto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Registro de Gastos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -1607,19 +1366,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-<<<<<<< HEAD
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-=======
         javax.swing.GroupLayout panelGastosLayout = new javax.swing.GroupLayout(panelGastos);
         panelGastos.setLayout(panelGastosLayout);
         panelGastosLayout.setHorizontalGroup(
             panelGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGastosLayout.createSequentialGroup()
->>>>>>> German
                 .addGap(20, 20, 20)
                 .addComponent(panelDatosGasto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
@@ -1638,32 +1389,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Gastos", new javax.swing.ImageIcon(getClass().getResource("/iconos/Registro_Gasto.png")), panelGastos); // NOI18N
 
-<<<<<<< HEAD
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel13.setText("Lista de cumpleañeros del mes");
-
-        jButton3.setText("jButton3");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addComponent(jLabel13))
-                .addContainerGap(995, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jLabel13)
-                .addGap(38, 38, 38)
-                .addComponent(jButton3)
-                .addContainerGap(466, Short.MAX_VALUE))
-=======
         panelCumpleaneros.setBackground(new java.awt.Color(85, 96, 128));
 
         jPanel6.setBackground(new java.awt.Color(85, 96, 128));
@@ -1715,7 +1440,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(42, Short.MAX_VALUE))
->>>>>>> German
         );
 
         jTabbedPane1.addTab("Cumpleañeros", new javax.swing.ImageIcon(getClass().getResource("/iconos/Cumpleaneros.png")), panelCumpleaneros); // NOI18N
@@ -1727,20 +1451,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jdcfechaInicio.setDateFormatString("yyyy-MM-dd");
 
-<<<<<<< HEAD
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1063, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
-        );
-=======
         jdcfechaFinal.setDateFormatString("yyyy-MM-dd");
->>>>>>> German
 
         buttonGroup1.add(tbingresos);
         tbingresos.setText("Ingresos");
@@ -2056,8 +1767,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jdcFecha.setDate(null);
             jtfAltura.setText("");
             jtfPeso.setText("");
-            
-            DefaultTableModel modeloTablaClientes = new DefaultTableModel(con.getCliente(),columnasClientes);
+
+            DefaultTableModel modeloTablaClientes = new DefaultTableModel(con.getCliente(), columnasClientes);
             tablaClientes.setModel(modeloTablaClientes);
             JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -2135,81 +1846,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     jtfNombreEquipo.getText(),
                     jtfCantidadEquipo.getText(),
                     taDescripcionEquipo.getText());
-            
-        DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(),columnasInventario);
-        tablaInventarioEquipo.setModel(modeloTablaInventario);
-        
+
+            DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(), columnasInventario);
+            tablaInventarioEquipo.setModel(modeloTablaInventario);
+
             jtfNombreEquipo.setText("");
             jtfCantidadEquipo.setText("");
-<<<<<<< HEAD
-            taDescripcionEquipo.setText("");   
-=======
             taDescripcionEquipo.setText("");
->>>>>>> German
         }
     }//GEN-LAST:event_btnAceptarInventarioActionPerformed
 
     private void btnCancelarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarInventarioActionPerformed
-         jtfNombreEquipo.setText("");
-            jtfCantidadEquipo.setText("");
-            taDescripcionEquipo.setText("");
+        jtfNombreEquipo.setText("");
+        jtfCantidadEquipo.setText("");
+        taDescripcionEquipo.setText("");
     }//GEN-LAST:event_btnCancelarInventarioActionPerformed
 
-<<<<<<< HEAD
-    private void taDescripcionEquipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taDescripcionEquipoKeyTyped
-        if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
-            evt.consume();
-        }
-        if ((int) evt.getKeyChar() > 32 && (int) evt.getKeyChar() <= 47
-                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
-                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
-            evt.consume();
-
-            taDescripcionEquipo.setCursor(null);
-        }
-    }//GEN-LAST:event_taDescripcionEquipoKeyTyped
-
-    private void jcbPagoPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbPagoPlanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbPagoPlanActionPerformed
-
-    private void jbPagoAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoAceptarActionPerformed
-        Calendar c;
-        c = Calendar.getInstance();
-        int d = c.get(Calendar.DATE), m = 1 + (c.get(Calendar.MONTH)), a = c.get(Calendar.YEAR);
-
-        String dia = Integer.toString(d);
-        String mes = Integer.toString(m);
-        String anio = Integer.toString(a);
-        String fecha = (dia + "-" + mes + "-" + anio);
-
-        if (validarInformacion() == true) {
-
-            if (jcbPagoPlan.getSelectedItem() != null) {
-                con.insertarPagos(jcbClienteAPagar.getSelectedItem().toString(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
-                        jcbTiempoPago.getSelectedItem().toString(), jcbPagoPlan.getSelectedItem().toString(), fecha);
-            } else {
-                con.insertarPagos(jcbClienteAPagar.getSelectedItem().toString(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
-                        jcbTiempoPago.getSelectedItem().toString(), "No aplica", fecha);
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(this, "Ingrese toda la informacion");
-        }
-
-        jcbClienteAPagar.setSelectedIndex(0);
-        jtfMontoAPagar.setText("");
-        jtfTiempoAPagar.setText("");
-        jcbTiempoPago.setSelectedIndex(0);
-        jcbPagoPlan.setSelectedIndex(0);
-
-       DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(),columnasPagos);
-       tablaPagos.setModel(modeloTablaPagos);
-
-    }//GEN-LAST:event_jbPagoAceptarActionPerformed
-
-=======
->>>>>>> German
     boolean validarInformacion() {
         int errores = 0;
         String m = jtfMontoAPagar.getText(),
@@ -2226,97 +1878,33 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return errores == 0;
     }
 
-<<<<<<< HEAD
-    private void jbPagoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoCancelarActionPerformed
-        jcbClienteAPagar.setSelectedIndex(0);
-        jtfMontoAPagar.setText("");
-        jtfTiempoAPagar.setText("");
-        jcbTiempoPago.setSelectedIndex(0);
-        jcbPagoPlan.setSelectedIndex(0);
-    }//GEN-LAST:event_jbPagoCancelarActionPerformed
-
-    private void jcbClienteAPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClienteAPagarActionPerformed
-            // TODO add your handling code here:
-    }//GEN-LAST:event_jcbClienteAPagarActionPerformed
-
-    private void jcbClienteAPagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbClienteAPagarMouseClicked
-        jcbClienteAPagar.removeAllItems();
-        ArrayList<String> lista =new ArrayList<String>();
-            lista =  con.llenarCombo();
-            for(int i = 0; i<lista.size(); i++){
-                jcbClienteAPagar.addItem(lista.get(i));
-            }
-    }//GEN-LAST:event_jcbClienteAPagarMouseClicked
-
-=======
->>>>>>> German
     private void jtfAlturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAlturaKeyTyped
-        
-          char cTeclaPresionada = evt.getKeyChar();
+
+        char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-             btnAceptarRegistroCliente.doClick();
-      }
-        if(!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.'){
-            evt.consume();  
+            btnAceptarRegistroCliente.doClick();
         }
-         if(evt.getKeyChar()== '.'&&jtfAltura.getText().contains(".")){
-            evt.consume();  
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && jtfAltura.getText().contains(".")) {
+            evt.consume();
         }
     }//GEN-LAST:event_jtfAlturaKeyTyped
 
     private void jtfPesoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyReleased
-        if(!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.'){
-            evt.consume();  
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
         }
-         if(evt.getKeyChar()== '.'&&jtfAltura.getText().contains(".")){
-            evt.consume();  
+        if (evt.getKeyChar() == '.' && jtfAltura.getText().contains(".")) {
+            evt.consume();
         }
     }//GEN-LAST:event_jtfPesoKeyReleased
 
-<<<<<<< HEAD
-    private void jtfTiempoAPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTiempoAPagarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfTiempoAPagarActionPerformed
-
-    private void jtfTiempoAPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTiempoAPagarKeyTyped
-        char c = evt.getKeyChar();
-        if(c<'0' || c>'9') evt.consume();
-        
-        else
-            if((int)evt.getKeyChar()>=32 && (int)evt.getKeyChar()<=47 ||
-               (int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64 ||
-               (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
-            {
-                getToolkit().beep();
-                evt.consume();
-            }
-               jtfTiempoAPagar.setCursor(null);
-    }//GEN-LAST:event_jtfTiempoAPagarKeyTyped
-
-=======
->>>>>>> German
     private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_jTabbedPane1FocusGained
 
-<<<<<<< HEAD
-    private void jtfMontoAPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfMontoAPagarKeyTyped
-        char c = evt.getKeyChar();
-        if(c<'0' || c>'9') evt.consume();
-        
-        else
-            if((int)evt.getKeyChar()>=32 && (int)evt.getKeyChar()<=47 ||
-               (int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64 ||
-               (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
-            {
-                getToolkit().beep();
-                evt.consume();
-            }
-               jtfMontoAPagar.setCursor(null);        
-    }//GEN-LAST:event_jtfMontoAPagarKeyTyped
-
-=======
->>>>>>> German
     private void btnAceptarRegistroClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteKeyPressed
 
     }//GEN-LAST:event_btnAceptarRegistroClienteKeyPressed
@@ -2326,100 +1914,50 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_panelDatosClienteFocusGained
 
     private void jtfNombreClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreClienteKeyTyped
-       char cTeclaPresionada = evt.getKeyChar();
+        char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-             btnAceptarRegistroCliente.doClick();
-      }
+            btnAceptarRegistroCliente.doClick();
+        }
     }//GEN-LAST:event_jtfNombreClienteKeyTyped
 
     private void jtfApellidoClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfApellidoClienteKeyTyped
-        
-         char cTeclaPresionada = evt.getKeyChar();
+
+        char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-             btnAceptarRegistroCliente.doClick();
-      }
+            btnAceptarRegistroCliente.doClick();
+        }
     }//GEN-LAST:event_jtfApellidoClienteKeyTyped
 
     private void jdcFechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdcFechaKeyTyped
-         char cTeclaPresionada = evt.getKeyChar();
+        char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-             btnAceptarRegistroCliente.doClick();
-      }
+            btnAceptarRegistroCliente.doClick();
+        }
     }//GEN-LAST:event_jdcFechaKeyTyped
 
     private void jtfPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyTyped
-          char cTeclaPresionada = evt.getKeyChar();
+        char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-             btnAceptarRegistroCliente.doClick();
-      }
+            btnAceptarRegistroCliente.doClick();
+        }
     }//GEN-LAST:event_jtfPesoKeyTyped
 
-<<<<<<< HEAD
-    private void jcbTiempoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTiempoPagoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbTiempoPagoActionPerformed
-
-    private void jcbTiempoPagoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbTiempoPagoItemStateChanged
-        if(evt.getStateChange() == ItemEvent.SELECTED)
-        {
-            if(this.jcbTiempoPago.getSelectedIndex()>0)
-            {
-                this.jcbPagoPlan.setModel(new DefaultComboBoxModel
-                (this.getTipoTiempo(this.jcbTiempoPago.getSelectedItem().toString())));
-            }
-        }
-    }//GEN-LAST:event_jcbTiempoPagoItemStateChanged
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-=======
->>>>>>> German
     private void jtfBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfBuscarClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfBuscarClienteActionPerformed
 
     private void jtfBuscarClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfBuscarClienteKeyPressed
 
-        
+
     }//GEN-LAST:event_jtfBuscarClienteKeyPressed
 
     private void jtfBuscarClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarClienteCaretUpdate
-        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(con.buscarCliente(jtfBuscarCliente.getText(), jtfBuscarCliente.getText()),columnasClientes);
-    tablaClientes.setModel(modeloTablaBuscarClientes);
+        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(con.buscarCliente(jtfBuscarCliente.getText(), jtfBuscarCliente.getText()), columnasClientes);
+        tablaClientes.setModel(modeloTablaBuscarClientes);
     }//GEN-LAST:event_jtfBuscarClienteCaretUpdate
 
-<<<<<<< HEAD
-    private void tablaPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPagosMouseClicked
-        // TODO add your handling code here:
-       filaseleccionadatablapagos = tablaPagos.getSelectedRow();
-     
-      jcbClienteAPagar.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 0));
-      jtfMontoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 1).toString());
-      jtfTiempoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 2).toString());
-      jcbTiempoPago.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 3));
-      jcbPagoPlan.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 4));
-      
-    }//GEN-LAST:event_tablaPagosMouseClicked
-
-    // Buscar pagos
-    private void jtfbuscarpagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfbuscarpagoKeyPressed
-        // TODO add your handling code here:
-        if (jtfbuscarpago.getText().isEmpty()) { //si el filtro esta vacio
-            DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(), columnasPagos);
-            tablaPagos.setModel(modeloTablaPagos);
-        } else {
-            //String idt = filtro.getText();
-            DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getNombreCliente(jtfbuscarpago.getText()), columnasPagos);
-            tablaPagos.setModel(modeloTablaPagos);
-        }
-    }//GEN-LAST:event_jtfbuscarpagoKeyPressed
-
-=======
->>>>>>> German
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
-        
+
     }//GEN-LAST:event_tablaClientesMouseClicked
 
     private void btnCancelarRegistroGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRegistroGastoActionPerformed
@@ -2532,8 +2070,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jdcFechaGasto.setEnabled(false);
         }
     }//GEN-LAST:event_jcbPersonalizarFechaGastoItemStateChanged
-<<<<<<< HEAD
-=======
 
     private void tablaInventarioEquipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaInventarioEquipoMouseClicked
         // TODO add your handling code here:
@@ -2861,17 +2397,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PanelListaDeClientes ventanaCliente = new PanelListaDeClientes();
         ventanaCliente.setVisible(true);
     }//GEN-LAST:event_jtfSelccionarClienteMouseClicked
->>>>>>> German
 
     public class PresionarTecla extends KeyAdapter {
-      @Override
-      public void keyPressed(KeyEvent ke) {
-          if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-             btnAceptarRegistroCliente.doClick();
-          }
-      }
-}
-    
+
+        @Override
+        public void keyPressed(KeyEvent ke) {
+            if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                btnAceptarRegistroCliente.doClick();
+            }
+        }
+    }
+
     public String[] getTipoTiempo(String tiempo) {
         String[] plan = new String[4];
         if (tiempo.equalsIgnoreCase("Mes")) {
@@ -2883,7 +2419,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return plan;
     }
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelClientes;
     private javax.swing.JPanel PanelDatos;
@@ -2902,22 +2438,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelarInventario;
     private javax.swing.JButton btnCancelarRegistroCliente;
     private javax.swing.JButton btnCancelarRegistroGasto;
-<<<<<<< HEAD
-    private javax.swing.JButton jButton3;
-=======
     private javax.swing.ButtonGroup buttonGroup1;
->>>>>>> German
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-<<<<<<< HEAD
-=======
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
->>>>>>> German
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -2930,16 +2459,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-<<<<<<< HEAD
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPaneTablaPago;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-=======
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
@@ -2952,7 +2471,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbModificar;
->>>>>>> German
     private javax.swing.JButton jbPagoAceptar;
     private javax.swing.JButton jbPagoCancelar;
     private javax.swing.JComboBox<String> jcbClienteAPagar;
@@ -2981,10 +2499,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jtfApellidoCliente;
     private javax.swing.JTextField jtfBuscarCliente;
     private javax.swing.JTextField jtfBuscarGasto;
-<<<<<<< HEAD
-=======
     private javax.swing.JTextField jtfBuscarInventario;
->>>>>>> German
     private javax.swing.JTextField jtfCantidadEquipo;
     private javax.swing.JLabel jtfClienteAPagar;
     private javax.swing.JTextField jtfDescripcionGasto;
@@ -3009,10 +2524,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollTablaClientes1;
     private javax.swing.JTextArea taDescripcionEquipo;
     private javax.swing.JTable tablaClientes;
-<<<<<<< HEAD
-=======
     private javax.swing.JTable tablaDeCumpleaneros;
->>>>>>> German
     private javax.swing.JTable tablaGastos;
     private javax.swing.JTable tablaInventarioEquipo;
     private javax.swing.JTable tablaPagos;
