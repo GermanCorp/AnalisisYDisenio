@@ -11,8 +11,8 @@ public class ClasePrincipal {
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
         
         try {
-			//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                        UIManager.setLookAndFeel(javax.swing.plaf.nimbus.NimbusLookAndFeel.class.getName());
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                        //UIManager.setLookAndFeel(javax.swing.plaf.nimbus.NimbusLookAndFeel.class.getName());
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 				| UnsupportedLookAndFeelException e) {
 			// TODO Auto-generated catch block
@@ -26,4 +26,5 @@ public class ClasePrincipal {
     ventana.setExtendedState(JFrame.MAXIMIZED_BOTH); 
     ventana.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+   
 }
