@@ -88,10 +88,6 @@ public class PanelListaDeClientes extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_tablaClientesMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

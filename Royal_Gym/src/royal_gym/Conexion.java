@@ -2,6 +2,7 @@ package royal_gym;
 
 import com.toedter.calendar.JDateChooser;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,30 +49,6 @@ public class Conexion {
     }
 
     // Clasifica el peso de acuerdo al imc
-<<<<<<< HEAD
-    public String clasificaciónIMC(double imc){
-       String tipoIMC = "";
-       if (imc <16){
-           tipoIMC = "Delgadez Severa";
-       } else if (imc >=16 && imc <=16.99){
-           tipoIMC = "Delgadez Moderada";
-       }else if (imc >=17 && imc <=18.49){
-           tipoIMC = "Delgadez Aceptable";
-       }else if (imc >=18.50 && imc <=24.99){
-           tipoIMC = "Peso Normal";
-       }else if (imc >=25 && imc <=29.99){
-           tipoIMC = "Sobrepeso";
-       }else if (imc >=30 && imc <=34.99){
-           tipoIMC = "Obeso Tipo I";
-       }else if (imc >=35 && imc <=40){
-           tipoIMC = "Obeso Tipo II";
-       }else{
-           tipoIMC = "Obeso Tipo III";
-       }
-       return tipoIMC;
-    }
-        
-=======
     public String clasificaciónIMC(double imc) {
         String tipoIMC = "";
         if (imc < 16) {
@@ -94,7 +71,6 @@ public class Conexion {
         return tipoIMC;
     }
 
->>>>>>> German
     // método para insertar pagos a la base de datos
     public void insertarPagos(String cliente, String monto, String tiempo, String tipotiempo, String tipoplan, String fecha) {
         try {
@@ -144,13 +120,6 @@ public class Conexion {
         }
     }// fin del metodo para insertar inventario
 
-<<<<<<< HEAD
-    //void insertarPagos(String text, String text0, Object selectedItem) {
-    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    //}
-
-=======
->>>>>>> German
     // método para llenar la tabla de pagos
     public Object[][] getPago() {
         Object[][] datosPago = null;
@@ -207,34 +176,6 @@ public class Conexion {
     }
 
     // método para llenar la tabla de clientes                
-<<<<<<< HEAD
-     public Object[][] getCliente(){
-         Object[][] datosCliente = null;
-         
-         try {
-             String consulta = "Select nombres ||' '||apellidos as NombreCompleto, fechaNacimiento, altura, peso, Peso / (Altura * Altura) as imc FROM cliente AS a ORDER BY nombres";
-             statement = conexion.createStatement();
-             resultado = statement.executeQuery(consulta);
-
-             int numeroLista = 1;
-             ArrayList<Object[]> filas = new ArrayList<>();
-             
-             while (resultado.next()) {
-                 filas.add(
-                 new Object[]{
-                     numeroLista++,
-                     resultado.getString("NombreCompleto"),
-                     resultado.getString("FechaNacimiento"),
-                     formatearNumero(resultado.getDouble("Altura")),
-                     formatearNumero(resultado.getDouble("Peso")),
-                     formatearNumero(resultado.getDouble("imc")),
-                     clasificaciónIMC(resultado.getDouble("imc"))
-                 }
-                 );
-             }
-                 datosCliente = new Object[filas.size()][];
-                 filas.toArray(datosCliente);             
-=======
     public Object[][] getCliente() {
         Object[][] datosCliente = null;
 
@@ -261,13 +202,12 @@ public class Conexion {
             }
             datosCliente = new Object[filas.size()][];
             filas.toArray(datosCliente);
->>>>>>> German
 
             datosCliente = new Object[filas.size()][];
             filas.toArray(datosCliente);
-                     } catch (Exception e) {
-                 System.out.println(e.getMessage());
-         }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         return datosCliente;
     }
 
@@ -276,24 +216,21 @@ public class Conexion {
         Object[][] datosInventario = null;
 
         try {
-            String consulta = "SELECT nombre, cantidad, descripcion FROM inventario";
+            String consulta = "SELECT nombre, cantidad, descripcion,cod_equipo FROM inventario";
             statement = conexion.createStatement();
             resultado = statement.executeQuery(consulta);
+            int numeroLista = 1;
 
             ArrayList<Object[]> filas = new ArrayList<>();
 
             while (resultado.next()) {
                 filas.add(
                         new Object[]{
+                            numeroLista++,
                             resultado.getString("nombre"),
-<<<<<<< HEAD
-                            resultado.getInt("cantidad"),
-                            resultado.getString("descripcion")
-=======
                             resultado.getString("cantidad"),
                             resultado.getString("descripcion"),
                             resultado.getString("cod_equipo")
->>>>>>> German
                         }
                 );
             }
@@ -304,8 +241,8 @@ public class Conexion {
         }
         return datosInventario;
     }
-    
- // método para llenar la tabla de clientes
+
+    // método para llenar la tabla de clientes
     public Object[][] buscarCliente(String nombres, String apellidos) {
         Object[][] datosCliente = null;
         try {
@@ -313,7 +250,7 @@ public class Conexion {
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setString(1, nombres);
             //statement.setString(2, apellidos);
-            
+
             resultado = statement.executeQuery();
             int numeroLista = 1;
             DecimalFormat df = new DecimalFormat("0.00");
@@ -335,13 +272,10 @@ public class Conexion {
             datosCliente = new Object[filas.size()][];
             filas.toArray(datosCliente);
         } catch (Exception e) {
-            System.out.println("buscarCliente:"+e.getMessage());
+            System.out.println("buscarCliente:" + e.getMessage());
         }
         return datosCliente;
     }
-<<<<<<< HEAD
-    
-=======
 
     //metodo para buscar en la tabla pagos
     public Object[][] buscarPago(String nombre) {
@@ -433,7 +367,6 @@ public class Conexion {
             System.out.println(e.getMessage());
         }
     }
->>>>>>> German
 
     // método para llenar la tabla de edad de los clientes
     public Object[][] getEdadClientes() {
@@ -464,50 +397,6 @@ public class Conexion {
             datosCliente = new Object[filas.size()][];
             filas.toArray(datosCliente);
         } catch (Exception e) {
-<<<<<<< HEAD
-            System.out.println("getNombreCliente:"+e.getMessage());
-        }
-        return datos;
-    }
-    
-            public Object[][] getNombreClientepago(String nombre) {
-
-	    Object[][] datos = null;
-
-	    try { 
-                 String filtro = ""+nombre+"_%";
-	         String sql = "Select * from pagos where cliente LIKE "+'"'+ filtro +'"';
-                 //String sql = "Select * from pagos where cliente LIKE '"+ nombre +"%'";
-                 System.out.println(sql);
-                 PreparedStatement consulta = conexion.prepareStatement(sql); // PrepareStatement se utiliza cuando se utilizan consultas que llevan signo de ?
-                 ResultSet res = consulta.executeQuery();
-
-	         ArrayList<Object[]> d = new ArrayList<>();
-
-		while (res.next()) {
-                   d.add(new Object[] { 
-		   res.getString("Cliente"),
-                   res.getDouble("Monto"),
-                   res.getInt("Tiempo"),
-                   res.getString("tipo_tiempo"),
-                   res.getString("tpo_plan"),
-                   res.getString("fecha_pago"),
-	           });
-	       }
-
-		datos = new Object[d.size()][];
-		d.toArray(datos); 
-	    } catch (Exception e) {
-		System.out.println(e.getMessage());
-	        }
-	        return datos;
-
-       }
-            
-            public Object[][] getIngresosGastos(String fechaInicio, String fechaFinal) {
-        Object[][] datosPago = null;
- 
-=======
             System.out.println(e.getMessage());
         }
         return datosCliente;
@@ -546,7 +435,6 @@ public class Conexion {
     public Object[][] getGasto() {
         Object[][] datosCliente = null;
 
->>>>>>> German
         try {
             String consulta = "Select Descripcion, Monto, Fecha FROM gasto ORDER BY fecha desc";
             statement = conexion.createStatement();
@@ -558,45 +446,6 @@ public class Conexion {
             while (resultado.next()) {
                 filas.add(
                         new Object[]{
-<<<<<<< HEAD
-                            resultado.getString("Nombres"),
-                            resultado.getDouble("Monto"),
-                            }
-                );
-            }
-            datosPago = new Object[filas.size()][];
-            filas.toArray(datosPago);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return datosPago;
-    }
-
-            // método para llenar la tabla de gastos
- public Object[][] getGasto(){
-         Object[][] datosCliente = null;
-         
-         try {
-             String consulta = "Select Descripcion, Monto, Fecha FROM gasto ORDER BY fecha desc";
-             statement = conexion.createStatement();
-             resultado = statement.executeQuery(consulta);
-
-             int numeroLista = 1;
-             ArrayList<Object[]> filas = new ArrayList<>();
-             
-             while (resultado.next()) {
-                 filas.add(
-                 new Object[]{
-                     numeroLista++,
-                     resultado.getString("Descripcion"),
-                     formatearNumero(resultado.getDouble("Monto")),
-                     resultado.getString("Fecha")
-                 }
-                 );
-             }
-                 datosCliente = new Object[filas.size()][];
-                 filas.toArray(datosCliente);             
-=======
                             numeroLista++,
                             resultado.getString("Descripcion"),
                             formatearNumero(resultado.getDouble("Monto")),
@@ -606,7 +455,6 @@ public class Conexion {
             }
             datosCliente = new Object[filas.size()][];
             filas.toArray(datosCliente);
->>>>>>> German
 
             datosCliente = new Object[filas.size()][];
             filas.toArray(datosCliente);
@@ -630,9 +478,6 @@ public class Conexion {
         }
     }// fin del metodo para insertar cliente
 
-<<<<<<< HEAD
-
-=======
     //metodo para llenar la tabla con los gastos  que hubieron  segun el rango de fecha seleccionado
     public Object[][] getGastosSeleccionados(String fechaInicio, String fechaFin) {
         Object[][] datosPago = null;
@@ -700,7 +545,6 @@ public class Conexion {
             System.out.println(e.getMessage());
         }
         return datosPago;
->>>>>>> German
     }
 
-
+}
