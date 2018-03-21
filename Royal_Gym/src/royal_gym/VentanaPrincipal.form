@@ -2286,6 +2286,18 @@
             </Container>
           </SubComponents>
         </Container>
+        <Component class="presentacion.PanelRegistroClientes" name="panelRegistroClientes1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="&lt;html&gt; &lt;center&gt;Registro&lt;center&gt; &lt;center&gt;Clientes&lt;center&gt;">
+                <Property name="tabTitle" type="java.lang.String" value="&lt;html&gt; &lt;center&gt;Registro&lt;center&gt; &lt;center&gt;Clientes&lt;center&gt;"/>
+                <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/iconos/AgregarNuevo_2.png"/>
+                </Property>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

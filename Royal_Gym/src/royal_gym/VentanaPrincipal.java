@@ -30,6 +30,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import presentacion.PanelCumpleaneros;
+import presentacion.PanelGastos;
 import presentacion.PanelRegistroClientes;
 import presentacion.PanelRegistroPagos;
 import static royal_gym.Conexion.resultado;
@@ -45,7 +46,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     Validaciones ValidarNumeros = new Validaciones();
     private final Conexion con;
     
-
     int filaseleccionadatablapagos;
     // columnas de la tabla pagos
     private final String[] columnasPagos = {
@@ -117,8 +117,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jScrollPane6.setVisible(false);
         PaneltablaUtilidad.setVisible(false);
         Paneltotales.setVisible(false);
-        jTabbedPane1.add("Pagos", panelPagos);
-        jTabbedPane1.add("Clientes", panelClientes);
+        
+        PanelGastos panelG = new PanelGastos();
+        jTabbedPane1.add("Gastos", panelG);
 
         // alinear columnas a la derecha
         tcr = new DefaultTableCellRenderer();
@@ -331,6 +332,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jlTotalUtilidad = new javax.swing.JLabel();
         jlTotalGastos = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        panelRegistroClientes1 = new presentacion.PanelRegistroClientes();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -1668,12 +1670,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(PanelUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelUtilidadLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(Panelfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))
+                        .addComponent(Panelfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelUtilidadLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(Paneltotales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)))
+                        .addComponent(Paneltotales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
                 .addComponent(PaneltablaUtilidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
@@ -1691,6 +1692,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Utilidad", new javax.swing.ImageIcon(getClass().getResource("/iconos/Utilidad.png")), PanelUtilidad); // NOI18N
+        jTabbedPane1.addTab("<html> <center>Registro<center> <center>Clientes<center>", new javax.swing.ImageIcon(getClass().getResource("/iconos/AgregarNuevo_2.png")), panelRegistroClientes1); // NOI18N
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -1715,78 +1717,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jtfNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNombreClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfNombreClienteActionPerformed
-
-    private void jtfApellidoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfApellidoClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfApellidoClienteActionPerformed
-
-    private void jtfAlturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfAlturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfAlturaActionPerformed
-
-    private void btnAceptarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteActionPerformed
-        Calendar cal = Calendar.getInstance();
-        int anioActual = cal.get(Calendar.YEAR);
-        int menorEdadPermitida = anioActual - 18;
-        int mayorEdadPermitida = anioActual - 100;
-
-        if (jtfNombreCliente.getText().isEmpty()
-                && jtfApellidoCliente.getText().isEmpty()
-                && jdcFecha.getDate() == null
-                && jtfAltura.getText().isEmpty()
-                && jtfPeso.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "ingrese Toda la Información", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jtfNombreCliente.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe Ingresar el NOMBRE del Cliente", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jtfApellidoCliente.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe Ingresar el APELLLIDO del Cliente", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jdcFecha.getDate() == null) {
-            JOptionPane.showMessageDialog(this, "Debe seleccinar la FECHA de nacimiento", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jdcFecha.getCalendar().get(Calendar.YEAR) > menorEdadPermitida) {
-            JOptionPane.showMessageDialog(this, "El cliente debe ser mayor de 18 años", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jdcFecha.getCalendar().get(Calendar.YEAR) < mayorEdadPermitida) {
-            JOptionPane.showMessageDialog(this, "El cliente podría no estar apto para ejercitarse", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jtfAltura.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar la altura del cliente", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jtfPeso.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar el peso del cliente", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else {
-
-            con.insertarCliente(jtfNombreCliente.getText(),
-                    jtfApellidoCliente.getText(),
-                    fechaJCalendar(jdcFecha).toString(),
-                    jtfAltura.getText(),
-                    jtfPeso.getText());
-
-            jtfNombreCliente.setText("");
-            jtfApellidoCliente.setText("");
-            jdcFecha.setDate(null);
-            jtfAltura.setText("");
-            jtfPeso.setText("");
-
-            DefaultTableModel modeloTablaClientes = new DefaultTableModel(con.getCliente(), columnasClientes);
-            tablaClientes.setModel(modeloTablaClientes);
-            JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
-        }
-
-    }//GEN-LAST:event_btnAceptarRegistroClienteActionPerformed
-
-    private void jtfPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPesoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfPesoActionPerformed
-
-    private void btnCancelarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRegistroClienteActionPerformed
-        jtfNombreCliente.setText("");
-        jtfApellidoCliente.setText("");
-        jdcFecha.setDate(null);
-        jtfPeso.setText("");
-        jtfAltura.setText("");
-
-    }//GEN-LAST:event_btnCancelarRegistroClienteActionPerformed
 
     private void jtfNombreEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNombreEquipoActionPerformed
         // TODO add your handling code here:
@@ -1878,87 +1808,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return errores == 0;
     }
 
-    private void jtfAlturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAlturaKeyTyped
-
-        char cTeclaPresionada = evt.getKeyChar();
-        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-            btnAceptarRegistroCliente.doClick();
-        }
-        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
-            evt.consume();
-        }
-        if (evt.getKeyChar() == '.' && jtfAltura.getText().contains(".")) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jtfAlturaKeyTyped
-
-    private void jtfPesoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyReleased
-        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
-            evt.consume();
-        }
-        if (evt.getKeyChar() == '.' && jtfAltura.getText().contains(".")) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jtfPesoKeyReleased
-
     private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_jTabbedPane1FocusGained
-
-    private void btnAceptarRegistroClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteKeyPressed
-
-    }//GEN-LAST:event_btnAceptarRegistroClienteKeyPressed
-
-    private void panelDatosClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelDatosClienteFocusGained
-
-    }//GEN-LAST:event_panelDatosClienteFocusGained
-
-    private void jtfNombreClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreClienteKeyTyped
-        char cTeclaPresionada = evt.getKeyChar();
-        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-            btnAceptarRegistroCliente.doClick();
-        }
-    }//GEN-LAST:event_jtfNombreClienteKeyTyped
-
-    private void jtfApellidoClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfApellidoClienteKeyTyped
-
-        char cTeclaPresionada = evt.getKeyChar();
-        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-            btnAceptarRegistroCliente.doClick();
-        }
-    }//GEN-LAST:event_jtfApellidoClienteKeyTyped
-
-    private void jdcFechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdcFechaKeyTyped
-        char cTeclaPresionada = evt.getKeyChar();
-        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-            btnAceptarRegistroCliente.doClick();
-        }
-    }//GEN-LAST:event_jdcFechaKeyTyped
-
-    private void jtfPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyTyped
-        char cTeclaPresionada = evt.getKeyChar();
-        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
-            btnAceptarRegistroCliente.doClick();
-        }
-    }//GEN-LAST:event_jtfPesoKeyTyped
-
-    private void jtfBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfBuscarClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfBuscarClienteActionPerformed
-
-    private void jtfBuscarClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfBuscarClienteKeyPressed
-
-
-    }//GEN-LAST:event_jtfBuscarClienteKeyPressed
-
-    private void jtfBuscarClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarClienteCaretUpdate
-        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(con.buscarCliente(jtfBuscarCliente.getText(), jtfBuscarCliente.getText()), columnasClientes);
-        tablaClientes.setModel(modeloTablaBuscarClientes);
-    }//GEN-LAST:event_jtfBuscarClienteCaretUpdate
-
-    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
-
-    }//GEN-LAST:event_tablaClientesMouseClicked
 
     private void btnCancelarRegistroGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRegistroGastoActionPerformed
         // TODO add your handling code here:
@@ -2398,6 +2250,153 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaCliente.setVisible(true);
     }//GEN-LAST:event_jtfSelccionarClienteMouseClicked
 
+    private void jtfBuscarClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfBuscarClienteKeyPressed
+
+    }//GEN-LAST:event_jtfBuscarClienteKeyPressed
+
+    private void jtfBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfBuscarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfBuscarClienteActionPerformed
+
+    private void jtfBuscarClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarClienteCaretUpdate
+        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(con.buscarCliente(jtfBuscarCliente.getText(), jtfBuscarCliente.getText()), columnasClientes);
+        tablaClientes.setModel(modeloTablaBuscarClientes);
+    }//GEN-LAST:event_jtfBuscarClienteCaretUpdate
+
+    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
+
+    }//GEN-LAST:event_tablaClientesMouseClicked
+
+    private void panelDatosClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelDatosClienteFocusGained
+
+    }//GEN-LAST:event_panelDatosClienteFocusGained
+
+    private void jdcFechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdcFechaKeyTyped
+        char cTeclaPresionada = evt.getKeyChar();
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+            btnAceptarRegistroCliente.doClick();
+        }
+    }//GEN-LAST:event_jdcFechaKeyTyped
+
+    private void jtfPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyTyped
+        char cTeclaPresionada = evt.getKeyChar();
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+            btnAceptarRegistroCliente.doClick();
+        }
+    }//GEN-LAST:event_jtfPesoKeyTyped
+
+    private void jtfPesoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyReleased
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && jtfAltura.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfPesoKeyReleased
+
+    private void jtfPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPesoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfPesoActionPerformed
+
+    private void btnAceptarRegistroClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteKeyPressed
+
+    }//GEN-LAST:event_btnAceptarRegistroClienteKeyPressed
+
+    private void btnAceptarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteActionPerformed
+        Calendar cal = Calendar.getInstance();
+        int anioActual = cal.get(Calendar.YEAR);
+        int menorEdadPermitida = anioActual - 18;
+        int mayorEdadPermitida = anioActual - 100;
+
+        if (jtfNombreCliente.getText().isEmpty()
+            && jtfApellidoCliente.getText().isEmpty()
+            && jdcFecha.getDate() == null
+            && jtfAltura.getText().isEmpty()
+            && jtfPeso.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "ingrese Toda la Información", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfNombreCliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar el NOMBRE del Cliente", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfApellidoCliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar el APELLLIDO del Cliente", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jdcFecha.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccinar la FECHA de nacimiento", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jdcFecha.getCalendar().get(Calendar.YEAR) > menorEdadPermitida) {
+            JOptionPane.showMessageDialog(this, "El cliente debe ser mayor de 18 años", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jdcFecha.getCalendar().get(Calendar.YEAR) < mayorEdadPermitida) {
+            JOptionPane.showMessageDialog(this, "El cliente podría no estar apto para ejercitarse", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfAltura.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar la altura del cliente", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfPeso.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar el peso del cliente", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            con.insertarCliente(jtfNombreCliente.getText(),
+                jtfApellidoCliente.getText(),
+                fechaJCalendar(jdcFecha).toString(),
+                jtfAltura.getText(),
+                jtfPeso.getText());
+
+            jtfNombreCliente.setText("");
+            jtfApellidoCliente.setText("");
+            jdcFecha.setDate(null);
+            jtfAltura.setText("");
+            jtfPeso.setText("");
+
+            DefaultTableModel modeloTablaClientes = new DefaultTableModel(con.getCliente(), columnasClientes);
+            tablaClientes.setModel(modeloTablaClientes);
+            JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAceptarRegistroClienteActionPerformed
+
+    private void jtfAlturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAlturaKeyTyped
+
+        char cTeclaPresionada = evt.getKeyChar();
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+            btnAceptarRegistroCliente.doClick();
+        }
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && jtfAltura.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfAlturaKeyTyped
+
+    private void jtfAlturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfAlturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfAlturaActionPerformed
+
+    private void jtfApellidoClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfApellidoClienteKeyTyped
+
+        char cTeclaPresionada = evt.getKeyChar();
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+            btnAceptarRegistroCliente.doClick();
+        }
+    }//GEN-LAST:event_jtfApellidoClienteKeyTyped
+
+    private void jtfApellidoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfApellidoClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfApellidoClienteActionPerformed
+
+    private void jtfNombreClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreClienteKeyTyped
+        char cTeclaPresionada = evt.getKeyChar();
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+            btnAceptarRegistroCliente.doClick();
+        }
+    }//GEN-LAST:event_jtfNombreClienteKeyTyped
+
+    private void jtfNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNombreClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfNombreClienteActionPerformed
+
+    private void btnCancelarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRegistroClienteActionPerformed
+        jtfNombreCliente.setText("");
+        jtfApellidoCliente.setText("");
+        jdcFecha.setDate(null);
+        jtfPeso.setText("");
+        jtfAltura.setText("");
+    }//GEN-LAST:event_btnCancelarRegistroClienteActionPerformed
+
     public class PresionarTecla extends KeyAdapter {
 
         @Override
@@ -2520,6 +2519,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panelDatosGasto;
     private javax.swing.JPanel panelDatosPago;
     private javax.swing.JPanel panelGastos;
+    private presentacion.PanelRegistroClientes panelRegistroClientes1;
     private javax.swing.JScrollPane scrollTablaClientes;
     private javax.swing.JScrollPane scrollTablaClientes1;
     private javax.swing.JTextArea taDescripcionEquipo;
