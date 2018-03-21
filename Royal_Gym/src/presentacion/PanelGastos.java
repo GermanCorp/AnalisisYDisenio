@@ -1,6 +1,9 @@
 package presentacion;
 
+import java.awt.event.ItemEvent;
 import royal_gym.Conexion;
+import royal_gym.Conexion;
+import royal_gym.Gastos;
 import royal_gym.Gastos;
 
 public class PanelGastos extends javax.swing.JPanel {
@@ -182,7 +185,7 @@ public class PanelGastos extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jlFechaGasto)
                 .addGap(0, 0, 0)
-                .addGroup(panelDatosGastoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelDatosGastoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jcbPersonalizarFechaGasto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jdcFechaGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -304,49 +307,6 @@ public class PanelGastos extends javax.swing.JPanel {
 
     private void btnAceptarRegistroGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroGastoActionPerformed
 
-        if (jtfDescripcionGasto.getText().isEmpty()
-            && jtfMontoGasto.getText().isEmpty()
-            && jdcFecha.getDate() == null) {
-            JOptionPane.showMessageDialog(this, "ingrese Toda la Información", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jtfDescripcionGasto.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe Ingresar la descripcion del gasto", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jtfMontoGasto.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe Ingresar el monto gastado", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jcbPersonalizarFechaGasto.isSelected()) {
-            if (jdcFechaGasto.getDate() == null) {
-                JOptionPane.showMessageDialog(this, "Seleccione una fecha", "Error!", JOptionPane.ERROR_MESSAGE);
-            } else {
-                conexion.insertarGasto(jtfDescripcionGasto.getText(),
-                   c jtfMontoGasto.getText(),
-                    fechaJCalendar(jdcFechaGasto).toString());
-
-                jtfDescripcionGasto.setText("");
-                jtfMontoGasto.setText("");
-                jdcFechaGasto.setDate(null);
-                jcbPersonalizarFechaGasto.setSelected(false);
-
-                DefaultTableModel modeloTablaGastos = new DefaultTableModel(con.getGasto(), columnasGastos);
-                tablaGastos.setModel(modeloTablaGastos);
-                int aligTablaGastos[] = {2, 3};
-                alinearColumnaDerecha(tablaGastos, aligTablaGastos);
-                JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
-            }
-        } else {
-            con.insertarGasto(
-                jtfDescripcionGasto.getText(),
-                jtfMontoGasto.getText(),
-                getFechaActual());
-
-            jtfDescripcionGasto.setText("");
-            jtfMontoGasto.setText("");
-            jdcFecha.setDate(null);
-
-            DefaultTableModel modeloTablaGastos = new DefaultTableModel(con.getGasto(), columnasGastos);
-            tablaGastos.setModel(modeloTablaGastos);
-            int aligTablaGastos[] = {2, 3};
-            alinearColumnaDerecha(tablaGastos, aligTablaGastos);
-            JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
-        }
     }//GEN-LAST:event_btnAceptarRegistroGastoActionPerformed
 
     private void btnAceptarRegistroGastoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroGastoKeyPressed

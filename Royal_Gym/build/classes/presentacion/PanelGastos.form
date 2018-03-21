@@ -115,9 +115,9 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="jlFechaGasto" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jcbPersonalizarFechaGasto" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jdcFechaGasto" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="2" attributes="0">
+                      <Component id="jcbPersonalizarFechaGasto" alignment="2" max="32767" attributes="0"/>
+                      <Component id="jdcFechaGasto" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">

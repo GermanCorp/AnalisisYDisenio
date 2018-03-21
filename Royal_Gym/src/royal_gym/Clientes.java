@@ -9,30 +9,24 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Clientes {
-    
+
     // variables
     private static Statement statement;
     static ResultSet resultado;
     private Connection conexion;
- 
+
     //Columnas de la tabla Clientes
-        private final String[] columnasClientes = {
-        "No.",
-        "Nombres",
-        "Fecha de Nacimiento",
-        "Altura",
-        "Peso",
-        "Masa Corporal",
-        "Clasificación"
+    private final String[] columnasClientes = {
+        "No.", "Nombres", "Fecha de Nacimiento", "Altura", "Peso", "Masa Corporal", "Clasificación"
     };
-        
+
     // Modelo de la tabla de Clientes
-    public void modeloTablaCliente(JTable tabla){
+    public void modeloTablaCliente(JTable tabla) {
         DefaultTableModel modeloTablaClientes = new DefaultTableModel(getCliente(), columnasClientes);
         tabla.setModel(modeloTablaClientes);
     }
-    
-     // método para llenar la tabla de clientes                
+
+    // método para llenar la tabla de clientes                
     public Object[][] getCliente() {
         Object[][] datosCliente = null;
         try {
@@ -66,7 +60,7 @@ public class Clientes {
         }
         return datosCliente;
     }
-    
+
     // Clasifica el peso de acuerdo al imc
     public String clasificaciónIMC(double imc) {
         String tipoIMC = "";
@@ -89,11 +83,11 @@ public class Clientes {
         }
         return tipoIMC;
     }
-    
+
     // formatea lo numeros doubles
     public String formatearNumero(double numero) {
         DecimalFormat df = new DecimalFormat("#,##0.00");
         return df.format(numero);
     }
-    
+
 }

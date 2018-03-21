@@ -9,28 +9,20 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Gastos {
-    
     private Connection conexion;
     private Statement statement; 
     private ResultSet resultado;
 
      
     // columnas de la tabla Gastos
-    private final String[] columnasGastos = {
-        "N°",
-        "Descripcion",
-        "Monto",
-        "Fecha"
-    };
-  
-    
-    // formatea los numeros doubles
-    public String formatearNumero(double numero) {
-        DecimalFormat df = new DecimalFormat("#,###,##0.00");
-        return df.format(numero);
+    private final String[] columnasGastos = {"N°", "Descripcion", "Monto","Fecha"};
+ 
+    // Modelo de la tabla de Gastos
+    public void modeloTablaGastos(JTable tabla){
+        DefaultTableModel modeloTablaGastos = new DefaultTableModel(getGasto(), columnasGastos);
+        tabla.setModel(modeloTablaGastos);
     }
-
-  
+    
     // método para llenar la tabla de gastos
     public Object[][] getGasto() {
         Object[][] datosCliente = null;
@@ -63,10 +55,10 @@ public class Gastos {
         }
         return datosCliente;
     }
-    
-    // Modelo de la tabla de Gastos
-    public void modeloTablaGastos(JTable tabla){
-        DefaultTableModel modeloTablaGastos = new DefaultTableModel(getGasto(), columnasGastos);
-        tabla.setModel(modeloTablaGastos);
+
+        // formatea los numeros doubles
+    public String formatearNumero(double numero) {
+        DecimalFormat df = new DecimalFormat("#,###,##0.00");
+        return df.format(numero);
     }
 }
