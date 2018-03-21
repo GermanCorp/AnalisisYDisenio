@@ -83,9 +83,7 @@ public class PanelListaDeClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
-        int filaSeleccionada = tablaClientes.getSelectedRow();
-        ventanap.jtfSelccionarCliente.setText(tablaClientes.getValueAt(filaSeleccionada, 0).toString());
-        setVisible(false);
+
     }//GEN-LAST:event_tablaClientesMouseClicked
 
 
