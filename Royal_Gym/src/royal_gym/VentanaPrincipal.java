@@ -51,16 +51,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private final Conexion con;
     
 
-<<<<<<< HEAD
+
     int  filaseleccionadatablapagos;
         // columnas de la tabla pagos
         private final String[] columnasPagos = {
-=======
+
     int filaseleccionadatablapagos;
     // columnas de la tabla pagos
     private final String[] columnasPagos = {
         "No.",
->>>>>>> German
         "Cliente",
         "Monto",
         "Tiempo",
@@ -2169,11 +2168,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_taDescripcionEquipoKeyTyped
 
-    private void jcbPagoPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbPagoPlanActionPerformed
+    private void jcbPagoPlanActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcbPagoPlanActionPerformed
+    }                                           
 
-    private void jbPagoAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoAceptarActionPerformed
+    private void jbPagoAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                              
         Calendar c;
         c = Calendar.getInstance();
         int d = c.get(Calendar.DATE), m = 1 + (c.get(Calendar.MONTH)), a = c.get(Calendar.YEAR);
@@ -2206,7 +2205,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
        DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(),columnasPagos);
        tablaPagos.setModel(modeloTablaPagos);
 
-    }//GEN-LAST:event_jbPagoAceptarActionPerformed
+    }                                             
 
 =======
 >>>>>>> German
@@ -2227,26 +2226,26 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
 <<<<<<< HEAD
-    private void jbPagoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoCancelarActionPerformed
+    private void jbPagoCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                               
         jcbClienteAPagar.setSelectedIndex(0);
         jtfMontoAPagar.setText("");
         jtfTiempoAPagar.setText("");
         jcbTiempoPago.setSelectedIndex(0);
         jcbPagoPlan.setSelectedIndex(0);
-    }//GEN-LAST:event_jbPagoCancelarActionPerformed
+    }                                              
 
-    private void jcbClienteAPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClienteAPagarActionPerformed
+    private void jcbClienteAPagarActionPerformed(java.awt.event.ActionEvent evt) {                                                 
             // TODO add your handling code here:
-    }//GEN-LAST:event_jcbClienteAPagarActionPerformed
+    }                                                
 
-    private void jcbClienteAPagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbClienteAPagarMouseClicked
+    private void jcbClienteAPagarMouseClicked(java.awt.event.MouseEvent evt) {                                              
         jcbClienteAPagar.removeAllItems();
         ArrayList<String> lista =new ArrayList<String>();
             lista =  con.llenarCombo();
             for(int i = 0; i<lista.size(); i++){
                 jcbClienteAPagar.addItem(lista.get(i));
             }
-    }//GEN-LAST:event_jcbClienteAPagarMouseClicked
+    }                                             
 
 =======
 >>>>>>> German
@@ -2274,11 +2273,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfPesoKeyReleased
 
 <<<<<<< HEAD
-    private void jtfTiempoAPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTiempoAPagarActionPerformed
+    private void jtfTiempoAPagarActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtfTiempoAPagarActionPerformed
+    }                                               
 
-    private void jtfTiempoAPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTiempoAPagarKeyTyped
+    private void jtfTiempoAPagarKeyTyped(java.awt.event.KeyEvent evt) {                                         
         char c = evt.getKeyChar();
         if(c<'0' || c>'9') evt.consume();
         
@@ -2291,7 +2290,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 evt.consume();
             }
                jtfTiempoAPagar.setCursor(null);
-    }//GEN-LAST:event_jtfTiempoAPagarKeyTyped
+    }                                        
 
 =======
 >>>>>>> German
@@ -2300,7 +2299,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTabbedPane1FocusGained
 
 <<<<<<< HEAD
-    private void jtfMontoAPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfMontoAPagarKeyTyped
+    private void jtfMontoAPagarKeyTyped(java.awt.event.KeyEvent evt) {                                        
         char c = evt.getKeyChar();
         if(c<'0' || c>'9') evt.consume();
         
@@ -2313,7 +2312,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 evt.consume();
             }
                jtfMontoAPagar.setCursor(null);        
-    }//GEN-LAST:event_jtfMontoAPagarKeyTyped
+    }                                       
 
 =======
 >>>>>>> German
@@ -2355,11 +2354,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfPesoKeyTyped
 
 <<<<<<< HEAD
-    private void jcbTiempoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTiempoPagoActionPerformed
+    private void jcbTiempoPagoActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcbTiempoPagoActionPerformed
+    }                                             
 
-    private void jcbTiempoPagoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbTiempoPagoItemStateChanged
+    private void jcbTiempoPagoItemStateChanged(java.awt.event.ItemEvent evt) {                                               
         if(evt.getStateChange() == ItemEvent.SELECTED)
         {
             if(this.jcbTiempoPago.getSelectedIndex()>0)
@@ -2368,7 +2367,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 (this.getTipoTiempo(this.jcbTiempoPago.getSelectedItem().toString())));
             }
         }
-    }//GEN-LAST:event_jcbTiempoPagoItemStateChanged
+    }                                              
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -2391,7 +2390,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfBuscarClienteCaretUpdate
 
 <<<<<<< HEAD
-    private void tablaPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPagosMouseClicked
+    private void tablaPagosMouseClicked(java.awt.event.MouseEvent evt) {                                        
         // TODO add your handling code here:
        filaseleccionadatablapagos = tablaPagos.getSelectedRow();
      
@@ -2401,10 +2400,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
       jcbTiempoPago.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 3));
       jcbPagoPlan.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 4));
       
-    }//GEN-LAST:event_tablaPagosMouseClicked
+    }                                       
 
     // Buscar pagos
-    private void jtfbuscarpagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfbuscarpagoKeyPressed
+    private void jtfbuscarpagoKeyPressed(java.awt.event.KeyEvent evt) {                                         
         // TODO add your handling code here:
         if (jtfbuscarpago.getText().isEmpty()) { //si el filtro esta vacio
             DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(), columnasPagos);
@@ -2414,7 +2413,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getNombreCliente(jtfbuscarpago.getText()), columnasPagos);
             tablaPagos.setModel(modeloTablaPagos);
         }
-    }//GEN-LAST:event_jtfbuscarpagoKeyPressed
+    }                                        
 
 =======
 >>>>>>> German

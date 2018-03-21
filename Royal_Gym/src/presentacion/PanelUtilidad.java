@@ -5,15 +5,28 @@
  */
 package presentacion;
 
+import com.toedter.calendar.JDateChooser;
+import java.awt.event.ItemEvent;
+import java.util.Date;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+import royal_gym.Utilidad;
+
+
 /**
  *
  * @author alxcr
  */
 public class PanelUtilidad extends javax.swing.JPanel {
+    
+     private final String[] columnasUtilidad = {
+        "No.",
+        "Fecha ",
+        "Descripción ",
+        "Monto"
+    };
 
-    /**
-     * Creates new form PanelUtilidad
-     */
+    Utilidad utilidad = new Utilidad();
     public PanelUtilidad() {
         initComponents();
     }
@@ -310,11 +323,11 @@ public class PanelUtilidad extends javax.swing.JPanel {
             TitledBorder t = (TitledBorder )PaneltablaUtilidad.getBorder();
             t.setTitle("Ingresos");
 
-            DefaultTableModel modeloTablaUtilidadIngresos = new DefaultTableModel(con.getIngresosSeleccinados(fechaJCalendar(jdcfechaInicio).toString(), fechaJCalendar(jdcfechaFinal).toString()), columnasUtilidad);
+            DefaultTableModel modeloTablaUtilidadIngresos = new DefaultTableModel(utilidad.getIngresosSeleccinados(fechaJCalendar(jdcfechaInicio).toString(), fechaJCalendar(jdcfechaFinal).toString()), columnasUtilidad);
             tablautilidadingresos.setModel(modeloTablaUtilidadIngresos);
 
-            double totali = con.totalIngresos;
-            jlTotalIngresos.setText("L. "+con.formatearNumero(totali));
+            double totali = utilidad.totalIngresos;
+            jlTotalIngresos.setText("L. "+utilidad.formatearNumero(totali));
             jlTotalGastos.setText("L. 0.00");
             jlTotalUtilidad.setText("L. 0.00");
 
@@ -340,11 +353,11 @@ public class PanelUtilidad extends javax.swing.JPanel {
             TitledBorder t = (TitledBorder )PaneltablaUtilidad.getBorder();
             t.setTitle("Gastos");
 
-            DefaultTableModel modeloTablaUtilidadGastos = new DefaultTableModel(con.getGastosSeleccionados(fechaJCalendar(jdcfechaInicio).toString(), fechaJCalendar(jdcfechaFinal).toString()), columnasUtilidad);
+            DefaultTableModel modeloTablaUtilidadGastos = new DefaultTableModel(utilidad.getGastosSeleccionados(fechaJCalendar(jdcfechaInicio).toString(), fechaJCalendar(jdcfechaFinal).toString()), columnasUtilidad);
             tablautilidadingresos.setModel(modeloTablaUtilidadGastos);
 
-            double totalg = con.totalGastos;
-            jlTotalGastos.setText("L. "+con.formatearNumero(totalg));
+            double totalg = utilidad.totalGastos;
+            jlTotalGastos.setText("L. "+utilidad.formatearNumero(totalg));
             jlTotalIngresos.setText("L. 0.00");
             jlTotalUtilidad.setText("L. 0.00");
 
@@ -371,20 +384,20 @@ public class PanelUtilidad extends javax.swing.JPanel {
             TitledBorder t = (TitledBorder )PaneltablaUtilidad.getBorder();
             t.setTitle("Ingresos y Gastos");
 
-            DefaultTableModel modeloTablaUtilidadIngresos = new DefaultTableModel(con.getIngresosSeleccinados(fechaJCalendar(jdcfechaInicio).toString(), fechaJCalendar(jdcfechaFinal).toString()), columnasUtilidad);
+            DefaultTableModel modeloTablaUtilidadIngresos = new DefaultTableModel(utilidad.getIngresosSeleccinados(fechaJCalendar(jdcfechaInicio).toString(), fechaJCalendar(jdcfechaFinal).toString()), columnasUtilidad);
             tablautilidadingresos.setModel(modeloTablaUtilidadIngresos);
 
-            DefaultTableModel modeloTablaUtilidadGastos = new DefaultTableModel(con.getGastosSeleccionados(fechaJCalendar(jdcfechaInicio).toString(), fechaJCalendar(jdcfechaFinal).toString()), columnasUtilidad);
+            DefaultTableModel modeloTablaUtilidadGastos = new DefaultTableModel(utilidad.getGastosSeleccionados(fechaJCalendar(jdcfechaInicio).toString(), fechaJCalendar(jdcfechaFinal).toString()), columnasUtilidad);
             tablautilidadgastos.setModel(modeloTablaUtilidadGastos);
 
-            double totalg = con.totalGastos;
-            jlTotalGastos.setText("L. "+con.formatearNumero(totalg));
+            double totalg = utilidad.totalGastos;
+            jlTotalGastos.setText("L. "+utilidad.formatearNumero(totalg));
 
-            double totali = con.totalIngresos;
-            jlTotalIngresos.setText("L. "+con.formatearNumero(totali));
+            double totali = utilidad.totalIngresos;
+            jlTotalIngresos.setText("L. "+utilidad.formatearNumero(totali));
 
-            double totalu = con.totalIngresos - con.totalGastos;
-            jlTotalUtilidad.setText("L. "+con.formatearNumero(totalu));
+            double totalu = utilidad.totalIngresos - utilidad.totalGastos;
+            jlTotalUtilidad.setText("L. "+utilidad.formatearNumero(totalu));
 
         } else {
             PaneltablaUtilidad.setVisible(false);
@@ -395,6 +408,13 @@ public class PanelUtilidad extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tbtodoItemStateChanged
 
+    private Date fechaJCalendar(JDateChooser calendario) {
+        Date date = calendario.getDate();
+        long d = date.getTime();
+        java.sql.Date fecha = new java.sql.Date(d);
+        return fecha;
+    }
+    
     private void tbtodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbtodoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tbtodoActionPerformed
