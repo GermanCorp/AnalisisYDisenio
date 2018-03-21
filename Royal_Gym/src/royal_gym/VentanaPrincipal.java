@@ -46,6 +46,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     Validaciones ValidarNumeros = new Validaciones();
     private final Conexion con;
     
+<<<<<<< HEAD
+
+
+    int  filaseleccionadatablapagos;
+        // columnas de la tabla pagos
+        private final String[] columnasPagos = {
+
+=======
+>>>>>>> 7c2798caca974fcdccfe6f493d2e1bf21ac105d5
     int filaseleccionadatablapagos;
     // columnas de la tabla pagos
     private final String[] columnasPagos = {
@@ -1807,6 +1816,64 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         taDescripcionEquipo.setText("");
     }//GEN-LAST:event_btnCancelarInventarioActionPerformed
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+    private void taDescripcionEquipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taDescripcionEquipoKeyTyped
+        if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
+            evt.consume();
+        }
+        if ((int) evt.getKeyChar() > 32 && (int) evt.getKeyChar() <= 47
+                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
+                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
+            evt.consume();
+
+            taDescripcionEquipo.setCursor(null);
+        }
+    }//GEN-LAST:event_taDescripcionEquipoKeyTyped
+
+    private void jcbPagoPlanActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+    }                                           
+
+    private void jbPagoAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        Calendar c;
+        c = Calendar.getInstance();
+        int d = c.get(Calendar.DATE), m = 1 + (c.get(Calendar.MONTH)), a = c.get(Calendar.YEAR);
+
+        String dia = Integer.toString(d);
+        String mes = Integer.toString(m);
+        String anio = Integer.toString(a);
+        String fecha = (dia + "-" + mes + "-" + anio);
+
+        if (validarInformacion() == true) {
+
+            if (jcbPagoPlan.getSelectedItem() != null) {
+                con.insertarPagos(jcbClienteAPagar.getSelectedItem().toString(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
+                        jcbTiempoPago.getSelectedItem().toString(), jcbPagoPlan.getSelectedItem().toString(), fecha);
+            } else {
+                con.insertarPagos(jcbClienteAPagar.getSelectedItem().toString(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
+                        jcbTiempoPago.getSelectedItem().toString(), "No aplica", fecha);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese toda la informacion");
+        }
+
+        jcbClienteAPagar.setSelectedIndex(0);
+        jtfMontoAPagar.setText("");
+        jtfTiempoAPagar.setText("");
+        jcbTiempoPago.setSelectedIndex(0);
+        jcbPagoPlan.setSelectedIndex(0);
+
+       DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(),columnasPagos);
+       tablaPagos.setModel(modeloTablaPagos);
+
+    }                                             
+
+=======
+>>>>>>> German
+=======
+>>>>>>> 7c2798caca974fcdccfe6f493d2e1bf21ac105d5
     boolean validarInformacion() {
         int errores = 0;
         String m = jtfMontoAPagar.getText(),
@@ -1823,10 +1890,208 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return errores == 0;
     }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+    private void jbPagoCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        jcbClienteAPagar.setSelectedIndex(0);
+        jtfMontoAPagar.setText("");
+        jtfTiempoAPagar.setText("");
+        jcbTiempoPago.setSelectedIndex(0);
+        jcbPagoPlan.setSelectedIndex(0);
+    }                                              
+
+    private void jcbClienteAPagarActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+            // TODO add your handling code here:
+    }                                                
+
+    private void jcbClienteAPagarMouseClicked(java.awt.event.MouseEvent evt) {                                              
+        jcbClienteAPagar.removeAllItems();
+        ArrayList<String> lista =new ArrayList<String>();
+            lista =  con.llenarCombo();
+            for(int i = 0; i<lista.size(); i++){
+                jcbClienteAPagar.addItem(lista.get(i));
+            }
+    }                                             
+
+=======
+>>>>>>> German
+    private void jtfAlturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAlturaKeyTyped
+        
+          char cTeclaPresionada = evt.getKeyChar();
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+             btnAceptarRegistroCliente.doClick();
+      }
+        if(!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.'){
+            evt.consume();  
+        }
+         if(evt.getKeyChar()== '.'&&jtfAltura.getText().contains(".")){
+            evt.consume();  
+        }
+    }//GEN-LAST:event_jtfAlturaKeyTyped
+
+    private void jtfPesoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyReleased
+        if(!Character.isDigit(evt.getKeyChar())&&evt.getKeyChar()!='.'){
+            evt.consume();  
+        }
+         if(evt.getKeyChar()== '.'&&jtfAltura.getText().contains(".")){
+            evt.consume();  
+        }
+    }//GEN-LAST:event_jtfPesoKeyReleased
+
+<<<<<<< HEAD
+    private void jtfTiempoAPagarActionPerformed(java.awt.event.ActionEvent evt) {                                                
+        // TODO add your handling code here:
+    }                                               
+
+    private void jtfTiempoAPagarKeyTyped(java.awt.event.KeyEvent evt) {                                         
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+        
+        else
+            if((int)evt.getKeyChar()>=32 && (int)evt.getKeyChar()<=47 ||
+               (int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64 ||
+               (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+            {
+                getToolkit().beep();
+                evt.consume();
+            }
+               jtfTiempoAPagar.setCursor(null);
+    }                                        
+
+=======
+>>>>>>> German
+=======
+>>>>>>> 7c2798caca974fcdccfe6f493d2e1bf21ac105d5
     private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_jTabbedPane1FocusGained
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+    private void jtfMontoAPagarKeyTyped(java.awt.event.KeyEvent evt) {                                        
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+        
+        else
+            if((int)evt.getKeyChar()>=32 && (int)evt.getKeyChar()<=47 ||
+               (int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64 ||
+               (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+            {
+                getToolkit().beep();
+                evt.consume();
+            }
+               jtfMontoAPagar.setCursor(null);        
+    }                                       
+
+=======
+>>>>>>> German
+    private void btnAceptarRegistroClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteKeyPressed
+
+    }//GEN-LAST:event_btnAceptarRegistroClienteKeyPressed
+
+    private void panelDatosClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelDatosClienteFocusGained
+
+    }//GEN-LAST:event_panelDatosClienteFocusGained
+
+    private void jtfNombreClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreClienteKeyTyped
+       char cTeclaPresionada = evt.getKeyChar();
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+             btnAceptarRegistroCliente.doClick();
+      }
+    }//GEN-LAST:event_jtfNombreClienteKeyTyped
+
+    private void jtfApellidoClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfApellidoClienteKeyTyped
+        
+         char cTeclaPresionada = evt.getKeyChar();
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+             btnAceptarRegistroCliente.doClick();
+      }
+    }//GEN-LAST:event_jtfApellidoClienteKeyTyped
+
+    private void jdcFechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdcFechaKeyTyped
+         char cTeclaPresionada = evt.getKeyChar();
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+             btnAceptarRegistroCliente.doClick();
+      }
+    }//GEN-LAST:event_jdcFechaKeyTyped
+
+    private void jtfPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyTyped
+          char cTeclaPresionada = evt.getKeyChar();
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+             btnAceptarRegistroCliente.doClick();
+      }
+    }//GEN-LAST:event_jtfPesoKeyTyped
+
+<<<<<<< HEAD
+    private void jcbTiempoPagoActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+    }                                             
+
+    private void jcbTiempoPagoItemStateChanged(java.awt.event.ItemEvent evt) {                                               
+        if(evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            if(this.jcbTiempoPago.getSelectedIndex()>0)
+            {
+                this.jcbPagoPlan.setModel(new DefaultComboBoxModel
+                (this.getTipoTiempo(this.jcbTiempoPago.getSelectedItem().toString())));
+            }
+        }
+    }                                              
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+=======
+>>>>>>> German
+    private void jtfBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfBuscarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfBuscarClienteActionPerformed
+
+    private void jtfBuscarClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfBuscarClienteKeyPressed
+
+        
+    }//GEN-LAST:event_jtfBuscarClienteKeyPressed
+
+    private void jtfBuscarClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarClienteCaretUpdate
+        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(con.buscarCliente(jtfBuscarCliente.getText(), jtfBuscarCliente.getText()),columnasClientes);
+    tablaClientes.setModel(modeloTablaBuscarClientes);
+    }//GEN-LAST:event_jtfBuscarClienteCaretUpdate
+
+<<<<<<< HEAD
+    private void tablaPagosMouseClicked(java.awt.event.MouseEvent evt) {                                        
+        // TODO add your handling code here:
+       filaseleccionadatablapagos = tablaPagos.getSelectedRow();
+     
+      jcbClienteAPagar.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 0));
+      jtfMontoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 1).toString());
+      jtfTiempoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 2).toString());
+      jcbTiempoPago.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 3));
+      jcbPagoPlan.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 4));
+      
+    }                                       
+
+    // Buscar pagos
+    private void jtfbuscarpagoKeyPressed(java.awt.event.KeyEvent evt) {                                         
+        // TODO add your handling code here:
+        if (jtfbuscarpago.getText().isEmpty()) { //si el filtro esta vacio
+            DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getPago(), columnasPagos);
+            tablaPagos.setModel(modeloTablaPagos);
+        } else {
+            //String idt = filtro.getText();
+            DefaultTableModel modeloTablaPagos = new DefaultTableModel(con.getNombreCliente(jtfbuscarpago.getText()), columnasPagos);
+            tablaPagos.setModel(modeloTablaPagos);
+        }
+    }                                        
+
+=======
+>>>>>>> German
+    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
+        
+    }//GEN-LAST:event_tablaClientesMouseClicked
+
+=======
+>>>>>>> 7c2798caca974fcdccfe6f493d2e1bf21ac105d5
     private void btnCancelarRegistroGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRegistroGastoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarRegistroGastoActionPerformed
