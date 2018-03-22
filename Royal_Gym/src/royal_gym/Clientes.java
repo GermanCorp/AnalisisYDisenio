@@ -27,7 +27,7 @@ public class Clientes {
         tabla.setModel(modeloTablaClientes);
     }
 
-    // método para llenar la tabla de clientes                
+    // <editor-fold defaultstate="collapsed" desc="Método para Obtener Clientes">                
     public Object[][] getCliente() {
         Object[][] datosCliente = null;
         try {
@@ -60,9 +60,9 @@ public class Clientes {
             System.out.println(e.getMessage());
         }
         return datosCliente;
-    }
+    } // </editor-fold> 
 
-    // Clasifica el peso de acuerdo al imc
+    // <editor-fold defaultstate="collapsed" desc="Método, Clasificación de acuerdo al IMC">
     public String clasificaciónIMC(double imc) {
         String tipoIMC = "";
         if (imc < 16) {
@@ -83,12 +83,12 @@ public class Clientes {
             tipoIMC = "Obeso Tipo III";
         }
         return tipoIMC;
-    }
+    }// </editor-fold> 
 
-    // formatea lo numeros doubles
+    // <editor-fold defaultstate="collapsed" desc="Método para formatear los numeros de tipo Double">
     public String formatearNumero(double numero) {
         DecimalFormat df = new DecimalFormat("#,##0.00");
         return df.format(numero);
-    }
+    }// </editor-fold>
 
 }

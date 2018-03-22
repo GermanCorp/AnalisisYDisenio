@@ -1,40 +1,5 @@
 package royal_gym;
 
-import presentacion.PanelListaDeClientes;
-import com.toedter.calendar.JDateChooser;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Event;
-import java.awt.event.ItemEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import javax.swing.BoxLayout;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.InputMap;
-import javax.swing.JComponent;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.KeyStroke;
-import javax.swing.SwingConstants;
-import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import presentacion.PanelCumpleaneros;
-import presentacion.PanelRegistroClientes;
-import presentacion.PanelRegistroPagos;
-import static royal_gym.Conexion.resultado;
-
-
 public class VentanaPrincipal extends javax.swing.JFrame {
 
 // Constructor
@@ -102,7 +67,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jTabbedPane1FocusGained
 
-
+    // <editor-fold defaultstate="collapsed" desc="Elementos de Ventana Principal">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenu jMenu1;
@@ -116,4 +81,4 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private presentacion.PanelRegistroPagos panelRegistroPagos1;
     private presentacion.PanelUtilidad panelUtilidad1;
     // End of variables declaration//GEN-END:variables
-}
+} // </editor-fold> 
