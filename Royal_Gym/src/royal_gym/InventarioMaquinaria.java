@@ -15,19 +15,10 @@ import static royal_gym.Conexion.resultado;
 
 public class InventarioMaquinaria 
 {
-    Conexion con = new Conexion();
+    
     private Connection conexion;
     private static Statement statement;
     static ResultSet resultado;
-    
-    // método para cerrar la base de datos
-    public void cerrar() {
-        try {
-            conexion.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
     
     // formatea lo numeros doubles
     public String formatearNumero(double numero) {
