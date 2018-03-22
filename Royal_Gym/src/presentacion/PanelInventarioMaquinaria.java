@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import royal_gym.Conexion;
+import royal_gym.InventarioMaquinaria;
 import royal_gym.Validaciones;
 
 public class PanelInventarioMaquinaria extends javax.swing.JPanel {
@@ -16,7 +17,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
 
     Validaciones ValidarLetras = new Validaciones();
     Validaciones ValidarNumeros = new Validaciones();
-    private final Conexion con;
+     InventarioMaquinaria im = new InventarioMaquinaria();
     
     // columnas de la tabla Inventario
     private final String[] columnasInventario = {
@@ -29,16 +30,12 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
     
     public PanelInventarioMaquinaria() {
         initComponents();
-        this.con = new Conexion();
-        con.conectar();
+        this.im = new InventarioMaquinaria();
         
         // Modelo de la tabla de Inventario
-        DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(), columnasInventario);
+        DefaultTableModel modeloTablaInventario = new DefaultTableModel(im.getInventario(), columnasInventario);
         tablaInventarioEquipo.setModel(modeloTablaInventario);
-        
- 
-          
-        
+      
     }
     
     @SuppressWarnings("unchecked")
@@ -333,7 +330,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfCantidadEquipoKeyTyped
 
     private void btnAceptarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarInventarioActionPerformed
-        con.conectar();
+        
         //validaciones para los JTextField 1,2 y textArea1 para campos vacios
         if (jtfNombreEquipo.getText().equals("") && jtfCantidadEquipo.getText().equals("") && taDescripcionEquipo.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
@@ -345,12 +342,12 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la descripcion del Equipo", "Error!", JOptionPane.ERROR_MESSAGE);
         } else {
             //metodogo getText para cada los JTextField 1,2 y textArea1 y asi obtener el texto
-            con.insertarInventario(
+            im.insertarInventario(
                 jtfNombreEquipo.getText(),
                 jtfCantidadEquipo.getText(),
                 taDescripcionEquipo.getText());
 
-            DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(), columnasInventario);
+            DefaultTableModel modeloTablaInventario = new DefaultTableModel(im.getInventario(), columnasInventario);
             tablaInventarioEquipo.setModel(modeloTablaInventario);
 
             jtfNombreEquipo.setText("");
@@ -383,7 +380,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
 
     private void jtfBuscarInventarioCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarInventarioCaretUpdate
         // TODO add your handling code here:
-        DefaultTableModel modeloTablaBuscarInventario = new DefaultTableModel(con.buscarInventario(jtfBuscarInventario.getText()), columnasInventario);
+        DefaultTableModel modeloTablaBuscarInventario = new DefaultTableModel(im.buscarInventario(jtfBuscarInventario.getText()), columnasInventario);
         tablaInventarioEquipo.setModel(modeloTablaBuscarInventario);
     }//GEN-LAST:event_jtfBuscarInventarioCaretUpdate
 
@@ -394,8 +391,8 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
         if (filaSelect == -1) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un articulo", "Advertencia", JOptionPane.WARNING_MESSAGE);
         } else {
-            con.ModificarInventario(jtfNombreEquipo.getText(), jtfCantidadEquipo.getText(), taDescripcionEquipo.getText(), jtfNombreEquipo.getText());
-            DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(), columnasInventario);
+            im.ModificarInventario(jtfNombreEquipo.getText(), jtfCantidadEquipo.getText(), taDescripcionEquipo.getText(), jtfNombreEquipo.getText());
+            DefaultTableModel modeloTablaInventario = new DefaultTableModel(im.getInventario(), columnasInventario);
             tablaInventarioEquipo.setModel(modeloTablaInventario);
             jtfNombreEquipo.setText("");
             jtfCantidadEquipo.setText("");
@@ -412,8 +409,8 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Advertencia", JOptionPane.WARNING_MESSAGE);
         } else {
             String nombremaquina = tablaInventarioEquipo.getValueAt(r, 1).toString();
-            con.eliminarInventario(nombremaquina);
-            DefaultTableModel modeloTablaInventario = new DefaultTableModel(con.getInventario(), columnasInventario);
+            im.eliminarInventario(nombremaquina);
+            DefaultTableModel modeloTablaInventario = new DefaultTableModel(im.getInventario(), columnasInventario);
             tablaInventarioEquipo.setModel(modeloTablaInventario);
 
         }  
