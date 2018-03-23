@@ -1,21 +1,25 @@
 package royal_gym;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 
 public class Clientes {
-
+    
     // variables
     private static Statement statement;
     static ResultSet resultado;
-    private Connection conexion;
-
+    
+    
     //Columnas de la tabla Clientes
     private final String[] columnasClientes = {
         "No.", "Nombres", "Fecha de Nacimiento", "Altura", "Peso", "Masa Corporal", "Clasificación"
@@ -32,7 +36,7 @@ public class Clientes {
         Object[][] datosCliente = null;
         try {
             String consulta = "Select nombres ||' '||apellidos as NombreCompleto, fechaNacimiento, altura, peso, Peso / (Altura * Altura) as imc FROM cliente AS a ORDER BY nombres";
-            statement = conexion.createStatement();
+            statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
 
             int numeroLista = 1;
