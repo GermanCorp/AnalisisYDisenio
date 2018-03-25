@@ -40,7 +40,8 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         this.con = new Conexion();
         con.conectar();
         
-        
+        DefaultTableModel modeloTablaPagos = new DefaultTableModel(pagos.getPago(), columnasPagos);
+        tablaPagos.setModel(modeloTablaPagos);
         
     }
 

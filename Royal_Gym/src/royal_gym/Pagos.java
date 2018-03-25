@@ -1,16 +1,31 @@
 package royal_gym;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static royal_gym.Conexion.resultado;
 
 public class Pagos {
     
     private Connection conexion;
     private static Statement statement;
+    static ResultSet resultado;
     
+    public Pagos(){
+         try {
+            
+            conexion = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
+            } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+          }
+    }
+     
     // método para insertar pagos a la base de datos
     public void insertarPagos(String cliente, String monto, String tiempo, String tipotiempo, String tipoplan, String fecha) {
         try {
