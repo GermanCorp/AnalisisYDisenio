@@ -13,24 +13,19 @@ import static royal_gym.Conexion.resultado;
 
 public class Pagos {
     
-    private Connection conexion;
+    
     private static Statement statement;
     static ResultSet resultado;
     
-    public Pagos(){
-         try {
-            
-            conexion = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
-            } catch (SQLException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-          }
-    }
+   
+    
      
     // método para insertar pagos a la base de datos
     public void insertarPagos(String cliente, String monto, String tiempo, String tipotiempo, String tipoplan, String fecha) {
         try {
             String sql = "insert into Pagos(cliente, monto, tiempo , tipo_tiempo, tpo_plan,fecha_pago ) values(?,?,?,?,?,?)";
-            PreparedStatement consulta = conexion.prepareStatement(sql);
+            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
+            
             consulta.setString(1, cliente);
             consulta.setString(2, monto);
             consulta.setString(3, tiempo);
@@ -52,7 +47,7 @@ public class Pagos {
 
         try {
             String consulta = "SELECT cliente,monto,tiempo,tipo_tiempo,tpo_plan,fecha_pago  FROM pagos order by id_pago DESC ";
-            statement = conexion.createStatement();
+            statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
             int numeroLista = 1;
 
@@ -106,7 +101,7 @@ public class Pagos {
         Object[][] datosCliente = null;
         try {
             String consulta = "SELECT *  FROM pagos WHERE  cliente LIKE '%' || ? || '%' ORDER BY cliente";
-            PreparedStatement statement = conexion.prepareStatement(consulta);
+            PreparedStatement statement = Conexion.getConexion().prepareStatement(consulta);
             statement.setString(1, nombre);
 
             resultado = statement.executeQuery();
@@ -132,6 +127,39 @@ public class Pagos {
         return datosCliente;
     }
 
+    public Object[][] getClienteTipoPlan(String tipo) {
+
+		Object[][] datos = null;
+
+		try {
+			String sql = "Select * from pagos where tpo_plan = ?";
+			PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql); // PrepareStatement se utiliza cuando se utilizan consultas que llevan signo de ?
+			consulta.setString(1, tipo); 
+			ResultSet resultado = consulta.executeQuery();
+                        
+                        int numeroLista = 1;
+			ArrayList<Object[]> d = new ArrayList<>();
+
+			while (resultado.next()) {
+				d.add(new Object[] { 
+                                    numeroLista++,
+						resultado.getString("Cliente"),
+                            resultado.getString("Monto"),
+                            resultado.getString("Tiempo"),
+                            resultado.getString("tipo_tiempo"),
+                            resultado.getString("tpo_plan"),
+                            resultado.getString("fecha_pago"),
+                                });
+						
+			}
+
+			datos = new Object[d.size()][];
+			d.toArray(datos); 
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return datos;
+	}
 
     
     
