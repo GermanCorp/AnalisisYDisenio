@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Jazmin%20Vargas/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/Utilidad.java</file>
             <file>file:/C:/Users/Jazmin%20Vargas/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/Pagos.java</file>
             <file>file:/C:/Users/Jazmin%20Vargas/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelUtilidad.java</file>
             <file>file:/C:/Users/Jazmin%20Vargas/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/ClasePrincipal.java</file>
+=======
+            <file>file:/C:/Users/alxcr/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelRegistroClientes.java</file>
+            <file>file:/C:/Users/alxcr/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/ClasePrincipal.java</file>
+            <file>file:/C:/Users/alxcr/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/Clientes.java</file>
+            <file>file:/C:/Users/alxcr/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/Conexion.java</file>
+            <file>file:/C:/Users/alxcr/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/VentanaPrincipal.java</file>
+>>>>>>> be9c35d57184415455ec6daf9855648b33095976
         </group>
     </open-files>
 </project-private>

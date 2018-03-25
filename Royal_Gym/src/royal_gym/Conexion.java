@@ -16,14 +16,14 @@ import javax.swing.JOptionPane;
 
 public class Conexion {
 
-    private Connection conexion;
+    static private Connection conexion;
     private static Statement statement;
     static ResultSet resultado;
     double totalIngresos = 0;
     double totalGastos = 0;
 
     //conectarse a la base de datos
-    public void conectar() {
+    public static void conectar() {
         try {
             Class.forName("org.sqlite.JDBC");
             conexion = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
@@ -34,13 +34,18 @@ public class Conexion {
     }
 
     // método para cerrar la base de datos
-    public void cerrar() {
+    public static void cerrar() {
         try {
             conexion.close();
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static Connection getConexion(){
+        return conexion;
+    }
+    
 
     // formatea lo numeros doubles
     public String formatearNumero(double numero) {
