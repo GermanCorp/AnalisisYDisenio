@@ -18,6 +18,10 @@ public class Clientes {
     // variables
     private static Statement statement;
     static ResultSet resultado;
+
+    public Clientes() {
+        
+    }
     
     
     //Columnas de la tabla Clientes
@@ -30,6 +34,7 @@ public class Clientes {
         DefaultTableModel modeloTablaClientes = new DefaultTableModel(getCliente(), columnasClientes);
         tabla.setModel(modeloTablaClientes);
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="Método para Obtener Clientes">                
     public Object[][] getCliente() {

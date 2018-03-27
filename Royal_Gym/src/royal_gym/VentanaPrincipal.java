@@ -32,9 +32,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 jTabbedPane1FocusGained(evt);
             }
         });
-        jTabbedPane1.addTab("tab1", panelRegistroPagos1);
-        jTabbedPane1.addTab("tab2", panelRegistroClientes1);
-        jTabbedPane1.addTab("tab3", panelInventarioMaquinaria1);
+        jTabbedPane1.addTab("tab1", new javax.swing.ImageIcon(getClass().getResource("/iconos/RegistrarPago_3.png")), panelRegistroPagos1); // NOI18N
+        jTabbedPane1.addTab("tab2", new javax.swing.ImageIcon(getClass().getResource("/iconos/AgregarNuevo_2.png")), panelRegistroClientes1); // NOI18N
+        jTabbedPane1.addTab("tab3", new javax.swing.ImageIcon(getClass().getResource("/iconos/Inventario_2.png")), panelInventarioMaquinaria1); // NOI18N
         jTabbedPane1.addTab("tab4", panelCumpleaneros1);
         jTabbedPane1.addTab("tab5", panelGastos1);
         jTabbedPane1.addTab("tab6", panelUtilidad1);
