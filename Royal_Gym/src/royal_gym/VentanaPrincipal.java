@@ -39,7 +39,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTabbedPane1.addTab("tab4", panelCumpleaneros1);
         jTabbedPane1.addTab("tab5", panelGastos1);
         jTabbedPane1.addTab("tab6", panelUtilidad1);
-        jTabbedPane1.addTab("tab7", panelVentas1);
+        jTabbedPane1.addTab("Vender", panelVentas1);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
