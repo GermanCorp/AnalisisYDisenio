@@ -21,6 +21,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelCumpleaneros1 = new presentacion.PanelCumpleaneros();
         panelGastos1 = new presentacion.PanelGastos();
         panelUtilidad1 = new presentacion.PanelUtilidad();
+        panelVentas1 = new presentacion.PanelVentas();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -38,6 +39,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTabbedPane1.addTab("tab4", panelCumpleaneros1);
         jTabbedPane1.addTab("tab5", panelGastos1);
         jTabbedPane1.addTab("tab6", panelUtilidad1);
+        jTabbedPane1.addTab("tab7", panelVentas1);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -80,5 +82,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private presentacion.PanelRegistroClientes panelRegistroClientes1;
     private presentacion.PanelRegistroPagos panelRegistroPagos1;
     private presentacion.PanelUtilidad panelUtilidad1;
+    private presentacion.PanelVentas panelVentas1;
     // End of variables declaration//GEN-END:variables
 } // </editor-fold> 

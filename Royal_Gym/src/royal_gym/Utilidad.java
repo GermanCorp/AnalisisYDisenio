@@ -1,17 +1,31 @@
 package royal_gym;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static royal_gym.Conexion.resultado;
 
 public class Utilidad {
     
-     private Connection conexion;
+    private Connection conexion;
     private static Statement statement;
     public double totalIngresos = 0;
     public double totalGastos = 0;
+    
+    
+    public Utilidad(){
+        try {
+            
+            conexion = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
+            } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+          }
+    }
     
     
     //metodo para llenar la tabla con los gastos  que hubieron  segun el rango de fecha seleccionado

@@ -40,7 +40,8 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         this.con = new Conexion();
         con.conectar();
         
-        
+        DefaultTableModel modeloTablaPagos = new DefaultTableModel(pagos.getPago(), columnasPagos);
+        tablaPagos.setModel(modeloTablaPagos);
         
     }
 
@@ -76,7 +77,8 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                 return false;
             }
         };
-        jLabel16 = new javax.swing.JLabel();
+        combobuscarportipoplan = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(85, 96, 128));
 
@@ -304,7 +306,16 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tablaPagos);
 
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Buscar.png"))); // NOI18N
+        combobuscarportipoplan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Individual", "Pareja", "Grupo", "Estudiante" }));
+        combobuscarportipoplan.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combobuscarportipoplanItemStateChanged(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Tipo de Plan:");
 
         javax.swing.GroupLayout PanelTablaPagosLayout = new javax.swing.GroupLayout(PanelTablaPagos);
         PanelTablaPagos.setLayout(PanelTablaPagosLayout);
@@ -313,22 +324,30 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             .addGroup(PanelTablaPagosLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(PanelTablaPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
                     .addGroup(PanelTablaPagosLayout.createSequentialGroup()
-                        .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel16)))
-                .addGap(20, 20, 20))
+                        .addComponent(jtfbuscarpago)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(combobuscarportipoplan, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         PanelTablaPagosLayout.setVerticalGroup(
             PanelTablaPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelTablaPagosLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(PanelTablaPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(PanelTablaPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelTablaPagosLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelTablaPagosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(PanelTablaPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(combobuscarportipoplan, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
                 .addGap(40, 40, 40))
         );
 
@@ -525,6 +544,32 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         jcbPagoPlan.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 5));
     }//GEN-LAST:event_tablaPagosMouseClicked
 
+    private void combobuscarportipoplanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combobuscarportipoplanItemStateChanged
+        // TODO add your handling code here:
+        int tf = combobuscarportipoplan.getSelectedIndex();
+				switch (tf) {
+				
+				case 0:
+					//String idt = filtro.getText();
+					DefaultTableModel modeloTablaPagos = new DefaultTableModel(pagos.getClienteTipoPlan(combobuscarportipoplan.getSelectedItem().toString()), columnasPagos);
+                                        tablaPagos.setModel(modeloTablaPagos);
+					break;
+				case 1:
+					 DefaultTableModel modeloTablaPagos1 = new DefaultTableModel(pagos.getClienteTipoPlan(combobuscarportipoplan.getSelectedItem().toString()), columnasPagos);
+                                         tablaPagos.setModel(modeloTablaPagos1);
+					break;
+				case 2:
+					
+					 DefaultTableModel modeloTablaPagos2 = new DefaultTableModel(pagos.getClienteTipoPlan(combobuscarportipoplan.getSelectedItem().toString()), columnasPagos);
+                                         tablaPagos.setModel(modeloTablaPagos2);
+					break;
+					
+				}
+			
+        
+        
+    }//GEN-LAST:event_combobuscarportipoplanItemStateChanged
+
      public String[] getTipoTiempo(String tiempo) {
         String[] plan = new String[4];
         if (tiempo.equalsIgnoreCase("Mes")) {
@@ -538,8 +583,9 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelTablaPagos;
+    private javax.swing.JComboBox<String> combobuscarportipoplan;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbPagoAceptar;
     private javax.swing.JButton jbPagoCancelar;
