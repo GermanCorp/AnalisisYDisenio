@@ -3,35 +3,31 @@ package presentacion;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Clientes;
 
 public class PanelRegistroClientes extends javax.swing.JPanel {
     Clientes clientes = new Clientes();
-     //Columnas de la tabla Clientes
+    
+    //Columnas de la tabla Clientes
     private final String[] columnasClientes = {"No.", "Nombres", "Fecha de Nacimiento", "Altura", "Peso", "Masa Corporal", "Clasificación"};
    
+    //Constructor
     public PanelRegistroClientes() {
         initComponents();
         clientes.modeloTablaCliente(columnasClientes, tablaClientes);
-        tablaClientes.setComponentPopupMenu(jPopupMenu1);
     }
     
-    public void mousePressed(MouseEvent event) {
-        // selects the row at which point the mouse is clicked
-        Point point = event.getPoint();
-        int currentRow = tablaClientes.rowAtPoint(point);
-        tablaClientes.setRowSelectionInterval(currentRow, currentRow);
-    }
+   
     
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItemModificar = new javax.swing.JMenuItem();
+        jMenuItemEliminar = new javax.swing.JMenuItem();
         panelDatosCliente = new javax.swing.JPanel();
         btnCancelarRegistroCliente = new javax.swing.JButton();
         jlRegistroClientes = new javax.swing.JLabel();
@@ -58,11 +54,21 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         };
         jtfBuscarCliente = new javax.swing.JTextField();
 
-        jMenuItem1.setText("Modificar");
-        jPopupMenu1.add(jMenuItem1);
+        jMenuItemModificar.setText("Modificar");
+        jMenuItemModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItemModificarMouseClicked(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItemModificar);
 
-        jMenuItem2.setText("Eliminar");
-        jPopupMenu1.add(jMenuItem2);
+        jMenuItemEliminar.setText("Eliminar");
+        jMenuItemEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItemEliminarMouseClicked(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItemEliminar);
 
         setBackground(new java.awt.Color(85, 96, 128));
 
@@ -289,9 +295,11 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             }
         ));
         tablaClientes.setAutoscrolls(true);
+        tablaClientes.setComponentPopupMenu(jPopupMenu1);
+        tablaClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaClientesMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tablaClientesMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tablaClientesMouseReleased(evt);
@@ -448,10 +456,6 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
 
     }//GEN-LAST:event_panelDatosClienteFocusGained
 
-    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
-
-    }//GEN-LAST:event_tablaClientesMouseClicked
-
     private void jtfBuscarClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarClienteCaretUpdate
         DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(clientes.buscarCliente(jtfBuscarCliente.getText(),jtfBuscarCliente.getText()), columnasClientes);
         tablaClientes.setModel(modeloTablaBuscarClientes);
@@ -469,6 +473,23 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tablaClientesMouseReleased
 
+    private void tablaClientesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMousePressed
+            Point point = evt.getPoint();
+            int currentRow = tablaClientes.rowAtPoint(point);
+            tablaClientes.setRowSelectionInterval(currentRow, currentRow);
+    }//GEN-LAST:event_tablaClientesMousePressed
+
+    private void jMenuItemModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemModificarMouseClicked
+        
+    }//GEN-LAST:event_jMenuItemModificarMouseClicked
+
+    private void jMenuItemEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemEliminarMouseClicked
+            int filaSeleccionada = tablaClientes.getSelectedRow();
+            String nombreCliente = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
+            clientes.eliminarCliente(nombreCliente);
+            clientes.modeloTablaCliente(columnasClientes, tablaClientes);
+    }//GEN-LAST:event_jMenuItemEliminarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelTabla;
@@ -482,8 +503,8 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItemEliminar;
+    private javax.swing.JMenuItem jMenuItemModificar;
     private javax.swing.JPopupMenu jPopupMenu1;
     private com.toedter.calendar.JDateChooser jdcFecha;
     private javax.swing.JLabel jlRegistroClientes;

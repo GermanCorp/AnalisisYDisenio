@@ -143,4 +143,16 @@ public class Clientes {
         return datosCliente;
     }// </editor-fold>
     
+    public void eliminarCliente(String nombreCliente) {
+
+        try {
+            String sql = "Delete from cliente where nombres ||' '|| apellidos as nombreCompleto = ?";
+            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
+            consulta.setString(1, nombreCliente);
+            consulta.execute();
+
+        } catch (Exception e) {
+            System.out.println("Eliminar Cliente" + e.getMessage());
+        }
+    }
 }
