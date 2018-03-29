@@ -148,16 +148,17 @@ public class Clientes {
         return datosCliente;
     }// </editor-fold>
     
-    public void eliminarCliente(String nombreCliente) {
+    public void eliminarCliente(String nombreCliente, String fechaNacimiento) {
 
         try {
-            String sql = "Delete from cliente where nombres ||' '|| apellidos as nombreCompleto = ?";
+            String sql = "Delete from cliente where nombres ||' '|| apellidos = ? and fechaNacimiento = ?";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, nombreCliente);
+            consulta.setString(2, fechaNacimiento);
             consulta.execute();
 
         } catch (Exception e) {
-            System.out.println("Eliminar Cliente" + e.getMessage());
+            System.out.println("error en Eliminar Cliente" + e.getMessage());
         }
     }
 }

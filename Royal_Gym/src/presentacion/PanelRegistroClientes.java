@@ -59,6 +59,9 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenuItemModificarMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuItemModificarMousePressed(evt);
+            }
         });
         jPopupMenu1.add(jMenuItemModificar);
 
@@ -66,6 +69,9 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         jMenuItemEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenuItemEliminarMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuItemEliminarMousePressed(evt);
             }
         });
         jPopupMenu1.add(jMenuItemEliminar);
@@ -414,6 +420,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         if (evt.getKeyChar() == '.' && jtfAltura.getText().contains(".")) {
             evt.consume();
         }
+
     }//GEN-LAST:event_jtfAlturaKeyTyped
 
     private void btnAceptarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteActionPerformed
@@ -439,9 +446,16 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfPesoKeyReleased
 
     private void jtfPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesoKeyTyped
+        
         char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
             btnAceptarRegistroCliente.doClick();
+        }
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && jtfPeso.getText().contains(".")) {
+            evt.consume();
         }
     }//GEN-LAST:event_jtfPesoKeyTyped
 
@@ -450,6 +464,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
             btnAceptarRegistroCliente.doClick();
         }
+        
     }//GEN-LAST:event_jdcFechaKeyTyped
 
     private void panelDatosClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelDatosClienteFocusGained
@@ -484,11 +499,28 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jMenuItemModificarMouseClicked
 
     private void jMenuItemEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemEliminarMouseClicked
-            int filaSeleccionada = tablaClientes.getSelectedRow();
-            String nombreCliente = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
-            clientes.eliminarCliente(nombreCliente);
-            clientes.modeloTablaCliente(columnasClientes, tablaClientes);
+            
     }//GEN-LAST:event_jMenuItemEliminarMouseClicked
+
+    private void jMenuItemModificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemModificarMousePressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jMenuItemModificarMousePressed
+
+    private void jMenuItemEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemEliminarMousePressed
+        // TODO add your handling code here:
+        jPopupMenu1.setVisible(false);
+        int filaSeleccionada = tablaClientes.getSelectedRow();
+            String nombreCliente = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
+            String fechaNacimiento = tablaClientes.getValueAt(filaSeleccionada, 2).toString();
+            int mjs = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea eliminar a "+ nombreCliente+" ?");
+            if(mjs == JOptionPane.YES_OPTION){
+                clientes.eliminarCliente(nombreCliente, fechaNacimiento);
+                clientes.modeloTablaCliente(columnasClientes, tablaClientes);
+                JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente");
+            }
+            
+    }//GEN-LAST:event_jMenuItemEliminarMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
