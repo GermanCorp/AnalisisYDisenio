@@ -38,7 +38,7 @@ public class Cumpleaneros {
 
         try {
             String consulta = "Select * FROM Edad";
-            statement = conexion.createStatement();
+            statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
 
             int numeroLista = 1;

@@ -30,7 +30,7 @@ public class InventarioMaquinaria
     public void insertarInventario(String NombreEquipo, String CantidadEquipo, String Descripcion) {
         try {
             String sql = "insert into inventario (nombre, cantidad, descripcion) values (?,?,?)";
-            PreparedStatement consulta = conexion.prepareStatement(sql);
+            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, NombreEquipo);
             consulta.setString(2, CantidadEquipo);
             consulta.setString(3, Descripcion);
@@ -46,7 +46,7 @@ public class InventarioMaquinaria
 
         try {
             String consulta = "SELECT nombre, cantidad, descripcion,cod_equipo FROM inventario";
-            statement = conexion.createStatement();
+            statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
             int numeroLista = 1;
 
