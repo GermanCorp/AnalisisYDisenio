@@ -57,7 +57,6 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         panelDatosPago = new javax.swing.JPanel();
         jtfClienteAPagar = new javax.swing.JLabel();
         jcbClienteAPagar = new javax.swing.JComboBox<>();
-        jtfSelccionarCliente = new javax.swing.JTextField();
         jlMontoPagar = new javax.swing.JLabel();
         jtfMontoAPagar = new javax.swing.JTextField();
         jlTiempoPago = new javax.swing.JLabel();
@@ -99,12 +98,6 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         jcbClienteAPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbClienteAPagarActionPerformed(evt);
-            }
-        });
-
-        jtfSelccionarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtfSelccionarClienteMouseClicked(evt);
             }
         });
 
@@ -204,30 +197,34 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                                 .addComponent(jLabel11)
                                 .addGap(20, 20, 20)
                                 .addComponent(jlRegistroClientes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jtfPagoTipodePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelDatosPagoLayout.createSequentialGroup()
-                                .addComponent(jtfClienteAPagar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jcbClienteAPagar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(22, 22, 22))
+                            .addComponent(jtfPagoTipodePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(67, Short.MAX_VALUE))
                     .addGroup(panelDatosPagoLayout.createSequentialGroup()
                         .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelDatosPagoLayout.createSequentialGroup()
+                                .addComponent(jtfClienteAPagar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jcbClienteAPagar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelDatosPagoLayout.createSequentialGroup()
+                                .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jcbPagoPlan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jtfMontoAPagar, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelDatosPagoLayout.createSequentialGroup()
+                                        .addComponent(jbPagoAceptar)
+                                        .addGap(46, 46, 46)
+                                        .addComponent(jbPagoCancelar))
+                                    .addComponent(jlMontoPagar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(panelDatosPagoLayout.createSequentialGroup()
-                                .addComponent(jlTiempoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(90, 90, 90))
-                            .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jcbPagoPlan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jtfMontoAPagar, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(panelDatosPagoLayout.createSequentialGroup()
-                                    .addComponent(jbPagoAceptar)
-                                    .addGap(46, 46, 46)
-                                    .addComponent(jbPagoCancelar))
-                                .addComponent(jlMontoPagar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addGroup(panelDatosPagoLayout.createSequentialGroup()
-                                .addComponent(jtfTiempoAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(jcbTiempoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jtfSelccionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(panelDatosPagoLayout.createSequentialGroup()
+                                        .addComponent(jlTiempoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(90, 90, 90))
+                                    .addGroup(panelDatosPagoLayout.createSequentialGroup()
+                                        .addComponent(jtfTiempoAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(20, 20, 20)
+                                        .addComponent(jcbTiempoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 18, Short.MAX_VALUE))))
         );
         panelDatosPagoLayout.setVerticalGroup(
@@ -237,16 +234,11 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                 .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlRegistroClientes1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelDatosPagoLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jtfClienteAPagar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosPagoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcbClienteAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(59, 59, 59)
+                .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jtfClienteAPagar)
+                    .addComponent(jcbClienteAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jtfSelccionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlMontoPagar)
                 .addGap(3, 3, 3)
                 .addComponent(jtfMontoAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -385,11 +377,6 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     private void jcbClienteAPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClienteAPagarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbClienteAPagarActionPerformed
-
-    private void jtfSelccionarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfSelccionarClienteMouseClicked
-        PanelListaDeClientes ventanaCliente = new PanelListaDeClientes();
-        ventanaCliente.setVisible(true);
-    }//GEN-LAST:event_jtfSelccionarClienteMouseClicked
 
     private void jtfMontoAPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfMontoAPagarActionPerformed
         // TODO add your handling code here:
@@ -598,7 +585,6 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     private javax.swing.JLabel jtfClienteAPagar;
     private javax.swing.JTextField jtfMontoAPagar;
     private javax.swing.JLabel jtfPagoTipodePlan;
-    public javax.swing.JTextField jtfSelccionarCliente;
     private javax.swing.JTextField jtfTiempoAPagar;
     private javax.swing.JTextField jtfbuscarpago;
     private javax.swing.JPanel panelDatosPago;
