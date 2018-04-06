@@ -5,6 +5,7 @@
  */
 package presentacion;
 
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
@@ -36,6 +37,7 @@ public class Expediente extends javax.swing.JDialog {
     public Expediente(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds());
         setLocationRelativeTo(registroClientes);
 
         // Close the dialog when Esc is pressed
