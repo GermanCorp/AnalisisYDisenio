@@ -9,6 +9,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class PanelLogin extends javax.swing.JFrame {
+   
+    
     public PanelLogin() {
         initComponents();
         setLocationRelativeTo(null);
@@ -44,6 +46,12 @@ public class PanelLogin extends javax.swing.JFrame {
         lblUsuario.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblUsuario.setText("Usuario:");
+
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
 
         lblContrasena.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         lblContrasena.setForeground(new java.awt.Color(255, 255, 255));
@@ -141,6 +149,19 @@ public class PanelLogin extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    public void login(String usuario,String password){
+        
+        String Sql = "";
+        Conexion con = new Conexion();
+        Connection cn = con.
+        Sql = "Select * from gimnasio where usuario = '"+usuario+"' and contrasena = '"+password+"'" ;
+     
+        
+        }
+            
+        
+    }
+    
     
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
@@ -150,23 +171,16 @@ public class PanelLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el nombre de usuario", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (txtContrasena.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
-        } 
-        
-        String usua = txtUsuario.getText();
-        String pass = new String(txtContrasena.getPassword());
-        
-        if(usua.equals("admin") && pass.equals("1234"))
-        {
-            this.setVisible(false);
-            JOptionPane.showMessageDialog(null, "Bienvenido");
-        }
-        
-        
+        }   
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
              
     }//GEN-LAST:event_btnAceptarMouseClicked
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     
     public static void main(String args[]) {

@@ -318,7 +318,7 @@ public class Conexion {
         Object[][] datosInventario = null;
         try {
             String consulta = "SELECT nombre, cantidad, descripcion FROM inventario where nombre like'%' || ? || '%'";
-            PreparedStatement statement = conexion.prepareStatement(consulta);
+            PreparedStatement statement = Conexion.getConexion().prepareStatement(consulta);
             statement.setString(1, nombresmaquina);
 
             resultado = statement.executeQuery();
@@ -347,7 +347,7 @@ public class Conexion {
 
         try {
             String sql = "update inventario set nombre = ?, cantidad = ?, descripcion = ? where nombre = ?";
-            PreparedStatement consulta = conexion.prepareStatement(sql);
+            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, nombremaquina);
             consulta.setString(2, cantidad);
             consulta.setString(3, descripcion);
@@ -364,7 +364,7 @@ public class Conexion {
 
         try {
             String sql = "Delete from inventario where nombre = ?";
-            PreparedStatement consulta = conexion.prepareStatement(sql);
+            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, nombremaquina);
             consulta.execute();
 
@@ -379,7 +379,7 @@ public class Conexion {
 
         try {
             String consulta = "Select * FROM Edad";
-            statement = conexion.createStatement();
+            statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
 
             int numeroLista = 1;
