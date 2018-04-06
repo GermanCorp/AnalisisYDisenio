@@ -20,10 +20,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="PanelDatosCliente" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="PanelProblemasdeSalud" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="PanelProblemasdeSalud" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="PanelCambiosCorporales" min="-2" max="-2" attributes="0"/>
@@ -39,14 +36,14 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="PanelDatosCliente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="PanelProblemasdeSalud" min="-2" pref="388" max="-2" attributes="0"/>
+                      <Component id="PanelProblemasdeSalud" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="PanelCambiosCorporales" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="438" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -138,14 +135,12 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="labeldatoscliente" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="botonaceptarexpediente" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="labeldatoscliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botonaceptarexpediente" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelnombre" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelfechainicio" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -184,7 +179,7 @@
                       <Component id="jTextField11" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -393,14 +388,14 @@
                       <Component id="jCBoxanemia" min="-2" max="-2" attributes="0"/>
                       <Component id="problemasderinon" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="25" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Component id="labelpesosquiere" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -415,7 +410,7 @@
                               <Component id="jCBoxulcera" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jCBoxmalacirculacion" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="jCBoxcansancio" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -430,21 +425,21 @@
                                       <Component id="jCBoxansiedad" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jCBoxanemia" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jCBoxcolitis" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jCBoxalergias" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jCBoxembarazo" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jCBoxproblemasdevesicula" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jCBoxestrenimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jCBoxestres" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jCBoxretenciondeliquidos" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="problemasderinon" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   <Component id="jCBoxdolordecabeza" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -452,20 +447,20 @@
                                   <Component id="jCheckBox28" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jCBoxdolordecuello" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jCBoxcalambres" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jCBoxdiabetes" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jCBoxdoloresdeespalda" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jCBoxvarices" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jCBoxpresionalta" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jCBoxartritis" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -714,7 +709,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jtfpeso" alignment="3" min="-2" max="-2" attributes="0"/>
