@@ -5,15 +5,28 @@
  */
 package presentacion;
 
+import javax.swing.table.DefaultTableModel;
+import royal_gym.Expediente;
+
 /**
  *
  * @author Jazmin Vargas
  */
 public class PanelExpediente extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelExpediente
-     */
+    Expediente expediente= new Expediente();
+    
+    private final String[] columnasCambios = {
+        "",
+        "Peso",
+        "Imc",
+        "%Grasa",
+        "%Musculo",
+        "Calorias",
+        "Edad/B",
+        "Grasa Viceral"
+    };
+    
     public PanelExpediente() {
         initComponents();
     }
@@ -53,6 +66,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         jTextField10 = new javax.swing.JTextField();
         jTextField11 = new javax.swing.JTextField();
         jTextField12 = new javax.swing.JTextField();
+        botonaceptarexpediente = new javax.swing.JButton();
         PanelProblemasdeSalud = new javax.swing.JPanel();
         labelpesosquiere = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -200,6 +214,13 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        botonaceptarexpediente.setText("Aceptar");
+        botonaceptarexpediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonaceptarexpedienteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelDatosClienteLayout = new javax.swing.GroupLayout(PanelDatosCliente);
         PanelDatosCliente.setLayout(PanelDatosClienteLayout);
         PanelDatosClienteLayout.setHorizontalGroup(
@@ -209,8 +230,9 @@ public class PanelExpediente extends javax.swing.JPanel {
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                         .addComponent(labeldatoscliente)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosClienteLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonaceptarexpediente))
+                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosClienteLayout.createSequentialGroup()
                                 .addComponent(labelhoraparallamar)
@@ -238,7 +260,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                                 .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)
                                 .addComponent(labeledad)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)))
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                                 .addComponent(labelfechainicio)
@@ -261,14 +283,17 @@ public class PanelExpediente extends javax.swing.JPanel {
                             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                                 .addComponent(labelfechanacimiento)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField8)))
-                        .addGap(20, 20, 20))))
+                                .addComponent(jTextField8)))))
+                .addGap(20, 20, 20))
         );
         PanelDatosClienteLayout.setVerticalGroup(
             PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(labeldatoscliente)
+                .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(labeldatoscliente))
+                    .addComponent(botonaceptarexpediente))
                 .addGap(17, 17, 17)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelnombre)
@@ -767,11 +792,21 @@ public class PanelExpediente extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfimcActionPerformed
 
+    private void botonaceptarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarexpedienteActionPerformed
+        // TODO add your handling code here:
+        
+        expediente.insertarCambiosCorporales(jtfpeso.getText(),jtfimc.getText(),jtfgrasa.getText(),jtfmusculo.getText(),jtfcalorias.getText(),jtfedad.getText(),jtfgrasaviceral.getText());
+        
+         DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getPago(),columnasCambios);
+        tablacambioscorporales.setModel(modeloTablaPagos);
+    }//GEN-LAST:event_botonaceptarexpedienteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelCambiosCorporales;
     private javax.swing.JPanel PanelDatosCliente;
     private javax.swing.JPanel PanelProblemasdeSalud;
+    private javax.swing.JButton botonaceptarexpediente;
     private javax.swing.JCheckBox jCBoxBajar;
     private javax.swing.JCheckBox jCBoxalergias;
     private javax.swing.JCheckBox jCBoxanemia;
