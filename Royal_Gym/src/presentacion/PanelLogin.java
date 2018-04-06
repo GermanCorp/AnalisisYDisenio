@@ -1,14 +1,20 @@
 package presentacion;
 
+import java.sql.Connection;
 import javax.swing.JOptionPane;
+import royal_gym.Conexion;
+import royal_gym.Validaciones;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PanelLogin extends javax.swing.JFrame {
-    
-
     public PanelLogin() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        setTitle("Acceso al sistema");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         
     }
@@ -17,11 +23,11 @@ public class PanelLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         panelLogin = new javax.swing.JPanel();
-        jlAccesoAlSistema = new javax.swing.JLabel();
-        jlUsuario = new javax.swing.JLabel();
-        jtfUsuario = new javax.swing.JTextField();
-        jlContrasena = new javax.swing.JLabel();
-        jpfContrasena = new javax.swing.JPasswordField();
+        lblAcceso = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
+        lblContrasena = new javax.swing.JLabel();
+        txtContrasena = new javax.swing.JPasswordField();
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnIcono = new javax.swing.JButton();
@@ -31,17 +37,17 @@ public class PanelLogin extends javax.swing.JFrame {
         panelLogin.setBackground(new java.awt.Color(85, 96, 128));
         panelLogin.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jlAccesoAlSistema.setFont(new java.awt.Font("Arial", 3, 32)); // NOI18N
-        jlAccesoAlSistema.setForeground(new java.awt.Color(255, 255, 255));
-        jlAccesoAlSistema.setText("Acceso Al Sistema");
+        lblAcceso.setFont(new java.awt.Font("Times New Roman", 3, 32)); // NOI18N
+        lblAcceso.setForeground(new java.awt.Color(255, 255, 255));
+        lblAcceso.setText("Acceso Al Sistema");
 
-        jlUsuario.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
-        jlUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        jlUsuario.setText("Usuario");
+        lblUsuario.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuario.setText("Usuario:");
 
-        jlContrasena.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
-        jlContrasena.setForeground(new java.awt.Color(255, 255, 255));
-        jlContrasena.setText("Contrasena");
+        lblContrasena.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
+        lblContrasena.setForeground(new java.awt.Color(255, 255, 255));
+        lblContrasena.setText("Contrasena:");
 
         btnAceptar.setBackground(new java.awt.Color(85, 96, 128));
         btnAceptar.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
@@ -59,7 +65,7 @@ public class PanelLogin extends javax.swing.JFrame {
 
         btnCancelar.setBackground(new java.awt.Color(85, 96, 128));
         btnCancelar.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("Salir");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -75,44 +81,45 @@ public class PanelLogin extends javax.swing.JFrame {
         panelLoginLayout.setHorizontalGroup(
             panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLoginLayout.createSequentialGroup()
-                .addGap(70, 70, 70)
                 .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelLoginLayout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(btnIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jlContrasena)
-                    .addComponent(jlUsuario)
-                    .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(panelLoginLayout.createSequentialGroup()
-                            .addGap(98, 98, 98)
-                            .addComponent(btnAceptar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                            .addComponent(btnCancelar))
-                        .addComponent(jlAccesoAlSistema, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtfUsuario, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jpfContrasena, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(70, 70, 70)
+                        .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblContrasena)
+                            .addComponent(lblUsuario)
+                            .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(lblAcceso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                                .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtContrasena, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelLoginLayout.createSequentialGroup()
+                                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(panelLoginLayout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addComponent(btnIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(70, 70, 70))
         );
         panelLoginLayout.setVerticalGroup(
             panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLoginLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jlAccesoAlSistema)
+                .addGap(35, 35, 35)
+                .addComponent(lblAcceso)
                 .addGap(35, 35, 35)
                 .addComponent(btnIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(lblUsuario)
+                .addGap(18, 18, 18)
+                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblContrasena)
+                .addGap(18, 18, 18)
+                .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jlUsuario)
-                .addGap(15, 15, 15)
-                .addComponent(jtfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(jlContrasena)
-                .addGap(15, 15, 15)
-                .addComponent(jpfContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
                 .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
                     .addComponent(btnCancelar))
-                .addGap(25, 25, 25))
+                .addGap(35, 35, 35))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -128,31 +135,40 @@ public class PanelLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+        
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        if (jtfUsuario.getText().equals("") && jpfContrasena.getText().equals("")) {
+        if (txtUsuario.getText().equals("") && txtContrasena.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Debe ingresar el Usuario y Contrasena", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (jtfUsuario.getText().isEmpty()) {
+        } else if (txtUsuario.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el nombre de usuario", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jpfContrasena.getText().isEmpty()) {
+        } else if (txtContrasena.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
         } 
+        
+        String usua = txtUsuario.getText();
+        String pass = new String(txtContrasena.getPassword());
+        
+        if(usua.equals("admin") && pass.equals("1234"))
+        {
+            this.setVisible(false);
+            JOptionPane.showMessageDialog(null, "Bienvenido");
+        }
+        
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
-        // TODO add your handling code here:
-        String usuario = "Admin";
-        String contrasena = "1234";
-        String password = new String(jpfContrasena.getPassword());
-        
+             
     }//GEN-LAST:event_btnAceptarMouseClicked
 
+    
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -166,11 +182,13 @@ public class PanelLogin extends javax.swing.JFrame {
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnIcono;
-    private javax.swing.JLabel jlAccesoAlSistema;
-    private javax.swing.JLabel jlContrasena;
-    private javax.swing.JLabel jlUsuario;
-    private javax.swing.JPasswordField jpfContrasena;
-    private javax.swing.JTextField jtfUsuario;
+    private javax.swing.JLabel lblAcceso;
+    private javax.swing.JLabel lblContrasena;
+    private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel panelLogin;
+    private javax.swing.JPasswordField txtContrasena;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+   
 }
+
