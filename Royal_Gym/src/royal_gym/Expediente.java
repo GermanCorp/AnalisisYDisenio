@@ -60,6 +60,36 @@ public class Expediente {
         }
     }// fin de insertar pago
 
-     
+     public Object[][] getCambios() {
+        Object[][] datosPago = null;
+
+        try {
+            String consulta = "SELECT peso,imc,porcentajedegrasa,porcentajedemusculo,calorias,edad,grasaviceral  FROM cambioscorporales order by id_cambio DESC ";
+            statement = Conexion.getConexion().createStatement();
+            resultado = statement.executeQuery(consulta);
+            String numeroLista = "";
+
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+                filas.add(
+                    new Object[]{
+                    numeroLista,
+                    resultado.getString("peso"),
+                    resultado.getString("imc"),
+                    resultado.getString("porcentajedegrasa"),
+                    resultado.getString("porcentajedemusculo"),
+                    resultado.getString("calorias"),
+                    resultado.getString("edad"),
+                    resultado.getString("grasaviceral"),}
+                );
+            }
+            datosPago = new Object[filas.size()][];
+            filas.toArray(datosPago);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosPago;
+    }
     
 }

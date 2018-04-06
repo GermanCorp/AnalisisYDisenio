@@ -797,7 +797,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         
         expediente.insertarCambiosCorporales(jtfpeso.getText(),jtfimc.getText(),jtfgrasa.getText(),jtfmusculo.getText(),jtfcalorias.getText(),jtfedad.getText(),jtfgrasaviceral.getText());
         
-         DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getPago(),columnasCambios);
+         DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(),columnasCambios);
         tablacambioscorporales.setModel(modeloTablaPagos);
     }//GEN-LAST:event_botonaceptarexpedienteActionPerformed
 
