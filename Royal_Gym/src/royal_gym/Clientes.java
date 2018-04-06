@@ -59,9 +59,6 @@ public class Clientes {
             }
             datosCliente = new Object[filas.size()][];
             filas.toArray(datosCliente);
-
-            datosCliente = new Object[filas.size()][];
-            filas.toArray(datosCliente);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

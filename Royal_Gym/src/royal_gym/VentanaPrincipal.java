@@ -22,6 +22,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelGastos1 = new presentacion.PanelGastos();
         panelUtilidad1 = new presentacion.PanelUtilidad();
         panelVentas1 = new presentacion.PanelVentas();
+        panelExpediente1 = new presentacion.PanelExpediente();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemSalir = new javax.swing.JMenuItem();
@@ -41,6 +42,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTabbedPane1.addTab("tab5", panelGastos1);
         jTabbedPane1.addTab("tab6", panelUtilidad1);
         jTabbedPane1.addTab("Vender", new javax.swing.ImageIcon(getClass().getResource("/iconos/Agregar_Producto.png")), panelVentas1); // NOI18N
+        jTabbedPane1.addTab("tab8", panelExpediente1);
 
         jMenu1.setText("File");
 
@@ -70,7 +72,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Registrar Pago");
@@ -100,6 +102,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemSalir;
     private javax.swing.JTabbedPane jTabbedPane1;
     private presentacion.PanelCumpleaneros panelCumpleaneros1;
+    private presentacion.PanelExpediente panelExpediente1;
     private presentacion.PanelGastos panelGastos1;
     private presentacion.PanelInventarioMaquinaria panelInventarioMaquinaria1;
     private presentacion.PanelRegistroClientes panelRegistroClientes1;

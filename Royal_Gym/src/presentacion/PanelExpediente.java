@@ -5,15 +5,28 @@
  */
 package presentacion;
 
+import javax.swing.table.DefaultTableModel;
+import royal_gym.Expediente;
+
 /**
  *
  * @author Jazmin Vargas
  */
 public class PanelExpediente extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelExpediente
-     */
+    Expediente expediente= new Expediente();
+    
+    private final String[] columnasCambios = {
+        "",
+        "Peso",
+        "Imc",
+        "%Grasa",
+        "%Musculo",
+        "Calorias",
+        "Edad/B",
+        "Grasa Viceral"
+    };
+    
     public PanelExpediente() {
         initComponents();
     }
@@ -53,6 +66,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         jTextField10 = new javax.swing.JTextField();
         jTextField11 = new javax.swing.JTextField();
         jTextField12 = new javax.swing.JTextField();
+        botonaceptarexpediente = new javax.swing.JButton();
         PanelProblemasdeSalud = new javax.swing.JPanel();
         labelpesosquiere = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -86,21 +100,21 @@ public class PanelExpediente extends javax.swing.JPanel {
         jCheckBox28 = new javax.swing.JCheckBox();
         PanelCambiosCorporales = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
+        jtfpeso = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
+        jtfimc = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
+        jtfgrasa = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField16 = new javax.swing.JTextField();
+        jtfmusculo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
+        jtfcalorias = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField18 = new javax.swing.JTextField();
+        jtfedad = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField19 = new javax.swing.JTextField();
+        jtfgrasaviceral = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablacambioscorporales = new javax.swing.JTable();
 
         labeldatoscliente.setText("Datos del cliente");
 
@@ -110,7 +124,7 @@ public class PanelExpediente extends javax.swing.JPanel {
 
         labeldireccion.setText("Direccion:");
 
-        labelhoraparallamar.setText("Mejor hora para llama:");
+        labelhoraparallamar.setText("Mejor hora para llamar:");
 
         labelestatura.setText("Estatura:");
 
@@ -200,6 +214,13 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        botonaceptarexpediente.setText("Aceptar");
+        botonaceptarexpediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonaceptarexpedienteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelDatosClienteLayout = new javax.swing.GroupLayout(PanelDatosCliente);
         PanelDatosCliente.setLayout(PanelDatosClienteLayout);
         PanelDatosClienteLayout.setHorizontalGroup(
@@ -209,8 +230,9 @@ public class PanelExpediente extends javax.swing.JPanel {
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                         .addComponent(labeldatoscliente)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosClienteLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonaceptarexpediente))
+                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosClienteLayout.createSequentialGroup()
                                 .addComponent(labelhoraparallamar)
@@ -238,7 +260,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                                 .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)
                                 .addComponent(labeledad)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)))
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                                 .addComponent(labelfechainicio)
@@ -261,15 +283,17 @@ public class PanelExpediente extends javax.swing.JPanel {
                             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                                 .addComponent(labelfechanacimiento)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField8)))
-                        .addGap(20, 20, 20))))
+                                .addComponent(jTextField8)))))
+                .addContainerGap())
         );
         PanelDatosClienteLayout.setVerticalGroup(
             PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(labeldatoscliente)
-                .addGap(17, 17, 17)
+                .addGap(10, 10, 10)
+                .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labeldatoscliente)
+                    .addComponent(botonaceptarexpediente))
+                .addGap(12, 12, 12)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelnombre)
                     .addComponent(labelfechainicio)
@@ -303,7 +327,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         labelpesosquiere.setText("Peso Quiere:");
@@ -440,19 +464,23 @@ public class PanelExpediente extends javax.swing.JPanel {
                             .addComponent(jCBoxdiabetes)
                             .addComponent(jCBoxcansancio)
                             .addComponent(jCBoxpresionalta))
-                        .addGap(20, 20, 20)
                         .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jCBoxestres, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jCBoxdolordecabeza, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(jCBoxartritis)
-                            .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelProblemasdeSaludLayout.createSequentialGroup()
+                                .addGap(20, 20, 20)
                                 .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCBoxdoloresdeespalda, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jCBoxdolordecuello))
-                                .addComponent(jCBoxalergias, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jCBoxcolesterol))
-                        .addGap(20, 20, 20)
+                                    .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jCBoxestres, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jCBoxdolordecabeza, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(jCBoxartritis)
+                                    .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jCBoxdoloresdeespalda, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jCBoxdolordecuello))
+                                    .addComponent(jCBoxcolesterol))
+                                .addGap(20, 20, 20))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelProblemasdeSaludLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCBoxalergias, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)))
                         .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCBoxvarices)
                             .addComponent(jCBoxretenciondeliquidos)
@@ -472,7 +500,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         PanelProblemasdeSaludLayout.setVerticalGroup(
             PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelProblemasdeSaludLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(10, 10, 10)
                 .addComponent(labelpesosquiere)
                 .addGap(20, 20, 20)
                 .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -485,7 +513,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                         .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCBoxulcera)
                             .addComponent(jCBoxmalacirculacion))
-                        .addGap(20, 20, 20)
+                        .addGap(10, 10, 10)
                         .addComponent(jCBoxcansancio))
                     .addGroup(PanelProblemasdeSaludLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -498,54 +526,53 @@ public class PanelExpediente extends javax.swing.JPanel {
                                     .addComponent(jCBoxcolesterol)
                                     .addComponent(jCBoxansiedad)
                                     .addComponent(jCBoxanemia))
-                                .addGap(20, 20, 20)
+                                .addGap(10, 10, 10)
                                 .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jCBoxcolitis)
                                     .addComponent(jCBoxalergias)
                                     .addComponent(jCBoxembarazo)
                                     .addComponent(jCBoxproblemasdevesicula))
-                                .addGap(20, 20, 20)
+                                .addGap(10, 10, 10)
                                 .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jCBoxestrenimiento)
                                     .addComponent(jCBoxestres)
                                     .addComponent(jCBoxretenciondeliquidos)
                                     .addComponent(problemasderinon))
-                                .addGap(20, 20, 20)
+                                .addGap(10, 10, 10)
                                 .addComponent(jCBoxdolordecabeza))
                             .addGroup(PanelProblemasdeSaludLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jCheckBox28)))
-                        .addGap(20, 20, 20)
+                        .addGap(10, 10, 10)
                         .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCBoxdolordecuello)
-                            .addComponent(jCBoxcalambres))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(20, 20, 20)
+                            .addComponent(jCBoxcalambres))))
+                .addGap(10, 10, 10)
                 .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCBoxdiabetes)
                     .addComponent(jCBoxdoloresdeespalda)
                     .addComponent(jCBoxvarices))
-                .addGap(20, 20, 20)
+                .addGap(10, 10, 10)
                 .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCBoxpresionalta)
                     .addComponent(jCBoxartritis)
                     .addComponent(jCBoxdoloresdehueso))
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
         jLabel1.setText("Peso:");
 
-        jTextField13.addActionListener(new java.awt.event.ActionListener() {
+        jtfpeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField13ActionPerformed(evt);
+                jtfpesoActionPerformed(evt);
             }
         });
 
         jLabel3.setText("IMC:");
 
-        jTextField14.addActionListener(new java.awt.event.ActionListener() {
+        jtfimc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField14ActionPerformed(evt);
+                jtfimcActionPerformed(evt);
             }
         });
 
@@ -559,7 +586,7 @@ public class PanelExpediente extends javax.swing.JPanel {
 
         jLabel8.setText("Grasa Viceral:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablacambioscorporales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -570,7 +597,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablacambioscorporales);
 
         javax.swing.GroupLayout PanelCambiosCorporalesLayout = new javax.swing.GroupLayout(PanelCambiosCorporales);
         PanelCambiosCorporales.setLayout(PanelCambiosCorporalesLayout);
@@ -579,74 +606,70 @@ public class PanelExpediente extends javax.swing.JPanel {
             .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
                     .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
                         .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField16))
+                                .addComponent(jtfmusculo))
                             .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField15))
+                                .addComponent(jtfgrasa))
                             .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField14))
+                                .addComponent(jtfimc))
                             .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(2, 2, 2)
+                                .addComponent(jtfpeso, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
-                                .addGap(154, 154, 154)
-                                .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField18))
-                                    .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField19))))
-                            .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 99, Short.MAX_VALUE)))))
-                .addContainerGap())
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtfgrasaviceral)
+                            .addComponent(jtfedad)
+                            .addComponent(jtfcalorias, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))))
+                .addGap(20, 20, 20))
         );
         PanelCambiosCorporalesLayout.setVerticalGroup(
             PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jtfpeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfcalorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCambiosCorporalesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)))
                 .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfimc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addGap(20, 20, 20)
                 .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfgrasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfgrasaviceral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfmusculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -655,21 +678,26 @@ public class PanelExpediente extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(PanelProblemasdeSalud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PanelDatosCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PanelDatosCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanelProblemasdeSalud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(PanelDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(PanelProblemasdeSalud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(22, 22, 22)
-                .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(PanelDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(PanelProblemasdeSalud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -761,19 +789,29 @@ public class PanelExpediente extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBoxestrenimientoActionPerformed
 
-    private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
+    private void jtfpesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfpesoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField13ActionPerformed
+    }//GEN-LAST:event_jtfpesoActionPerformed
 
-    private void jTextField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField14ActionPerformed
+    private void jtfimcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfimcActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField14ActionPerformed
+    }//GEN-LAST:event_jtfimcActionPerformed
+
+    private void botonaceptarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarexpedienteActionPerformed
+        // TODO add your handling code here:
+        
+        expediente.insertarCambiosCorporales(jtfpeso.getText(),jtfimc.getText(),jtfgrasa.getText(),jtfmusculo.getText(),jtfcalorias.getText(),jtfedad.getText(),jtfgrasaviceral.getText());
+        
+         DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(),columnasCambios);
+        tablacambioscorporales.setModel(modeloTablaPagos);
+    }//GEN-LAST:event_botonaceptarexpedienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelCambiosCorporales;
     private javax.swing.JPanel PanelDatosCliente;
     private javax.swing.JPanel PanelProblemasdeSalud;
+    private javax.swing.JButton botonaceptarexpediente;
     private javax.swing.JCheckBox jCBoxBajar;
     private javax.swing.JCheckBox jCBoxalergias;
     private javax.swing.JCheckBox jCBoxanemia;
@@ -810,18 +848,10 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -830,6 +860,13 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jtfcalorias;
+    private javax.swing.JTextField jtfedad;
+    private javax.swing.JTextField jtfgrasa;
+    private javax.swing.JTextField jtfgrasaviceral;
+    private javax.swing.JTextField jtfimc;
+    private javax.swing.JTextField jtfmusculo;
+    private javax.swing.JTextField jtfpeso;
     private javax.swing.JLabel labelcelular;
     private javax.swing.JLabel labeldatoscliente;
     private javax.swing.JLabel labeldireccion;
@@ -845,5 +882,6 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JLabel labeltelefonocasa;
     private javax.swing.JLabel labeltelefonotrabajo;
     private javax.swing.JCheckBox problemasderinon;
+    private javax.swing.JTable tablacambioscorporales;
     // End of variables declaration//GEN-END:variables
 }
