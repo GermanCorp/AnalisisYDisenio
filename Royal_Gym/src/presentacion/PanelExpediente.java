@@ -86,21 +86,21 @@ public class PanelExpediente extends javax.swing.JPanel {
         jCheckBox28 = new javax.swing.JCheckBox();
         PanelCambiosCorporales = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
+        jtfpeso = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
+        jtfimc = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
+        jtfgrasa = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField16 = new javax.swing.JTextField();
+        jtfmusculo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
+        jtfcalorias = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField18 = new javax.swing.JTextField();
+        jtfedad = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField19 = new javax.swing.JTextField();
+        jtfgrasaviceral = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablacambioscorporales = new javax.swing.JTable();
 
         labeldatoscliente.setText("Datos del cliente");
 
@@ -110,7 +110,7 @@ public class PanelExpediente extends javax.swing.JPanel {
 
         labeldireccion.setText("Direccion:");
 
-        labelhoraparallamar.setText("Mejor hora para llama:");
+        labelhoraparallamar.setText("Mejor hora para llamar:");
 
         labelestatura.setText("Estatura:");
 
@@ -518,8 +518,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                         .addGap(20, 20, 20)
                         .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCBoxdolordecuello)
-                            .addComponent(jCBoxcalambres))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jCBoxcalambres))))
                 .addGap(20, 20, 20)
                 .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCBoxdiabetes)
@@ -535,17 +534,17 @@ public class PanelExpediente extends javax.swing.JPanel {
 
         jLabel1.setText("Peso:");
 
-        jTextField13.addActionListener(new java.awt.event.ActionListener() {
+        jtfpeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField13ActionPerformed(evt);
+                jtfpesoActionPerformed(evt);
             }
         });
 
         jLabel3.setText("IMC:");
 
-        jTextField14.addActionListener(new java.awt.event.ActionListener() {
+        jtfimc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField14ActionPerformed(evt);
+                jtfimcActionPerformed(evt);
             }
         });
 
@@ -559,7 +558,7 @@ public class PanelExpediente extends javax.swing.JPanel {
 
         jLabel8.setText("Grasa Viceral:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablacambioscorporales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -570,7 +569,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablacambioscorporales);
 
         javax.swing.GroupLayout PanelCambiosCorporalesLayout = new javax.swing.GroupLayout(PanelCambiosCorporales);
         PanelCambiosCorporales.setLayout(PanelCambiosCorporalesLayout);
@@ -579,25 +578,25 @@ public class PanelExpediente extends javax.swing.JPanel {
             .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
                     .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
                         .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField16))
+                                .addComponent(jtfmusculo))
                             .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField15))
+                                .addComponent(jtfgrasa))
                             .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField14))
+                                .addComponent(jtfimc))
                             .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jtfpeso, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(2, 2, 2)
                         .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
@@ -606,17 +605,16 @@ public class PanelExpediente extends javax.swing.JPanel {
                                     .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField18))
+                                        .addComponent(jtfedad))
                                     .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField19))))
+                                        .addComponent(jtfgrasaviceral))))
                             .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
-                                .addGap(35, 35, 35)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 99, Short.MAX_VALUE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfcalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         PanelCambiosCorporalesLayout.setVerticalGroup(
@@ -625,25 +623,25 @@ public class PanelExpediente extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfpeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfcalorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfimc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfgrasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfgrasaviceral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfmusculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -761,13 +759,13 @@ public class PanelExpediente extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBoxestrenimientoActionPerformed
 
-    private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
+    private void jtfpesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfpesoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField13ActionPerformed
+    }//GEN-LAST:event_jtfpesoActionPerformed
 
-    private void jTextField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField14ActionPerformed
+    private void jtfimcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfimcActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField14ActionPerformed
+    }//GEN-LAST:event_jtfimcActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -810,18 +808,10 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -830,6 +820,13 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jtfcalorias;
+    private javax.swing.JTextField jtfedad;
+    private javax.swing.JTextField jtfgrasa;
+    private javax.swing.JTextField jtfgrasaviceral;
+    private javax.swing.JTextField jtfimc;
+    private javax.swing.JTextField jtfmusculo;
+    private javax.swing.JTextField jtfpeso;
     private javax.swing.JLabel labelcelular;
     private javax.swing.JLabel labeldatoscliente;
     private javax.swing.JLabel labeldireccion;
@@ -845,5 +842,6 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JLabel labeltelefonocasa;
     private javax.swing.JLabel labeltelefonotrabajo;
     private javax.swing.JCheckBox problemasderinon;
+    private javax.swing.JTable tablacambioscorporales;
     // End of variables declaration//GEN-END:variables
 }
