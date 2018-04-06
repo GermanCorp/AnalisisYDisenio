@@ -28,6 +28,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuItemModificar = new javax.swing.JMenuItem();
         jMenuItemEliminar = new javax.swing.JMenuItem();
+        jMenuItemExpediente = new javax.swing.JMenuItem();
         panelDatosCliente = new javax.swing.JPanel();
         btnCancelarRegistroCliente = new javax.swing.JButton();
         jlRegistroClientes = new javax.swing.JLabel();
@@ -54,6 +55,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         };
         jtfBuscarCliente = new javax.swing.JTextField();
 
+        jMenuItemModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/jpop_modificar.png"))); // NOI18N
         jMenuItemModificar.setText("Modificar");
         jMenuItemModificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -65,6 +67,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         });
         jPopupMenu1.add(jMenuItemModificar);
 
+        jMenuItemEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/jpop_eliminar.png"))); // NOI18N
         jMenuItemEliminar.setText("Eliminar");
         jMenuItemEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -75,6 +78,20 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             }
         });
         jPopupMenu1.add(jMenuItemEliminar);
+
+        jMenuItemExpediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/jpop_expediente.png"))); // NOI18N
+        jMenuItemExpediente.setText("Mostrar Expediente");
+        jMenuItemExpediente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuItemExpedienteMousePressed(evt);
+            }
+        });
+        jMenuItemExpediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemExpedienteActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItemExpediente);
 
         setBackground(new java.awt.Color(85, 96, 128));
 
@@ -522,6 +539,16 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             
     }//GEN-LAST:event_jMenuItemEliminarMousePressed
 
+    private void jMenuItemExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExpedienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemExpedienteActionPerformed
+
+    private void jMenuItemExpedienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemExpedienteMousePressed
+        
+        jPopupMenu1.setVisible(false);
+        new Expediente(new javax.swing.JDialog(), true).setVisible(true);
+    }//GEN-LAST:event_jMenuItemExpedienteMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelTabla;
@@ -536,6 +563,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuItem jMenuItemEliminar;
+    private javax.swing.JMenuItem jMenuItemExpediente;
     private javax.swing.JMenuItem jMenuItemModificar;
     private javax.swing.JPopupMenu jPopupMenu1;
     private com.toedter.calendar.JDateChooser jdcFecha;

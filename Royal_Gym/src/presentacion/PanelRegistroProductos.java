@@ -213,7 +213,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
         );
 
         PanelTabla.setBackground(new java.awt.Color(85, 96, 128));
-        PanelTabla.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Clientes Registrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        PanelTabla.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Productos Registrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
         tablaClientes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -337,8 +337,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfAlturaKeyTyped
 
     private void btnAceptarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteActionPerformed
-        clientes.insertarCliente(jtfNombreCliente.getText(), jtfApellidoCliente.getText(), jdcFecha.getDateFormatString(), jtfAltura.getText(), jtfPeso.getText());
-        clientes.modeloTablaCliente(columnasClientes, tablaClientes);
+       
     }//GEN-LAST:event_btnAceptarRegistroClienteActionPerformed
 
     private void btnAceptarRegistroClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteKeyPressed

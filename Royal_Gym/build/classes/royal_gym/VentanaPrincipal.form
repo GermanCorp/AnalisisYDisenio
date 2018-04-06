@@ -27,6 +27,11 @@
             <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n"/>
+          </Properties>
+        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>
@@ -100,8 +105,8 @@
         <Component class="presentacion.PanelInventarioMaquinaria" name="panelInventarioMaquinaria1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab3">
-                <Property name="tabTitle" type="java.lang.String" value="tab3"/>
+              <JTabbedPaneConstraints tabName="Maquinaria">
+                <Property name="tabTitle" type="java.lang.String" value="Maquinaria"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/iconos/Inventario_2.png"/>
                 </Property>
@@ -112,8 +117,8 @@
         <Component class="presentacion.PanelCumpleaneros" name="panelCumpleaneros1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab4">
-                <Property name="tabTitle" type="java.lang.String" value="tab4"/>
+              <JTabbedPaneConstraints tabName="Cumplea&#xf1;eros">
+                <Property name="tabTitle" type="java.lang.String" value="Cumplea&#xf1;eros"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -121,8 +126,8 @@
         <Component class="presentacion.PanelGastos" name="panelGastos1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab5">
-                <Property name="tabTitle" type="java.lang.String" value="tab5"/>
+              <JTabbedPaneConstraints tabName="Gastos">
+                <Property name="tabTitle" type="java.lang.String" value="Gastos"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -130,8 +135,8 @@
         <Component class="presentacion.PanelUtilidad" name="panelUtilidad1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab6">
-                <Property name="tabTitle" type="java.lang.String" value="tab6"/>
+              <JTabbedPaneConstraints tabName="Utilidad">
+                <Property name="tabTitle" type="java.lang.String" value="Utilidad"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -148,11 +153,11 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="presentacion.PanelExpediente" name="panelExpediente1">
+        <Component class="presentacion.PanelRegistroProductos" name="panelRegistroProductos1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab8">
-                <Property name="tabTitle" type="java.lang.String" value="tab8"/>
+              <JTabbedPaneConstraints tabName="Registrar Producto">
+                <Property name="tabTitle" type="java.lang.String" value="Registrar Producto"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
