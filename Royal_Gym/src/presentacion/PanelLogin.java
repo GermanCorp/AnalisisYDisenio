@@ -3,10 +3,12 @@ package presentacion;
 import javax.swing.JOptionPane;
 
 public class PanelLogin extends javax.swing.JFrame {
+    
 
     public PanelLogin() {
         initComponents();
         setLocationRelativeTo(null);
+        setResizable(false);
         
         
     }
@@ -140,9 +142,7 @@ public class PanelLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el nombre de usuario", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jpfContrasena.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, "Usuario Y Contrasena Incorrecta");
-        }
+        } 
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
