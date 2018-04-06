@@ -34,9 +34,8 @@
               <Component id="PanelDatosCliente" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
               <Component id="PanelProblemasdeSalud" max="32767" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Component id="PanelCambiosCorporales" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -56,42 +55,37 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="labelhoraparallamar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextField3" max="32767" attributes="0"/>
+                              </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="labelhoraparallamar" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTextField3" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="labeltelefonotrabajo" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTextField4" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="labeldireccion" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTextField2" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="labelnombre" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTextField1" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="labeltelefonotrabajo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextField4" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labeldireccion" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextField2" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labelnombre" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextField1" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="labelestatura" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField7" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="jTextField7" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="labelpeso" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField9" min="-2" pref="60" max="-2" attributes="0"/>
-                                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                                  <Component id="jTextField9" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="labeledad" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -111,11 +105,11 @@
                                   <Component id="jTextField12" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jTextField10" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="jTextField10" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="labelpesoideal" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelpesoideal" min="-2" pref="56" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField11" pref="60" max="32767" attributes="0"/>
+                                  <Component id="jTextField11" min="-2" pref="71" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="labelfechanacimiento" min="-2" max="-2" attributes="0"/>
@@ -201,7 +195,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="labelhoraparallamar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Mejor hora para llama:"/>
+            <Property name="text" type="java.lang.String" value="Mejor hora para llamar:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelestatura">
@@ -241,7 +235,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="labelpesoideal">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Peso Ideal"/>
+            <Property name="text" type="java.lang.String" value="Peso Ideal:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField1">
@@ -319,63 +313,56 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jCBoxsubir" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="jCkBBajar" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBoxBajar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBoxmantener" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jCheckBox6" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBox3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox9" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox10" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jCBoxestrenimiento" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxgastritis" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxcolitis" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxulcera" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxdiabetes" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxcansancio" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxpresionalta" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                  <Component id="jCheckBox13" alignment="1" min="-2" pref="105" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox14" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCBoxestres" alignment="1" min="-2" pref="105" max="-2" attributes="0"/>
+                                  <Component id="jCBoxdolordecabeza" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jCheckBox17" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxartritis" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBox16" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox15" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCBoxdoloresdeespalda" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCBoxdolordecuello" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jCheckBox12" alignment="1" min="-2" pref="117" max="-2" attributes="0"/>
+                                  <Component id="jCBoxalergias" alignment="1" min="-2" pref="117" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jCheckBox11" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxcolesterol" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jCheckBox23" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox20" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox21" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox19" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox18" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox24" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox22" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxvarices" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxretenciondeliquidos" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxmalacirculacion" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxembarazo" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxansiedad" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxdoloresdehueso" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxcalambres" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jCheckBox28" min="-2" max="-2" attributes="0"/>
-                      <Component id="jCheckBox26" min="-2" max="-2" attributes="0"/>
-                      <Component id="jCheckBox25" min="-2" max="-2" attributes="0"/>
-                      <Component id="jCheckBox27" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCBoxproblemasdevesicula" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCBoxanemia" min="-2" max="-2" attributes="0"/>
+                      <Component id="problemasderinon" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -386,19 +373,19 @@
                   <Component id="labelpesosquiere" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jCkBBajar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jCheckBox2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCBoxBajar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCBoxmantener" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jCBoxsubir" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jCheckBox8" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox21" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxulcera" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxmalacirculacion" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="jCheckBox7" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBoxcansancio" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -407,27 +394,27 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jCheckBox3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox18" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox25" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCBoxgastritis" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCBoxcolesterol" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCBoxansiedad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCBoxanemia" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jCheckBox4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox12" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox19" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox26" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCBoxcolitis" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCBoxalergias" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCBoxembarazo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCBoxproblemasdevesicula" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jCheckBox6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox13" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox20" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox27" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCBoxestrenimiento" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCBoxestres" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCBoxretenciondeliquidos" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="problemasderinon" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox14" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCBoxdolordecabeza" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -436,25 +423,24 @@
                           </Group>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jCheckBox15" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox22" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxdolordecuello" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBoxcalambres" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="2" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jCheckBox9" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jCheckBox16" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jCheckBox23" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCBoxdiabetes" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCBoxdoloresdeespalda" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCBoxvarices" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jCheckBox10" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jCheckBox17" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jCheckBox24" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCBoxpresionalta" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCBoxartritis" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCBoxdoloresdehueso" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -470,36 +456,36 @@
             <Property name="text" type="java.lang.String" value="Problemas de salud:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCkBBajar">
+        <Component class="javax.swing.JCheckBox" name="jCBoxBajar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Bajar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCkBBajarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBoxBajarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox2">
+        <Component class="javax.swing.JCheckBox" name="jCBoxmantener">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mantener"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBoxmantenerActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox3">
+        <Component class="javax.swing.JCheckBox" name="jCBoxgastritis">
           <Properties>
             <Property name="text" type="java.lang.String" value="Gastritis"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBoxgastritisActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox4">
+        <Component class="javax.swing.JCheckBox" name="jCBoxcolitis">
           <Properties>
             <Property name="text" type="java.lang.String" value="Colitis"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox4ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBoxcolitisActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxsubir">
@@ -510,127 +496,127 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBoxsubirActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox6">
+        <Component class="javax.swing.JCheckBox" name="jCBoxestrenimiento">
           <Properties>
             <Property name="text" type="java.lang.String" value="Estrenimiento"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox6ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBoxestrenimientoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox7">
+        <Component class="javax.swing.JCheckBox" name="jCBoxcansancio">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cansancio"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox8">
+        <Component class="javax.swing.JCheckBox" name="jCBoxulcera">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ulcera"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox9">
+        <Component class="javax.swing.JCheckBox" name="jCBoxdiabetes">
           <Properties>
             <Property name="text" type="java.lang.String" value="Diabetes"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox10">
+        <Component class="javax.swing.JCheckBox" name="jCBoxpresionalta">
           <Properties>
             <Property name="text" type="java.lang.String" value="Presion Alta"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox11">
+        <Component class="javax.swing.JCheckBox" name="jCBoxcolesterol">
           <Properties>
             <Property name="text" type="java.lang.String" value="Colesterol"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox12">
+        <Component class="javax.swing.JCheckBox" name="jCBoxalergias">
           <Properties>
             <Property name="text" type="java.lang.String" value="Alergias"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox13">
+        <Component class="javax.swing.JCheckBox" name="jCBoxestres">
           <Properties>
             <Property name="text" type="java.lang.String" value="Estres"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox14">
+        <Component class="javax.swing.JCheckBox" name="jCBoxdolordecabeza">
           <Properties>
             <Property name="text" type="java.lang.String" value="Dolor de Cabeza"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox15">
+        <Component class="javax.swing.JCheckBox" name="jCBoxdolordecuello">
           <Properties>
             <Property name="text" type="java.lang.String" value="Dolor de Cuello"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox16">
+        <Component class="javax.swing.JCheckBox" name="jCBoxdoloresdeespalda">
           <Properties>
             <Property name="text" type="java.lang.String" value="Dolores de Espalda"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox16ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBoxdoloresdeespaldaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox17">
+        <Component class="javax.swing.JCheckBox" name="jCBoxartritis">
           <Properties>
             <Property name="text" type="java.lang.String" value="Artritis"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox17ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBoxartritisActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox18">
+        <Component class="javax.swing.JCheckBox" name="jCBoxansiedad">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ansiedad"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox18ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBoxansiedadActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox19">
+        <Component class="javax.swing.JCheckBox" name="jCBoxembarazo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Embarazo/Lactancia"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox19ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBoxembarazoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox20">
+        <Component class="javax.swing.JCheckBox" name="jCBoxretenciondeliquidos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Retencion de Liquidos"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox21">
+        <Component class="javax.swing.JCheckBox" name="jCBoxmalacirculacion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mala Circulacion"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox22">
+        <Component class="javax.swing.JCheckBox" name="jCBoxcalambres">
           <Properties>
             <Property name="text" type="java.lang.String" value="Calambres"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox23">
+        <Component class="javax.swing.JCheckBox" name="jCBoxvarices">
           <Properties>
             <Property name="text" type="java.lang.String" value="Varices"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox24">
+        <Component class="javax.swing.JCheckBox" name="jCBoxdoloresdehueso">
           <Properties>
             <Property name="text" type="java.lang.String" value="Dolores de Hueso"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox25">
+        <Component class="javax.swing.JCheckBox" name="jCBoxanemia">
           <Properties>
             <Property name="text" type="java.lang.String" value="Anemia"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox26">
+        <Component class="javax.swing.JCheckBox" name="jCBoxproblemasdevesicula">
           <Properties>
             <Property name="text" type="java.lang.String" value="Problemas de Vesicula"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox27">
+        <Component class="javax.swing.JCheckBox" name="problemasderinon">
           <Properties>
             <Property name="text" type="java.lang.String" value="Problemas de Rinon"/>
           </Properties>
@@ -647,24 +633,155 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="17" max="32767" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="452" max="-2" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jScrollPane1" pref="553" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jtfmusculo" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jtfgrasa" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jtfimc" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jtfpeso" min="-2" pref="160" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jtfedad" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jtfgrasaviceral" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jtfcalorias" min="-2" pref="166" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="14" max="32767" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="114" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfpeso" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfcalorias" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfimc" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfedad" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfgrasa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfgrasaviceral" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfmusculo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="182" max="-2" attributes="0"/>
+                  <EmptySpace pref="25" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Peso:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jtfpeso">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfpesoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="IMC:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jtfimc">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfimcActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="%Grasa:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jtfgrasa">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="%Musculo:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jtfmusculo">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Calorias:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jtfcalorias">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Edad/B:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jtfedad">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Grasa Viceral:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jtfgrasaviceral">
+        </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>

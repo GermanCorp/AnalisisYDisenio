@@ -56,35 +56,49 @@ public class PanelExpediente extends javax.swing.JPanel {
         PanelProblemasdeSalud = new javax.swing.JPanel();
         labelpesosquiere = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jCkBBajar = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        jCBoxBajar = new javax.swing.JCheckBox();
+        jCBoxmantener = new javax.swing.JCheckBox();
+        jCBoxgastritis = new javax.swing.JCheckBox();
+        jCBoxcolitis = new javax.swing.JCheckBox();
         jCBoxsubir = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
-        jCheckBox11 = new javax.swing.JCheckBox();
-        jCheckBox12 = new javax.swing.JCheckBox();
-        jCheckBox13 = new javax.swing.JCheckBox();
-        jCheckBox14 = new javax.swing.JCheckBox();
-        jCheckBox15 = new javax.swing.JCheckBox();
-        jCheckBox16 = new javax.swing.JCheckBox();
-        jCheckBox17 = new javax.swing.JCheckBox();
-        jCheckBox18 = new javax.swing.JCheckBox();
-        jCheckBox19 = new javax.swing.JCheckBox();
-        jCheckBox20 = new javax.swing.JCheckBox();
-        jCheckBox21 = new javax.swing.JCheckBox();
-        jCheckBox22 = new javax.swing.JCheckBox();
-        jCheckBox23 = new javax.swing.JCheckBox();
-        jCheckBox24 = new javax.swing.JCheckBox();
-        jCheckBox25 = new javax.swing.JCheckBox();
-        jCheckBox26 = new javax.swing.JCheckBox();
-        jCheckBox27 = new javax.swing.JCheckBox();
+        jCBoxestrenimiento = new javax.swing.JCheckBox();
+        jCBoxcansancio = new javax.swing.JCheckBox();
+        jCBoxulcera = new javax.swing.JCheckBox();
+        jCBoxdiabetes = new javax.swing.JCheckBox();
+        jCBoxpresionalta = new javax.swing.JCheckBox();
+        jCBoxcolesterol = new javax.swing.JCheckBox();
+        jCBoxalergias = new javax.swing.JCheckBox();
+        jCBoxestres = new javax.swing.JCheckBox();
+        jCBoxdolordecabeza = new javax.swing.JCheckBox();
+        jCBoxdolordecuello = new javax.swing.JCheckBox();
+        jCBoxdoloresdeespalda = new javax.swing.JCheckBox();
+        jCBoxartritis = new javax.swing.JCheckBox();
+        jCBoxansiedad = new javax.swing.JCheckBox();
+        jCBoxembarazo = new javax.swing.JCheckBox();
+        jCBoxretenciondeliquidos = new javax.swing.JCheckBox();
+        jCBoxmalacirculacion = new javax.swing.JCheckBox();
+        jCBoxcalambres = new javax.swing.JCheckBox();
+        jCBoxvarices = new javax.swing.JCheckBox();
+        jCBoxdoloresdehueso = new javax.swing.JCheckBox();
+        jCBoxanemia = new javax.swing.JCheckBox();
+        jCBoxproblemasdevesicula = new javax.swing.JCheckBox();
+        problemasderinon = new javax.swing.JCheckBox();
         jCheckBox28 = new javax.swing.JCheckBox();
         PanelCambiosCorporales = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jtfpeso = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jtfimc = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jtfgrasa = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jtfmusculo = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jtfcalorias = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jtfedad = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jtfgrasaviceral = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablacambioscorporales = new javax.swing.JTable();
 
@@ -96,7 +110,7 @@ public class PanelExpediente extends javax.swing.JPanel {
 
         labeldireccion.setText("Direccion:");
 
-        labelhoraparallamar.setText("Mejor hora para llama:");
+        labelhoraparallamar.setText("Mejor hora para llamar:");
 
         labelestatura.setText("Estatura:");
 
@@ -112,7 +126,7 @@ public class PanelExpediente extends javax.swing.JPanel {
 
         labeledad.setText("Edad:");
 
-        labelpesoideal.setText("Peso Ideal");
+        labelpesoideal.setText("Peso Ideal:");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,36 +212,33 @@ public class PanelExpediente extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosClienteLayout.createSequentialGroup()
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosClienteLayout.createSequentialGroup()
+                                .addComponent(labelhoraparallamar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField3))
                             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                        .addComponent(labelhoraparallamar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField3))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelDatosClienteLayout.createSequentialGroup()
-                                        .addComponent(labeltelefonotrabajo)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField4))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelDatosClienteLayout.createSequentialGroup()
-                                        .addComponent(labeldireccion)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField2))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelDatosClienteLayout.createSequentialGroup()
-                                        .addComponent(labelnombre)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField1)))
-                                .addGap(18, 18, 18))
+                                .addComponent(labeltelefonotrabajo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField4))
+                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                                .addComponent(labeldireccion)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField2))
+                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                                .addComponent(labelnombre)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField1))
                             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                                 .addComponent(labelestatura)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)
                                 .addComponent(labelpeso)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
                                 .addComponent(labeledad)
-                                .addGap(6, 6, 6)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                                 .addComponent(labelfechainicio)
@@ -242,11 +253,11 @@ public class PanelExpediente extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField12))
                             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)
-                                .addComponent(labelpesoideal)
+                                .addComponent(labelpesoideal, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField11, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                                 .addComponent(labelfechanacimiento)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -299,31 +310,31 @@ public class PanelExpediente extends javax.swing.JPanel {
 
         jLabel2.setText("Problemas de salud:");
 
-        jCkBBajar.setText("Bajar");
-        jCkBBajar.addActionListener(new java.awt.event.ActionListener() {
+        jCBoxBajar.setText("Bajar");
+        jCBoxBajar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCkBBajarActionPerformed(evt);
+                jCBoxBajarActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setText("Mantener");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        jCBoxmantener.setText("Mantener");
+        jCBoxmantener.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                jCBoxmantenerActionPerformed(evt);
             }
         });
 
-        jCheckBox3.setText("Gastritis");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+        jCBoxgastritis.setText("Gastritis");
+        jCBoxgastritis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
+                jCBoxgastritisActionPerformed(evt);
             }
         });
 
-        jCheckBox4.setText("Colitis");
-        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+        jCBoxcolitis.setText("Colitis");
+        jCBoxcolitis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox4ActionPerformed(evt);
+                jCBoxcolitisActionPerformed(evt);
             }
         });
 
@@ -334,74 +345,74 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
-        jCheckBox6.setText("Estrenimiento");
-        jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
+        jCBoxestrenimiento.setText("Estrenimiento");
+        jCBoxestrenimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox6ActionPerformed(evt);
+                jCBoxestrenimientoActionPerformed(evt);
             }
         });
 
-        jCheckBox7.setText("Cansancio");
+        jCBoxcansancio.setText("Cansancio");
 
-        jCheckBox8.setText("Ulcera");
+        jCBoxulcera.setText("Ulcera");
 
-        jCheckBox9.setText("Diabetes");
+        jCBoxdiabetes.setText("Diabetes");
 
-        jCheckBox10.setText("Presion Alta");
+        jCBoxpresionalta.setText("Presion Alta");
 
-        jCheckBox11.setText("Colesterol");
+        jCBoxcolesterol.setText("Colesterol");
 
-        jCheckBox12.setText("Alergias");
+        jCBoxalergias.setText("Alergias");
 
-        jCheckBox13.setText("Estres");
+        jCBoxestres.setText("Estres");
 
-        jCheckBox14.setText("Dolor de Cabeza");
+        jCBoxdolordecabeza.setText("Dolor de Cabeza");
 
-        jCheckBox15.setText("Dolor de Cuello");
+        jCBoxdolordecuello.setText("Dolor de Cuello");
 
-        jCheckBox16.setText("Dolores de Espalda");
-        jCheckBox16.addActionListener(new java.awt.event.ActionListener() {
+        jCBoxdoloresdeespalda.setText("Dolores de Espalda");
+        jCBoxdoloresdeespalda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox16ActionPerformed(evt);
+                jCBoxdoloresdeespaldaActionPerformed(evt);
             }
         });
 
-        jCheckBox17.setText("Artritis");
-        jCheckBox17.addActionListener(new java.awt.event.ActionListener() {
+        jCBoxartritis.setText("Artritis");
+        jCBoxartritis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox17ActionPerformed(evt);
+                jCBoxartritisActionPerformed(evt);
             }
         });
 
-        jCheckBox18.setText("Ansiedad");
-        jCheckBox18.addActionListener(new java.awt.event.ActionListener() {
+        jCBoxansiedad.setText("Ansiedad");
+        jCBoxansiedad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox18ActionPerformed(evt);
+                jCBoxansiedadActionPerformed(evt);
             }
         });
 
-        jCheckBox19.setText("Embarazo/Lactancia");
-        jCheckBox19.addActionListener(new java.awt.event.ActionListener() {
+        jCBoxembarazo.setText("Embarazo/Lactancia");
+        jCBoxembarazo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox19ActionPerformed(evt);
+                jCBoxembarazoActionPerformed(evt);
             }
         });
 
-        jCheckBox20.setText("Retencion de Liquidos");
+        jCBoxretenciondeliquidos.setText("Retencion de Liquidos");
 
-        jCheckBox21.setText("Mala Circulacion");
+        jCBoxmalacirculacion.setText("Mala Circulacion");
 
-        jCheckBox22.setText("Calambres");
+        jCBoxcalambres.setText("Calambres");
 
-        jCheckBox23.setText("Varices");
+        jCBoxvarices.setText("Varices");
 
-        jCheckBox24.setText("Dolores de Hueso");
+        jCBoxdoloresdehueso.setText("Dolores de Hueso");
 
-        jCheckBox25.setText("Anemia");
+        jCBoxanemia.setText("Anemia");
 
-        jCheckBox26.setText("Problemas de Vesicula");
+        jCBoxproblemasdevesicula.setText("Problemas de Vesicula");
 
-        jCheckBox27.setText("Problemas de Rinon");
+        problemasderinon.setText("Problemas de Rinon");
 
         jCheckBox28.setText("Celulitis");
 
@@ -417,50 +428,46 @@ public class PanelExpediente extends javax.swing.JPanel {
                     .addGroup(PanelProblemasdeSaludLayout.createSequentialGroup()
                         .addComponent(jCBoxsubir)
                         .addGap(20, 20, 20)
-                        .addComponent(jCkBBajar)
+                        .addComponent(jCBoxBajar)
                         .addGap(20, 20, 20)
-                        .addComponent(jCheckBox2))
+                        .addComponent(jCBoxmantener))
                     .addGroup(PanelProblemasdeSaludLayout.createSequentialGroup()
                         .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelProblemasdeSaludLayout.createSequentialGroup()
-                                .addComponent(jCheckBox6)
-                                .addGap(20, 20, 20))
-                            .addGroup(PanelProblemasdeSaludLayout.createSequentialGroup()
-                                .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox3)
-                                    .addComponent(jCheckBox4)
-                                    .addComponent(jCheckBox8)
-                                    .addComponent(jCheckBox9)
-                                    .addComponent(jCheckBox7)
-                                    .addComponent(jCheckBox10))
-                                .addGap(20, 20, 20)))
-                        .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jCheckBox13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jCheckBox14, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(jCheckBox17)
-                            .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox16, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jCheckBox15))
-                                .addComponent(jCheckBox12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jCheckBox11))
+                            .addComponent(jCBoxestrenimiento, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jCBoxgastritis)
+                            .addComponent(jCBoxcolitis)
+                            .addComponent(jCBoxulcera)
+                            .addComponent(jCBoxdiabetes)
+                            .addComponent(jCBoxcansancio)
+                            .addComponent(jCBoxpresionalta))
                         .addGap(20, 20, 20)
                         .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox23)
-                            .addComponent(jCheckBox20)
-                            .addComponent(jCheckBox21)
-                            .addComponent(jCheckBox19)
-                            .addComponent(jCheckBox18)
-                            .addComponent(jCheckBox24)
-                            .addComponent(jCheckBox22))))
+                            .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jCBoxestres, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jCBoxdolordecabeza, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jCBoxartritis)
+                            .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCBoxdoloresdeespalda, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jCBoxdolordecuello))
+                                .addComponent(jCBoxalergias, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jCBoxcolesterol))
+                        .addGap(20, 20, 20)
+                        .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCBoxvarices)
+                            .addComponent(jCBoxretenciondeliquidos)
+                            .addComponent(jCBoxmalacirculacion)
+                            .addComponent(jCBoxembarazo)
+                            .addComponent(jCBoxansiedad)
+                            .addComponent(jCBoxdoloresdehueso)
+                            .addComponent(jCBoxcalambres))))
                 .addGap(20, 20, 20)
                 .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckBox28)
-                    .addComponent(jCheckBox26)
-                    .addComponent(jCheckBox25)
-                    .addComponent(jCheckBox27))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(jCBoxproblemasdevesicula)
+                    .addComponent(jCBoxanemia)
+                    .addComponent(problemasderinon))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelProblemasdeSaludLayout.setVerticalGroup(
             PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -469,17 +476,17 @@ public class PanelExpediente extends javax.swing.JPanel {
                 .addComponent(labelpesosquiere)
                 .addGap(20, 20, 20)
                 .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCkBBajar)
-                    .addComponent(jCheckBox2)
+                    .addComponent(jCBoxBajar)
+                    .addComponent(jCBoxmantener)
                     .addComponent(jCBoxsubir))
                 .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelProblemasdeSaludLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBox8)
-                            .addComponent(jCheckBox21))
+                            .addComponent(jCBoxulcera)
+                            .addComponent(jCBoxmalacirculacion))
                         .addGap(20, 20, 20)
-                        .addComponent(jCheckBox7))
+                        .addComponent(jCBoxcansancio))
                     .addGroup(PanelProblemasdeSaludLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jLabel2)
@@ -487,44 +494,69 @@ public class PanelExpediente extends javax.swing.JPanel {
                             .addGroup(PanelProblemasdeSaludLayout.createSequentialGroup()
                                 .addGap(20, 20, 20)
                                 .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jCheckBox3)
-                                    .addComponent(jCheckBox11)
-                                    .addComponent(jCheckBox18)
-                                    .addComponent(jCheckBox25))
+                                    .addComponent(jCBoxgastritis)
+                                    .addComponent(jCBoxcolesterol)
+                                    .addComponent(jCBoxansiedad)
+                                    .addComponent(jCBoxanemia))
                                 .addGap(20, 20, 20)
                                 .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jCheckBox4)
-                                    .addComponent(jCheckBox12)
-                                    .addComponent(jCheckBox19)
-                                    .addComponent(jCheckBox26))
+                                    .addComponent(jCBoxcolitis)
+                                    .addComponent(jCBoxalergias)
+                                    .addComponent(jCBoxembarazo)
+                                    .addComponent(jCBoxproblemasdevesicula))
                                 .addGap(20, 20, 20)
                                 .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jCheckBox6)
-                                    .addComponent(jCheckBox13)
-                                    .addComponent(jCheckBox20)
-                                    .addComponent(jCheckBox27))
+                                    .addComponent(jCBoxestrenimiento)
+                                    .addComponent(jCBoxestres)
+                                    .addComponent(jCBoxretenciondeliquidos)
+                                    .addComponent(problemasderinon))
                                 .addGap(20, 20, 20)
-                                .addComponent(jCheckBox14))
+                                .addComponent(jCBoxdolordecabeza))
                             .addGroup(PanelProblemasdeSaludLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jCheckBox28)))
                         .addGap(20, 20, 20)
                         .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBox15)
-                            .addComponent(jCheckBox22))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, Short.MAX_VALUE)))
+                            .addComponent(jCBoxdolordecuello)
+                            .addComponent(jCBoxcalambres))))
                 .addGap(20, 20, 20)
                 .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox9)
-                    .addComponent(jCheckBox16)
-                    .addComponent(jCheckBox23))
+                    .addComponent(jCBoxdiabetes)
+                    .addComponent(jCBoxdoloresdeespalda)
+                    .addComponent(jCBoxvarices))
                 .addGap(20, 20, 20)
                 .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox10)
-                    .addComponent(jCheckBox17)
-                    .addComponent(jCheckBox24))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(jCBoxpresionalta)
+                    .addComponent(jCBoxartritis)
+                    .addComponent(jCBoxdoloresdehueso))
+                .addGap(20, 20, 20))
         );
+
+        jLabel1.setText("Peso:");
+
+        jtfpeso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfpesoActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("IMC:");
+
+        jtfimc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfimcActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("%Grasa:");
+
+        jLabel5.setText("%Musculo:");
+
+        jLabel6.setText("Calorias:");
+
+        jLabel7.setText("Edad/B:");
+
+        jLabel8.setText("Grasa Viceral:");
 
         tablacambioscorporales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -543,17 +575,76 @@ public class PanelExpediente extends javax.swing.JPanel {
         PanelCambiosCorporales.setLayout(PanelCambiosCorporalesLayout);
         PanelCambiosCorporalesLayout.setHorizontalGroup(
             PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCambiosCorporalesLayout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                    .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
+                        .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfmusculo))
+                            .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfgrasa))
+                            .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfimc))
+                            .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfpeso, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(2, 2, 2)
+                        .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
+                                .addGap(154, 154, 154)
+                                .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jtfedad))
+                                    .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jtfgrasaviceral))))
+                            .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfcalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         PanelCambiosCorporalesLayout.setVerticalGroup(
             PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCambiosCorporalesLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jtfpeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jtfcalorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jtfimc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jtfedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jtfgrasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(jtfgrasaviceral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jtfmusculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -575,9 +666,8 @@ public class PanelExpediente extends javax.swing.JPanel {
                 .addComponent(PanelDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
                 .addComponent(PanelProblemasdeSalud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(22, 22, 22)
+                .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -629,80 +719,94 @@ public class PanelExpediente extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField12ActionPerformed
 
-    private void jCkBBajarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCkBBajarActionPerformed
+    private void jCBoxBajarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxBajarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCkBBajarActionPerformed
+    }//GEN-LAST:event_jCBoxBajarActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void jCBoxmantenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxmantenerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_jCBoxmantenerActionPerformed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+    private void jCBoxgastritisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxgastritisActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+    }//GEN-LAST:event_jCBoxgastritisActionPerformed
 
-    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+    private void jCBoxcolitisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxcolitisActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox4ActionPerformed
+    }//GEN-LAST:event_jCBoxcolitisActionPerformed
 
     private void jCBoxsubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxsubirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBoxsubirActionPerformed
 
-    private void jCheckBox16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox16ActionPerformed
+    private void jCBoxdoloresdeespaldaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxdoloresdeespaldaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox16ActionPerformed
+    }//GEN-LAST:event_jCBoxdoloresdeespaldaActionPerformed
 
-    private void jCheckBox17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox17ActionPerformed
+    private void jCBoxartritisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxartritisActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox17ActionPerformed
+    }//GEN-LAST:event_jCBoxartritisActionPerformed
 
-    private void jCheckBox18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox18ActionPerformed
+    private void jCBoxansiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxansiedadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox18ActionPerformed
+    }//GEN-LAST:event_jCBoxansiedadActionPerformed
 
-    private void jCheckBox19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox19ActionPerformed
+    private void jCBoxembarazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxembarazoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox19ActionPerformed
+    }//GEN-LAST:event_jCBoxembarazoActionPerformed
 
-    private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
+    private void jCBoxestrenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxestrenimientoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox6ActionPerformed
+    }//GEN-LAST:event_jCBoxestrenimientoActionPerformed
+
+    private void jtfpesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfpesoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfpesoActionPerformed
+
+    private void jtfimcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfimcActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfimcActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelCambiosCorporales;
     private javax.swing.JPanel PanelDatosCliente;
     private javax.swing.JPanel PanelProblemasdeSalud;
+    private javax.swing.JCheckBox jCBoxBajar;
+    private javax.swing.JCheckBox jCBoxalergias;
+    private javax.swing.JCheckBox jCBoxanemia;
+    private javax.swing.JCheckBox jCBoxansiedad;
+    private javax.swing.JCheckBox jCBoxartritis;
+    private javax.swing.JCheckBox jCBoxcalambres;
+    private javax.swing.JCheckBox jCBoxcansancio;
+    private javax.swing.JCheckBox jCBoxcolesterol;
+    private javax.swing.JCheckBox jCBoxcolitis;
+    private javax.swing.JCheckBox jCBoxdiabetes;
+    private javax.swing.JCheckBox jCBoxdolordecabeza;
+    private javax.swing.JCheckBox jCBoxdolordecuello;
+    private javax.swing.JCheckBox jCBoxdoloresdeespalda;
+    private javax.swing.JCheckBox jCBoxdoloresdehueso;
+    private javax.swing.JCheckBox jCBoxembarazo;
+    private javax.swing.JCheckBox jCBoxestrenimiento;
+    private javax.swing.JCheckBox jCBoxestres;
+    private javax.swing.JCheckBox jCBoxgastritis;
+    private javax.swing.JCheckBox jCBoxmalacirculacion;
+    private javax.swing.JCheckBox jCBoxmantener;
+    private javax.swing.JCheckBox jCBoxpresionalta;
+    private javax.swing.JCheckBox jCBoxproblemasdevesicula;
+    private javax.swing.JCheckBox jCBoxretenciondeliquidos;
     private javax.swing.JCheckBox jCBoxsubir;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox13;
-    private javax.swing.JCheckBox jCheckBox14;
-    private javax.swing.JCheckBox jCheckBox15;
-    private javax.swing.JCheckBox jCheckBox16;
-    private javax.swing.JCheckBox jCheckBox17;
-    private javax.swing.JCheckBox jCheckBox18;
-    private javax.swing.JCheckBox jCheckBox19;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox20;
-    private javax.swing.JCheckBox jCheckBox21;
-    private javax.swing.JCheckBox jCheckBox22;
-    private javax.swing.JCheckBox jCheckBox23;
-    private javax.swing.JCheckBox jCheckBox24;
-    private javax.swing.JCheckBox jCheckBox25;
-    private javax.swing.JCheckBox jCheckBox26;
-    private javax.swing.JCheckBox jCheckBox27;
+    private javax.swing.JCheckBox jCBoxulcera;
+    private javax.swing.JCheckBox jCBoxvarices;
     private javax.swing.JCheckBox jCheckBox28;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
-    private javax.swing.JCheckBox jCkBBajar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
@@ -716,6 +820,13 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jtfcalorias;
+    private javax.swing.JTextField jtfedad;
+    private javax.swing.JTextField jtfgrasa;
+    private javax.swing.JTextField jtfgrasaviceral;
+    private javax.swing.JTextField jtfimc;
+    private javax.swing.JTextField jtfmusculo;
+    private javax.swing.JTextField jtfpeso;
     private javax.swing.JLabel labelcelular;
     private javax.swing.JLabel labeldatoscliente;
     private javax.swing.JLabel labeldireccion;
@@ -730,6 +841,7 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JLabel labelpesosquiere;
     private javax.swing.JLabel labeltelefonocasa;
     private javax.swing.JLabel labeltelefonotrabajo;
+    private javax.swing.JCheckBox problemasderinon;
     private javax.swing.JTable tablacambioscorporales;
     // End of variables declaration//GEN-END:variables
 }
