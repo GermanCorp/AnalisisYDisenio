@@ -9,19 +9,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class PanelLogin extends javax.swing.JFrame {
-     static private Connection conexion;
+
+    static private Connection conexion;
     private static Statement statement;
-   
-     
+    Conexion cc = new Conexion();
+    Connection cn = cc.conexionLogin();
+
     public PanelLogin() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Acceso al sistema");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        
-        
+
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -145,10 +147,12 @@ public class PanelLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-        
+
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         System.exit(0);
+         txtUsuario.setText("");
+        txtContrasena.setText("");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     //conectarse a la base de datos
@@ -162,40 +166,28 @@ public class PanelLogin extends javax.swing.JFrame {
         }
     }
 
-    // método para cerrar la base de datos
-    public static void cerrar() {
+    //Metodo para acceder a la tabla usuario
+    public void acceder(String user, String pass) {
+        String sql = "SELECT * FROM usuarios WHERE usuario = '" + user + "' && contrasena = '" + pass + "'";
         try {
-            conexion.close();
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+            }
         } catch (SQLException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PanelLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    public static Connection getConexion(){
-        return conexion;
-    }
-     
 
-            
-    
+    }
+
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
+        
         //variables para usuario y contrasena
         String usu = txtUsuario.getText();
-        String pass = new String (txtContrasena.getPassword());
-        if(usu.equals("admin") && pass.equals("admin123456789"))
-        {
-            this.setVisible(true);
-            JOptionPane.showMessageDialog(null, "Bienvenido Admin");
-            PanelNuevoUsuario ingreso = new PanelNuevoUsuario();
-            ingreso.setVisible(true);
-            ingreso.pack();
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Usuario/Contrasena Incorrecta");
-            txtUsuario.requestFocus();
-        }
+        String pass = new String(txtContrasena.getPassword());
+        acceder(usu, pass);
+
         
         if (txtUsuario.getText().equals("") && txtContrasena.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Debe ingresar el Usuario y Contrasena", "Error", JOptionPane.ERROR_MESSAGE);
@@ -203,26 +195,25 @@ public class PanelLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el nombre de usuario", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (txtContrasena.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
-        }   
-        
+        }
+
         txtUsuario.setText("");
-            txtContrasena.setText("");
+        txtContrasena.setText("");
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
-             
+
     }//GEN-LAST:event_btnAceptarMouseClicked
-        
+
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
-    
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PanelLogin().setVisible(true);
-                
+
             }
         });
     }
@@ -239,6 +230,4 @@ public class PanelLogin extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
-   
 }
-

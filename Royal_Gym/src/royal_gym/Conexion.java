@@ -21,6 +21,29 @@ public class Conexion {
     static ResultSet resultado;
     double totalIngresos = 0;
     double totalGastos = 0;
+   Connection conn = null;
+   
+   
+   
+   //Metodo para conectar con la base de datos para Login
+   public Connection conexionLogin()
+   {
+       try {
+            Class.forName("org.sqlite.JDBC");
+            conexion = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
+            statement = conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return conn;
+   }
+   
+   public Connection getConnection(){
+        return conn;
+    }
+   
+   
+
 
     //conectarse a la base de datos
     public static void conectar() {
@@ -75,6 +98,7 @@ public class Conexion {
         }
         return tipoIMC;
     }
+    
 
     // método para insertar pagos a la base de datos
     public void insertarPagos(String cliente, String monto, String tiempo, String tipotiempo, String tipoplan, String fecha) {
@@ -550,6 +574,18 @@ public class Conexion {
             System.out.println(e.getMessage());
         }
         return datosPago;
+    }
+    
+    public void nuevoUser(String User, String Pass) {
+        try {
+            String sql = "insert into usuarios (usuario, contrasena) values (?,?)";
+            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
+            consulta.setString(1, User);
+            consulta.setString(2, Pass);
+            consulta.execute();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
     
 }
