@@ -45,7 +45,7 @@ public class Conexion {
     public static Connection getConexion(){
         return conexion;
     }
-    
+     
 
     // formatea lo numeros doubles
     public String formatearNumero(double numero) {
@@ -551,6 +551,5 @@ public class Conexion {
         }
         return datosPago;
     }
-    
     
 }
