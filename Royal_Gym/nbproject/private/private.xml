@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelCumpleaneros.java</file>
             <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelLogin.java</file>
             <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/Conexion.java</file>
@@ -18,6 +19,11 @@
             <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/InventarioMaquinaria.java</file>
             <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelRegistroClientes.java</file>
             <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelGastos.java</file>
+=======
+            <file>file:/C:/Users/alxcr/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/ListaClientes.java</file>
+            <file>file:/C:/Users/alxcr/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/VentanaPrincipal.java</file>
+            <file>file:/C:/Users/alxcr/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/Expediente.java</file>
+>>>>>>> 8d78eb8d746957fb905c9e4cf7ce5733492fd46c
         </group>
     </open-files>
 </project-private>
