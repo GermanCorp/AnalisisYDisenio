@@ -6,6 +6,7 @@
 package presentacion;
 
 import javax.swing.table.DefaultTableModel;
+import royal_gym.Conexion;
 import royal_gym.Expediente;
 
 /**
@@ -15,6 +16,7 @@ import royal_gym.Expediente;
 public class PanelExpediente extends javax.swing.JPanel {
 
     Expediente expediente= new Expediente();
+    final Conexion con;
     
     private final String[] columnasCambios = {
         "",
@@ -29,6 +31,13 @@ public class PanelExpediente extends javax.swing.JPanel {
     
     public PanelExpediente() {
         initComponents();
+        this.con = new Conexion();
+        con.conectar();
+        
+        DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(),columnasCambios);
+        tablacambioscorporales.setModel(modeloTablaPagos);
+        
+         
     }
 
     /**
@@ -802,7 +811,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         
         expediente.insertarCambiosCorporales(jtfpeso.getText(),jtfimc.getText(),jtfgrasa.getText(),jtfmusculo.getText(),jtfcalorias.getText(),jtfedad.getText(),jtfgrasaviceral.getText());
         
-         DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(),columnasCambios);
+        DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(),columnasCambios);
         tablacambioscorporales.setModel(modeloTablaPagos);
     }//GEN-LAST:event_botonaceptarexpedienteActionPerformed
 

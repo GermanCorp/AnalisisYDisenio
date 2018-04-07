@@ -56,6 +56,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 jMenuItemSalirMousePressed(evt);
             }
         });
+        jMenuItemSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSalirActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItemSalir);
 
         jMenuBar1.add(jMenu1);
@@ -96,6 +101,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
                System.exit(0);
     }//GEN-LAST:event_jMenuItemSalirMousePressed
+
+    private void jMenuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirActionPerformed
+
+    // TODO add your handling code here:
+    this.dispose();
+    }//GEN-LAST:event_jMenuItemSalirActionPerformed
 
     // <editor-fold defaultstate="collapsed" desc="Elementos de Ventana Principal">
     // Variables declaration - do not modify//GEN-BEGIN:variables

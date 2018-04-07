@@ -9,6 +9,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class PanelLogin extends javax.swing.JFrame {
+     static private Connection conexion;
+    private static Statement statement;
+   
+     
     public PanelLogin() {
         initComponents();
         setLocationRelativeTo(null);
@@ -44,6 +48,12 @@ public class PanelLogin extends javax.swing.JFrame {
         lblUsuario.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblUsuario.setText("Usuario:");
+
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
 
         lblContrasena.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         lblContrasena.setForeground(new java.awt.Color(255, 255, 255));
@@ -141,32 +151,71 @@ public class PanelLogin extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    //conectarse a la base de datos
+    public static void conectar() {
+        try {
+            Class.forName("org.sqlite.JDBC");
+            conexion = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
+            statement = conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    // método para cerrar la base de datos
+    public static void cerrar() {
+        try {
+            conexion.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static Connection getConexion(){
+        return conexion;
+    }
+     
+
+            
     
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
+        //variables para usuario y contrasena
+        String usu = txtUsuario.getText();
+        String pass = new String (txtContrasena.getPassword());
+        if(usu.equals("admin") && pass.equals("admin123456789"))
+        {
+            this.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Bienvenido Admin");
+            PanelNuevoUsuario ingreso = new PanelNuevoUsuario();
+            ingreso.setVisible(true);
+            ingreso.pack();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Usuario/Contrasena Incorrecta");
+            txtUsuario.requestFocus();
+        }
+        
         if (txtUsuario.getText().equals("") && txtContrasena.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Debe ingresar el Usuario y Contrasena", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (txtUsuario.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el nombre de usuario", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (txtContrasena.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
-        } 
+        }   
         
-        String usua = txtUsuario.getText();
-        String pass = new String(txtContrasena.getPassword());
-        
-        if(usua.equals("admin") && pass.equals("1234"))
-        {
-            this.setVisible(false);
-            JOptionPane.showMessageDialog(null, "Bienvenido");
-        }
-        
-        
+        txtUsuario.setText("");
+            txtContrasena.setText("");
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
              
     }//GEN-LAST:event_btnAceptarMouseClicked
+        
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     
     public static void main(String args[]) {
@@ -189,6 +238,7 @@ public class PanelLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
    
 }
 
