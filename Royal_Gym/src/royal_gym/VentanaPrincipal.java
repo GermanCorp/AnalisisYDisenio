@@ -22,11 +22,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelGastos1 = new presentacion.PanelGastos();
         panelUtilidad1 = new presentacion.PanelUtilidad();
         panelVentas1 = new presentacion.PanelVentas();
-        panelExpediente1 = new presentacion.PanelExpediente();
+        panelRegistroProductos1 = new presentacion.PanelRegistroProductos();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemSalir = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,12 +38,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jTabbedPane1.addTab("tab1", new javax.swing.ImageIcon(getClass().getResource("/iconos/RegistrarPago_3.png")), panelRegistroPagos1); // NOI18N
         jTabbedPane1.addTab("Clientes", new javax.swing.ImageIcon(getClass().getResource("/iconos/AgregarNuevo_3.png")), panelRegistroClientes1); // NOI18N
-        jTabbedPane1.addTab("tab3", new javax.swing.ImageIcon(getClass().getResource("/iconos/Inventario_2.png")), panelInventarioMaquinaria1); // NOI18N
-        jTabbedPane1.addTab("tab4", panelCumpleaneros1);
-        jTabbedPane1.addTab("tab5", panelGastos1);
-        jTabbedPane1.addTab("tab6", panelUtilidad1);
+        jTabbedPane1.addTab("Maquinaria", new javax.swing.ImageIcon(getClass().getResource("/iconos/Inventario_2.png")), panelInventarioMaquinaria1); // NOI18N
+        jTabbedPane1.addTab("Cumpleañeros", panelCumpleaneros1);
+        jTabbedPane1.addTab("Gastos", panelGastos1);
+        jTabbedPane1.addTab("Utilidad", panelUtilidad1);
         jTabbedPane1.addTab("Vender", new javax.swing.ImageIcon(getClass().getResource("/iconos/Agregar_Producto.png")), panelVentas1); // NOI18N
-        jTabbedPane1.addTab("tab8", panelExpediente1);
+        jTabbedPane1.addTab("Registrar Producto", panelRegistroProductos1);
 
         jMenu1.setText("File");
 
@@ -55,12 +56,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 jMenuItemSalirMousePressed(evt);
             }
         });
+        jMenuItemSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSalirActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItemSalir);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Configuración");
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -93,20 +102,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                System.exit(0);
     }//GEN-LAST:event_jMenuItemSalirMousePressed
 
+    private void jMenuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirActionPerformed
+
+    // TODO add your handling code here:
+    this.dispose();
+    }//GEN-LAST:event_jMenuItemSalirActionPerformed
+
     // <editor-fold defaultstate="collapsed" desc="Elementos de Ventana Principal">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemSalir;
     private javax.swing.JTabbedPane jTabbedPane1;
     private presentacion.PanelCumpleaneros panelCumpleaneros1;
-    private presentacion.PanelExpediente panelExpediente1;
     private presentacion.PanelGastos panelGastos1;
     private presentacion.PanelInventarioMaquinaria panelInventarioMaquinaria1;
     private presentacion.PanelRegistroClientes panelRegistroClientes1;
     private presentacion.PanelRegistroPagos panelRegistroPagos1;
+    private presentacion.PanelRegistroProductos panelRegistroProductos1;
     private presentacion.PanelUtilidad panelUtilidad1;
     private presentacion.PanelVentas panelVentas1;
     // End of variables declaration//GEN-END:variables
