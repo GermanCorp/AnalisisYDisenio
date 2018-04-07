@@ -43,7 +43,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTabbedPane1.addTab("Gastos", panelGastos1);
         jTabbedPane1.addTab("Utilidad", panelUtilidad1);
         jTabbedPane1.addTab("Vender", new javax.swing.ImageIcon(getClass().getResource("/iconos/Agregar_Producto.png")), panelVentas1); // NOI18N
-        jTabbedPane1.addTab("Registrar Producto", panelRegistroProductos1);
+        jTabbedPane1.addTab("Productos", panelRegistroProductos1);
 
         jMenu1.setText("File");
 
