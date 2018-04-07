@@ -5,10 +5,8 @@
  */
 package presentacion;
 
-<<<<<<< HEAD
-=======
+
 import java.awt.GraphicsEnvironment;
->>>>>>> 8d78eb8d746957fb905c9e4cf7ce5733492fd46c
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
@@ -40,11 +38,7 @@ public class Expediente extends javax.swing.JDialog {
     public Expediente(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
-<<<<<<< HEAD
-=======
         setBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds());
->>>>>>> 8d78eb8d746957fb905c9e4cf7ce5733492fd46c
-        setLocationRelativeTo(registroClientes);
 
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
