@@ -21,7 +21,7 @@ public class Expediente {
     
    
     
-     
+   /*  
     // método para insertar pagos a la base de datos
     public void insertarProblemasdeSalud(String problema) {
         try {
@@ -36,22 +36,20 @@ public class Expediente {
 
         }
     }// fin de insertar pago
+    */
     
-    
-    public void insertarCambiosCorporales(String peso,String imc, String grasa, String musculo,
-            String calorias, String edad, String grasaviceral) {
+    public void insertarCambiosCorporales(String peso,String imc, String grasa, String musculo,String calorias, String edad, String grasaviceral) {
         try {
-            String sql = "insert into cambioscorporales(peso, imc, grasa , musculo, calorias, edad , grasaviceral) values(?,?,?,?,?,?,?)";
+            String sql = "insert into cambioscorporales(peso, imc, porcentajedegrasa , porcentajedemusculo, calorias, edad , grasaviceral) values(?,?,?,?,?,?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             
             consulta.setString(1, peso);
-            consulta.setString(1, imc);
-            consulta.setString(1, grasa);
-            consulta.setString(1, musculo);
-            consulta.setString(1, calorias);
-            consulta.setString(1, edad);
-            consulta.setString(1, grasaviceral);
-             
+            consulta.setString(2, imc);
+            consulta.setString(4, grasa);
+            consulta.setString(5, musculo);
+            consulta.setString(6, calorias);
+            consulta.setString(7, edad);
+            consulta.setString(8, grasaviceral);
             consulta.execute();
 
         } catch (Exception e) {
@@ -74,14 +72,14 @@ public class Expediente {
             while (resultado.next()) {
                 filas.add(
                     new Object[]{
-                    numeroLista,
-                    resultado.getString("peso"),
-                    resultado.getString("imc"),
-                    resultado.getString("porcentajedegrasa"),
-                    resultado.getString("porcentajedemusculo"),
-                    resultado.getString("calorias"),
-                    resultado.getString("edad"),
-                    resultado.getString("grasaviceral"),}
+                   // numeroLista,
+                    resultado.getDouble("peso"),
+                    resultado.getDouble("imc"),
+                    resultado.getDouble("porcentajedegrasa"),
+                    resultado.getDouble("porcentajedemusculo"),
+                    resultado.getDouble("calorias"),
+                    resultado.getInt("edad"),
+                    resultado.getInt("grasaviceral"),}
                 );
             }
             datosPago = new Object[filas.size()][];

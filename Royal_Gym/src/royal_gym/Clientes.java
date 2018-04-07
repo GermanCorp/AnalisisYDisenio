@@ -28,13 +28,13 @@ public class Clientes {
     
     // Modelo de la tabla de Clientes
     public void modeloTablaCliente(String[] columnas, JTable tabla) {
-        DefaultTableModel modeloTablaClientes = new DefaultTableModel(getCliente(), columnas);
+        DefaultTableModel modeloTablaClientes = new DefaultTableModel(getClientes(), columnas);
         tabla.setModel(modeloTablaClientes);
     }
 
 
     // <editor-fold defaultstate="collapsed" desc="Método para Obtener Clientes">                
-    public Object[][] getCliente() {
+    public Object[][] getClientes() {
         Object[][] datosCliente = null;
         try {
             String consulta = "Select nombres ||' '||apellidos as NombreCompleto, fechaNacimiento, altura, peso, Peso / (Altura * Altura) as imc FROM cliente AS a ORDER BY nombres";
@@ -159,4 +159,21 @@ public class Clientes {
             System.out.println("error en Eliminar Cliente" + e.getMessage());
         }
     }
+    
+    public String getCliente() {
+        String datosCliente = null;
+        try {
+            String consulta = "Select nombres ||' '||apellidos as NombreCompleto FROM cliente";
+            PreparedStatement cliente = Conexion.getConexion().prepareStatement(consulta);
+            resultado = statement.executeQuery(consulta);
+
+            while (resultado.next()) {
+                datosCliente = resultado.getString(1);
+                        }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosCliente;
+    }
+    
 }

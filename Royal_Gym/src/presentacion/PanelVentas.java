@@ -7,6 +7,7 @@ package presentacion;
 
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import royal_gym.Clientes;
 
 /**
  *
@@ -16,6 +17,8 @@ public class PanelVentas extends javax.swing.JPanel {
     /**
      * Creates new form PanelVentas
      */
+    
+    
     public PanelVentas() {
         initComponents();
         jbAgregarCliente.setHorizontalTextPosition( SwingConstants.CENTER );
@@ -26,8 +29,27 @@ public class PanelVentas extends javax.swing.JPanel {
         jbAGuardarVenta.setVerticalTextPosition( SwingConstants.BOTTOM );
         jbEliminarFila.setHorizontalTextPosition( SwingConstants.CENTER );
         jbEliminarFila.setVerticalTextPosition(SwingConstants.BOTTOM);
+        
     }
-   
+    
+    private String cliente;
+    public PanelVentas(String cliente) {
+        this.cliente = cliente;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
+    }
+    
+    public void setNombreCliente(){
+        jtfNombre.setText(cliente);
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -279,7 +301,7 @@ public class PanelVentas extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfDireccionActionPerformed
 
     private void jbAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarProductoActionPerformed
-
+        new ListaProductos(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jbAgregarProductoActionPerformed
 
     private void jbAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarClienteActionPerformed

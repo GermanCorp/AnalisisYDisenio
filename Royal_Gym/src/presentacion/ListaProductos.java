@@ -14,20 +14,19 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Clientes;
 import royal_gym.Conexion;
+import royal_gym.Productos;
 
 /**
  *
  * @author alxcr
  */
-public class ListaClientes extends javax.swing.JDialog {
-    
-    String cliente = "";
-    private final Conexion con;
-    Clientes clientes = new Clientes();
+public class ListaProductos extends javax.swing.JDialog {
+   
+    Productos productos = new Productos();
     PanelVentas pventas;
-    private final String[] columnasClientes = {
-        "No.",
-        "Nombre"
+    private final String[] columnasProductos = {
+        "Codigo",
+        "Descripción"
     };
     
     /** A return status code - returned if Cancel button has been pressed */
@@ -36,7 +35,7 @@ public class ListaClientes extends javax.swing.JDialog {
     public static final int RET_OK = 1;
 
     //Constructor
-    public ListaClientes(javax.swing.JDialog parent, boolean modal) {
+    public ListaProductos(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         
         initComponents();
@@ -60,9 +59,8 @@ public class ListaClientes extends javax.swing.JDialog {
             }
         });
         
-        con = new Conexion();
-        DefaultTableModel modeloTablaClientes = new DefaultTableModel(con.getCliente(), columnasClientes);
-        tablaClientes.setModel(modeloTablaClientes);
+        DefaultTableModel modeloTablaProductos = new DefaultTableModel(productos.getProductos(), columnasProductos);
+        tablaProductos.setModel(modeloTablaProductos);
     }
 
     /** @return the return status of this dialog - one of RET_OK or RET_CANCEL */
@@ -82,15 +80,15 @@ public class ListaClientes extends javax.swing.JDialog {
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaClientes = new javax.swing.JTable(){
+        tablaProductos = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex){
                 return false;
             }
         };
-        jtfBuscarCliente = new javax.swing.JTextField();
+        jtfBuscarProductos = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
-        setTitle("Clientes");
+        setTitle("Productos");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
@@ -114,7 +112,7 @@ public class ListaClientes extends javax.swing.JDialog {
             }
         });
 
-        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -133,35 +131,35 @@ public class ListaClientes extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaClientesMouseClicked(evt);
+                tablaProductosMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                tablaClientesMousePressed(evt);
+                tablaProductosMousePressed(evt);
             }
         });
-        jScrollPane1.setViewportView(tablaClientes);
+        jScrollPane1.setViewportView(tablaProductos);
 
-        jtfBuscarCliente.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jtfBuscarCliente.addCaretListener(new javax.swing.event.CaretListener() {
+        jtfBuscarProductos.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jtfBuscarProductos.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jtfBuscarClienteCaretUpdate(evt);
+                jtfBuscarProductosCaretUpdate(evt);
             }
         });
-        jtfBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+        jtfBuscarProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfBuscarClienteActionPerformed(evt);
+                jtfBuscarProductosActionPerformed(evt);
             }
         });
-        jtfBuscarCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtfBuscarProductos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtfBuscarClienteKeyPressed(evt);
+                jtfBuscarProductosKeyPressed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Buscar Cliente:");
+        jLabel1.setText("Buscar Producto:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,7 +177,7 @@ public class ListaClientes extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfBuscarCliente)))
+                        .addComponent(jtfBuscarProductos)))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -187,7 +185,7 @@ public class ListaClientes extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfBuscarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
@@ -205,11 +203,10 @@ public class ListaClientes extends javax.swing.JDialog {
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         doClose(RET_OK);
-        int filaSeleccionada = tablaClientes.getSelectedRow();
-            String nombreCliente = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
-            cliente = nombreCliente;  
-            PanelVentas ventas = new PanelVentas(cliente);
-            ventas.setNombreCliente();
+        int filaSeleccionada = tablaProductos.getSelectedRow();
+            String nombreCliente = tablaProductos.getValueAt(filaSeleccionada, 1).toString();
+            pventas.jtfNombre.setText(nombreCliente);
+            
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -221,27 +218,27 @@ public class ListaClientes extends javax.swing.JDialog {
         doClose(RET_CANCEL);
     }//GEN-LAST:event_closeDialog
 
-    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
+    private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
 
-    }//GEN-LAST:event_tablaClientesMouseClicked
+    }//GEN-LAST:event_tablaProductosMouseClicked
 
-    private void tablaClientesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMousePressed
+    private void tablaProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMousePressed
 
 
-    }//GEN-LAST:event_tablaClientesMousePressed
+    }//GEN-LAST:event_tablaProductosMousePressed
 
-    private void jtfBuscarClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarClienteCaretUpdate
-        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(clientes.buscarCliente(jtfBuscarCliente.getText(),jtfBuscarCliente.getText()), columnasClientes);
-        tablaClientes.setModel(modeloTablaBuscarClientes);
-    }//GEN-LAST:event_jtfBuscarClienteCaretUpdate
+    private void jtfBuscarProductosCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarProductosCaretUpdate
+        DefaultTableModel modeloTablaBuscarProductos = new DefaultTableModel(productos.buscarProductos(jtfBuscarProductos.getText()), columnasProductos);
+        tablaProductos.setModel(modeloTablaBuscarProductos);
+    }//GEN-LAST:event_jtfBuscarProductosCaretUpdate
 
-    private void jtfBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfBuscarClienteActionPerformed
+    private void jtfBuscarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfBuscarProductosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtfBuscarClienteActionPerformed
+    }//GEN-LAST:event_jtfBuscarProductosActionPerformed
 
-    private void jtfBuscarClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfBuscarClienteKeyPressed
+    private void jtfBuscarProductosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfBuscarProductosKeyPressed
 
-    }//GEN-LAST:event_jtfBuscarClienteKeyPressed
+    }//GEN-LAST:event_jtfBuscarProductosKeyPressed
 
     private void doClose(int retStatus) {
         returnStatus = retStatus;
@@ -254,9 +251,9 @@ public class ListaClientes extends javax.swing.JDialog {
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jtfBuscarCliente;
+    private javax.swing.JTextField jtfBuscarProductos;
     private javax.swing.JButton okButton;
-    private javax.swing.JTable tablaClientes;
+    private javax.swing.JTable tablaProductos;
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;
