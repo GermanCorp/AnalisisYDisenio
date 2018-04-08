@@ -601,6 +601,9 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
 
     private void btnFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotoActionPerformed
         
+        
+        
+        
     }//GEN-LAST:event_btnFotoActionPerformed
 
     //variable de fichero

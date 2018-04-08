@@ -12,8 +12,11 @@ public class PanelLogin extends javax.swing.JFrame {
 
     static private Connection conexion;
     private static Statement statement;
-    Conexion cc = new Conexion();
-    Connection cn = cc.conexionLogin();
+    Conexion cn = new Conexion();
+    ResultSet rs = null;
+    PreparedStatement pst = null;
+    Connection conn = null;
+    
 
     public PanelLogin() {
         initComponents();
@@ -21,6 +24,8 @@ public class PanelLogin extends javax.swing.JFrame {
         setResizable(false);
         setTitle("Acceso al sistema");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
+        //conn = javaconnect.ConnecrDB();
 
     }
 
@@ -155,61 +160,44 @@ public class PanelLogin extends javax.swing.JFrame {
         txtContrasena.setText("");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    //conectarse a la base de datos
-    public static void conectar() {
-        try {
-            Class.forName("org.sqlite.JDBC");
-            conexion = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
-            statement = conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /*
-    //Metodo para acceder a la tabla usuario
-    public void acceder(String user, String pass) {
-        String sql = "SELECT * FROM usuarios WHERE usuario = '" + user + "' && contrasena = '" + pass + "'";
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(PanelLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-        */
+  
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
         
-        /*
-        //variables para usuario y contrasena
-        String usu = txtUsuario.getText();
-        String pass = new String(txtContrasena.getPassword());
-        acceder(usu, pass);
-        
-        if (DatabaseMetaData.validar_ingreso(txtUsuario.getText(),String.valueOf(txtContrasena.getPassword())) != 1) {
-            JOptionPane.showMessageDialog(null, "Usuario/Contrasena Incorrecta");
-        } else {
-            setVisible(false);
-            PanelNuevoUsuario princ = new PanelNuevoUsuario();
-            PanelNuevoUsuario.txtUsuario = txtUsuario.getText();
-            princ.setVisible(true);
-        }
-            */
-        
-        if (txtUsuario.getText().equals("") && txtContrasena.getText().equals("")) {
+         if (txtUsuario.getText().equals("") && txtContrasena.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Debe ingresar el Usuario y Contrasena", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (txtUsuario.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el nombre de usuario", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (txtContrasena.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
         }
-
+         
+       String sql = "select * from login where usuario = ? and contraseña = ?";
+       
+       try{
+           pst = conn.prepareStatement(sql);
+           pst.setString(1,txtUsuario.getText() );
+           pst.setString(2,txtContrasena.getText() );
+           
+           rs = pst.executeQuery();
+           
+           if(rs.next()){
+               JOptionPane.showMessageDialog(null, "Usuario/Contraseña Correcta");
+               PanelNuevoUsuario s = new PanelNuevoUsuario();
+               s.setVisible(true);   
+           }
+           
+           else {
+               JOptionPane.showMessageDialog(null, "Usuario/Contraseña Incorrecta");
+           }
+           
+       }catch(Exception ex){
+           
+       }
+           
+/*
         txtUsuario.setText("");
-        txtContrasena.setText("");
+        txtContrasena.setText("");*/
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
