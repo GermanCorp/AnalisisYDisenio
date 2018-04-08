@@ -157,8 +157,8 @@
         <Component class="presentacion.PanelRegistroProductos" name="panelRegistroProductos1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Registrar Producto">
-                <Property name="tabTitle" type="java.lang.String" value="Registrar Producto"/>
+              <JTabbedPaneConstraints tabName="Productos">
+                <Property name="tabTitle" type="java.lang.String" value="Productos"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>

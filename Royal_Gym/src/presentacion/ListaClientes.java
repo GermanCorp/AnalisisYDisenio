@@ -21,6 +21,7 @@ import royal_gym.Conexion;
  */
 public class ListaClientes extends javax.swing.JDialog {
     
+    String cliente = "";
     private final Conexion con;
     Clientes clientes = new Clientes();
     PanelVentas pventas;
@@ -206,7 +207,9 @@ public class ListaClientes extends javax.swing.JDialog {
         doClose(RET_OK);
         int filaSeleccionada = tablaClientes.getSelectedRow();
             String nombreCliente = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
-            pventas.jtfNombre.setText(nombreCliente);
+            cliente = nombreCliente;  
+            PanelVentas ventas = new PanelVentas(cliente);
+            ventas.setNombreCliente();
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

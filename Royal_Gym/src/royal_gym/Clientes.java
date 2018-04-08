@@ -28,13 +28,13 @@ public class Clientes {
     
     // Modelo de la tabla de Clientes
     public void modeloTablaCliente(String[] columnas, JTable tabla) {
-        DefaultTableModel modeloTablaClientes = new DefaultTableModel(getCliente(), columnas);
+        DefaultTableModel modeloTablaClientes = new DefaultTableModel(getClientes(), columnas);
         tabla.setModel(modeloTablaClientes);
     }
 
 
     // <editor-fold defaultstate="collapsed" desc="Método para Obtener Clientes">                
-    public Object[][] getCliente() {
+    public Object[][] getClientes() {
         Object[][] datosCliente = null;
         try {
             String consulta = "Select nombres ||' '||apellidos as NombreCompleto, fechaNacimiento, altura, peso, Peso / (Altura * Altura) as imc FROM cliente AS a ORDER BY nombres";
@@ -95,15 +95,16 @@ public class Clientes {
     }// </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Método para insertar un cliente">  
-    public void insertarCliente(String nombres, String apellidos, String fechaNacimiento, String altura, String peso) {
+    public void insertarCliente(String nombres, String apellidos, String fechaNacimiento, String altura, String peso,String foto) {
         try {
-            String sql = "insert into cliente (nombres, apellidos, fechaNacimiento, altura, peso) values (?,?,?,?,?)";
+            String sql = "insert into cliente (nombres, apellidos, fechaNacimiento, altura, peso,foto) values (?,?,?,?,?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, nombres);
             consulta.setString(2, apellidos);
             consulta.setString(3, fechaNacimiento);
             consulta.setString(4, altura);
             consulta.setString(5, peso);
+            consulta.setString(6, foto);
             consulta.execute();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -158,4 +159,21 @@ public class Clientes {
             System.out.println("error en Eliminar Cliente" + e.getMessage());
         }
     }
+    
+    public String getCliente() {
+        String datosCliente = null;
+        try {
+            String consulta = "Select nombres ||' '||apellidos as NombreCompleto FROM cliente";
+            PreparedStatement cliente = Conexion.getConexion().prepareStatement(consulta);
+            resultado = statement.executeQuery(consulta);
+
+            while (resultado.next()) {
+                datosCliente = resultado.getString(1);
+                        }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosCliente;
+    }
+    
 }
