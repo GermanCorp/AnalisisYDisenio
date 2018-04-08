@@ -45,7 +45,7 @@ public class PanelNuevoUsuario extends javax.swing.JFrame {
 
         lblContrasena.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         lblContrasena.setForeground(new java.awt.Color(255, 255, 255));
-        lblContrasena.setText("Contrasena:");
+        lblContrasena.setText("Contraseña:");
 
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {

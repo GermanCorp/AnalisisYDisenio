@@ -59,7 +59,7 @@ public class PanelLogin extends javax.swing.JFrame {
 
         lblContrasena.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         lblContrasena.setForeground(new java.awt.Color(255, 255, 255));
-        lblContrasena.setText("Contrasena:");
+        lblContrasena.setText("Contraseña:");
 
         btnAceptar.setBackground(new java.awt.Color(85, 96, 128));
         btnAceptar.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
@@ -166,6 +166,7 @@ public class PanelLogin extends javax.swing.JFrame {
         }
     }
 
+    /*
     //Metodo para acceder a la tabla usuario
     public void acceder(String user, String pass) {
         String sql = "SELECT * FROM usuarios WHERE usuario = '" + user + "' && contrasena = '" + pass + "'";
@@ -179,15 +180,25 @@ public class PanelLogin extends javax.swing.JFrame {
         }
 
     }
-
+        */
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
         
+        /*
         //variables para usuario y contrasena
         String usu = txtUsuario.getText();
         String pass = new String(txtContrasena.getPassword());
         acceder(usu, pass);
-
+        
+        if (DatabaseMetaData.validar_ingreso(txtUsuario.getText(),String.valueOf(txtContrasena.getPassword())) != 1) {
+            JOptionPane.showMessageDialog(null, "Usuario/Contrasena Incorrecta");
+        } else {
+            setVisible(false);
+            PanelNuevoUsuario princ = new PanelNuevoUsuario();
+            PanelNuevoUsuario.txtUsuario = txtUsuario.getText();
+            princ.setVisible(true);
+        }
+            */
         
         if (txtUsuario.getText().equals("") && txtContrasena.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Debe ingresar el Usuario y Contrasena", "Error", JOptionPane.ERROR_MESSAGE);

@@ -491,7 +491,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfAlturaKeyTyped
 
     private void btnAceptarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteActionPerformed
-        clientes.insertarCliente(jtfNombreCliente.getText(), jtfApellidoCliente.getText(), jdcFecha.getDateFormatString(), jtfAltura.getText(), jtfPeso.getText(),btnFoto.getText());
+        clientes.insertarCliente(jtfNombreCliente.getText(), jtfApellidoCliente.getText(), jdcFecha.getDateFormatString(), jtfAltura.getText(), jtfPeso.getText(),lblFoto.getText());
         clientes.modeloTablaCliente(columnasClientes, tablaClientes);
     }//GEN-LAST:event_btnAceptarRegistroClienteActionPerformed
 
@@ -611,7 +611,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         
         int resultado;
         
-        CargarFoto ventana = new CargarFoto();
+        CargarImagen ventana = new CargarImagen();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG","jpg","jpg","png");
         ventana.jfchCargarFoto.setFileFilter(filtro);
         resultado = ventana.jfchCargarFoto.showOpenDialog(null);
