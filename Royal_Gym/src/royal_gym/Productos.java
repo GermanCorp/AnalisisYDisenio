@@ -22,7 +22,7 @@ public class Productos {
     public Object[][] getProductos() {
         Object[][] datosProductos = null;
         try {
-            String consulta = "select idproducto, descripcion, unidad, costo, precioventa from productos";
+            String consulta = "select idproducto, descripcion, unidad, costo, precioventa, existencia from productos";
             statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
 
@@ -37,7 +37,8 @@ public class Productos {
                             resultado.getString("descripcion"),
                             resultado.getString("unidad"),
                             formatearNumero(resultado.getDouble("costo")),
-                            formatearNumero(resultado.getDouble("precioventa"))
+                            formatearNumero(resultado.getDouble("precioventa")),
+                            resultado.getString("existencia"),
                         }
                 );
             }
@@ -98,7 +99,7 @@ public class Productos {
         }
     }
     
-    public void insertarProducto(String descripcion, String unidad, String costo, String precioventa) {
+    public void insertarProducto(String descripcion, String unidad, String costo, String precioventa , String existencia) {
         try {
             String sql = "insert into productos (descripcion, unidad, costo, precioventa) values (?,?,?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
@@ -106,6 +107,7 @@ public class Productos {
             consulta.setString(2, unidad);
             consulta.setString(3, costo);
             consulta.setString(4, precioventa);
+            consulta.setString(5, existencia);
             consulta.execute();
         } catch (Exception e) {
             System.out.println("Error en Insertar Producuto "+e.getMessage());

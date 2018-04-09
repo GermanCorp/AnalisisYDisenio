@@ -20,12 +20,7 @@ public class Expediente {
     private static Statement statement;
     static ResultSet resultado;
 
-    public Expediente(JDialog jDialog, boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-   
-    
+  
    /*  
     // método para insertar pagos a la base de datos
     public void insertarProblemasdeSalud(String problema) {
@@ -45,16 +40,16 @@ public class Expediente {
     
     public void insertarCambiosCorporales(String peso,String imc, String grasa, String musculo,String calorias, String edad, String grasaviceral) {
         try {
-            String sql = "insert into cambioscorporales(peso, imc, porcentajedegrasa , porcentajedemusculo, calorias, edad , grasaviceral) values(?,?,?,?,?,?,?)";
+            String sql = "insert into cambioscorporales(peso, imc, porcentajedegrasa , porcentajedemusculo, edad , grasaviceral,calorias) values(?,?,?,?,?,?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             
             consulta.setString(1, peso);
             consulta.setString(2, imc);
             consulta.setString(4, grasa);
-            consulta.setString(5, musculo);
-            consulta.setString(6, calorias);
-            consulta.setString(7, edad);
-            consulta.setString(8, grasaviceral);
+                consulta.setString(5, musculo);
+            consulta.setString(6, edad);
+            consulta.setString(7, grasaviceral);
+            consulta.setString(8, calorias);
             consulta.execute();
 
         } catch (Exception e) {
@@ -67,10 +62,10 @@ public class Expediente {
         Object[][] datosPago = null;
 
         try {
-            String consulta = "SELECT peso,imc,porcentajedegrasa,porcentajedemusculo,calorias,edad,grasaviceral  FROM cambioscorporales order by id_cambio DESC ";
+            String consulta = "SELECT peso,imc,porcentajedegrasa,porcentajedemusculo,calorias,edad,grasaviceral  FROM cambioscorporales ";
             statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
-            String numeroLista = "";
+            //String numeroLista = "";
 
             ArrayList<Object[]> filas = new ArrayList<>();
 
