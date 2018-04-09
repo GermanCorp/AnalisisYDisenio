@@ -3,75 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/Jazmin%20Vargas/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/Utilidad.java</file>
-            <file>file:/C:/Users/Jazmin%20Vargas/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelRegistroProductos.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelRegistroPagos.java</file>
-            <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/Gastos.java</file>
-            <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/Pagos.java</file>
-=======
-            <file>file:/C:/Users/Jazmin%20Vargas/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelRegistroClientes.java</file>
->>>>>>> 4232ac0f369ef7039a3c6fba4613b978be55ce97
-            <file>file:/C:/Users/Jazmin%20Vargas/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/VentanaPrincipal.java</file>
-            <file>file:/C:/Users/Jazmin%20Vargas/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelRegistroPagos.java</file>
-            <file>file:/C:/Users/Jazmin%20Vargas/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelExpediente.java</file>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Jazmin%20Vargas/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelCompras.java</file>
-            <file>file:/C:/Users/Jazmin%20Vargas/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/Compras.java</file>
-            <file>file:/C:/Users/Jazmin%20Vargas/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/ClasePrincipal.java</file>
-=======
-            <file>file:/C:/Users/Jazmin%20Vargas/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelUtilidad.java</file>
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelCumpleaneros.java</file>
->>>>>>> f2fdb623357c4e51a522968e19d0e23233c65d38
->>>>>>> 27488d1c8f00dfad1c7a5a6367637f84538d2414
             <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelLogin.java</file>
+            <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/ClasePrincipal.java</file>
+            <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/ListaProductos.java</file>
             <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/Conexion.java</file>
             <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/LoginEntrar.java</file>
-            <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/NuevoUsuario.java</file>
-            <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelNuevoUsuario.java</file>
-<<<<<<< HEAD
-=======
-            <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelListaDeClientes.java</file>
-            <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/Cumpleaneros.java</file>
             <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelRegistroProductos.java</file>
-            <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/InventarioMaquinaria.java</file>
-            <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelRegistroClientes.java</file>
+            <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/NuevoUsuario.java</file>
             <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/CargarImagen.java</file>
-            <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelGastos.java</file>
-<<<<<<< HEAD
-=======
-=======
-            <file>file:/C:/Users/alxcr/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/ListaClientes.java</file>
->>>>>>> 4069717fc8a2b575a41f009f636fbded3c1f2c68
-            <file>file:/C:/Users/alxcr/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelVentas.java</file>
-            <file>file:/C:/Users/alxcr/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/Gastos.java</file>
-            <file>file:/C:/Users/alxcr/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/Conexion.java</file>
-            <file>file:/C:/Users/alxcr/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/Productos.java</file>
-            <file>file:/C:/Users/alxcr/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/royal_gym/VentanaPrincipal.java</file>
-            <file>file:/C:/Users/alxcr/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelRegistroProductos.java</file>
-            <file>file:/C:/Users/alxcr/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/ListaProductos.java</file>
-<<<<<<< HEAD
-=======
-=======
-            <file>file:/C:/Users/alxcr/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/Expediente.java</file>
->>>>>>> 8d78eb8d746957fb905c9e4cf7ce5733492fd46c
->>>>>>> 90d120aeede17dc424cedbb9619e22c730ede6b9
->>>>>>> ce5e6f6596e642b0b7e1a889143f19de5ec175c5
->>>>>>> 9f7ddab1c9c7b3b591227f2b6d8cc12575c31621
->>>>>>> f2fdb623357c4e51a522968e19d0e23233c65d38
->>>>>>> 4232ac0f369ef7039a3c6fba4613b978be55ce97
->>>>>>> 4069717fc8a2b575a41f009f636fbded3c1f2c68
->>>>>>> 27488d1c8f00dfad1c7a5a6367637f84538d2414
+            <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/Expediente.java</file>
+            <file>file:/C:/Users/julio/Documents/GitHub/AnalisisYDisenio/Royal_Gym/src/presentacion/PanelNuevoUsuario.java</file>
         </group>
     </open-files>
 </project-private>
