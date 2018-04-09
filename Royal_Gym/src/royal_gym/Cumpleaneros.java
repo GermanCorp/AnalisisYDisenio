@@ -34,7 +34,7 @@ public class Cumpleaneros {
     
      // método para llenar la tabla de edad de los clientes
     public Object[][] getEdadClientes() {
-        Object[][] datosCliente = null;
+        Object[][] datosCumpleaneros = null;
 
         try {
             String consulta = "Select * FROM Edad";
@@ -55,15 +55,15 @@ public class Cumpleaneros {
                         }
                 );
             }
-            datosCliente = new Object[filas.size()][];
-            filas.toArray(datosCliente);
+            datosCumpleaneros = new Object[filas.size()][];
+            filas.toArray(datosCumpleaneros);
 
-            datosCliente = new Object[filas.size()][];
-            filas.toArray(datosCliente);
+            datosCumpleaneros = new Object[filas.size()][];
+            filas.toArray(datosCumpleaneros);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return datosCliente;
+        return datosCumpleaneros;
     }
     
     

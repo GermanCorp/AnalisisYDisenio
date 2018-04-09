@@ -556,11 +556,42 @@ public class Conexion {
         return datosPago;
     }
     
+    public static int ingreso(String usuario, String clave) {
+
+		int resultado = 0;
+		String sql = "select * from login where usuario=? and contraseña=?";
+		Connection conect = null;
+
+		try {
+			PreparedStatement st = conect.prepareStatement(sql);
+
+			// Statement st = conect.createStatement();
+
+			st.setString(1, usuario);
+			st.setString(2, clave);
+			ResultSet rs = st.executeQuery();
+
+			if (rs.next()) {
+				resultado = 1;
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				conect.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return resultado;
+	}
+    
     //metodo para insertar un nuevo usuario a la base de datos
     public void nuevoUser(String User, String Pass) {
         try {
             String sql = "insert into login (usuario, contraseña) values (?,?)";
-            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
+            Connection con = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
+            PreparedStatement consulta = con.prepareStatement(sql);
             consulta.setString(1, User);
             consulta.setString(2, Pass);
             consulta.execute();
