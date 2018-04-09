@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JDialog;
 import static royal_gym.Pagos.resultado;
 
 /**
@@ -18,6 +19,10 @@ import static royal_gym.Pagos.resultado;
 public class Expediente {
     private static Statement statement;
     static ResultSet resultado;
+
+    public Expediente(JDialog jDialog, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
    
     
