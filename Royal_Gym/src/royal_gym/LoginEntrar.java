@@ -59,11 +59,11 @@ public class LoginEntrar
     public static int ingreso(String usuario, String clave) {
 
 		int resultado = 0;
-		String SSQL = "SELECT * FROM Login WHERE usuario= ? AND contraseña =sha1(?)";
+		String SSQL = "SELECT * FROM Login WHERE usuario= ? AND contraseña =?";
 		Connection conect = null;
 
 		try {
-                       conectar();
+               
                     conect = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
 			PreparedStatement st = conect.prepareStatement(SSQL);
 

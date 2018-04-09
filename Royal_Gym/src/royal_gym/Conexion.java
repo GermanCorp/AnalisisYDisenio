@@ -559,10 +559,11 @@ public class Conexion {
     public static int ingreso(String usuario, String clave) {
 
 		int resultado = 0;
-		String sql = "select * from login where usuario=? and contraseña=?";
+		String sql = "select * from login where usuario=? and contraseña=sha1(?)";
 		Connection conect = null;
 
 		try {
+                    conect = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
 			PreparedStatement st = conect.prepareStatement(sql);
 
 			// Statement st = conect.createStatement();
