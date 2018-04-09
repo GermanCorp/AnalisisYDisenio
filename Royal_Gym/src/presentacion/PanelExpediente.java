@@ -17,6 +17,7 @@ public class PanelExpediente extends javax.swing.JPanel {
 
     Expediente expediente= new Expediente();
     final Conexion con;
+   
     
     private final String[] columnasCambios = {
         "",
@@ -929,6 +930,8 @@ public class PanelExpediente extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         expediente.insertarCambiosCorporales(jtfpeso.getText(),jtfimc.getText(),jtfgrasa.getText(),jtfmusculo.getText(),jtfcalorias.getText(),jtfedad.getText(),jtfgrasaviceral.getText());
+       
+       
         
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(),columnasCambios);
         tablacambioscorporales.setModel(modeloTablaPagos);

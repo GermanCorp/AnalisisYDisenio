@@ -23,6 +23,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelUtilidad1 = new presentacion.PanelUtilidad();
         panelVentas1 = new presentacion.PanelVentas();
         panelRegistroProductos1 = new presentacion.PanelRegistroProductos();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        panelCompras1 = new presentacion.PanelCompras();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemSalir = new javax.swing.JMenuItem();
@@ -42,8 +44,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTabbedPane1.addTab("Cumpleañeros", panelCumpleaneros1);
         jTabbedPane1.addTab("Gastos", panelGastos1);
         jTabbedPane1.addTab("Utilidad", panelUtilidad1);
+
+        panelVentas1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                panelVentas1FocusLost(evt);
+            }
+        });
         jTabbedPane1.addTab("Vender", new javax.swing.ImageIcon(getClass().getResource("/iconos/Agregar_Producto.png")), panelVentas1); // NOI18N
+
+        panelRegistroProductos1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                panelRegistroProductos1FocusGained(evt);
+            }
+        });
         jTabbedPane1.addTab("Productos", panelRegistroProductos1);
+
+        jTabbedPane2.addTab("tab1", panelCompras1);
+
+        jTabbedPane1.addTab("Agregar Compra", jTabbedPane2);
 
         jMenu1.setText("File");
 
@@ -108,6 +126,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     this.dispose();
     }//GEN-LAST:event_jMenuItemSalirActionPerformed
 
+    private void panelRegistroProductos1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelRegistroProductos1FocusGained
+        
+    }//GEN-LAST:event_panelRegistroProductos1FocusGained
+
+    private void panelVentas1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelVentas1FocusLost
+
+    }//GEN-LAST:event_panelVentas1FocusLost
+
     // <editor-fold defaultstate="collapsed" desc="Elementos de Ventana Principal">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -117,6 +143,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemSalir;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private presentacion.PanelCompras panelCompras1;
     private presentacion.PanelCumpleaneros panelCumpleaneros1;
     private presentacion.PanelGastos panelGastos1;
     private presentacion.PanelInventarioMaquinaria panelInventarioMaquinaria1;

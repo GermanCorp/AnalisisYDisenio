@@ -5,10 +5,12 @@ import java.awt.Color;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
@@ -22,12 +24,19 @@ import royal_gym.Productos;
  */
 public class ListaProductos extends javax.swing.JDialog {
    
+    static double total;
+    static double descuentoTotal;
+        
     Productos productos = new Productos();
     PanelVentas pventas;
     private final String[] columnasProductos = {
         "Codigo",
-        "Descripción"
+        "Descripción",
+        "Precio de Venta"
+        
     };
+    
+    
     
     /** A return status code - returned if Cancel button has been pressed */
     public static final int RET_CANCEL = 0;
@@ -59,7 +68,7 @@ public class ListaProductos extends javax.swing.JDialog {
             }
         });
         
-        DefaultTableModel modeloTablaProductos = new DefaultTableModel(productos.getProductos(), columnasProductos);
+        DefaultTableModel modeloTablaProductos = new DefaultTableModel(productos.getListaProductos(), columnasProductos);
         tablaProductos.setModel(modeloTablaProductos);
     }
 
@@ -87,6 +96,10 @@ public class ListaProductos extends javax.swing.JDialog {
         };
         jtfBuscarProductos = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jtfCantidad = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jtfDescuento = new javax.swing.JTextField();
 
         setTitle("Productos");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -96,7 +109,7 @@ public class ListaProductos extends javax.swing.JDialog {
         });
 
         okButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Agregar_Cliente_2.png"))); // NOI18N
-        okButton.setText("OK");
+        okButton.setText("Agregar");
         okButton.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +118,7 @@ public class ListaProductos extends javax.swing.JDialog {
         });
 
         cancelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Eliminar_fila.png"))); // NOI18N
-        cancelButton.setText("Cancel");
+        cancelButton.setText("Salir");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
@@ -161,6 +174,20 @@ public class ListaProductos extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Buscar Producto:");
 
+        jtfCantidad.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jtfCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfCantidad.setText("1");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Cantidad:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Descuento:");
+
+        jtfDescuento.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jtfDescuento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfDescuento.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -169,15 +196,23 @@ public class ListaProductos extends javax.swing.JDialog {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfBuscarProductos)))
+                        .addComponent(jtfBuscarProductos))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(43, 43, 43)
+                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(114, 114, 114)))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -190,9 +225,18 @@ public class ListaProductos extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(okButton, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                    .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(okButton, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                        .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(1, 1, 1)
+                        .addComponent(jtfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(1, 1, 1)
+                        .addComponent(jtfDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
         );
 
@@ -202,11 +246,50 @@ public class ListaProductos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        doClose(RET_OK);
-        int filaSeleccionada = tablaProductos.getSelectedRow();
-            String nombreCliente = tablaProductos.getValueAt(filaSeleccionada, 1).toString();
-            pventas.jtfNombre.setText(nombreCliente);
+        //doClose(RET_OK);
+        DefaultTableModel modelo;
+        int filaSeleccinada = tablaProductos.getSelectedRow();
+        String codigo;
+        String descripcion;
+        String precioVenta;
+        String cantidad;
+        String importe;
+        String descuento;
+        
+        
+        if(filaSeleccinada == -1){
+            JOptionPane.showMessageDialog(null, "Debe seleccinar un producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }else{
+            modelo = (DefaultTableModel) tablaProductos.getModel();
+            codigo = tablaProductos.getValueAt(filaSeleccinada, 0).toString();
+            descripcion = tablaProductos.getValueAt(filaSeleccinada, 1).toString();
+            precioVenta = tablaProductos.getValueAt(filaSeleccinada, 2).toString();
+            cantidad = jtfCantidad.getText();
+            descuento = jtfDescuento.getText();
+                    
+            DecimalFormat df = new DecimalFormat("#,##0.00");
+            double x = ((Double.parseDouble(precioVenta) * Integer.parseInt(cantidad)) - Double.parseDouble(descuento));
+            double isv = (x-(x/1.15));
+            double subTotal = (x/1.15);
+            importe = String.valueOf(x);
+            double pv = (Double.parseDouble(precioVenta)/1.15);
             
+            modelo = (DefaultTableModel) pventas.jtablaProductosAVender.getModel();
+            String elementosFila [] = {codigo, cantidad, descripcion, df.format(pv),descuento,  df.format(subTotal),   df.format(isv), importe};
+            modelo.addRow(elementosFila);
+            
+            double calcula  = (Double.parseDouble(precioVenta)* Integer.parseInt(jtfCantidad.getText()));
+            double des = (Double.parseDouble(descuento));
+            
+            descuentoTotal = descuentoTotal + des;
+            total = total + calcula - des;
+            
+            PanelVentas ventas = new PanelVentas(total, total/1.15, total-(total/1.15), descuentoTotal);
+            ventas.setValoresVenta(); 
+            
+            jtfCantidad.setText("1");
+            jtfDescuento.setText("0");
+        }
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -219,7 +302,9 @@ public class ListaProductos extends javax.swing.JDialog {
     }//GEN-LAST:event_closeDialog
 
     private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
-
+      //if(evt.getClickCount()==2){
+      //  new CantidadAVender(new javax.swing.JDialog(), true).setVisible(true);
+      // }
     }//GEN-LAST:event_tablaProductosMouseClicked
 
     private void tablaProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMousePressed
@@ -228,7 +313,7 @@ public class ListaProductos extends javax.swing.JDialog {
     }//GEN-LAST:event_tablaProductosMousePressed
 
     private void jtfBuscarProductosCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarProductosCaretUpdate
-        DefaultTableModel modeloTablaBuscarProductos = new DefaultTableModel(productos.buscarProductos(jtfBuscarProductos.getText()), columnasProductos);
+        DefaultTableModel modeloTablaBuscarProductos = new DefaultTableModel(productos.buscarListaProductos(jtfBuscarProductos.getText()), columnasProductos);
         tablaProductos.setModel(modeloTablaBuscarProductos);
     }//GEN-LAST:event_jtfBuscarProductosCaretUpdate
 
@@ -250,8 +335,12 @@ public class ListaProductos extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jtfBuscarProductos;
+    private javax.swing.JTextField jtfCantidad;
+    private javax.swing.JTextField jtfDescuento;
     private javax.swing.JButton okButton;
     private javax.swing.JTable tablaProductos;
     // End of variables declaration//GEN-END:variables
