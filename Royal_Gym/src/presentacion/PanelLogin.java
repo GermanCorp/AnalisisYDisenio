@@ -7,30 +7,21 @@ import royal_gym.Validaciones;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import royal_gym.LoginEntrar;
-import static sun.security.jgss.GSSUtil.login;
 
 public class PanelLogin extends javax.swing.JFrame {
-
-    static private Connection conexion;
+     static private Connection conexion;
     private static Statement statement;
-    Conexion cn = new Conexion();
-    ResultSet rs = null;
-    PreparedStatement pst = null;
-    Connection conn = null;
-    LoginEntrar LE = new LoginEntrar();
-    
-
+   
+     
     public PanelLogin() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Acceso al sistema");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.LE = new LoginEntrar();
-
+        
+        
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -38,9 +29,9 @@ public class PanelLogin extends javax.swing.JFrame {
         panelLogin = new javax.swing.JPanel();
         lblAcceso = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
-        usuario = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         lblContrasena = new javax.swing.JLabel();
-        contraseña = new javax.swing.JPasswordField();
+        txtContrasena = new javax.swing.JPasswordField();
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnIcono = new javax.swing.JButton();
@@ -58,15 +49,15 @@ public class PanelLogin extends javax.swing.JFrame {
         lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lblUsuario.setText("Usuario:");
 
-        usuario.addActionListener(new java.awt.event.ActionListener() {
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuarioActionPerformed(evt);
+                txtUsuarioActionPerformed(evt);
             }
         });
 
         lblContrasena.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         lblContrasena.setForeground(new java.awt.Color(255, 255, 255));
-        lblContrasena.setText("Contraseña:");
+        lblContrasena.setText("Contrasena:");
 
         btnAceptar.setBackground(new java.awt.Color(85, 96, 128));
         btnAceptar.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
@@ -108,8 +99,8 @@ public class PanelLogin extends javax.swing.JFrame {
                             .addComponent(lblUsuario)
                             .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(lblAcceso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                                .addComponent(usuario, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(contraseña, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtContrasena, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelLoginLayout.createSequentialGroup()
                                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -129,11 +120,11 @@ public class PanelLogin extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(lblUsuario)
                 .addGap(18, 18, 18)
-                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblContrasena)
                 .addGap(18, 18, 18)
-                .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
@@ -154,16 +145,14 @@ public class PanelLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+        
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         System.exit(0);
-         usuario.setText("");
-        contraseña.setText("");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-     //conectarse a la base de datos
-    public static void conectarr() {
+    //conectarse a la base de datos
+    public static void conectar() {
         try {
             Class.forName("org.sqlite.JDBC");
             conexion = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
@@ -172,39 +161,68 @@ public class PanelLogin extends javax.swing.JFrame {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-  
+
+    // método para cerrar la base de datos
+    public static void cerrar() {
+        try {
+            conexion.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static Connection getConexion(){
+        return conexion;
+    }
+     
+
+            
+    
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        
-         if (usuario.getText().equals("") && contraseña.getPassword().equals("")) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar el Usuario y Contrasena", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (usuario.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe Ingresar el nombre de usuario", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (contraseña.getPassword().length==0) {
-            JOptionPane.showMessageDialog(this, "Debe Ingresar la contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
+        //variables para usuario y contrasena
+        String usu = txtUsuario.getText();
+        String pass = new String (txtContrasena.getPassword());
+        if(usu.equals("admin") && pass.equals("admin123456789"))
+        {
+            this.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Bienvenido Admin");
+            PanelNuevoUsuario ingreso = new PanelNuevoUsuario();
+            ingreso.setVisible(true);
+            ingreso.pack();
         }
-         if (LoginEntrar.ingreso(usuario.getText(),String.valueOf(contraseña.getPassword())) == 1) {
-				PanelNuevoUsuario pnu = new PanelNuevoUsuario();
-				pnu.setVisible(true);
-	} 
-/*
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Usuario/Contrasena Incorrecta");
+            txtUsuario.requestFocus();
+        }
+        
+        if (txtUsuario.getText().equals("") && txtContrasena.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar el Usuario y Contrasena", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (txtUsuario.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar el nombre de usuario", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (txtContrasena.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar la contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
+        }   
+        
         txtUsuario.setText("");
-        txtContrasena.setText("");*/
+            txtContrasena.setText("");
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
-
+             
     }//GEN-LAST:event_btnAceptarMouseClicked
-
-    private void usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioActionPerformed
+        
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usuarioActionPerformed
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
+    
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PanelLogin().setVisible(true);
-
+                
             }
         });
     }
@@ -213,12 +231,14 @@ public class PanelLogin extends javax.swing.JFrame {
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnIcono;
-    public static javax.swing.JPasswordField contraseña;
     private javax.swing.JLabel lblAcceso;
     private javax.swing.JLabel lblContrasena;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel panelLogin;
-    public static javax.swing.JTextField usuario;
+    private javax.swing.JPasswordField txtContrasena;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
+   
 }
+

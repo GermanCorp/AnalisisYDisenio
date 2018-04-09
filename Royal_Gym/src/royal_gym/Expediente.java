@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import javax.swing.JDialog;
 import static royal_gym.Pagos.resultado;
 
 /**
@@ -19,8 +18,9 @@ import static royal_gym.Pagos.resultado;
 public class Expediente {
     private static Statement statement;
     static ResultSet resultado;
-
-  
+    
+   
+    
    /*  
     // método para insertar pagos a la base de datos
     public void insertarProblemasdeSalud(String problema) {
@@ -40,16 +40,16 @@ public class Expediente {
     
     public void insertarCambiosCorporales(String peso,String imc, String grasa, String musculo,String calorias, String edad, String grasaviceral) {
         try {
-            String sql = "insert into cambioscorporales(peso, imc, porcentajedegrasa , porcentajedemusculo, edad , grasaviceral,calorias) values(?,?,?,?,?,?,?)";
+            String sql = "insert into cambioscorporales(peso, imc, porcentajedegrasa , porcentajedemusculo, calorias, edad , grasaviceral) values(?,?,?,?,?,?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             
             consulta.setString(1, peso);
             consulta.setString(2, imc);
             consulta.setString(4, grasa);
-                consulta.setString(5, musculo);
-            consulta.setString(6, edad);
-            consulta.setString(7, grasaviceral);
-            consulta.setString(8, calorias);
+            consulta.setString(5, musculo);
+            consulta.setString(6, calorias);
+            consulta.setString(7, edad);
+            consulta.setString(8, grasaviceral);
             consulta.execute();
 
         } catch (Exception e) {
@@ -62,10 +62,10 @@ public class Expediente {
         Object[][] datosPago = null;
 
         try {
-            String consulta = "SELECT peso,imc,porcentajedegrasa,porcentajedemusculo,calorias,edad,grasaviceral  FROM cambioscorporales ";
+            String consulta = "SELECT peso,imc,porcentajedegrasa,porcentajedemusculo,calorias,edad,grasaviceral  FROM cambioscorporales order by id_cambio DESC ";
             statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
-            //String numeroLista = "";
+            String numeroLista = "";
 
             ArrayList<Object[]> filas = new ArrayList<>();
 

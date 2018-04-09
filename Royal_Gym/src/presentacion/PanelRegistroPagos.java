@@ -390,7 +390,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfMontoAPagarKeyPressed
 
     private void jtfMontoAPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfMontoAPagarKeyTyped
-        
+        Number n = evt.getKeyCode();
         if(!Character.isDigit(evt.getKeyChar())){
             evt.consume();
 

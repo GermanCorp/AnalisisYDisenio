@@ -95,16 +95,15 @@ public class Clientes {
     }// </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Método para insertar un cliente">  
-    public void insertarCliente(String nombres, String apellidos, String fechaNacimiento, String altura, String peso,String foto) {
+    public void insertarCliente(String nombres, String apellidos, String fechaNacimiento, String altura, String peso) {
         try {
-            String sql = "insert into cliente (nombres, apellidos, fechaNacimiento, altura, peso,foto) values (?,?,?,?,?,?)";
+            String sql = "insert into cliente (nombres, apellidos, fechaNacimiento, altura, peso) values (?,?,?,?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, nombres);
             consulta.setString(2, apellidos);
             consulta.setString(3, fechaNacimiento);
             consulta.setString(4, altura);
             consulta.setString(5, peso);
-            consulta.setString(6, foto);
             consulta.execute();
         } catch (Exception e) {
             System.out.println(e.getMessage());
