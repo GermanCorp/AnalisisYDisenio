@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import presentacion.PanelLogin;
 
 public class Conexion {
 
@@ -21,7 +22,7 @@ public class Conexion {
     static ResultSet resultado;
     double totalIngresos = 0;
     double totalGastos = 0;
-
+    
     //conectarse a la base de datos
     public static void conectar() {
         try {
@@ -75,6 +76,7 @@ public class Conexion {
         }
         return tipoIMC;
     }
+    
 
     // método para insertar pagos a la base de datos
     public void insertarPagos(String cliente, String monto, String tiempo, String tipotiempo, String tipoplan, String fecha) {
@@ -96,15 +98,16 @@ public class Conexion {
     }// fin de insertar pago
 
     // Método para insertar nuevo clinte
-    public void insertarCliente(String nombres, String apellidos, String fechaNacimiento, String altura, String peso) {
+    public void insertarCliente(String nombres, String apellidos, String fechaNacimiento, String altura, String peso,String Foto) {
         try {
-            String sql = "insert into cliente (nombres, apellidos, fechaNacimiento, altura, peso) values (?,?,?,?,?)";
+            String sql = "insert into cliente (nombres, apellidos, fechaNacimiento, altura, peso,foto) values (?,?,?,?,?,?)";
             PreparedStatement consulta = conexion.prepareStatement(sql);
             consulta.setString(1, nombres);
             consulta.setString(2, apellidos);
             consulta.setString(3, fechaNacimiento);
             consulta.setString(4, altura);
             consulta.setString(5, peso);
+            consulta.setString(6, Foto);
             consulta.execute();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -115,7 +118,7 @@ public class Conexion {
     public void insertarInventario(String NombreEquipo, String CantidadEquipo, String Descripcion) {
         try {
             String sql = "insert into inventario (nombre, cantidad, descripcion) values (?,?,?)";
-            PreparedStatement consulta = conexion.prepareStatement(sql);
+            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, NombreEquipo);
             consulta.setString(2, CantidadEquipo);
             consulta.setString(3, Descripcion);
@@ -185,7 +188,7 @@ public class Conexion {
         Object[][] datosCliente = null;
 
         try {
-            String consulta = "Select nombres ||' '||apellidos as NombreCompleto, fechaNacimiento, altura, peso, Peso / (Altura * Altura) as imc FROM cliente AS a ORDER BY nombres";
+            String consulta = "Select nombres ||' '||apellidos as NombreCompleto, fechaNacimiento, altura, peso, Peso / (Altura * Altura) as imc,foto FROM cliente AS a ORDER BY nombres";
             statement = conexion.createStatement();
             resultado = statement.executeQuery(consulta);
 
@@ -201,7 +204,8 @@ public class Conexion {
                             formatearNumero(resultado.getDouble("Altura")) + " mt",
                             formatearNumero(resultado.getDouble("Peso")) + " kg",
                             formatearNumero(resultado.getDouble("imc")),
-                            clasificaciónIMC(resultado.getDouble("imc"))
+                            clasificaciónIMC(resultado.getDouble("imc")),
+                            resultado.getString("foto")
                         }
                 );
             }
@@ -222,7 +226,7 @@ public class Conexion {
 
         try {
             String consulta = "SELECT nombre, cantidad, descripcion,cod_equipo FROM inventario";
-            statement = conexion.createStatement();
+            statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
             int numeroLista = 1;
 
@@ -287,7 +291,7 @@ public class Conexion {
         Object[][] datosCliente = null;
         try {
             String consulta = "SELECT *  FROM pagos WHERE  cliente LIKE '%' || ? || '%' ORDER BY cliente";
-            PreparedStatement statement = conexion.prepareStatement(consulta);
+            PreparedStatement statement = Conexion.getConexion().prepareStatement(consulta);
             statement.setString(1, nombre);
 
             resultado = statement.executeQuery();
@@ -552,4 +556,22 @@ public class Conexion {
         return datosPago;
     }
     
-}
+    //metodo para insertar un nuevo usuario a la base de datos
+    public void nuevoUser(String User, String Pass) {
+        try {
+            String sql = "insert into login (usuario, contraseña) values (?,?)";
+            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
+            consulta.setString(1, User);
+            consulta.setString(2, Pass);
+            consulta.execute();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+         
+    }
+       
+   
+    
+

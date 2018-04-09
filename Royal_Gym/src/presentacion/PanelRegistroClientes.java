@@ -1,14 +1,27 @@
 package presentacion;
 
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Clientes;
+import royal_gym.Conexion;
 
 public class PanelRegistroClientes extends javax.swing.JPanel {
     Clientes clientes = new Clientes();
+    
     
     //Columnas de la tabla Clientes
     private final String[] columnasClientes = {"No.", "Nombres", "Fecha de Nacimiento", "Altura", "Peso", "Masa Corporal", "Clasificación"};
@@ -45,7 +58,9 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         btnAceptarRegistroCliente = new javax.swing.JButton();
         jtfPeso = new javax.swing.JTextField();
         jdcFecha = new com.toedter.calendar.JDateChooser();
-        jLabel9 = new javax.swing.JLabel();
+        btnFoto = new javax.swing.JButton();
+        btnGaleria = new javax.swing.JButton();
+        lblFoto = new javax.swing.JLabel();
         PanelTabla = new javax.swing.JPanel();
         scrollTablaClientes = new javax.swing.JScrollPane();
         tablaClientes = new javax.swing.JTable(){
@@ -224,7 +239,31 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             }
         });
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/RegistroNuevoCliente.png"))); // NOI18N
+        btnFoto.setBackground(new java.awt.Color(85, 96, 128));
+        btnFoto.setFont(new java.awt.Font("Century", 3, 12)); // NOI18N
+        btnFoto.setForeground(new java.awt.Color(85, 96, 128));
+        btnFoto.setText("Camara");
+        btnFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFotoActionPerformed(evt);
+            }
+        });
+
+        btnGaleria.setBackground(new java.awt.Color(85, 96, 128));
+        btnGaleria.setFont(new java.awt.Font("Century", 3, 14)); // NOI18N
+        btnGaleria.setForeground(new java.awt.Color(85, 96, 128));
+        btnGaleria.setText("Galeria");
+        btnGaleria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGaleriaActionPerformed(evt);
+            }
+        });
+
+        lblFoto.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        lblFoto.setForeground(new java.awt.Color(255, 255, 255));
+        lblFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFoto.setText("Foto");
+        lblFoto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout panelDatosClienteLayout = new javax.swing.GroupLayout(panelDatosCliente);
         panelDatosCliente.setLayout(panelDatosClienteLayout);
@@ -232,45 +271,56 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDatosClienteLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jtfApellidoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelDatosClienteLayout.createSequentialGroup()
-                        .addComponent(btnAceptarRegistroCliente)
-                        .addGap(65, 65, 65)
-                        .addComponent(btnCancelarRegistroCliente))
+                        .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jtfApellidoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelDatosClienteLayout.createSequentialGroup()
+                                .addComponent(btnAceptarRegistroCliente)
+                                .addGap(65, 65, 65)
+                                .addComponent(btnCancelarRegistroCliente))
+                            .addGroup(panelDatosClienteLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtfPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7))
+                            .addComponent(jtfNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(24, Short.MAX_VALUE))
                     .addGroup(panelDatosClienteLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7))
-                    .addGroup(panelDatosClienteLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(20, 20, 20)
-                        .addComponent(jlRegistroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addGroup(panelDatosClienteLayout.createSequentialGroup()
+                                    .addComponent(btnFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnGaleria))))
+                        .addGap(5, 5, 5)
+                        .addComponent(jlRegistroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
         );
         panelDatosClienteLayout.setVerticalGroup(
             panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDatosClienteLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelDatosClienteLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jlRegistroClientes))
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(30, 30, 30)
+                    .addComponent(jlRegistroClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                    .addComponent(lblFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFoto)
+                    .addComponent(btnGaleria))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jtfNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -299,7 +349,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarRegistroCliente)
                     .addComponent(btnCancelarRegistroCliente))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         PanelTabla.setBackground(new java.awt.Color(85, 96, 128));
@@ -354,7 +404,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             .addGroup(PanelTablaLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                    .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
                     .addComponent(jtfBuscarCliente))
                 .addGap(20, 20, 20))
         );
@@ -364,7 +414,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                .addComponent(scrollTablaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
 
@@ -441,7 +491,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfAlturaKeyTyped
 
     private void btnAceptarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteActionPerformed
-        clientes.insertarCliente(jtfNombreCliente.getText(), jtfApellidoCliente.getText(), jdcFecha.getDateFormatString(), jtfAltura.getText(), jtfPeso.getText());
+        clientes.insertarCliente(jtfNombreCliente.getText(), jtfApellidoCliente.getText(), jdcFecha.getDateFormatString(), jtfAltura.getText(), jtfPeso.getText(),lblFoto.getText());
         clientes.modeloTablaCliente(columnasClientes, tablaClientes);
     }//GEN-LAST:event_btnAceptarRegistroClienteActionPerformed
 
@@ -549,11 +599,52 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         new Expediente(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jMenuItemExpedienteMousePressed
 
+    private void btnFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotoActionPerformed
+        
+        
+        
+        
+    }//GEN-LAST:event_btnFotoActionPerformed
+
+    //variable de fichero
+    File fichero;
+    
+    // boton para cargar foto desde el fichero
+    private void btnGaleriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGaleriaActionPerformed
+        
+        int resultado;
+        
+        CargarImagen ventana = new CargarImagen();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG","jpg","jpg","png");
+        ventana.jfchCargarFoto.setFileFilter(filtro);
+        resultado = ventana.jfchCargarFoto.showOpenDialog(null);
+        
+        if(JFileChooser.APPROVE_OPTION == resultado){
+            
+            fichero = ventana.jfchCargarFoto.getSelectedFile();
+            
+        try 
+        {
+            ImageIcon icon = new ImageIcon(fichero.toString());
+            Icon icono = new ImageIcon(icon.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
+            lblFoto.setText(null);
+            lblFoto.setIcon(icono);
+        } catch (Exception ex) {
+          
+        }
+            
+        }
+        
+        
+    }//GEN-LAST:event_btnGaleriaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelTabla;
     private javax.swing.JButton btnAceptarRegistroCliente;
     private javax.swing.JButton btnCancelarRegistroCliente;
+    private javax.swing.JButton btnFoto;
+    private javax.swing.JButton btnGaleria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -561,7 +652,6 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuItem jMenuItemEliminar;
     private javax.swing.JMenuItem jMenuItemExpediente;
     private javax.swing.JMenuItem jMenuItemModificar;
@@ -573,6 +663,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     private javax.swing.JTextField jtfBuscarCliente;
     private javax.swing.JTextField jtfNombreCliente;
     private javax.swing.JTextField jtfPeso;
+    private javax.swing.JLabel lblFoto;
     private javax.swing.JPanel panelDatosCliente;
     private javax.swing.JScrollPane scrollTablaClientes;
     private javax.swing.JTable tablaClientes;
