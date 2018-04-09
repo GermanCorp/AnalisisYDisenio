@@ -195,9 +195,9 @@ public class PanelCompras extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int existencia = Integer.parseInt(prp.guardar);
-        int suma;
-        suma = Integer.parseInt(tfcantidadcompra.getText() + existencia);
+        //int existencia = Integer.parseInt(prp.guardar);
+        //int suma;
+        //suma = Integer.parseInt(tfcantidadcompra.getText() + existencia);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
