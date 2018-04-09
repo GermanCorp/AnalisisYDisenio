@@ -160,6 +160,18 @@ public class PanelLogin extends javax.swing.JFrame {
         txtContrasena.setText("");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+   
+    
+     //conectarse a la base de datos
+    public static void conectarr() {
+        try {
+            Class.forName("org.sqlite.JDBC");
+            conexion = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
+            statement = conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
   
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
@@ -172,9 +184,9 @@ public class PanelLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
         }
          
-       String sql = "select * from login where usuario = ? and contraseña = ?";
+       String sql = "select * usuario,contraseña from login where usuario = ? and contraseña = ?";
        
-       try{
+       try{  
            pst = conn.prepareStatement(sql);
            pst.setString(1,txtUsuario.getText() );
            pst.setString(2,txtContrasena.getText() );

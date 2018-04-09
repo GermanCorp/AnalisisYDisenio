@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import presentacion.PanelLogin;
 
 public class Conexion {
 
@@ -21,30 +22,7 @@ public class Conexion {
     static ResultSet resultado;
     double totalIngresos = 0;
     double totalGastos = 0;
-    Connection conn = null;
-   
-   
-   
-   //Metodo para conectar con la base de datos para Login
-   public Connection conexionLogin()
-   {
-       try {
-            Class.forName("org.sqlite.JDBC");
-            conexion = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
-            statement = conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return conn;
-   }
-   
-   public Connection getConnection(){
-        return conn;
-    }
-   
-   
-
-
+    
     //conectarse a la base de datos
     public static void conectar() {
         try {
@@ -140,7 +118,7 @@ public class Conexion {
     public void insertarInventario(String NombreEquipo, String CantidadEquipo, String Descripcion) {
         try {
             String sql = "insert into inventario (nombre, cantidad, descripcion) values (?,?,?)";
-            PreparedStatement consulta = conexion.prepareStatement(sql);
+            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, NombreEquipo);
             consulta.setString(2, CantidadEquipo);
             consulta.setString(3, Descripcion);
@@ -248,7 +226,7 @@ public class Conexion {
 
         try {
             String consulta = "SELECT nombre, cantidad, descripcion,cod_equipo FROM inventario";
-            statement = conexion.createStatement();
+            statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
             int numeroLista = 1;
 
@@ -313,7 +291,7 @@ public class Conexion {
         Object[][] datosCliente = null;
         try {
             String consulta = "SELECT *  FROM pagos WHERE  cliente LIKE '%' || ? || '%' ORDER BY cliente";
-            PreparedStatement statement = conexion.prepareStatement(consulta);
+            PreparedStatement statement = Conexion.getConexion().prepareStatement(consulta);
             statement.setString(1, nombre);
 
             resultado = statement.executeQuery();
@@ -581,7 +559,7 @@ public class Conexion {
     //metodo para insertar un nuevo usuario a la base de datos
     public void nuevoUser(String User, String Pass) {
         try {
-            String sql = "insert into usuarios (usuario, contrasena) values (?,?)";
+            String sql = "insert into login (usuario, contraseña) values (?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, User);
             consulta.setString(2, Pass);
@@ -591,35 +569,9 @@ public class Conexion {
         }
     }
     
-    public static int validar_ingreso(String usuario, String clave) {
-
-		int resultado = 0;
-		String SSQL = "select * from login where usuario=? and contraseña=sha1(?)";
-		Connection conect = null;
-
-		try {
-			conect = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
-			PreparedStatement st = conect.prepareStatement(SSQL);
-
-			// Statement st = conect.createStatement();
-
-			st.setString(1, usuario);
-			st.setString(2, clave);
-			ResultSet rs = st.executeQuery();
-
-			if (rs.next()) {
-				resultado = 1;
-			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			try {
-				conect.close();
-			} catch (SQLException ex) {
-				ex.printStackTrace();
-			}
-		}
-		return resultado;
-	}
+         
+    }
+       
+   
     
-}
+

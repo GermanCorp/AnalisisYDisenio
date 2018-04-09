@@ -19,7 +19,7 @@ public class NuevoUsuario
     
     public void nuevoUser(String User, String Pass) {
         try {
-            String sql = "insert into usuarios (usuario, contrasena) values (?,?)";
+            String sql = "insert into login (usuario, contraseña) values (?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, User);
             consulta.setString(2, Pass);
