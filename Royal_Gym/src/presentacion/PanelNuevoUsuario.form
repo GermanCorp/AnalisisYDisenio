@@ -60,8 +60,8 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="txtContrasena" min="-2" pref="206" max="-2" attributes="0"/>
-                              <Component id="txtUsuario" min="-2" pref="206" max="-2" attributes="0"/>
+                              <Component id="txtClave" min="-2" pref="206" max="-2" attributes="0"/>
+                              <Component id="txtUser" min="-2" pref="206" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -77,12 +77,12 @@
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblUsuario" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="txtUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtUser" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblContrasena" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtContrasena" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtClave" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -117,9 +117,15 @@
             <Property name="text" type="java.lang.String" value="Contrase&#xf1;a:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtUsuario">
+        <Component class="javax.swing.JTextField" name="txtUser">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="txtContrasena">
+        <Component class="javax.swing.JPasswordField" name="txtClave">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="btnAceptar">
           <Properties>

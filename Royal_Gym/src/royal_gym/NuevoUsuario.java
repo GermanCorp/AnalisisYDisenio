@@ -17,9 +17,10 @@ public class NuevoUsuario
         return df.format(numero);
     }
     
-    public void nuevoUser(String User, String Pass) {
+    public void nuevoUser(String User, String Pass)
+    {
         try {
-            String sql = "insert into login (usuario, contraseña) values (?,?)";
+            String sql = "Insert into Login (usuario, contraseña) values (?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, User);
             consulta.setString(2, Pass);
