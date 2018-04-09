@@ -29,7 +29,7 @@ public class Gastos {
 
         try {
             String consulta = "Select Descripcion, Monto, Fecha FROM gasto ORDER BY fecha desc";
-            statement = conexion.createStatement();
+            statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
 
             int numeroLista = 1;

@@ -222,7 +222,14 @@ public class ListaClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_closeDialog
 
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
-
+        if(evt.getClickCount()==2){
+        doClose(RET_OK);
+        int filaSeleccionada = tablaClientes.getSelectedRow();
+            String nombreCliente = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
+            cliente = nombreCliente;  
+            PanelVentas ventas = new PanelVentas(cliente);
+            ventas.setNombreCliente();
+        }
     }//GEN-LAST:event_tablaClientesMouseClicked
 
     private void tablaClientesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMousePressed

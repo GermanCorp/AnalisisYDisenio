@@ -19,10 +19,15 @@ public class Productos {
         tabla.setModel(modeloTablaProductos);
     }
     
+    public String formatearNumero(double numero) {
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        return df.format(numero);
+    }
+        
     public Object[][] getProductos() {
         Object[][] datosProductos = null;
         try {
-            String consulta = "select idproducto, descripcion, unidad, costo, precioventa from productos";
+            String consulta = "select idproducto, descripcion, unidad, costo, precioventa, cantidad from productos";
             statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
 
@@ -37,7 +42,8 @@ public class Productos {
                             resultado.getString("descripcion"),
                             resultado.getString("unidad"),
                             formatearNumero(resultado.getDouble("costo")),
-                            formatearNumero(resultado.getDouble("precioventa"))
+                            formatearNumero(resultado.getDouble("precioventa")),
+                            formatearNumero(resultado.getDouble("cantidad")),
                         }
                 );
             }
@@ -49,9 +55,32 @@ public class Productos {
         return datosProductos;
     }
     
-    public String formatearNumero(double numero) {
-        DecimalFormat df = new DecimalFormat("#,##0.00");
-        return df.format(numero);
+    public Object[][] getListaProductos() {
+        Object[][] datosProductos = null;
+        try {
+            String consulta = "select idproducto, descripcion, precioventa from productos";
+            statement = Conexion.getConexion().createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            //int numeroLista = 1;
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                            //numeroLista++,
+                            resultado.getInt("idproducto"),
+                            resultado.getString("descripcion"),
+                            formatearNumero(resultado.getDouble("precioventa"))
+                        }
+                );
+            }
+            datosProductos= new Object[filas.size()][];
+            filas.toArray(datosProductos);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosProductos;
     }
     
     public Object[][] buscarProductos(String descripcion) {
@@ -85,6 +114,35 @@ public class Productos {
         return datosProductos;
     }
     
+     public Object[][] buscarListaProductos(String descripcion) {
+        Object[][] datosProductos = null;
+        try {
+            String consulta = "select idproducto, descripcion, precioventa FROM productos WHERE descripcion LIKE '%' || ? || '%'";
+            PreparedStatement statement = Conexion.getConexion().prepareStatement(consulta);
+            statement.setString(1, descripcion);
+
+            resultado = statement.executeQuery();
+            
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                            //numeroLista++,
+                            resultado.getInt("idproducto"),
+                            resultado.getString("descripcion"),
+                            formatearNumero(resultado.getDouble("precioventa"))
+                        }
+                );
+            }
+            datosProductos= new Object[filas.size()][];
+            filas.toArray(datosProductos);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosProductos;
+    }
+    
     public void eliminarProducto(String id) {
 
         try {
@@ -98,14 +156,15 @@ public class Productos {
         }
     }
     
-    public void insertarProducto(String descripcion, String unidad, String costo, String precioventa) {
+    public void insertarProducto(String descripcion, String unidad, String costo, String precioventa, String cantidad) {
         try {
-            String sql = "insert into productos (descripcion, unidad, costo, precioventa) values (?,?,?,?)";
+            String sql = "insert into productos (descripcion, unidad, costo, precioventa, cantidad) values (?,?,?,?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, descripcion);
             consulta.setString(2, unidad);
             consulta.setString(3, costo);
             consulta.setString(4, precioventa);
+            consulta.setString(5, cantidad);
             consulta.execute();
         } catch (Exception e) {
             System.out.println("Error en Insertar Producuto "+e.getMessage());
