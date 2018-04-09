@@ -27,11 +27,7 @@ public class Productos {
     public Object[][] getProductos() {
         Object[][] datosProductos = null;
         try {
-<<<<<<< HEAD
             String consulta = "select idproducto, descripcion, unidad, costo, precioventa, cantidad from productos";
-=======
-            String consulta = "select idproducto, descripcion, unidad, costo, precioventa, existencia from productos";
->>>>>>> 4069717fc8a2b575a41f009f636fbded3c1f2c68
             statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
 
@@ -47,11 +43,7 @@ public class Productos {
                             resultado.getString("unidad"),
                             formatearNumero(resultado.getDouble("costo")),
                             formatearNumero(resultado.getDouble("precioventa")),
-<<<<<<< HEAD
                             formatearNumero(resultado.getDouble("cantidad")),
-=======
-                            resultado.getString("existencia"),
->>>>>>> 4069717fc8a2b575a41f009f636fbded3c1f2c68
                         }
                 );
             }
@@ -164,11 +156,7 @@ public class Productos {
         }
     }
     
-<<<<<<< HEAD
     public void insertarProducto(String descripcion, String unidad, String costo, String precioventa, String cantidad) {
-=======
-    public void insertarProducto(String descripcion, String unidad, String costo, String precioventa , String existencia) {
->>>>>>> 4069717fc8a2b575a41f009f636fbded3c1f2c68
         try {
             String sql = "insert into productos (descripcion, unidad, costo, precioventa, cantidad) values (?,?,?,?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
@@ -176,11 +164,7 @@ public class Productos {
             consulta.setString(2, unidad);
             consulta.setString(3, costo);
             consulta.setString(4, precioventa);
-<<<<<<< HEAD
             consulta.setString(5, cantidad);
-=======
-            consulta.setString(5, existencia);
->>>>>>> 4069717fc8a2b575a41f009f636fbded3c1f2c68
             consulta.execute();
         } catch (Exception e) {
             System.out.println("Error en Insertar Producuto "+e.getMessage());

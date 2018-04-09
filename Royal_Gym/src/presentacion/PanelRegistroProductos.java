@@ -11,18 +11,9 @@ import royal_gym.Productos;
 public class PanelRegistroProductos extends javax.swing.JPanel {
     Productos productos = new Productos();
     
-    public String guardar;
-    
     //Columnas de la tabla Clientes
-<<<<<<< HEAD
     private final String[] columnasProductos = { "Código", "Descripción", "Medida", "Costo", "Precio de Venta", "Cantidad en Inventario"};
-=======
-    private final String[] columnasProductos = { "Código", "Descripción", "Medida", "Costo", "Precio de Venta","Existencia"};
->>>>>>> 4069717fc8a2b575a41f009f636fbded3c1f2c68
    
-    
-    public String totalIngresos ;
-    
     //Constructor
     public PanelRegistroProductos() {
         initComponents();
@@ -52,11 +43,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
         jtfPrecioProducto = new javax.swing.JTextField();
         jcbMedidaProducto = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-<<<<<<< HEAD
         jtfCantidad = new javax.swing.JTextField();
-=======
-        jtfcantidadeninventario = new javax.swing.JTextField();
->>>>>>> 4069717fc8a2b575a41f009f636fbded3c1f2c68
         PanelTabla = new javax.swing.JPanel();
         scrollTablaClientes = new javax.swing.JScrollPane();
         tablaProductos = new javax.swing.JTable(){
@@ -189,7 +176,6 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Cantidad en inventario:");
 
-<<<<<<< HEAD
         jtfCantidad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,20 +188,6 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfCantidadKeyTyped(evt);
-=======
-        jtfcantidadeninventario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jtfcantidadeninventario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfcantidadeninventarioActionPerformed(evt);
-            }
-        });
-        jtfcantidadeninventario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jtfcantidadeninventarioKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtfcantidadeninventarioKeyTyped(evt);
->>>>>>> 4069717fc8a2b575a41f009f636fbded3c1f2c68
             }
         });
 
@@ -239,11 +211,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
                         .addComponent(jcbMedidaProducto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6))
                     .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-<<<<<<< HEAD
                         .addComponent(jtfCantidad, javax.swing.GroupLayout.Alignment.LEADING)
-=======
-                        .addComponent(jtfcantidadeninventario, javax.swing.GroupLayout.Alignment.LEADING)
->>>>>>> 4069717fc8a2b575a41f009f636fbded3c1f2c68
                         .addComponent(jtfPrecioProducto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                         .addComponent(jtfCostoProducto, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap(57, Short.MAX_VALUE))
@@ -270,11 +238,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel6)
                 .addGap(0, 0, 0)
-<<<<<<< HEAD
                 .addComponent(jtfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-=======
-                .addComponent(jtfcantidadeninventario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
->>>>>>> 4069717fc8a2b575a41f009f636fbded3c1f2c68
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarRegistroProducto)
@@ -423,25 +387,13 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfCostoProductoKeyTyped
 
     private void btnAceptarRegistroProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroProductoActionPerformed
-<<<<<<< HEAD
         productos.insertarProducto(jtfDescripcionProducto.getText(), jcbMedidaProducto.getSelectedItem().toString(), jtfCostoProducto.getText(), jtfPrecioProducto.getText(), jtfCantidad.getText());
-=======
-        productos.insertarProducto(jtfDescripcionProducto.getText(), jcbMedidaProducto.getSelectedItem().toString(), jtfCostoProducto.getText(), jtfPrecioProducto.getText(),jtfcantidadeninventario.getText());
->>>>>>> 4069717fc8a2b575a41f009f636fbded3c1f2c68
         productos.modeloTablaProductos(columnasProductos, tablaProductos);
         jtfDescripcionProducto.setText("");
         jcbMedidaProducto.setSelectedItem(null);
         jtfCostoProducto.setText("");
         jtfPrecioProducto.setText("");
-<<<<<<< HEAD
         jtfCantidad.setText("");
-=======
-        
-        
-        
-        
-        
->>>>>>> 4069717fc8a2b575a41f009f636fbded3c1f2c68
     }//GEN-LAST:event_btnAceptarRegistroProductoActionPerformed
 
     private void btnAceptarRegistroProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroProductoKeyPressed
@@ -533,7 +485,6 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
             
     }//GEN-LAST:event_jMenuItemEliminarMousePressed
 
-<<<<<<< HEAD
     private void jtfCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCantidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfCantidadActionPerformed
@@ -553,26 +504,6 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
           actualizarTablaProductos();
     }//GEN-LAST:event_jButton1ActionPerformed
-=======
-    private void jtfcantidadeninventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfcantidadeninventarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfcantidadeninventarioActionPerformed
-
-    private void jtfcantidadeninventarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfcantidadeninventarioKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfcantidadeninventarioKeyReleased
-
-    private void jtfcantidadeninventarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfcantidadeninventarioKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfcantidadeninventarioKeyTyped
-
-    private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
-        int seleccion = tablaProductos.rowAtPoint(evt.getPoint());
-        
-        guardar = String.valueOf(tablaProductos.getValueAt(seleccion , 5));
-        
-    }//GEN-LAST:event_tablaProductosMouseClicked
->>>>>>> 4069717fc8a2b575a41f009f636fbded3c1f2c68
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -594,10 +525,6 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     private javax.swing.JTextField jtfCostoProducto;
     private javax.swing.JTextField jtfDescripcionProducto;
     private javax.swing.JTextField jtfPrecioProducto;
-<<<<<<< HEAD
-=======
-    private javax.swing.JTextField jtfcantidadeninventario;
->>>>>>> 4069717fc8a2b575a41f009f636fbded3c1f2c68
     private javax.swing.JPanel panelDatosCliente;
     private javax.swing.JScrollPane scrollTablaClientes;
     private javax.swing.JTable tablaProductos;
