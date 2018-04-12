@@ -939,7 +939,7 @@ public class PanelExpediente extends javax.swing.JPanel {
     private void botonaceptarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarexpedienteActionPerformed
         // TODO add your handling code here:
         
-        expediente.insertarProblemasdeSalud();
+        
         
         
         expediente.insertarCambiosCorporales(
