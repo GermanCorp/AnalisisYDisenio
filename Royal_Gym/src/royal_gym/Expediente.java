@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import static royal_gym.Pagos.resultado;
 
 /**
@@ -20,9 +21,6 @@ public class Expediente {
     static ResultSet resultado;
     
    
-    
-   /*  
-    // método para insertar pagos a la base de datos
     public void insertarProblemasdeSalud(String problema) {
         try {
             String sql = "insert into Pagos(cliente) values(?)";
@@ -36,7 +34,7 @@ public class Expediente {
 
         }
     }// fin de insertar pago
-    */
+    
     
     public void insertarCambiosCorporales(String peso,String imc, String grasa, String musculo,String calorias, String edad, String grasaviceral) {
         try {
@@ -45,15 +43,15 @@ public class Expediente {
             
             consulta.setString(1, peso);
             consulta.setString(2, imc);
-            consulta.setString(4, grasa);
-            consulta.setString(5, musculo);
-            consulta.setString(6, calorias);
-            consulta.setString(7, edad);
-            consulta.setString(8, grasaviceral);
+            consulta.setString(3, grasa);
+            consulta.setString(4, musculo);
+            consulta.setString(5, calorias);
+            consulta.setString(6, edad);
+            consulta.setString(7, grasaviceral);
             consulta.execute();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
 
         }
     }// fin de insertar pago
@@ -65,14 +63,24 @@ public class Expediente {
             String consulta = "SELECT peso,imc,porcentajedegrasa,porcentajedemusculo,calorias,edad,grasaviceral  FROM cambioscorporales order by id_cambio DESC ";
             statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
-            String numeroLista = "";
+            //String numeroLista = "";
 
             ArrayList<Object[]> filas = new ArrayList<>();
-
+            
+            double peso = 0;
+            double imc = 0;
+            double porcgrasa = 0;
+            double porcmusculo = 0;
+            double calorias = 0;
+            double edad = 0;
+            double grasaviceral = 0;
+            
+            int contador = 0;
+            if(contador <=2){
+                
             while (resultado.next()) {
-                filas.add(
+                    filas.add(
                     new Object[]{
-                   // numeroLista,
                     resultado.getDouble("peso"),
                     resultado.getDouble("imc"),
                     resultado.getDouble("porcentajedegrasa"),
@@ -80,7 +88,15 @@ public class Expediente {
                     resultado.getDouble("calorias"),
                     resultado.getInt("edad"),
                     resultado.getInt("grasaviceral"),}
+                          
+                    
                 );
+                  
+                  
+            }  
+            
+                   contador ++; 
+                  
             }
             datosPago = new Object[filas.size()][];
             filas.toArray(datosPago);
