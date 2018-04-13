@@ -1,11 +1,21 @@
 package presentacion;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Conexion;
+import royal_gym.Cumpleaneros;
 
 public class PanelCumpleaneros extends javax.swing.JPanel {
     
     Conexion con = new Conexion();
+     static private Connection conexion;
+    private static Statement statement;
+    static ResultSet resultado;
+  
     
     // columnas de la tabla Cumpleaneros
     private final String[] columnasCumpleaneros = {
@@ -26,6 +36,41 @@ public class PanelCumpleaneros extends javax.swing.JPanel {
         
         
     }
+    
+    // método para llenar la tabla de edad de los clientes
+    public Object[][] getEdadClientes() {
+        Object[][] datosCliente = null;
+
+        try {
+            String consulta = "Select * FROM Edad";
+            statement = Conexion.getConexion().createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            int numeroLista = 1;
+            ArrayList<Object[]> filas = new ArrayList<>();
+            DecimalFormat df = new DecimalFormat("###");
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                            numeroLista++,
+                            resultado.getString("Nombre"),
+                            resultado.getString("fechaNacimiento"),
+                            df.format(resultado.getDouble("Edad")) + " años"
+                        }
+                );
+            }
+            datosCliente = new Object[filas.size()][];
+            filas.toArray(datosCliente);
+
+            datosCliente = new Object[filas.size()][];
+            filas.toArray(datosCliente);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosCliente;
+    }
+
     
     
     @SuppressWarnings("unchecked")
@@ -85,8 +130,8 @@ public class PanelCumpleaneros extends javax.swing.JPanel {
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane3;

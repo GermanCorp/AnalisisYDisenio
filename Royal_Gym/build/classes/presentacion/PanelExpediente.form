@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
-  <Properties>
-    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="80" green="60" red="55" type="rgb"/>
-    </Property>
-  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -27,20 +22,9 @@
                   <Component id="PanelDatosCliente" max="32767" attributes="0"/>
                   <Component id="PanelProblemasdeSalud" max="32767" attributes="0"/>
               </Group>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="PanelCambiosCorporales" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
-                      <Component id="botonaceptarexpediente" min="-2" pref="140" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="botoncancelarexpediente" min="-2" pref="140" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="PanelCambiosCorporales" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -57,11 +41,6 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="PanelCambiosCorporales" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="botonaceptarexpediente" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
-                          <Component id="botoncancelarexpediente" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -71,19 +50,6 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="PanelDatosCliente">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="80" green="60" red="55" type="rgb"/>
-        </Property>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Datos del cliente">
-              <Font PropertyName="font" name="Tahoma" size="18" style="0"/>
-              <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
-            </TitledBorder>
-          </Border>
-        </Property>
-      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -91,71 +57,75 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="labeldatoscliente" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="botonaceptarexpediente" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="labelhoraparallamar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextFieldmejorhoralla" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="labeldireccion" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextFielddireccion" max="32767" attributes="0"/>
+                                  <Component id="jTextField3" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="labeltelefonotrabajo" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextFieldtelefonotrab" max="32767" attributes="0"/>
+                                  <Component id="jTextField4" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labeldireccion" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextField2" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="labelnombre" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextFieldnombre" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="jTextField1" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labelestatura" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextField7" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="labelpeso" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextField9" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="labeledad" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="33" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="20" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="labelestatura" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFieldestatura" min="-2" pref="72" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="labelpeso" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jTextFieldpeso" min="-2" pref="72" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="labeledad" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="labelfechainicio" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFieldfechainicio" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="labeltelefonocasa" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFieldtelefonocasa" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="labelcelular" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFieldcelular" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jTextFieldedad" min="-2" pref="72" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="labelpesoideal" min="-2" pref="56" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFieldpesoideal" min="-2" pref="71" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="labelfechanacimiento" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFieldfechanacimiento" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labelfechainicio" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextField6" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labeltelefonocasa" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextField5" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labelcelular" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextField12" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jTextField10" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="labelpesoideal" min="-2" pref="56" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextField11" min="-2" pref="71" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labelfechanacimiento" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextField8" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -165,33 +135,38 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="labeldatoscliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botonaceptarexpediente" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelnombre" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelfechainicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldnombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldfechainicio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labeltelefonotrabajo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labeltelefonocasa" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldtelefonotrab" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldtelefonocasa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labeldireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelcelular" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFielddireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldcelular" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField12" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelhoraparallamar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelfechanacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldmejorhoralla" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldfechanacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -199,10 +174,10 @@
                       <Component id="labelpeso" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labeledad" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelpesoideal" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldpeso" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldedad" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldpesoideal" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldestatura" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField10" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -210,191 +185,142 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
+        <Component class="javax.swing.JLabel" name="labeldatoscliente">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Datos del cliente"/>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JLabel" name="labelnombre">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Nombre:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labeltelefonotrabajo">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Telefono Trabajo:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labeldireccion">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Direccion:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelhoraparallamar">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Mejor hora para llamar:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelestatura">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Estatura:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelfechainicio">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Fecha de Inicio:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labeltelefonocasa">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Telefono casa:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelcelular">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Celular:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelfechanacimiento">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Fecha de nacimiento:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelpeso">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Peso:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labeledad">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Edad:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelpesoideal">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Peso Ideal:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldnombre">
+        <Component class="javax.swing.JTextField" name="jTextField1">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldnombreActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldnombreKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFielddireccion">
+        <Component class="javax.swing.JTextField" name="jTextField2">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFielddireccionActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFielddireccionKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldmejorhoralla">
+        <Component class="javax.swing.JTextField" name="jTextField3">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldmejorhorallaActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldmejorhorallaKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldtelefonotrab">
+        <Component class="javax.swing.JTextField" name="jTextField4">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldtelefonotrabActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldtelefonotrabKeyPressed"/>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldtelefonotrabKeyTyped"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField4ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldtelefonocasa">
+        <Component class="javax.swing.JTextField" name="jTextField5">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldtelefonocasaActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldtelefonocasaKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField5ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldfechainicio">
+        <Component class="javax.swing.JTextField" name="jTextField6">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldfechainicioActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldfechainicioKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField6ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldestatura">
+        <Component class="javax.swing.JTextField" name="jTextField7">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldestaturaActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldestaturaKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField7ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldfechanacimiento">
+        <Component class="javax.swing.JTextField" name="jTextField8">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldfechanacimientoActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldfechanacimientoKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField8ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldpeso">
+        <Component class="javax.swing.JTextField" name="jTextField9">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldpesoActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldpesoKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField9ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldedad">
+        <Component class="javax.swing.JTextField" name="jTextField10">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldedadActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldedadKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField10ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldpesoideal">
+        <Component class="javax.swing.JTextField" name="jTextField11">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldpesoidealActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldpesoidealKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField11ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldcelular">
+        <Component class="javax.swing.JTextField" name="jTextField12">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldcelularActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldcelularKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField12ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonaceptarexpediente">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Aceptar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonaceptarexpedienteActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="PanelProblemasdeSalud">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="80" green="60" red="55" type="rgb"/>
-        </Property>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Problemas de salud">
-              <Font PropertyName="font" name="Tahoma" size="18" style="0"/>
-              <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
-            </TitledBorder>
-          </Border>
-        </Property>
-      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -548,28 +474,16 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="labelpesosquiere">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Peso Quiere:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Problemas de salud:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxBajar">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Bajar"/>
           </Properties>
           <Events>
@@ -578,12 +492,6 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxmantener">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Mantener"/>
           </Properties>
           <Events>
@@ -592,12 +500,6 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxgastritis">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Gastritis"/>
           </Properties>
           <Events>
@@ -606,12 +508,6 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxcolitis">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Colitis"/>
           </Properties>
           <Events>
@@ -620,12 +516,6 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxsubir">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Subir"/>
           </Properties>
           <Events>
@@ -634,12 +524,6 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxestrenimiento">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Estrenimiento"/>
           </Properties>
           <Events>
@@ -648,111 +532,51 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxcansancio">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Cansancio"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxulcera">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Ulcera"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxdiabetes">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Diabetes"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxpresionalta">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Presion Alta"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxcolesterol">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Colesterol"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxalergias">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Alergias"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxestres">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Estres"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxdolordecabeza">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Dolor de Cabeza"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxdolordecuello">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Dolor de Cuello"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxdoloresdeespalda">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Dolores de Espalda"/>
           </Properties>
           <Events>
@@ -761,12 +585,6 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxartritis">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Artritis"/>
           </Properties>
           <Events>
@@ -775,12 +593,6 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxansiedad">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Ansiedad"/>
           </Properties>
           <Events>
@@ -789,12 +601,6 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxembarazo">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Embarazo/Lactancia"/>
           </Properties>
           <Events>
@@ -803,92 +609,41 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxretenciondeliquidos">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Retencion de Liquidos"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxmalacirculacion">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Mala Circulacion"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxcalambres">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Calambres"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxvarices">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Varices"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxdoloresdehueso">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Dolores de Hueso"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBoxdoloresdehuesoActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxanemia">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Anemia"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCBoxproblemasdevesicula">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Problemas de Vesicula"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="problemasderinon">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="80" green="60" red="55" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Problemas de Rinon"/>
           </Properties>
         </Component>
@@ -900,19 +655,6 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="PanelCambiosCorporales">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="80" green="60" red="55" type="rgb"/>
-        </Property>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Cambios Corporales">
-              <Font PropertyName="font" name="Tahoma" size="18" style="0"/>
-              <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
-            </TitledBorder>
-          </Border>
-        </Property>
-      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1009,9 +751,6 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Peso:"/>
           </Properties>
         </Component>
@@ -1022,9 +761,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="IMC:"/>
           </Properties>
         </Component>
@@ -1035,9 +771,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="%Grasa:"/>
           </Properties>
         </Component>
@@ -1045,9 +778,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="%Musculo:"/>
           </Properties>
         </Component>
@@ -1055,9 +785,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Calorias:"/>
           </Properties>
         </Component>
@@ -1065,9 +792,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Edad/B:"/>
           </Properties>
         </Component>
@@ -1075,9 +799,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Grasa Viceral:"/>
           </Properties>
         </Component>
@@ -1106,18 +827,5 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="botonaceptarexpediente">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Aceptar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonaceptarexpedienteActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="botoncancelarexpediente">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Cancelar"/>
-      </Properties>
-    </Component>
   </SubComponents>
 </Form>
