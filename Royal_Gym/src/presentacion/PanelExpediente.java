@@ -15,11 +15,11 @@ import royal_gym.Expediente;
  */
 public class PanelExpediente extends javax.swing.JPanel {
 
-    Expediente expediente= new Expediente();
     final Conexion con;
+    Expediente expediente= new Expediente();
+   
     
     private final String[] columnasCambios = {
-        "",
         "Peso",
         "Imc",
         "%Grasa",
@@ -35,9 +35,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         con.conectar();
         
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(),columnasCambios);
-        tablacambioscorporales.setModel(modeloTablaPagos);
-        
-         
+        tablacambioscorporales.setModel(modeloTablaPagos);    
     }
 
     /**
@@ -50,7 +48,6 @@ public class PanelExpediente extends javax.swing.JPanel {
     private void initComponents() {
 
         PanelDatosCliente = new javax.swing.JPanel();
-        labeldatoscliente = new javax.swing.JLabel();
         labelnombre = new javax.swing.JLabel();
         labeltelefonotrabajo = new javax.swing.JLabel();
         labeldireccion = new javax.swing.JLabel();
@@ -63,19 +60,18 @@ public class PanelExpediente extends javax.swing.JPanel {
         labelpeso = new javax.swing.JLabel();
         labeledad = new javax.swing.JLabel();
         labelpesoideal = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        botonaceptarexpediente = new javax.swing.JButton();
+        jTextFieldnombre = new javax.swing.JTextField();
+        jTextFielddireccion = new javax.swing.JTextField();
+        jTextFieldmejorhoralla = new javax.swing.JTextField();
+        jTextFieldtelefonotrab = new javax.swing.JTextField();
+        jTextFieldtelefonocasa = new javax.swing.JTextField();
+        jTextFieldfechainicio = new javax.swing.JTextField();
+        jTextFieldestatura = new javax.swing.JTextField();
+        jTextFieldfechanacimiento = new javax.swing.JTextField();
+        jTextFieldpeso = new javax.swing.JTextField();
+        jTextFieldedad = new javax.swing.JTextField();
+        jTextFieldpesoideal = new javax.swing.JTextField();
+        jTextFieldcelular = new javax.swing.JTextField();
         PanelProblemasdeSalud = new javax.swing.JPanel();
         labelpesosquiere = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -124,109 +120,188 @@ public class PanelExpediente extends javax.swing.JPanel {
         jtfgrasaviceral = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablacambioscorporales = new javax.swing.JTable();
+        botonaceptarexpediente = new javax.swing.JButton();
+        botoncancelarexpediente = new javax.swing.JButton();
 
-        labeldatoscliente.setText("Datos del cliente");
+        setBackground(new java.awt.Color(85, 96, 128));
 
+        PanelDatosCliente.setBackground(new java.awt.Color(85, 96, 128));
+        PanelDatosCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        labelnombre.setForeground(new java.awt.Color(255, 255, 255));
         labelnombre.setText("Nombre:");
 
+        labeltelefonotrabajo.setForeground(new java.awt.Color(255, 255, 255));
         labeltelefonotrabajo.setText("Telefono Trabajo:");
 
+        labeldireccion.setForeground(new java.awt.Color(255, 255, 255));
         labeldireccion.setText("Direccion:");
 
+        labelhoraparallamar.setForeground(new java.awt.Color(255, 255, 255));
         labelhoraparallamar.setText("Mejor hora para llamar:");
 
+        labelestatura.setForeground(new java.awt.Color(255, 255, 255));
         labelestatura.setText("Estatura:");
 
+        labelfechainicio.setForeground(new java.awt.Color(255, 255, 255));
         labelfechainicio.setText("Fecha de Inicio:");
 
+        labeltelefonocasa.setForeground(new java.awt.Color(255, 255, 255));
         labeltelefonocasa.setText("Telefono casa:");
 
+        labelcelular.setForeground(new java.awt.Color(255, 255, 255));
         labelcelular.setText("Celular:");
 
+        labelfechanacimiento.setForeground(new java.awt.Color(255, 255, 255));
         labelfechanacimiento.setText("Fecha de nacimiento:");
 
+        labelpeso.setForeground(new java.awt.Color(255, 255, 255));
         labelpeso.setText("Peso:");
 
+        labeledad.setForeground(new java.awt.Color(255, 255, 255));
         labeledad.setText("Edad:");
 
+        labelpesoideal.setForeground(new java.awt.Color(255, 255, 255));
         labelpesoideal.setText("Peso Ideal:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldnombreActionPerformed(evt);
+            }
+        });
+        jTextFieldnombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldnombreKeyPressed(evt);
             }
         });
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTextFielddireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTextFielddireccionActionPerformed(evt);
+            }
+        });
+        jTextFielddireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFielddireccionKeyPressed(evt);
             }
         });
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldmejorhoralla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jTextFieldmejorhorallaActionPerformed(evt);
+            }
+        });
+        jTextFieldmejorhoralla.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldmejorhorallaKeyPressed(evt);
             }
         });
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldtelefonotrab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jTextFieldtelefonotrabActionPerformed(evt);
+            }
+        });
+        jTextFieldtelefonotrab.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldtelefonotrabKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldtelefonotrabKeyTyped(evt);
             }
         });
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldtelefonocasa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                jTextFieldtelefonocasaActionPerformed(evt);
+            }
+        });
+        jTextFieldtelefonocasa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldtelefonocasaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldtelefonocasaKeyTyped(evt);
             }
         });
 
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldfechainicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                jTextFieldfechainicioActionPerformed(evt);
+            }
+        });
+        jTextFieldfechainicio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldfechainicioKeyPressed(evt);
             }
         });
 
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldestatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                jTextFieldestaturaActionPerformed(evt);
+            }
+        });
+        jTextFieldestatura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldestaturaKeyPressed(evt);
             }
         });
 
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldfechanacimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                jTextFieldfechanacimientoActionPerformed(evt);
+            }
+        });
+        jTextFieldfechanacimiento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldfechanacimientoKeyPressed(evt);
             }
         });
 
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldpeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                jTextFieldpesoActionPerformed(evt);
+            }
+        });
+        jTextFieldpeso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldpesoKeyPressed(evt);
             }
         });
 
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldedad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+                jTextFieldedadActionPerformed(evt);
+            }
+        });
+        jTextFieldedad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldedadKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldedadKeyTyped(evt);
             }
         });
 
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldpesoideal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
+                jTextFieldpesoidealActionPerformed(evt);
+            }
+        });
+        jTextFieldpesoideal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldpesoidealKeyPressed(evt);
             }
         });
 
-        jTextField12.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldcelular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField12ActionPerformed(evt);
+                jTextFieldcelularActionPerformed(evt);
             }
         });
-
-        botonaceptarexpediente.setText("Aceptar");
-        botonaceptarexpediente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonaceptarexpedienteActionPerformed(evt);
+        jTextFieldcelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldcelularKeyPressed(evt);
             }
         });
 
@@ -238,111 +313,111 @@ public class PanelExpediente extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                        .addComponent(labeldatoscliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonaceptarexpediente))
-                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                        .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosClienteLayout.createSequentialGroup()
                                 .addComponent(labelhoraparallamar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3))
-                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(labeltelefonotrabajo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField4))
+                                .addComponent(jTextFieldmejorhoralla))
                             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                                 .addComponent(labeldireccion)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2))
+                                .addComponent(jTextFielddireccion))
+                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                                .addComponent(labeltelefonotrabajo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldtelefonotrab))
                             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                                 .addComponent(labelnombre)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1))
-                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(labelestatura)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(labelpeso)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(labeledad)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)))
-                        .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(labelfechainicio)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField6))
-                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(labeltelefonocasa)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField5))
-                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(labelcelular)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField12))
-                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(labelpesoideal, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(labelfechanacimiento)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField8)))))
+                                .addComponent(jTextFieldnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                        .addComponent(labelestatura)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldestatura, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(labelpeso)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldpeso, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labeledad)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                        .addComponent(labelfechainicio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldfechainicio))
+                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                        .addComponent(labeltelefonocasa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldtelefonocasa))
+                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                        .addComponent(labelcelular)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldcelular))
+                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                        .addComponent(jTextFieldedad, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(labelpesoideal, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldpesoideal, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                        .addComponent(labelfechanacimiento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldfechanacimiento)))
                 .addContainerGap())
         );
         PanelDatosClienteLayout.setVerticalGroup(
             PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labeldatoscliente)
-                    .addComponent(botonaceptarexpediente))
-                .addGap(12, 12, 12)
+                .addGap(20, 20, 20)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelnombre)
                     .addComponent(labelfechainicio)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldfechainicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labeltelefonotrabajo)
                     .addComponent(labeltelefonocasa)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldtelefonotrab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldtelefonocasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labeldireccion)
                     .addComponent(labelcelular)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFielddireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldcelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelhoraparallamar)
                     .addComponent(labelfechanacimiento)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldmejorhoralla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldfechanacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelestatura)
                     .addComponent(labelpeso)
                     .addComponent(labeledad)
                     .addComponent(labelpesoideal)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldpeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldpesoideal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldestatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        PanelProblemasdeSalud.setBackground(new java.awt.Color(85, 96, 128));
+        PanelProblemasdeSalud.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Problemas de salud", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        labelpesosquiere.setForeground(new java.awt.Color(255, 255, 255));
         labelpesosquiere.setText("Peso Quiere:");
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Problemas de salud:");
 
+        jCBoxBajar.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxBajar.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxBajar.setText("Bajar");
         jCBoxBajar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -350,6 +425,8 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        jCBoxmantener.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxmantener.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxmantener.setText("Mantener");
         jCBoxmantener.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -357,6 +434,8 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        jCBoxgastritis.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxgastritis.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxgastritis.setText("Gastritis");
         jCBoxgastritis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -364,6 +443,8 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        jCBoxcolitis.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxcolitis.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxcolitis.setText("Colitis");
         jCBoxcolitis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -371,6 +452,8 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        jCBoxsubir.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxsubir.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxsubir.setText("Subir");
         jCBoxsubir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -378,6 +461,8 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        jCBoxestrenimiento.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxestrenimiento.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxestrenimiento.setText("Estrenimiento");
         jCBoxestrenimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -385,24 +470,44 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        jCBoxcansancio.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxcansancio.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxcansancio.setText("Cansancio");
 
+        jCBoxulcera.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxulcera.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxulcera.setText("Ulcera");
 
+        jCBoxdiabetes.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxdiabetes.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxdiabetes.setText("Diabetes");
 
+        jCBoxpresionalta.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxpresionalta.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxpresionalta.setText("Presion Alta");
 
+        jCBoxcolesterol.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxcolesterol.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxcolesterol.setText("Colesterol");
 
+        jCBoxalergias.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxalergias.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxalergias.setText("Alergias");
 
+        jCBoxestres.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxestres.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxestres.setText("Estres");
 
+        jCBoxdolordecabeza.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxdolordecabeza.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxdolordecabeza.setText("Dolor de Cabeza");
 
+        jCBoxdolordecuello.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxdolordecuello.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxdolordecuello.setText("Dolor de Cuello");
 
+        jCBoxdoloresdeespalda.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxdoloresdeespalda.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxdoloresdeespalda.setText("Dolores de Espalda");
         jCBoxdoloresdeespalda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -410,6 +515,8 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        jCBoxartritis.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxartritis.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxartritis.setText("Artritis");
         jCBoxartritis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -417,6 +524,8 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        jCBoxansiedad.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxansiedad.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxansiedad.setText("Ansiedad");
         jCBoxansiedad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -424,6 +533,8 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        jCBoxembarazo.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxembarazo.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxembarazo.setText("Embarazo/Lactancia");
         jCBoxembarazo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -431,23 +542,51 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        jCBoxretenciondeliquidos.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxretenciondeliquidos.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxretenciondeliquidos.setText("Retencion de Liquidos");
 
+        jCBoxmalacirculacion.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxmalacirculacion.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxmalacirculacion.setText("Mala Circulacion");
 
+        jCBoxcalambres.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxcalambres.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxcalambres.setText("Calambres");
 
+        jCBoxvarices.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxvarices.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxvarices.setText("Varices");
 
+        jCBoxdoloresdehueso.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxdoloresdehueso.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxdoloresdehueso.setText("Dolores de Hueso");
+        jCBoxdoloresdehueso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxdoloresdehuesoActionPerformed(evt);
+            }
+        });
 
+        jCBoxanemia.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxanemia.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxanemia.setText("Anemia");
 
+        jCBoxproblemasdevesicula.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxproblemasdevesicula.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxproblemasdevesicula.setText("Problemas de Vesicula");
 
+        problemasderinon.setBackground(new java.awt.Color(85, 96, 128));
+        problemasderinon.setForeground(new java.awt.Color(255, 255, 255));
         problemasderinon.setText("Problemas de Rinon");
 
+        jCheckBox28.setBackground(new java.awt.Color(85, 96, 128));
+        jCheckBox28.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox28.setText("Celulitis");
+        jCheckBox28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox28ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelProblemasdeSaludLayout = new javax.swing.GroupLayout(PanelProblemasdeSalud);
         PanelProblemasdeSalud.setLayout(PanelProblemasdeSaludLayout);
@@ -569,6 +708,10 @@ public class PanelExpediente extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        PanelCambiosCorporales.setBackground(new java.awt.Color(85, 96, 128));
+        PanelCambiosCorporales.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cambios Corporales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Peso:");
 
         jtfpeso.addActionListener(new java.awt.event.ActionListener() {
@@ -577,6 +720,7 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("IMC:");
 
         jtfimc.addActionListener(new java.awt.event.ActionListener() {
@@ -585,14 +729,19 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("%Grasa:");
 
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("%Musculo:");
 
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Calorias:");
 
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Edad/B:");
 
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Grasa Viceral:");
 
         tablacambioscorporales.setModel(new javax.swing.table.DefaultTableModel(
@@ -681,6 +830,15 @@ public class PanelExpediente extends javax.swing.JPanel {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
+        botonaceptarexpediente.setText("Aceptar");
+        botonaceptarexpediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonaceptarexpedienteActionPerformed(evt);
+            }
+        });
+
+        botoncancelarexpediente.setText("Cancelar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -690,9 +848,17 @@ public class PanelExpediente extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PanelDatosCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PanelProblemasdeSalud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(botonaceptarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botoncancelarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(111, 111, 111))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -705,98 +871,62 @@ public class PanelExpediente extends javax.swing.JPanel {
                         .addComponent(PanelProblemasdeSalud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botonaceptarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botoncancelarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(10, 10, 10))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldnombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldnombreActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTextFielddireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFielddireccionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTextFielddireccionActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jTextFieldmejorhorallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldmejorhorallaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_jTextFieldmejorhorallaActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jTextFieldtelefonotrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldtelefonotrabActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTextFieldtelefonotrabActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void jTextFieldtelefonocasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldtelefonocasaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_jTextFieldtelefonocasaActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void jTextFieldfechainicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldfechainicioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_jTextFieldfechainicioActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void jTextFieldestaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldestaturaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_jTextFieldestaturaActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void jTextFieldfechanacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldfechanacimientoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_jTextFieldfechanacimientoActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void jTextFieldpesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldpesoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_jTextFieldpesoActionPerformed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void jTextFieldedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldedadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_jTextFieldedadActionPerformed
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+    private void jTextFieldpesoidealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldpesoidealActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_jTextFieldpesoidealActionPerformed
 
-    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+    private void jTextFieldcelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldcelularActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField12ActionPerformed
-
-    private void jCBoxBajarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxBajarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBoxBajarActionPerformed
-
-    private void jCBoxmantenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxmantenerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBoxmantenerActionPerformed
-
-    private void jCBoxgastritisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxgastritisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBoxgastritisActionPerformed
-
-    private void jCBoxcolitisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxcolitisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBoxcolitisActionPerformed
-
-    private void jCBoxsubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxsubirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBoxsubirActionPerformed
-
-    private void jCBoxdoloresdeespaldaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxdoloresdeespaldaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBoxdoloresdeespaldaActionPerformed
-
-    private void jCBoxartritisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxartritisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBoxartritisActionPerformed
-
-    private void jCBoxansiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxansiedadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBoxansiedadActionPerformed
-
-    private void jCBoxembarazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxembarazoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBoxembarazoActionPerformed
-
-    private void jCBoxestrenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxestrenimientoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBoxestrenimientoActionPerformed
+    }//GEN-LAST:event_jTextFieldcelularActionPerformed
 
     private void jtfpesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfpesoActionPerformed
         // TODO add your handling code here:
@@ -809,11 +939,176 @@ public class PanelExpediente extends javax.swing.JPanel {
     private void botonaceptarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarexpedienteActionPerformed
         // TODO add your handling code here:
         
-        expediente.insertarCambiosCorporales(jtfpeso.getText(),jtfimc.getText(),jtfgrasa.getText(),jtfmusculo.getText(),jtfcalorias.getText(),jtfedad.getText(),jtfgrasaviceral.getText());
         
+        
+        
+        expediente.insertarCambiosCorporales(
+                jtfpeso.getText(),
+                jtfimc.getText(),
+                jtfgrasa.getText(),
+                jtfmusculo.getText(),
+                jtfcalorias.getText(),
+                jtfedad.getText(),
+                jtfgrasaviceral.getText());
+       
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(),columnasCambios);
         tablacambioscorporales.setModel(modeloTablaPagos);
     }//GEN-LAST:event_botonaceptarexpedienteActionPerformed
+
+    private void jCBoxdoloresdehuesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxdoloresdehuesoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxdoloresdehuesoActionPerformed
+
+    private void jCBoxembarazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxembarazoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxembarazoActionPerformed
+
+    private void jCBoxansiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxansiedadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxansiedadActionPerformed
+
+    private void jCBoxartritisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxartritisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxartritisActionPerformed
+
+    private void jCBoxdoloresdeespaldaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxdoloresdeespaldaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxdoloresdeespaldaActionPerformed
+
+    private void jCBoxestrenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxestrenimientoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxestrenimientoActionPerformed
+
+    private void jCBoxsubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxsubirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxsubirActionPerformed
+
+    private void jCBoxcolitisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxcolitisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxcolitisActionPerformed
+
+    private void jCBoxgastritisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxgastritisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxgastritisActionPerformed
+
+    private void jCBoxmantenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxmantenerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxmantenerActionPerformed
+
+    private void jCBoxBajarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxBajarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxBajarActionPerformed
+
+    private void jTextFieldnombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldnombreKeyPressed
+        // TODO add your handling code here:
+         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldnombreKeyPressed
+
+    private void jTextFieldtelefonotrabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonotrabKeyPressed
+        // TODO add your handling code here:
+         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldtelefonotrabKeyPressed
+
+    private void jTextFielddireccionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielddireccionKeyPressed
+        // TODO add your handling code here:
+         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFielddireccionKeyPressed
+
+    private void jTextFieldmejorhorallaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldmejorhorallaKeyPressed
+        // TODO add your handling code here:
+         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldmejorhorallaKeyPressed
+
+    private void jTextFieldestaturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldestaturaKeyPressed
+        // TODO add your handling code here:
+         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldestaturaKeyPressed
+
+    private void jTextFieldpesoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldpesoKeyPressed
+        // TODO add your handling code here:
+         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldpesoKeyPressed
+
+    private void jTextFieldedadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldedadKeyPressed
+        // TODO add your handling code here:
+         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldedadKeyPressed
+
+    private void jTextFieldpesoidealKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldpesoidealKeyPressed
+        // TODO add your handling code here:
+         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldpesoidealKeyPressed
+
+    private void jTextFieldfechainicioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldfechainicioKeyPressed
+        // TODO add your handling code here:
+         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldfechainicioKeyPressed
+
+    private void jTextFieldtelefonocasaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonocasaKeyPressed
+        // TODO add your handling code here:
+         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldtelefonocasaKeyPressed
+
+    private void jTextFieldcelularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldcelularKeyPressed
+        // TODO add your handling code here:
+         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldcelularKeyPressed
+
+    private void jTextFieldfechanacimientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldfechanacimientoKeyPressed
+        // TODO add your handling code here:
+         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldfechanacimientoKeyPressed
+
+    private void jTextFieldtelefonotrabKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonotrabKeyTyped
+        // TODO add your handling code here:
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jTextFieldtelefonotrabKeyTyped
+
+    private void jCheckBox28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox28ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox28ActionPerformed
+
+    private void jTextFieldtelefonocasaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonocasaKeyTyped
+        // TODO add your handling code here:
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jTextFieldtelefonocasaKeyTyped
+
+    private void jTextFieldedadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldedadKeyTyped
+        // TODO add your handling code here:
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldedadKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -821,6 +1116,7 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JPanel PanelDatosCliente;
     private javax.swing.JPanel PanelProblemasdeSalud;
     private javax.swing.JButton botonaceptarexpediente;
+    private javax.swing.JButton botoncancelarexpediente;
     private javax.swing.JCheckBox jCBoxBajar;
     private javax.swing.JCheckBox jCBoxalergias;
     private javax.swing.JCheckBox jCBoxanemia;
@@ -857,18 +1153,18 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jTextFieldcelular;
+    private javax.swing.JTextField jTextFielddireccion;
+    private javax.swing.JTextField jTextFieldedad;
+    private javax.swing.JTextField jTextFieldestatura;
+    private javax.swing.JTextField jTextFieldfechainicio;
+    private javax.swing.JTextField jTextFieldfechanacimiento;
+    private javax.swing.JTextField jTextFieldmejorhoralla;
+    private javax.swing.JTextField jTextFieldnombre;
+    private javax.swing.JTextField jTextFieldpeso;
+    private javax.swing.JTextField jTextFieldpesoideal;
+    private javax.swing.JTextField jTextFieldtelefonocasa;
+    private javax.swing.JTextField jTextFieldtelefonotrab;
     private javax.swing.JTextField jtfcalorias;
     private javax.swing.JTextField jtfedad;
     private javax.swing.JTextField jtfgrasa;
@@ -877,7 +1173,6 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JTextField jtfmusculo;
     private javax.swing.JTextField jtfpeso;
     private javax.swing.JLabel labelcelular;
-    private javax.swing.JLabel labeldatoscliente;
     private javax.swing.JLabel labeldireccion;
     private javax.swing.JLabel labeledad;
     private javax.swing.JLabel labelestatura;
