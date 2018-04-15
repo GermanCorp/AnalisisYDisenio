@@ -12,7 +12,6 @@ import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import static presentacion.PanelVentas.jtablaProductosAVender;
 import royal_gym.Conexion;
 import royal_gym.Productos;
 
@@ -35,13 +34,85 @@ public class PanelCompras extends javax.swing.JPanel {
         initComponents();
     }
     
-     public PanelCompras (double total, double subTotal, double isv, double descuento){
+    
+
+    public PanelCompras(double total, double subTotal, double isv, double descuento) {
         this.total = total;
         this.subTotal = subTotal;
         this.isv = isv;
         this.descuento = descuento;
     }
-     
+
+    public JTextField getJtfISVcompra() {
+        return jtfISVcompra;
+    }
+
+    public void setJtfISVcompra(JTextField jtfISVcompra) {
+        this.jtfISVcompra = jtfISVcompra;
+    }
+
+    public JTextField getJtfdescuentocompra() {
+        return jtfdescuentocompra;
+    }
+
+    public void setJtfdescuentocompra(JTextField jtfdescuentocompra) {
+        this.jtfdescuentocompra = jtfdescuentocompra;
+    }
+
+    public JTextField getJtfsubtotalcompra() {
+        return jtfsubtotalcompra;
+    }
+
+    public void setJtfsubtotalcompra(JTextField jtfsubtotalcompra) {
+        this.jtfsubtotalcompra = jtfsubtotalcompra;
+    }
+
+    public JTextField getJtftotalcompra() {
+        return jtftotalcompra;
+    }
+
+    public void setJtftotalcompra(JTextField jtftotalcompra) {
+        this.jtftotalcompra = jtftotalcompra;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public double getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public double getIsv() {
+        return isv;
+    }
+
+    public void setIsv(double isv) {
+        this.isv = isv;
+    }
+
+    public double getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(double descuento) {
+        this.descuento = descuento;
+    }
+        
+    public void setValoresCompra(){
+        jtfsubtotalcompra.setText("L. " + df.format(getSubTotal()));
+        jtfISVcompra.setText("L." + df.format(getIsv()));
+        jtfdescuentocompra.setText("- L. " + df.format(getDescuento()));
+        jtftotalcompra.setText("L. " + df.format(getTotal()));
+    }
   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -97,6 +168,11 @@ public class PanelCompras extends javax.swing.JPanel {
         });
 
         jbeliminarcompra.setText("Eliminar Compra");
+        jbeliminarcompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbeliminarcompraActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Sub Total");
 
@@ -107,6 +183,11 @@ public class PanelCompras extends javax.swing.JPanel {
         jLabel4.setText("TOTAL");
 
         jButton3.setText("Agregar Nuevo Producto");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelagregarcompraLayout = new javax.swing.GroupLayout(panelagregarcompra);
         panelagregarcompra.setLayout(panelagregarcompraLayout);
@@ -178,15 +259,20 @@ public class PanelCompras extends javax.swing.JPanel {
 
         tablacompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Codigo", "Cantidad", "Descripcion", "Precio Unitario", "Descuento", "Sub-total", "ISV%", "Total"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tablacompras);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -207,55 +293,54 @@ public class PanelCompras extends javax.swing.JPanel {
                 .addComponent(panelagregarcompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbagregarcompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbagregarcompraActionPerformed
         // TODO add your handling code here:
-         new ListaProductos(new javax.swing.JDialog(), true).setVisible(true);
+         new ListaProductosComprar(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jbagregarcompraActionPerformed
 
     private void jbguardarcompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarcompraActionPerformed
        DefaultTableModel modelo;
         
         try {
-            for (int i = 0 ; i <jtablaProductosAVender.getRowCount(); i++){
-                PreparedStatement pStatement = Conexion.getConexion().prepareStatement("insert into detallefactura(factura, idProducto, cantidad,descuento) values (?,?,?,?)");
-                pStatement.setString(1, jtablaProductosAVender.getValueAt(i, 0).toString());
-                pStatement.setString(2, jtablaProductosAVender.getValueAt(i, 1).toString());
-                pStatement.setString(3, jtablaProductosAVender.getValueAt(i, 4).toString());
-                pStatement.execute();
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        
-        try {
-            for (int i = 0 ; i <jtablaProductosAVender.getRowCount(); i++){
+            for (int i = 0 ; i <tablacompras.getRowCount(); i++){
                 Statement statement = Conexion.getConexion().createStatement();
-                String consulta2 = "select cantidad from productos where idproducto = '" + jtablaProductosAVender.getValueAt(i, 0).toString() + "'";        
-                ResultSet resultado2 = statement.executeQuery(consulta2);
+                String consulta = "select cantidad from productos where idproducto = '" + tablacompras.getValueAt(i, 0).toString() + "'";        
+                ResultSet resultado = statement.executeQuery(consulta);
                
-                String sql = "update productos set cantidad = ? where idproducto = '" + jtablaProductosAVender.getValueAt(i, 0).toString() + "'";  
-                PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
+                String sql = "update productos set cantidad = ? where idproducto = '" + tablacompras.getValueAt(i, 0).toString() + "'";  
+                PreparedStatement psts = Conexion.getConexion().prepareStatement(sql);
                
-                String cantidadTotal = resultado2.getString("cantidad");
-                double total = ((Double.parseDouble(cantidadTotal)) - (Double.parseDouble(jtablaProductosAVender.getValueAt(i, 1).toString())));
-                consulta.setString(1,String.valueOf(total));
-                consulta.execute();
+                String cantidadTotal = resultado.getString("cantidad");
+                double total = ((Double.parseDouble(cantidadTotal)) + (Double.parseDouble(tablacompras.getValueAt(i, 1).toString())));
+                psts.setString(1,String.valueOf(total));
+                psts.execute();
             }
             
             } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         
-        modelo = (DefaultTableModel) jtablaProductosAVender.getModel();
-        for (int i = jtablaProductosAVender.getRowCount() -1; i >= 0; i--){
+        modelo = (DefaultTableModel) tablacompras.getModel();
+        for (int i = tablacompras.getRowCount() -1; i >= 0; i--){
             modelo.removeRow(i);
         }
-        //setValoresVenta();
+        setValoresCompra();
     }//GEN-LAST:event_jbguardarcompraActionPerformed
+
+    private void jbeliminarcompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbeliminarcompraActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel) tablacompras.getModel(); //TableProducto es el nombre de mi tabla ;) 
+        dtm.removeRow(tablacompras.getSelectedRow()); 
+    }//GEN-LAST:event_jbeliminarcompraActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -271,11 +356,11 @@ public class PanelCompras extends javax.swing.JPanel {
     private javax.swing.JButton jbagregarcompra;
     private javax.swing.JButton jbeliminarcompra;
     private javax.swing.JButton jbguardarcompra;
-    private javax.swing.JTextField jtfISVcompra;
-    private javax.swing.JTextField jtfdescuentocompra;
-    private javax.swing.JTextField jtfsubtotalcompra;
-    private javax.swing.JTextField jtftotalcompra;
+    public static javax.swing.JTextField jtfISVcompra;
+    public static javax.swing.JTextField jtfdescuentocompra;
+    public static javax.swing.JTextField jtfsubtotalcompra;
+    public static javax.swing.JTextField jtftotalcompra;
     private javax.swing.JPanel panelagregarcompra;
-    private javax.swing.JTable tablacompras;
+    public static javax.swing.JTable tablacompras;
     // End of variables declaration//GEN-END:variables
 }
