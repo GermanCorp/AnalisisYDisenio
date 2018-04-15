@@ -17,6 +17,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
    
     //Constructor
     public PanelRegistroProductos() {
+        
         initComponents();
         productos.modeloTablaProductos(columnasProductos, tablaProductos);
     }

@@ -68,7 +68,7 @@ public class ListaProductosComprar extends javax.swing.JDialog {
             }
         });
         
-        DefaultTableModel modeloTablaProductos = new DefaultTableModel(productos.getListaProductos(), columnasProductos);
+        DefaultTableModel modeloTablaProductos = new DefaultTableModel(productos.getListaProductos1(), columnasProductos);
         tablaProductos.setModel(modeloTablaProductos);
     }
     
@@ -101,11 +101,12 @@ public class ListaProductosComprar extends javax.swing.JDialog {
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setPreferredSize(new java.awt.Dimension(657, 516));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Buscar Producto:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         jtfBuscarProductos.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jtfBuscarProductos.addCaretListener(new javax.swing.event.CaretListener() {
@@ -123,7 +124,7 @@ public class ListaProductosComprar extends javax.swing.JDialog {
                 jtfBuscarProductosKeyPressed(evt);
             }
         });
-        add(jtfBuscarProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 490, -1));
+        getContentPane().add(jtfBuscarProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 490, -1));
 
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -154,25 +155,25 @@ public class ListaProductosComprar extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tablaProductos);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 590, 220));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 590, 220));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Cantidad:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
         jtfCantidad.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jtfCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtfCantidad.setText("1");
-        add(jtfCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 100, -1));
+        getContentPane().add(jtfCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 100, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Descuento:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, -1, -1));
 
         jtfDescuento.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jtfDescuento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtfDescuento.setText("0");
-        add(jtfDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 100, -1));
+        getContentPane().add(jtfDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 100, -1));
 
         okButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Agregar_Cliente_2.png"))); // NOI18N
         okButton.setText("Agregar");
@@ -182,7 +183,7 @@ public class ListaProductosComprar extends javax.swing.JDialog {
                 okButtonActionPerformed(evt);
             }
         });
-        add(okButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, -1, -1));
+        getContentPane().add(okButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, -1, -1));
         getRootPane().setDefaultButton(okButton);
 
         cancelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Eliminar_fila.png"))); // NOI18N
@@ -192,7 +193,7 @@ public class ListaProductosComprar extends javax.swing.JDialog {
                 cancelButtonActionPerformed(evt);
             }
         });
-        add(cancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, -1, -1));
+        getContentPane().add(cancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtfBuscarProductosCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarProductosCaretUpdate
