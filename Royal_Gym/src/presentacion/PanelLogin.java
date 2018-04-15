@@ -7,7 +7,10 @@ import royal_gym.Validaciones;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import royal_gym.LoginEntrar;
+import royal_gym.VentanaPrincipal;
 import static sun.security.jgss.GSSUtil.login;
 
 public class PanelLogin extends javax.swing.JFrame {
@@ -173,6 +176,7 @@ public class PanelLogin extends javax.swing.JFrame {
         }
     }
   
+    //Evento de boton aceptar para acceso a pantalla principal
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
         
@@ -184,12 +188,15 @@ public class PanelLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
         }
          if (LoginEntrar.ingreso(usuario.getText(),String.valueOf(contraseña.getPassword())) == 1) {
-				PanelNuevoUsuario pnu = new PanelNuevoUsuario();
+				VentanaPrincipal pnu = new VentanaPrincipal();
 				pnu.setVisible(true);
+                                dispose();
+                                
+        usuario.setText("");
+        contraseña.setText("");
+                                         
 	} 
-/*
-        txtUsuario.setText("");
-        txtContrasena.setText("");*/
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
@@ -204,6 +211,19 @@ public class PanelLogin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PanelLogin().setVisible(true);
+                
+                 try {
+                    try {
+                        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                        //UIManager.setLookAndFeel(javax.swing.plaf.nimbus.NimbusLookAndFeel.class.getName());
+                    } catch (UnsupportedLookAndFeelException ex) {
+                        Logger.getLogger(PanelLogin.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
             }
         });

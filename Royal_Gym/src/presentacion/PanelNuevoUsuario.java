@@ -142,7 +142,7 @@ public class PanelNuevoUsuario extends javax.swing.JFrame {
         } else if (txtClave.getPassword().length==0) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la Contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
         } else{
-            nu.nuevoUser(txtUser.getText(),
+            con.nuevoUser(txtUser.getText(),
                     String.valueOf(txtClave.getPassword()));
 
             txtUser.setText("");
@@ -152,6 +152,7 @@ public class PanelNuevoUsuario extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnAceptarActionPerformed
 
+    
     public static void main(String args[]) {
 
 
@@ -161,7 +162,7 @@ public class PanelNuevoUsuario extends javax.swing.JFrame {
                 new PanelNuevoUsuario().setVisible(true);
             }
         });
-    }
+    } 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
