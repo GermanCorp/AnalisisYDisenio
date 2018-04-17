@@ -188,6 +188,7 @@ public class PanelLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
         }
          if (LoginEntrar.ingreso(usuario.getText(),String.valueOf(contraseña.getPassword())) == 1) {
+             JOptionPane.showMessageDialog(null, "Bienvenido");
 				VentanaPrincipal pnu = new VentanaPrincipal();
 				pnu.setVisible(true);
                                 dispose();

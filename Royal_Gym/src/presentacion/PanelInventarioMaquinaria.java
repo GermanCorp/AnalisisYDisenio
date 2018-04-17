@@ -364,10 +364,16 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
 
     private void tablaInventarioEquipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaInventarioEquipoMouseClicked
         // TODO add your handling code here:
-        int filaseleccionada = tablaInventarioEquipo.getSelectedRow();
+         if(evt.getClickCount()==2)
+         {
+             int filaseleccionada = tablaInventarioEquipo.getSelectedRow();
         jtfNombreEquipo.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 1).toString());
         jtfCantidadEquipo.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 2).toString());
         taDescripcionEquipo.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 3).toString());
+        
+        }
+      
+        
     }//GEN-LAST:event_tablaInventarioEquipoMouseClicked
 
     private void jtfBuscarInventarioCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarInventarioCaretUpdate
@@ -378,17 +384,25 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         // TODO add your handling code here:
-        int filaSelect = tablaInventarioEquipo.getSelectedRow();
+        int r = tablaInventarioEquipo.getSelectedRow();
 
-        if (filaSelect == -1) {
+        if (r == -1) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un articulo", "Advertencia", JOptionPane.WARNING_MESSAGE);
         } else {
-            im.ModificarInventario(jtfNombreEquipo.getText(), jtfCantidadEquipo.getText(), taDescripcionEquipo.getText(), jtfNombreEquipo.getText());
+            int mjs  = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea modificar el articulo seleccionado?");
+            if(mjs == JOptionPane.YES_OPTION){
+                String nombremaquina = tablaInventarioEquipo.getValueAt(r, 1).toString();
+                
+             im.ModificarInventario(jtfNombreEquipo.getText(), jtfCantidadEquipo.getText(), taDescripcionEquipo.getText(), jtfNombreEquipo.getText());
             DefaultTableModel modeloTablaInventario = new DefaultTableModel(im.getInventario(), columnasInventario);
             tablaInventarioEquipo.setModel(modeloTablaInventario);
+            JOptionPane.showMessageDialog(null, "Registro modificado con exito");
             jtfNombreEquipo.setText("");
             jtfCantidadEquipo.setText("");
             taDescripcionEquipo.setText("");
+                  
+            }
+           
         }
         
     }//GEN-LAST:event_jbModificarActionPerformed
@@ -400,10 +414,17 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
         if (r == -1) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Advertencia", JOptionPane.WARNING_MESSAGE);
         } else {
-            String nombremaquina = tablaInventarioEquipo.getValueAt(r, 1).toString();
+            
+            
+            int mjs = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea eliminar la fila seleccionada?");
+            if(mjs == JOptionPane.YES_OPTION){
+               String nombremaquina = tablaInventarioEquipo.getValueAt(r, 1).toString();
+               
             im.eliminarInventario(nombremaquina);
             DefaultTableModel modeloTablaInventario = new DefaultTableModel(im.getInventario(), columnasInventario);
             tablaInventarioEquipo.setModel(modeloTablaInventario);
+                JOptionPane.showMessageDialog(this, "Articulo eliminado exitosamente");
+            }
 
         }  
     }//GEN-LAST:event_jbEliminarActionPerformed
