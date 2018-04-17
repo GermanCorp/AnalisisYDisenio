@@ -40,6 +40,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         Panelfecha = new javax.swing.JPanel();
         jdcfechaInicio = new com.toedter.calendar.JDateChooser();
         jdcfechaFinal = new com.toedter.calendar.JDateChooser();
@@ -78,6 +79,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
 
         jdcfechaFinal.setDateFormatString("yyyy-MM-dd");
 
+        buttonGroup1.add(tbingresos);
         tbingresos.setText("Ingresos");
         tbingresos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tbingresos.addItemListener(new java.awt.event.ItemListener() {
@@ -91,6 +93,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
             }
         });
 
+        buttonGroup1.add(tbgastos);
         tbgastos.setText("Gastos");
         tbgastos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -103,6 +106,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
             }
         });
 
+        buttonGroup1.add(tbtodo);
         tbtodo.setText("Ingresso y Gastos");
         tbtodo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -424,6 +428,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
     private javax.swing.JPanel Panelfecha;
     private javax.swing.JPanel PaneltablaUtilidad;
     private javax.swing.JPanel Paneltotales;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane5;
