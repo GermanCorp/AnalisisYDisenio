@@ -42,7 +42,7 @@ public class Utilidad {
             int numeroLista = 1;
 
             ArrayList<Object[]> filas = new ArrayList<>();
-            totalGastos = 0;
+          
             while (resultado.next()) {
                 totalGastos += resultado.getDouble("monto");
                 filas.add(
@@ -78,7 +78,7 @@ public class Utilidad {
             int numeroLista = 1;
 
             ArrayList<Object[]> filas = new ArrayList<>();
-            totalIngresos = 0;
+           
             while (resultado.next()) {
                 totalIngresos += resultado.getDouble("monto");
                 filas.add(

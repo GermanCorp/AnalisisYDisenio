@@ -36,10 +36,6 @@ public class ListaProductos extends javax.swing.JDialog {
         
     };
     
-    
-    
-    
-    
     /** A return status code - returned if Cancel button has been pressed */
     public static final int RET_CANCEL = 0;
     /** A return status code - returned if OK button has been pressed */

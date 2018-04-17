@@ -7,6 +7,7 @@ package presentacion;
 
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ItemEvent;
+import java.text.DecimalFormat;
 import java.util.Date;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -18,6 +19,7 @@ import royal_gym.Utilidad;
  * @author alxcr
  */
 public class PanelUtilidad extends javax.swing.JPanel {
+    DecimalFormat df = new DecimalFormat("#,##0.00");
     
      private final String[] columnasUtilidad = {
         "No.",
@@ -319,6 +321,8 @@ public class PanelUtilidad extends javax.swing.JPanel {
 
     private void tbingresosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tbingresosItemStateChanged
         // TODO add your handling code here:
+        
+        
         if (evt.getStateChange() == ItemEvent.SELECTED) {
 
             PaneltablaUtilidad.setVisible(true);
@@ -331,7 +335,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
             tablautilidadingresos.setModel(modeloTablaUtilidadIngresos);
 
             double totali = utilidad.totalIngresos;
-            jlTotalIngresos.setText("L. "+utilidad.formatearNumero(totali));
+            jlTotalIngresos.setText("L. "+df.format(totali));
             jlTotalGastos.setText("L. 0.00");
             jlTotalUtilidad.setText("L. 0.00");
 
@@ -361,7 +365,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
             tablautilidadingresos.setModel(modeloTablaUtilidadGastos);
 
             double totalg = utilidad.totalGastos;
-            jlTotalGastos.setText("L. "+utilidad.formatearNumero(totalg));
+            jlTotalGastos.setText("L. "+df.format(totalg));
             jlTotalIngresos.setText("L. 0.00");
             jlTotalUtilidad.setText("L. 0.00");
 
@@ -395,13 +399,13 @@ public class PanelUtilidad extends javax.swing.JPanel {
             tablautilidadgastos.setModel(modeloTablaUtilidadGastos);
 
             double totalg = utilidad.totalGastos;
-            jlTotalGastos.setText("L. "+utilidad.formatearNumero(totalg));
+            jlTotalGastos.setText("L. "+df.format(totalg));
 
             double totali = utilidad.totalIngresos;
-            jlTotalIngresos.setText("L. "+utilidad.formatearNumero(totali));
+            jlTotalIngresos.setText("L. "+df.format(totali));
 
             double totalu = utilidad.totalIngresos - utilidad.totalGastos;
-            jlTotalUtilidad.setText("L. "+utilidad.formatearNumero(totalu));
+            jlTotalUtilidad.setText("L. "+df.format(totalu));
 
         } else {
             PaneltablaUtilidad.setVisible(false);
