@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Clientes;
 import royal_gym.Productos;
@@ -16,9 +17,12 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
    
     //Constructor
     public PanelRegistroProductos() {
+        
         initComponents();
         productos.modeloTablaProductos(columnasProductos, tablaProductos);
     }
+
+   
     
    public void actualizarTablaProductos(){
        productos.modeloTablaProductos(columnasProductos, tablaProductos);

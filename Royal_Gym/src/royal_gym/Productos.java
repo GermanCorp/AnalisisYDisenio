@@ -83,6 +83,35 @@ public class Productos {
         return datosProductos;
     }
     
+    //lista de productos para la compra
+    public Object[][] getListaProductos1() {
+        Object[][] datosProductos = null;
+        try {
+            String consulta = "select idproducto, descripcion, costo from productos";
+            statement = Conexion.getConexion().createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            //int numeroLista = 1;
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                            //numeroLista++,
+                            resultado.getInt("idproducto"),
+                            resultado.getString("descripcion"),
+                            formatearNumero(resultado.getDouble("costo"))
+                        }
+                );
+            }
+            datosProductos= new Object[filas.size()][];
+            filas.toArray(datosProductos);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosProductos;
+    }
+    
     public Object[][] buscarProductos(String descripcion) {
         Object[][] datosProductos = null;
         try {

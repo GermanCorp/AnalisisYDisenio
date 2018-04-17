@@ -7,6 +7,7 @@ package presentacion;
 
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ItemEvent;
+import java.text.DecimalFormat;
 import java.util.Date;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -18,6 +19,7 @@ import royal_gym.Utilidad;
  * @author alxcr
  */
 public class PanelUtilidad extends javax.swing.JPanel {
+    DecimalFormat df = new DecimalFormat("#,##0.00");
     
      private final String[] columnasUtilidad = {
         "No.",
@@ -40,6 +42,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         Panelfecha = new javax.swing.JPanel();
         jdcfechaInicio = new com.toedter.calendar.JDateChooser();
         jdcfechaFinal = new com.toedter.calendar.JDateChooser();
@@ -78,6 +81,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
 
         jdcfechaFinal.setDateFormatString("yyyy-MM-dd");
 
+        buttonGroup1.add(tbingresos);
         tbingresos.setText("Ingresos");
         tbingresos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tbingresos.addItemListener(new java.awt.event.ItemListener() {
@@ -91,6 +95,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
             }
         });
 
+        buttonGroup1.add(tbgastos);
         tbgastos.setText("Gastos");
         tbgastos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -103,6 +108,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
             }
         });
 
+        buttonGroup1.add(tbtodo);
         tbtodo.setText("Ingresso y Gastos");
         tbtodo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -315,6 +321,8 @@ public class PanelUtilidad extends javax.swing.JPanel {
 
     private void tbingresosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tbingresosItemStateChanged
         // TODO add your handling code here:
+        
+        
         if (evt.getStateChange() == ItemEvent.SELECTED) {
 
             PaneltablaUtilidad.setVisible(true);
@@ -327,7 +335,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
             tablautilidadingresos.setModel(modeloTablaUtilidadIngresos);
 
             double totali = utilidad.totalIngresos;
-            jlTotalIngresos.setText("L. "+utilidad.formatearNumero(totali));
+            jlTotalIngresos.setText("L. "+df.format(totali));
             jlTotalGastos.setText("L. 0.00");
             jlTotalUtilidad.setText("L. 0.00");
 
@@ -357,7 +365,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
             tablautilidadingresos.setModel(modeloTablaUtilidadGastos);
 
             double totalg = utilidad.totalGastos;
-            jlTotalGastos.setText("L. "+utilidad.formatearNumero(totalg));
+            jlTotalGastos.setText("L. "+df.format(totalg));
             jlTotalIngresos.setText("L. 0.00");
             jlTotalUtilidad.setText("L. 0.00");
 
@@ -391,13 +399,13 @@ public class PanelUtilidad extends javax.swing.JPanel {
             tablautilidadgastos.setModel(modeloTablaUtilidadGastos);
 
             double totalg = utilidad.totalGastos;
-            jlTotalGastos.setText("L. "+utilidad.formatearNumero(totalg));
+            jlTotalGastos.setText("L. "+df.format(totalg));
 
             double totali = utilidad.totalIngresos;
-            jlTotalIngresos.setText("L. "+utilidad.formatearNumero(totali));
+            jlTotalIngresos.setText("L. "+df.format(totali));
 
             double totalu = utilidad.totalIngresos - utilidad.totalGastos;
-            jlTotalUtilidad.setText("L. "+utilidad.formatearNumero(totalu));
+            jlTotalUtilidad.setText("L. "+df.format(totalu));
 
         } else {
             PaneltablaUtilidad.setVisible(false);
@@ -424,6 +432,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
     private javax.swing.JPanel Panelfecha;
     private javax.swing.JPanel PaneltablaUtilidad;
     private javax.swing.JPanel Paneltotales;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane5;
