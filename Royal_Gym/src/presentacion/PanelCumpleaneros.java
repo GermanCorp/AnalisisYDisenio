@@ -12,11 +12,7 @@ import royal_gym.Cumpleaneros;
 public class PanelCumpleaneros extends javax.swing.JPanel {
     
     Conexion con = new Conexion();
-     static private Connection conexion;
-    private static Statement statement;
-    static ResultSet resultado;
-  
-    
+     
     // columnas de la tabla Cumpleaneros
     private final String[] columnasCumpleaneros = {
         "No.",
@@ -31,48 +27,10 @@ public class PanelCumpleaneros extends javax.swing.JPanel {
         con.conectar();
          
          // Modelo de la tabla de cumpleaneros
-        DefaultTableModel modeloTablaCumpleaneros = new DefaultTableModel(con.getEdadClientes(), columnasCumpleaneros);
-        tablaDeCumpleaneros.setModel(modeloTablaCumpleaneros);
-        
-        
+        DefaultTableModel modeloTablaCumpleaneros = new DefaultTableModel(con.getCumpleaneros(), columnasCumpleaneros);
+        tablaDeCumpleaneros.setModel(modeloTablaCumpleaneros);   
     }
-    
-    // método para llenar la tabla de edad de los clientes
-    public Object[][] getEdadClientes() {
-        Object[][] datosCliente = null;
-
-        try {
-            String consulta = "Select * FROM Edad";
-            statement = Conexion.getConexion().createStatement();
-            resultado = statement.executeQuery(consulta);
-
-            int numeroLista = 1;
-            ArrayList<Object[]> filas = new ArrayList<>();
-            DecimalFormat df = new DecimalFormat("###");
-
-            while (resultado.next()) {
-                filas.add(
-                        new Object[]{
-                            numeroLista++,
-                            resultado.getString("Nombre"),
-                            resultado.getString("fechaNacimiento"),
-                            df.format(resultado.getDouble("Edad")) + " años"
-                        }
-                );
-            }
-            datosCliente = new Object[filas.size()][];
-            filas.toArray(datosCliente);
-
-            datosCliente = new Object[filas.size()][];
-            filas.toArray(datosCliente);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return datosCliente;
-    }
-
-    
-    
+        
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static royal_gym.Cumpleaneros.resultado;
 
 public class Conexion {
 
@@ -373,13 +374,14 @@ public class Conexion {
         }
     }
 
+   
     // método para llenar la tabla de edad de los clientes
     public Object[][] getEdadClientes() {
         Object[][] datosCliente = null;
 
         try {
             String consulta = "Select * FROM Edad";
-            statement = Conexion.getConexion().createStatement();
+             statement = conexion.createStatement();
             resultado = statement.executeQuery(consulta);
 
             int numeroLista = 1;
@@ -405,7 +407,7 @@ public class Conexion {
             System.out.println(e.getMessage());
         }
         return datosCliente;
-    }
+}
 
     // buscarPagos
     public Object[][] buscarPagos(String nombre) {
@@ -595,6 +597,39 @@ public class Conexion {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+}
+    
+    public Object[][] getCumpleaneros() {
+        Object[][] datosCliente = null;
+
+        try {
+            String consulta = "Select * FROM Edad ";
+            statement = Conexion.getConexion().createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            int numeroLista = 1;
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                            numeroLista++,
+                            resultado.getString("Nombre"),
+                            resultado.getString("FechaNacimiento"),
+                            resultado.getString("Edad")
+                            
+                        }
+                );
+            }
+            datosCliente = new Object[filas.size()][];
+            filas.toArray(datosCliente);
+
+            datosCliente = new Object[filas.size()][];
+            filas.toArray(datosCliente);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosCliente;
 }
     
 }
