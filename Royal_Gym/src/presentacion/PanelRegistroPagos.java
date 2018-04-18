@@ -59,11 +59,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
        TextAutoCompleter  textAutoCompleter = new  TextAutoCompleter(jtfBuscarCliente);
        
        
-        textAutoCompleter.addItem("Valentina");
-        textAutoCompleter.addItem("Ana");
-        textAutoCompleter.addItem("Jazmin");
-        textAutoCompleter.addItem("Marvin");
-        textAutoCompleter.addItem("Marlon");
+      
 
             
         try {
