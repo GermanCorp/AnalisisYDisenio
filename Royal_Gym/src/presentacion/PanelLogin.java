@@ -1,5 +1,6 @@
 package presentacion;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import royal_gym.Conexion;
@@ -7,6 +8,8 @@ import royal_gym.Validaciones;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import royal_gym.LoginEntrar;
@@ -142,6 +145,16 @@ public class PanelLogin extends javax.swing.JFrame {
 
         contraseña.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         contraseña.setBorder(null);
+        contraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contraseñaActionPerformed(evt);
+            }
+        });
+        contraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                contraseñaKeyTyped(evt);
+            }
+        });
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/login_contraseña.png"))); // NOI18N
@@ -257,10 +270,21 @@ public class PanelLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
         }
          if (LoginEntrar.ingreso(usuario.getText(),String.valueOf(contraseña.getPassword())) == 1) {
-             JOptionPane.showMessageDialog(null, "Bienvenido");
-				VentanaPrincipal pnu = new VentanaPrincipal();
-				pnu.setVisible(true);
-                                dispose();
+             //JOptionPane.showMessageDialog(null, "Bienvenido");
+				   try {
+                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                 //UIManager.setLookAndFeel(javax.swing.plaf.nimbus.NimbusLookAndFeel.class.getName());
+             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                     | UnsupportedLookAndFeelException e) {
+                 // TODO Auto-generated catch block
+                 e.printStackTrace();
+             }
+             VentanaPrincipal ventana = new VentanaPrincipal();
+             ventana.setVisible(true);
+             ventana.setLocationRelativeTo(null);
+             ventana.setExtendedState(JFrame.MAXIMIZED_BOTH);
+             ventana.setDefaultCloseOperation(EXIT_ON_CLOSE);
+             dispose();
                                 
         usuario.setText("");
         contraseña.setText("");
@@ -276,6 +300,17 @@ public class PanelLogin extends javax.swing.JFrame {
     private void usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usuarioActionPerformed
+
+    private void contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contraseñaActionPerformed
+
+    private void contraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contraseñaKeyTyped
+        char cTeclaPresionada = evt.getKeyChar();
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+            btnAceptar.doClick();
+        }
+    }//GEN-LAST:event_contraseñaKeyTyped
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
