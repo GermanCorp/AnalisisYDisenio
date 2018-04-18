@@ -31,6 +31,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
     Utilidad utilidad = new Utilidad();
     public PanelUtilidad() {
         initComponents();
+        
     }
 
     /**
