@@ -1,5 +1,8 @@
 package royal_gym;
 
+import presentacion.PanelNuevoUsuario;
+import presentacion.PanelUsuariosExistentes;
+
 public class VentanaPrincipal extends javax.swing.JFrame {
 
 // Constructor
@@ -90,11 +93,26 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Herramientas_Usuarios.png"))); // NOI18N
         jMenu3.setText("Usuarios");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
 
         jMenuItem2.setText("Nuevo Usuario");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem2);
 
         jMenuItem3.setText("Usuario Registrados");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem3);
 
         jMenu2.add(jMenu3);
@@ -145,6 +163,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void panelVentas1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelVentas1FocusLost
 
     }//GEN-LAST:event_panelVentas1FocusLost
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        PanelNuevoUsuario pnu = new PanelNuevoUsuario();
+        pnu.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        PanelUsuariosExistentes PUE = new PanelUsuariosExistentes();
+        PUE.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     // <editor-fold defaultstate="collapsed" desc="Elementos de Ventana Principal">
     // Variables declaration - do not modify//GEN-BEGIN:variables

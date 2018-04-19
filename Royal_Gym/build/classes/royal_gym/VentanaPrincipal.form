@@ -46,16 +46,31 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Usuarios"/>
               </Properties>
+<<<<<<< HEAD
+=======
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu3ActionPerformed"/>
+              </Events>
+>>>>>>> 9a5833bcf0f7ec7ce5a0bc94f4d79f28498c62a2
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Nuevo Usuario"/>
                   </Properties>
+<<<<<<< HEAD
+=======
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+                  </Events>
+>>>>>>> 9a5833bcf0f7ec7ce5a0bc94f4d79f28498c62a2
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Usuario Registrados"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
