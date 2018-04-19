@@ -1,6 +1,7 @@
 package royal_gym;
 
 import presentacion.PanelNuevoUsuario;
+import presentacion.PanelUsuariosExistentes;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
 
@@ -107,6 +108,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu3.add(jMenuItem2);
 
         jMenuItem3.setText("Usuario Registrados");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem3);
 
         jMenu2.add(jMenu3);
@@ -168,6 +174,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PanelNuevoUsuario pnu = new PanelNuevoUsuario();
         pnu.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        PanelUsuariosExistentes PUE = new PanelUsuariosExistentes();
+        PUE.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     // <editor-fold defaultstate="collapsed" desc="Elementos de Ventana Principal">
     // Variables declaration - do not modify//GEN-BEGIN:variables
