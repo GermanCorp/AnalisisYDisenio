@@ -61,7 +61,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Productos.png")), panelRegistroProductos1); // NOI18N
 
-        jMenu1.setText("File");
+        jMenu1.setText("Archivo");
 
         jMenuItemSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Archivo_Salir.png"))); // NOI18N
         jMenuItemSalir.setText("Salir");
@@ -93,13 +93,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenuItem2.setText("Nuevo Usuario");
         jMenu3.add(jMenuItem2);
-        jMenuItem2.getAccessibleContext().setAccessibleName("Nuevo Usuario");
 
         jMenuItem3.setText("Usuario Registrados");
         jMenu3.add(jMenuItem3);
 
         jMenu2.add(jMenu3);
-        jMenu3.getAccessibleContext().setAccessibleName("Usuarios");
 
         jMenuBar1.add(jMenu2);
 
