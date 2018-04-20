@@ -21,7 +21,7 @@ import royal_gym.Productos;
  */
 public class PanelCompras extends javax.swing.JPanel {
 
-    PanelRegistroProductos prp = new PanelRegistroProductos();
+    
     public double total;
     private double subTotal;
     private double isv;
@@ -33,7 +33,7 @@ public class PanelCompras extends javax.swing.JPanel {
     public PanelCompras() {
         initComponents();
         
-        prp.setVisible(false);
+        
     }
     
     
@@ -309,7 +309,7 @@ public class PanelCompras extends javax.swing.JPanel {
 
     private void botonagregarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonagregarproductoActionPerformed
         // TODO add your handling code here:
-        prp.setVisible(true);
+       
 
     }//GEN-LAST:event_botonagregarproductoActionPerformed
 
