@@ -5,37 +5,40 @@ import javax.swing.table.DefaultTableModel;
 import royal_gym.Conexion;
 import royal_gym.UsuariosExistentes;
 
-public class PanelUsuariosExistentes extends javax.swing.JFrame {
+public class PanelUsuariosExistentes extends javax.swing.JDialog {
     
-    
-    UsuariosExistentes UE = new UsuariosExistentes();
-    Conexion con = new Conexion();
+    UsuariosExistentes UE;
+    Conexion con;
     
     // columnas de la tabla usuarios existentes
     private final String[] columnasUsuarios = {
-        "N°",
+        "N.°",
+        "Nombre",
         "Usuarios Existentes"
     };
-            
-    public PanelUsuariosExistentes() {
+
+    
+    public PanelUsuariosExistentes(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         this.con = new Conexion();
         setLocationRelativeTo(null);
         setResizable(false);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         con.conectar();
         
-       
-        
-            // Modelo de la tabla de cumpleaneros
+         // Modelo de la tabla de usuarios existentes
         DefaultTableModel modeloTablaUsuarios = new DefaultTableModel(con.getUsuarios(), columnasUsuarios);
         tablaUsuariosExistentes.setModel(modeloTablaUsuarios);
+
+         
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelUsuarios = new javax.swing.JPanel();
         PanelUsuariosExistentes = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUsuariosExistentes = new javax.swing.JTable();
@@ -45,10 +48,10 @@ public class PanelUsuariosExistentes extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         lblbuscar = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         PanelUsuariosExistentes.setBackground(new java.awt.Color(85, 96, 128));
-        PanelUsuariosExistentes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Usuarios Registrados", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Century", 3, 24), new java.awt.Color(255, 255, 255))); // NOI18N
+        PanelUsuariosExistentes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Usuarios Registrados", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Century", 3, 24), new java.awt.Color(255, 255, 255))); // NOI18N
 
         tablaUsuariosExistentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -139,60 +142,79 @@ public class PanelUsuariosExistentes extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
+        javax.swing.GroupLayout panelUsuariosLayout = new javax.swing.GroupLayout(panelUsuarios);
+        panelUsuarios.setLayout(panelUsuariosLayout);
+        panelUsuariosLayout.setHorizontalGroup(
+            panelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PanelUsuariosExistentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panelUsuariosLayout.setVerticalGroup(
+            panelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PanelUsuariosExistentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelUsuariosExistentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelUsuariosExistentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        int r = tablaUsuariosExistentes.getSelectedRow();
+
+        if (r == -1) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+            int mjs = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea eliminar la fila seleccionada?");
+            if(mjs == JOptionPane.YES_OPTION){
+                String nombres = tablaUsuariosExistentes.getValueAt(r, 1).toString();
+                String usuarios = tablaUsuariosExistentes.getValueAt(r, 1).toString();
+
+                UE.eliminarUsuarios(nombres);
+                DefaultTableModel modeloTablaInventario = new DefaultTableModel(UE.getUsuarios(), columnasUsuarios);
+                tablaUsuariosExistentes.setModel(modeloTablaInventario);
+                JOptionPane.showMessageDialog(this, "Usuario eliminado exitosamente");
+            }
+
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    //boton de busqueda de usuarios
     private void txtBuscarCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtBuscarCaretUpdate
         // TODO add your handling code here:
-         DefaultTableModel modeloTablaBuscarUsuarios = new DefaultTableModel(con.buscarUsuarios(txtBuscar.getText()), columnasUsuarios);
+        DefaultTableModel modeloTablaBuscarUsuarios = new DefaultTableModel(con.buscarUsuarios(txtBuscar.getText()), columnasUsuarios);
         tablaUsuariosExistentes.setModel(modeloTablaBuscarUsuarios);
     }//GEN-LAST:event_txtBuscarCaretUpdate
 
-    // boton de eliminar usuarios existentes
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-         int r = tablaUsuariosExistentes.getSelectedRow();
-
-        if (r == -1) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        } else {
-            
-            
-            int mjs = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea eliminar la fila seleccionada?");
-            if(mjs == JOptionPane.YES_OPTION){
-               String nombremaquina = tablaUsuariosExistentes.getValueAt(r, 1).toString();
-               
-            UE.eliminarUsuarios(nombremaquina);
-            DefaultTableModel modeloTablaInventario = new DefaultTableModel(UE.getUsuarios(), columnasUsuarios);
-            tablaUsuariosExistentes.setModel(modeloTablaInventario);
-                JOptionPane.showMessageDialog(this, "Usuario eliminado exitosamente");
-            }
-
-        }  
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
     public static void main(String args[]) {
-
+        
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PanelUsuariosExistentes().setVisible(true);
+                PanelUsuariosExistentes dialog = new PanelUsuariosExistentes(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -204,6 +226,7 @@ public class PanelUsuariosExistentes extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblbuscar;
+    private javax.swing.JPanel panelUsuarios;
     private javax.swing.JTable tablaUsuariosExistentes;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables

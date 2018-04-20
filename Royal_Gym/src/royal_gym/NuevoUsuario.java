@@ -1,6 +1,7 @@
 package royal_gym;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -17,17 +18,19 @@ public class NuevoUsuario
         return df.format(numero);
     }
     
-    public void nuevoUser(String User, String Pass)
-    {
+    //metodo para insertar un nuevo usuario a la base de datos
+    public void nuevoUser(String nombre,String User, String Pass ) {
         try {
-            String sql = "Insert into Login (usuario, contraseña) values (?,?)";
-            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
-            consulta.setString(1, User);
-            consulta.setString(2, Pass);
+            String sql = "insert into login (nombre,usuario, contraseña) values (?,?,?)";
+            Connection con = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
+            PreparedStatement consulta = con.prepareStatement(sql);
+            consulta.setString(1, nombre);
+            consulta.setString(2, User);
+            consulta.setString(3,Pass);
             consulta.execute();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }
+}
     
 }

@@ -21,7 +21,7 @@ public class UsuariosExistentes
         Object[][] datosUsuarios = null;
 
         try {
-            String consulta = "SELECT usuario FROM Login";
+            String consulta = "SELECT nombre,usuario FROM login";
             statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
             int numeroLista = 1;
@@ -32,6 +32,7 @@ public class UsuariosExistentes
                 filas.add(
                         new Object[]{
                             numeroLista++,
+                            resultado.getString("nombre"),
                             resultado.getString("usuario")
                         }
                 );
@@ -45,12 +46,13 @@ public class UsuariosExistentes
     }
 
         //metodo para buscar Usuarios
-    public Object[][] buscarUsuarios(String nombresUsuarios) {
+    public Object[][] buscarUsuarios(String Nombre,String Usuarios) {
         Object[][] datosUsuarios = null;
         try {
-            String consulta = "SELECT usuario FROM Login where usuario like'%' || ? || '%'";
+            String consulta = "SELECT nombre,usuario,contraseña FROM Login where usuario like'%' || ? || '%'";
             PreparedStatement statement = Conexion.getConexion().prepareStatement(consulta);
-            statement.setString(1, nombresUsuarios);
+             statement.setString(1, Nombre);
+            statement.setString(2, Usuarios);
 
             resultado = statement.executeQuery();
             int numeroLista = 1;
@@ -60,6 +62,7 @@ public class UsuariosExistentes
                 filas.add(
                         new Object[]{
                             numeroLista++,
+                            resultado.getString("nombre"),
                             resultado.getString("usuario")
                         }
                 );
@@ -71,18 +74,18 @@ public class UsuariosExistentes
         return datosUsuarios;
     }
 
-    // método para eliminar usuarios existentes
-    public void eliminarUsuarios(String nombresUsuarios) {
-
+    public void eliminarUsuarios(String Nombres) {
+        
         try {
-            String sql = "Delete from login where usuario = ?";
+            String sql = "Delete from login where nombre = ?";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
-            consulta.setString(1, nombresUsuarios);
+            consulta.setString(1, Nombres);
             consulta.execute();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
+          }
+       
     }
     
     

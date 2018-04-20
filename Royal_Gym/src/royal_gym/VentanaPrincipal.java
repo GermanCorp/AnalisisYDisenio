@@ -3,12 +3,17 @@ package royal_gym;
 import presentacion.PanelNuevoUsuario;
 import presentacion.PanelUsuariosExistentes;
 
-public class VentanaPrincipal extends javax.swing.JFrame {
+public class VentanaPrincipal extends javax.swing.JFrame 
+{
+ 
+    
 
 // Constructor
     public VentanaPrincipal() {
         initComponents();
         setTitle("Royal Gym");
+        
+        
        }
 
     
@@ -171,14 +176,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        PanelNuevoUsuario pnu = new PanelNuevoUsuario();
-        pnu.setVisible(true);
+        
+        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        PanelUsuariosExistentes PUE = new PanelUsuariosExistentes();
-        PUE.setVisible(true);
+      
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
