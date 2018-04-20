@@ -74,6 +74,10 @@ public class PanelLogin extends javax.swing.JFrame {
 
         btnAceptar.setBackground(new java.awt.Color(85, 96, 128));
         btnAceptar.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+<<<<<<< HEAD
+=======
+        btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/btn_entrar_1.png"))); // NOI18N
+>>>>>>> 6ab7e05bbbe323b46a4f62de9f29b789da9893ab
         btnAceptar.setText(" ");
         btnAceptar.setBorder(null);
         btnAceptar.setBorderPainted(false);

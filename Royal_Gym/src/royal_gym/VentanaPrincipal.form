@@ -8,7 +8,7 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="File"/>
+            <Property name="text" type="java.lang.String" value="Archivo"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemSalir">
@@ -46,17 +46,35 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Usuarios"/>
               </Properties>
+<<<<<<< HEAD
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu3ActionPerformed"/>
               </Events>
+=======
+<<<<<<< HEAD
+=======
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu3ActionPerformed"/>
+              </Events>
+>>>>>>> 9a5833bcf0f7ec7ce5a0bc94f4d79f28498c62a2
+>>>>>>> 6ab7e05bbbe323b46a4f62de9f29b789da9893ab
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Nuevo Usuario"/>
                   </Properties>
+<<<<<<< HEAD
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
                   </Events>
+=======
+<<<<<<< HEAD
+=======
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+                  </Events>
+>>>>>>> 9a5833bcf0f7ec7ce5a0bc94f4d79f28498c62a2
+>>>>>>> 6ab7e05bbbe323b46a4f62de9f29b789da9893ab
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
                   <Properties>

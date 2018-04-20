@@ -52,7 +52,6 @@ public class Pagos {
             int numeroLista = 1;
 
             ArrayList<Object[]> filas = new ArrayList<>();
-
             while (resultado.next()) {
                 filas.add(
                     new Object[]{
@@ -64,6 +63,7 @@ public class Pagos {
                     resultado.getString("tpo_plan"),
                     resultado.getString("fecha_pago"),}
                 );
+                
             }
             datosPago = new Object[filas.size()][];
             filas.toArray(datosPago);
@@ -72,6 +72,7 @@ public class Pagos {
         }
         return datosPago;
     }
+    
     
     // método para llenar combobox de clientes
     public static ArrayList<String> llenarCombo() {

@@ -1,7 +1,10 @@
 package royal_gym;
 
 import presentacion.PanelNuevoUsuario;
+<<<<<<< HEAD
+=======
 import presentacion.PanelUsuariosExistentes;
+>>>>>>> 6ab7e05bbbe323b46a4f62de9f29b789da9893ab
 
 public class VentanaPrincipal extends javax.swing.JFrame 
 {
@@ -69,7 +72,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
         });
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Productos.png")), panelRegistroProductos1); // NOI18N
 
-        jMenu1.setText("File");
+        jMenu1.setText("Archivo");
 
         jMenuItemSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Archivo_Salir.png"))); // NOI18N
         jMenuItemSalir.setText("Salir");
@@ -180,12 +183,15 @@ public class VentanaPrincipal extends javax.swing.JFrame
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+<<<<<<< HEAD
+=======
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
       
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+>>>>>>> 6ab7e05bbbe323b46a4f62de9f29b789da9893ab
     // <editor-fold defaultstate="collapsed" desc="Elementos de Ventana Principal">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
