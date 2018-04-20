@@ -213,6 +213,11 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
                 jtfBuscarInventarioCaretUpdate(evt);
             }
         });
+        jtfBuscarInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfBuscarInventarioActionPerformed(evt);
+            }
+        });
 
         jbModificar.setText("Modificar");
         jbModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -428,6 +433,10 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
 
         }  
     }//GEN-LAST:event_jbEliminarActionPerformed
+
+    private void jtfBuscarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfBuscarInventarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfBuscarInventarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

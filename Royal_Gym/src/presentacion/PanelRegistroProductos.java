@@ -205,7 +205,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(jLabel4)
                     .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jtfDescripcionProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                        .addComponent(jtfDescripcionProducto)
                         .addComponent(jLabel2)
                         .addGroup(panelDatosClienteLayout.createSequentialGroup()
                             .addComponent(btnAceptarRegistroProducto)
@@ -317,7 +317,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
                     .addGroup(PanelTablaLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                            .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
                             .addComponent(jtfBuscarProductos))))
                 .addGap(20, 20, 20))
         );
