@@ -569,7 +569,6 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 clientes.modeloTablaCliente(columnasClientes, tablaClientes);
                 JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente");
             }
-            
     }//GEN-LAST:event_jMenuItemEliminarMousePressed
 
     private void jMenuItemExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExpedienteActionPerformed

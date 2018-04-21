@@ -20,6 +20,7 @@ public class Clientes {
     // variables
     private static Statement statement;
     static ResultSet resultado;
+    private int datos = 0;
 
     public Clientes() {
         
@@ -44,6 +45,7 @@ public class Clientes {
             int numeroLista = 1;
             ArrayList<Object[]> filas = new ArrayList<>();
 
+
             while (resultado.next()) {
                 filas.add(
                         new Object[]{
@@ -56,6 +58,19 @@ public class Clientes {
                             clasificaciónIMC(resultado.getDouble("imc"))
                         }
                 );
+                
+                datos.add(
+                        new Object[]{
+                            resultado.getString("idCliente"),
+                            resultado.getString("NombreCompleto"),
+                            resultado.getString("FechaNacimiento"),
+                            formatearNumero(resultado.getDouble("Altura")) + " mt",
+                            formatearNumero(resultado.getDouble("Peso")) + " kg",
+                            formatearNumero(resultado.getDouble("imc")),
+                            clasificaciónIMC(resultado.getDouble("imc"))
+                        }
+                );
+        
             }
             datosCliente = new Object[filas.size()][];
             filas.toArray(datosCliente);
