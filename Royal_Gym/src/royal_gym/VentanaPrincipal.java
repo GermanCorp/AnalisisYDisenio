@@ -1,14 +1,22 @@
 package royal_gym;
 
 import presentacion.PanelNuevoUsuario;
+<<<<<<< HEAD
+=======
 import presentacion.PanelUsuariosExistentes;
+>>>>>>> 6ab7e05bbbe323b46a4f62de9f29b789da9893ab
 
-public class VentanaPrincipal extends javax.swing.JFrame {
+public class VentanaPrincipal extends javax.swing.JFrame 
+{
+ 
+    
 
 // Constructor
     public VentanaPrincipal() {
         initComponents();
         setTitle("Royal Gym");
+        
+        
        }
 
     
@@ -171,17 +179,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        PanelNuevoUsuario pnu = new PanelNuevoUsuario();
-        pnu.setVisible(true);
+        
+        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+<<<<<<< HEAD
+=======
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        PanelUsuariosExistentes PUE = new PanelUsuariosExistentes();
-        PUE.setVisible(true);
+      
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+>>>>>>> 6ab7e05bbbe323b46a4f62de9f29b789da9893ab
     // <editor-fold defaultstate="collapsed" desc="Elementos de Ventana Principal">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

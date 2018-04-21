@@ -588,13 +588,14 @@ public class Conexion {
 	}
     
     //metodo para insertar un nuevo usuario a la base de datos
-    public void nuevoUser(String User, String Pass) {
+    public void nuevoUser(String nombre,String User, String Pass ) {
         try {
-            String sql = "insert into login (usuario, contraseña) values (?,?)";
+            String sql = "insert into login (nombre,usuario, contraseña) values (?,?,?)";
             Connection con = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
             PreparedStatement consulta = con.prepareStatement(sql);
-            consulta.setString(1, User);
-            consulta.setString(2, Pass);
+            consulta.setString(1, nombre);
+            consulta.setString(2, User);
+            consulta.setString(3,Pass);
             consulta.execute();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -639,7 +640,7 @@ public class Conexion {
         Object[][] datosUsuarios = null;
 
         try {
-            String consulta = "SELECT usuario FROM Login";
+            String consulta = "SELECT nombre, usuario FROM Login";
             statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
             int numeroLista = 1;
@@ -650,6 +651,7 @@ public class Conexion {
                 filas.add(
                         new Object[]{
                             numeroLista++,
+                            resultado.getString("nombre"),
                             resultado.getString("usuario")
                         }
                 );
@@ -661,12 +663,12 @@ public class Conexion {
         }
         return datosUsuarios;
     }
-    
-     //metodo para buscar Usuarios
+
+        //metodo para buscar Usuarios
     public Object[][] buscarUsuarios(String nombresUsuarios) {
         Object[][] datosUsuarios = null;
         try {
-            String consulta = "SELECT usuario FROM Login where usuario like'%' || ? || '%'";
+            String consulta = "SELECT nombre,usuario,contraseña FROM Login where nombre ||' '|| usuario like'%' || ? || '%' ";
             PreparedStatement statement = Conexion.getConexion().prepareStatement(consulta);
             statement.setString(1, nombresUsuarios);
 
@@ -678,6 +680,7 @@ public class Conexion {
                 filas.add(
                         new Object[]{
                             numeroLista++,
+                            resultado.getString("nombre"),
                             resultado.getString("usuario")
                         }
                 );
@@ -689,18 +692,19 @@ public class Conexion {
         return datosUsuarios;
     }
     
-    // método para eliminar usuarios existentes
-    public void eliminarUsuarios(String nombresUsuarios) {
 
+    // método para eliminar usuarios existentes
+     public void eliminarUsuarios(String Nombres) {
+        
         try {
-            String sql = "Delete from login where usuario = ?";
+            String sql = "Delete from login where nombre = ?";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
-            consulta.setString(1, nombresUsuarios);
+            consulta.setString(1, Nombres);
             consulta.execute();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
+          }
+       
     }
-
 }

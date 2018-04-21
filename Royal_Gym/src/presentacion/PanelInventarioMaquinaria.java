@@ -18,6 +18,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
     Validaciones ValidarLetras = new Validaciones();
     Validaciones ValidarNumeros = new Validaciones();
      InventarioMaquinaria im = new InventarioMaquinaria();
+     Conexion con = new Conexion();
     
     // columnas de la tabla Inventario
     private final String[] columnasInventario = {

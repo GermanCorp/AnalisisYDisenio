@@ -27,6 +27,8 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     int filaseleccionadatablapagos;   
     final Conexion con;
     Pagos pagos = new Pagos();
+    int d,m,a;
+    int df,mf,af;
     
     private static Statement statement;
     static ResultSet resultado;
@@ -39,7 +41,8 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         "Tiempo",
         "Tipo de Pago",
         "Tipo de Plan",
-        "Fecha de Pago"
+        "Fecha de Pago",
+       
     };
     
     public PanelRegistroPagos() {
@@ -317,10 +320,15 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tablaPagos);
 
-        combobuscarportipoplan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Individual", "Pareja", "Grupo", "Estudiante" }));
+        combobuscarportipoplan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Individual", "Pareja", "Grupo", "Estudiante", "Todo" }));
         combobuscarportipoplan.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 combobuscarportipoplanItemStateChanged(evt);
+            }
+        });
+        combobuscarportipoplan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combobuscarportipoplanActionPerformed(evt);
             }
         });
 
@@ -440,7 +448,9 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     private void jbPagoAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoAceptarActionPerformed
         Calendar c;
         c = Calendar.getInstance();
-        int d = c.get(Calendar.DATE), m = 1 + (c.get(Calendar.MONTH)), a = c.get(Calendar.YEAR);
+         d = c.get(Calendar.DATE);
+         m = 1 + (c.get(Calendar.MONTH));
+         a = c.get(Calendar.YEAR);
 
         String dia = Integer.toString(d);
         String mes = Integer.toString(m);
@@ -556,6 +566,18 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
 					 DefaultTableModel modeloTablaPagos2 = new DefaultTableModel(pagos.getClienteTipoPlan(combobuscarportipoplan.getSelectedItem().toString()), columnasPagos);
                                          tablaPagos.setModel(modeloTablaPagos2);
 					break;
+                                        
+                                case 3:
+                                    
+                                        DefaultTableModel modeloTablaPagos3 = new DefaultTableModel(pagos.getClienteTipoPlan(combobuscarportipoplan.getSelectedItem().toString()), columnasPagos);
+                                         tablaPagos.setModel(modeloTablaPagos3);
+					break;
+                                    
+                                case 4:    
+					
+					 DefaultTableModel modeloTablaPagos4 = new DefaultTableModel(pagos.getPago(), columnasPagos);
+                                         tablaPagos.setModel(modeloTablaPagos4);
+					break;        
 					
 				}
 			
@@ -566,6 +588,10 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     private void jtfBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfBuscarClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfBuscarClienteActionPerformed
+
+    private void combobuscarportipoplanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobuscarportipoplanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combobuscarportipoplanActionPerformed
 
      public String[] getTipoTiempo(String tiempo) {
         String[] plan = new String[4];
@@ -578,6 +604,72 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         return plan;
     }
 
+     public void fechaFinal(){
+     int tiempo = jcbTiempoPago.getSelectedIndex() ;{
+         switch(tiempo){
+             
+            case 0:
+                 m =+ 1;
+             break;
+             
+            case 2:
+                 if(m == 02)
+                     mf = m + 1;
+             break;
+             
+            case 3:
+                 if(m == 03)
+                     mf = m + 1;
+             break;
+             
+            case 4:
+                 if(m == 04)
+                     mf = m + 1;
+             break;
+             
+            case 5:
+                 if(m == 05)
+                     mf = m + 1;
+             break;
+             
+             case 6:
+                 if(m == 06)
+                     mf = m + 1;
+             break;
+             
+            case 7:
+                 if(m == 07)
+                     mf = m + 1;
+             break;
+             
+             case 8:
+                 if(m == 8)
+                     mf = m + 1;
+             break;
+             
+             case 9:
+                 if(m == 9)
+                     mf = m + 1;
+             break;
+             
+             case 10:
+                 if(m == 10)
+                     mf = m + 1;
+             break;
+             
+             case 11:
+                 if(m == 11)
+                     mf = m + 1;
+             break;
+             
+             case 12:
+                 if(m == 12)
+                     mf = m + 1;
+             break;
+         }
+     }
+     }
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelTablaPagos;
     private javax.swing.JComboBox<String> combobuscarportipoplan;
