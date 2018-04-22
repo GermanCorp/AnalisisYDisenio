@@ -1,8 +1,11 @@
 package presentacion;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Clientes;
@@ -19,7 +22,12 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         clientes.modeloTablaCliente(columnasClientes, tablaClientes);
     }
     
-   
+       private Date fechaJCalendar(JDateChooser calendario) {
+        Date date = calendario.getDate();
+        long d = date.getTime();
+        java.sql.Date fecha = new java.sql.Date(d);
+        return fecha;
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -308,7 +316,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         PanelTabla.setBackground(new java.awt.Color(85, 96, 128));
         PanelTabla.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Clientes Registrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        tablaClientes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tablaClientes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -474,8 +482,48 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfAlturaKeyTyped
 
     private void btnAceptarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteActionPerformed
-        clientes.insertarCliente(jtfNombreCliente.getText(), jtfApellidoCliente.getText(), jdcFecha.getDateFormatString(), jtfAltura.getText(), jtfPeso.getText());
+         Calendar cal = Calendar.getInstance();
+        int anioActual = cal.get(Calendar.YEAR);
+        int menorEdadPermitida = anioActual - 18;
+        int mayorEdadPermitida = anioActual - 100;
+
+        if (jtfNombreCliente.getText().isEmpty()
+                && jtfApellidoCliente.getText().isEmpty()
+                && jdcFecha.getDate() == null
+                && jtfAltura.getText().isEmpty()
+                && jtfPeso.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "ingrese Toda la Información", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfNombreCliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar el NOMBRE del Cliente", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfApellidoCliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar el APELLLIDO del Cliente", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jdcFecha.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccinar la FECHA de nacimiento", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jdcFecha.getCalendar().get(Calendar.YEAR) > menorEdadPermitida) {
+            JOptionPane.showMessageDialog(this, "El cliente debe ser mayor de 18 años", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jdcFecha.getCalendar().get(Calendar.YEAR) < mayorEdadPermitida) {
+            JOptionPane.showMessageDialog(this, "El cliente podría no estar apto para ejercitarse", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfAltura.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar la altura del cliente", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfPeso.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar el peso del cliente", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            clientes.insertarCliente(jtfNombreCliente.getText(),
+                    jtfApellidoCliente.getText(),
+                    fechaJCalendar(jdcFecha).toString(),
+                    jtfAltura.getText(),
+                    jtfPeso.getText());
+
+            jtfNombreCliente.setText("");
+            jtfApellidoCliente.setText("");
+            jdcFecha.setDate(null);
+            jtfAltura.setText("");
+            jtfPeso.setText("");
+
+        JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
         clientes.modeloTablaCliente(columnasClientes, tablaClientes);
+        }
     }//GEN-LAST:event_btnAceptarRegistroClienteActionPerformed
 
     private void btnAceptarRegistroClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteKeyPressed

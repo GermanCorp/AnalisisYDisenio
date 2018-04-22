@@ -58,19 +58,6 @@ public class Clientes {
                             clasificaciónIMC(resultado.getDouble("imc"))
                         }
                 );
-                
-                datos.add(
-                        new Object[]{
-                            resultado.getString("idCliente"),
-                            resultado.getString("NombreCompleto"),
-                            resultado.getString("FechaNacimiento"),
-                            formatearNumero(resultado.getDouble("Altura")) + " mt",
-                            formatearNumero(resultado.getDouble("Peso")) + " kg",
-                            formatearNumero(resultado.getDouble("imc")),
-                            clasificaciónIMC(resultado.getDouble("imc"))
-                        }
-                );
-        
             }
             datosCliente = new Object[filas.size()][];
             filas.toArray(datosCliente);
