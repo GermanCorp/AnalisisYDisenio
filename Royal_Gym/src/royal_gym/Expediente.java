@@ -60,25 +60,15 @@ public class Expediente {
         Object[][] datosPago = null;
 
         try {
-            String consulta = "SELECT peso,imc,porcentajedegrasa,porcentajedemusculo,calorias,edad,grasaviceral  FROM cambioscorporales order by id_cambio DESC ";
+            String consulta = "SELECT peso,imc,porcentajedegrasa,porcentajedemusculo,calorias,edad,grasaviceral"
+                    + "FROM cambioscorporales  ";
             statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
-            //String numeroLista = "";
-
-            ArrayList<Object[]> filas = new ArrayList<>();
             
-            double peso = 0;
-            double imc = 0;
-            double porcgrasa = 0;
-            double porcmusculo = 0;
-            double calorias = 0;
-            double edad = 0;
-            double grasaviceral = 0;
+             ArrayList<Object[]> filas = new ArrayList<>();
+             for( int i= 0; i<filas.size(); i++)
             
-            int contador = 0;
-            if(contador <=2){
-                
-            while (resultado.next()) {
+                while (resultado.next()) {
                     filas.add(
                     new Object[]{
                     resultado.getDouble("peso"),
@@ -88,16 +78,9 @@ public class Expediente {
                     resultado.getDouble("calorias"),
                     resultado.getInt("edad"),
                     resultado.getInt("grasaviceral"),}
-                          
-                    
-                );
-                  
-                  
+                     );
             }  
-            
-                   contador ++; 
-                  
-            }
+            //i - i+1
             datosPago = new Object[filas.size()][];
             filas.toArray(datosPago);
         } catch (Exception e) {
@@ -106,4 +89,4 @@ public class Expediente {
         return datosPago;
     }
     
-}
+}//order by id_cambio DESC
