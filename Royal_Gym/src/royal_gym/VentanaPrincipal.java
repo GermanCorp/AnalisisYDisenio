@@ -1,6 +1,7 @@
 package royal_gym;
 
 import presentacion.Configuracion;
+import presentacion.PanelUsuariosExistentes;
 
 public class VentanaPrincipal extends javax.swing.JFrame 
 {
@@ -176,6 +177,8 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
+       // PanelUsuariosExistentes ventana = new PanelUsuariosExistentes();
+        //ventana.setVisible(true);
       
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed

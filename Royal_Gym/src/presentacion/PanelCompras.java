@@ -158,6 +158,8 @@ public class PanelCompras extends javax.swing.JPanel {
         setBackground(new java.awt.Color(85, 96, 128));
         setPreferredSize(new java.awt.Dimension(1223, 576));
 
+        panelagregarcompra.setBackground(new java.awt.Color(85, 96, 128));
+
         jbagregarcompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/iconos/Agregar_Producto.png"))); // NOI18N
         jbagregarcompra.setText("Agregar Compra");
         jbagregarcompra.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -370,10 +372,10 @@ public class PanelCompras extends javax.swing.JPanel {
     private javax.swing.JButton jbagregarcompra;
     private javax.swing.JButton jbeliminarcompra;
     private javax.swing.JButton jbguardarcompra;
-    private javax.swing.JTextField jtfISVcompra;
-    private javax.swing.JTextField jtfdescuentocompra;
-    private javax.swing.JTextField jtfsubtotalcompra;
-    private javax.swing.JTextField jtftotalcompra;
+    public static javax.swing.JTextField jtfISVcompra;
+    public static javax.swing.JTextField jtfdescuentocompra;
+    public static javax.swing.JTextField jtfsubtotalcompra;
+    public static javax.swing.JTextField jtftotalcompra;
     private javax.swing.JPanel panelagregarcompra;
     public static javax.swing.JTable tablacompras;
     // End of variables declaration//GEN-END:variables
