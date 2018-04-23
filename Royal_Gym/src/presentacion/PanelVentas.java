@@ -29,6 +29,7 @@ public class PanelVentas extends javax.swing.JPanel {
     private String cliente;
     private static Statement statement;
     DecimalFormat df = new DecimalFormat("#,##0.00");
+   
     public PanelVentas() {
         initComponents();
         jbAgregarCliente.setHorizontalTextPosition( SwingConstants.CENTER );
@@ -40,6 +41,7 @@ public class PanelVentas extends javax.swing.JPanel {
         jbEliminarFila.setHorizontalTextPosition( SwingConstants.CENTER );
         jbEliminarFila.setVerticalTextPosition(SwingConstants.BOTTOM);        
     }
+    
     public PanelVentas(String cliente) {
         this.cliente = cliente;
     }
@@ -411,7 +413,7 @@ public class PanelVentas extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents

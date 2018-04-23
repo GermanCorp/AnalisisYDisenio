@@ -1,20 +1,14 @@
 package royal_gym;
 
 import presentacion.Configuracion;
-import presentacion.ListaProductos;
-import presentacion.PanelNuevoUsuario;
-import presentacion.PanelUsuariosExistentes;
 
 public class VentanaPrincipal extends javax.swing.JFrame 
 {
- 
-    
 
 // Constructor
     public VentanaPrincipal() {
         initComponents();
         setTitle("Royal Gym");
-        
         
        }
 
@@ -33,6 +27,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
         panelUtilidad1 = new presentacion.PanelUtilidad();
         panelVentas1 = new presentacion.PanelVentas();
         panelRegistroProductos1 = new presentacion.PanelRegistroProductos();
+        panelCompras1 = new presentacion.PanelCompras();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemSalir = new javax.swing.JMenuItem();
@@ -70,6 +65,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
             }
         });
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Productos.png")), panelRegistroProductos1); // NOI18N
+        jTabbedPane1.addTab("Compras", panelCompras1);
 
         jMenu1.setText("Archivo");
 
@@ -144,8 +140,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
             .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.getAccessibleContext().setAccessibleName("Registrar Pago");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -167,14 +161,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
     // TODO add your handling code here:
     this.dispose();
     }//GEN-LAST:event_jMenuItemSalirActionPerformed
-
-    private void panelRegistroProductos1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelRegistroProductos1FocusGained
-        
-    }//GEN-LAST:event_panelRegistroProductos1FocusGained
-
-    private void panelVentas1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelVentas1FocusLost
-
-    }//GEN-LAST:event_panelVentas1FocusLost
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
         // TODO add your handling code here:
@@ -198,6 +184,14 @@ public class VentanaPrincipal extends javax.swing.JFrame
         new Configuracion(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jMenuItemConfiguracionMousePressed
 
+    private void panelRegistroProductos1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelRegistroProductos1FocusGained
+
+    }//GEN-LAST:event_panelRegistroProductos1FocusGained
+
+    private void panelVentas1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelVentas1FocusLost
+
+    }//GEN-LAST:event_panelVentas1FocusLost
+
     // <editor-fold defaultstate="collapsed" desc="Elementos de Ventana Principal">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -210,6 +204,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuItemConfiguracion;
     private javax.swing.JMenuItem jMenuItemSalir;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private presentacion.PanelCompras panelCompras1;
     private presentacion.PanelCumpleaneros panelCumpleaneros1;
     private presentacion.PanelGastos panelGastos1;
     private presentacion.PanelInventarioMaquinaria panelInventarioMaquinaria1;

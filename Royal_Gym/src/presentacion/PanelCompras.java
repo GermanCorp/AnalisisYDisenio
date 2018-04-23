@@ -38,13 +38,9 @@ public class PanelCompras extends javax.swing.JPanel {
         jbguardarcompra.setHorizontalTextPosition( SwingConstants.CENTER );
         jbguardarcompra.setVerticalTextPosition( SwingConstants.BOTTOM );
         jbeliminarcompra.setHorizontalTextPosition( SwingConstants.CENTER );
-        jbeliminarcompra.setVerticalTextPosition(SwingConstants.BOTTOM);  
-        
-        
+        jbeliminarcompra.setVerticalTextPosition(SwingConstants.BOTTOM);    
     }
     
-    
-
     public PanelCompras(double total, double subTotal, double isv, double descuento) {
         this.total = total;
         this.subTotal = subTotal;
