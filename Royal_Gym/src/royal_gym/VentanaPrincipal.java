@@ -1,20 +1,14 @@
 package royal_gym;
 
 import presentacion.Configuracion;
-import presentacion.ListaProductos;
-import presentacion.PanelNuevoUsuario;
-import presentacion.PanelUsuariosExistentes;
 
 public class VentanaPrincipal extends javax.swing.JFrame 
 {
- 
-    
 
 // Constructor
     public VentanaPrincipal() {
         initComponents();
         setTitle("Royal Gym");
-        
         
        }
 
@@ -144,8 +138,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
             .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.getAccessibleContext().setAccessibleName("Registrar Pago");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -168,14 +160,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
     this.dispose();
     }//GEN-LAST:event_jMenuItemSalirActionPerformed
 
-    private void panelRegistroProductos1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelRegistroProductos1FocusGained
-        
-    }//GEN-LAST:event_panelRegistroProductos1FocusGained
-
-    private void panelVentas1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelVentas1FocusLost
-
-    }//GEN-LAST:event_panelVentas1FocusLost
-
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
         // TODO add your handling code here:
         
@@ -197,6 +181,14 @@ public class VentanaPrincipal extends javax.swing.JFrame
     private void jMenuItemConfiguracionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemConfiguracionMousePressed
         new Configuracion(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jMenuItemConfiguracionMousePressed
+
+    private void panelRegistroProductos1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelRegistroProductos1FocusGained
+
+    }//GEN-LAST:event_panelRegistroProductos1FocusGained
+
+    private void panelVentas1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelVentas1FocusLost
+
+    }//GEN-LAST:event_panelVentas1FocusLost
 
     // <editor-fold defaultstate="collapsed" desc="Elementos de Ventana Principal">
     // Variables declaration - do not modify//GEN-BEGIN:variables
