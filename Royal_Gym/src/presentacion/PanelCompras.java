@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Conexion;
 import royal_gym.Productos;
@@ -32,6 +33,12 @@ public class PanelCompras extends javax.swing.JPanel {
     
     public PanelCompras() {
         initComponents();
+        jbagregarcompra.setHorizontalTextPosition( SwingConstants.CENTER );
+        jbagregarcompra.setVerticalTextPosition( SwingConstants.BOTTOM );
+        jbguardarcompra.setHorizontalTextPosition( SwingConstants.CENTER );
+        jbguardarcompra.setVerticalTextPosition( SwingConstants.BOTTOM );
+        jbeliminarcompra.setHorizontalTextPosition( SwingConstants.CENTER );
+        jbeliminarcompra.setVerticalTextPosition(SwingConstants.BOTTOM);  
         
         
     }
