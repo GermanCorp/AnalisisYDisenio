@@ -481,10 +481,12 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jtfAlturaKeyTyped
 
+    
     private void btnAceptarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteActionPerformed
-         Calendar cal = Calendar.getInstance();
+        Configuracion config = new Configuracion();
+        Calendar cal = Calendar.getInstance();
         int anioActual = cal.get(Calendar.YEAR);
-        int menorEdadPermitida = anioActual - 18;
+        int menorEdadPermitida = anioActual - config.getEdadPermitida();
         int mayorEdadPermitida = anioActual - 100;
 
         if (jtfNombreCliente.getText().isEmpty()
@@ -500,7 +502,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         } else if (jdcFecha.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Debe seleccinar la FECHA de nacimiento", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jdcFecha.getCalendar().get(Calendar.YEAR) > menorEdadPermitida) {
-            JOptionPane.showMessageDialog(this, "El cliente debe ser mayor de 18 años", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El cliente debe ser mayor de " + config.getEdadPermitida() + " años", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jdcFecha.getCalendar().get(Calendar.YEAR) < mayorEdadPermitida) {
             JOptionPane.showMessageDialog(this, "El cliente podría no estar apto para ejercitarse", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jtfAltura.getText().isEmpty()) {

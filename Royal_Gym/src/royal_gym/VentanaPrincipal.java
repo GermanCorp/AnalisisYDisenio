@@ -1,5 +1,7 @@
 package royal_gym;
 
+import presentacion.Configuracion;
+import presentacion.ListaProductos;
 import presentacion.PanelNuevoUsuario;
 import presentacion.PanelUsuariosExistentes;
 
@@ -35,7 +37,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
         jMenu1 = new javax.swing.JMenu();
         jMenuItemSalir = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemConfiguracion = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -92,9 +94,14 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
         jMenu2.setText("Herramientas");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Herramientas_configuracion.png"))); // NOI18N
-        jMenuItem1.setText("Configuración");
-        jMenu2.add(jMenuItem1);
+        jMenuItemConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Herramientas_configuracion.png"))); // NOI18N
+        jMenuItemConfiguracion.setText("Configuración");
+        jMenuItemConfiguracion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuItemConfiguracionMousePressed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemConfiguracion);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Herramientas_Usuarios.png"))); // NOI18N
         jMenu3.setText("Usuarios");
@@ -187,6 +194,10 @@ public class VentanaPrincipal extends javax.swing.JFrame
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItemConfiguracionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemConfiguracionMousePressed
+        new Configuracion(new javax.swing.JDialog(), true).setVisible(true);
+    }//GEN-LAST:event_jMenuItemConfiguracionMousePressed
+
     // <editor-fold defaultstate="collapsed" desc="Elementos de Ventana Principal">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -194,9 +205,9 @@ public class VentanaPrincipal extends javax.swing.JFrame
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItemConfiguracion;
     private javax.swing.JMenuItem jMenuItemSalir;
     private javax.swing.JTabbedPane jTabbedPane1;
     private presentacion.PanelCumpleaneros panelCumpleaneros1;
