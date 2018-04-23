@@ -1,6 +1,7 @@
 package royal_gym;
 
 import presentacion.Configuracion;
+import presentacion.PanelNuevoUsuario;
 import presentacion.PanelUsuariosExistentes;
 
 public class VentanaPrincipal extends javax.swing.JFrame 
@@ -170,7 +171,8 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        
+       /// PanelNuevoUsuario ventana = new PanelNuevoUsuario();
+       // ventana.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -179,8 +181,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
         // TODO add your handling code here:
        // PanelUsuariosExistentes ventana = new PanelUsuariosExistentes();
         //ventana.setVisible(true);
-      
-        
+         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItemConfiguracionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemConfiguracionMousePressed
