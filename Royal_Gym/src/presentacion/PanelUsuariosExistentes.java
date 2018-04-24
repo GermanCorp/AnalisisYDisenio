@@ -18,7 +18,7 @@ public class PanelUsuariosExistentes extends javax.swing.JDialog {
     };
 
     
-    public PanelUsuariosExistentes(java.awt.Frame parent, boolean modal) {
+    public PanelUsuariosExistentes(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.con = new Conexion();
@@ -207,7 +207,7 @@ public class PanelUsuariosExistentes extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                PanelUsuariosExistentes dialog = new PanelUsuariosExistentes(new javax.swing.JFrame(), true);
+                PanelUsuariosExistentes dialog = new PanelUsuariosExistentes(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
