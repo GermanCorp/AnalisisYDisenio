@@ -101,8 +101,9 @@ public class PanelExpediente extends javax.swing.JPanel {
         jCBoxdoloresdehueso = new javax.swing.JCheckBox();
         jCBoxanemia = new javax.swing.JCheckBox();
         jCBoxproblemasdevesicula = new javax.swing.JCheckBox();
-        problemasderinon = new javax.swing.JCheckBox();
+        jCBoxproblemasderinon = new javax.swing.JCheckBox();
         jCheckBox28 = new javax.swing.JCheckBox();
+        jCBoxcelulitis = new javax.swing.JCheckBox();
         PanelCambiosCorporales = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jtfpeso = new javax.swing.JTextField();
@@ -339,7 +340,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                         .addComponent(labelpeso)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldpeso, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                         .addComponent(labeledad)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -575,9 +576,14 @@ public class PanelExpediente extends javax.swing.JPanel {
         jCBoxproblemasdevesicula.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxproblemasdevesicula.setText("Problemas de Vesicula");
 
-        problemasderinon.setBackground(new java.awt.Color(85, 96, 128));
-        problemasderinon.setForeground(new java.awt.Color(255, 255, 255));
-        problemasderinon.setText("Problemas de Rinon");
+        jCBoxproblemasderinon.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxproblemasderinon.setForeground(new java.awt.Color(255, 255, 255));
+        jCBoxproblemasderinon.setText("Problemas de Rinon");
+        jCBoxproblemasderinon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxproblemasderinonActionPerformed(evt);
+            }
+        });
 
         jCheckBox28.setBackground(new java.awt.Color(85, 96, 128));
         jCheckBox28.setForeground(new java.awt.Color(255, 255, 255));
@@ -587,6 +593,10 @@ public class PanelExpediente extends javax.swing.JPanel {
                 jCheckBox28ActionPerformed(evt);
             }
         });
+
+        jCBoxcelulitis.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxcelulitis.setForeground(new java.awt.Color(255, 255, 255));
+        jCBoxcelulitis.setText("Celulitis");
 
         javax.swing.GroupLayout PanelProblemasdeSaludLayout = new javax.swing.GroupLayout(PanelProblemasdeSalud);
         PanelProblemasdeSalud.setLayout(PanelProblemasdeSaludLayout);
@@ -642,7 +652,8 @@ public class PanelExpediente extends javax.swing.JPanel {
                     .addComponent(jCheckBox28)
                     .addComponent(jCBoxproblemasdevesicula)
                     .addComponent(jCBoxanemia)
-                    .addComponent(problemasderinon))
+                    .addComponent(jCBoxproblemasderinon)
+                    .addComponent(jCBoxcelulitis))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelProblemasdeSaludLayout.setVerticalGroup(
@@ -660,7 +671,8 @@ public class PanelExpediente extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCBoxulcera)
-                            .addComponent(jCBoxmalacirculacion))
+                            .addComponent(jCBoxmalacirculacion)
+                            .addComponent(jCBoxcelulitis))
                         .addGap(10, 10, 10)
                         .addComponent(jCBoxcansancio))
                     .addGroup(PanelProblemasdeSaludLayout.createSequentialGroup()
@@ -685,7 +697,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                                     .addComponent(jCBoxestrenimiento)
                                     .addComponent(jCBoxestres)
                                     .addComponent(jCBoxretenciondeliquidos)
-                                    .addComponent(problemasderinon))
+                                    .addComponent(jCBoxproblemasderinon))
                                 .addGap(10, 10, 10)
                                 .addComponent(jCBoxdolordecabeza))
                             .addGroup(PanelProblemasdeSaludLayout.createSequentialGroup()
@@ -827,56 +839,51 @@ public class PanelExpediente extends javax.swing.JPanel {
                     .addComponent(jtfmusculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
-        botonaceptarexpediente.setText("Aceptar");
+        botonaceptarexpediente.setText("Guardar");
         botonaceptarexpediente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonaceptarexpedienteActionPerformed(evt);
             }
         });
 
-        botoncancelarexpediente.setText("Cancelar");
+        botoncancelarexpediente.setText("Salir");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PanelDatosCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PanelProblemasdeSalud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addComponent(botonaceptarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botoncancelarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(111, 111, 111))))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(PanelProblemasdeSalud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PanelDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(botonaceptarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(135, 135, 135)
+                        .addComponent(botoncancelarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(PanelDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(PanelProblemasdeSalud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonaceptarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botoncancelarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(10, 10, 10))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonaceptarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botoncancelarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addComponent(PanelDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(PanelProblemasdeSalud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -937,22 +944,53 @@ public class PanelExpediente extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfimcActionPerformed
 
     private void botonaceptarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarexpedienteActionPerformed
-        // TODO add your handling code here:
-        
-        
-        
         
         expediente.insertarCambiosCorporales(
-                jtfpeso.getText(),
-                jtfimc.getText(),
-                jtfgrasa.getText(),
-                jtfmusculo.getText(),
-                jtfcalorias.getText(),
-                jtfedad.getText(),
-                jtfgrasaviceral.getText());
+        jtfpeso.getText(),
+        jtfimc.getText(),
+        jtfgrasa.getText(),
+        jtfmusculo.getText(),
+        jtfcalorias.getText(),
+        jtfedad.getText(),
+        jtfgrasaviceral.getText());
        
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(),columnasCambios);
         tablacambioscorporales.setModel(modeloTablaPagos);
+        
+        
+        
+        boolean gastritis = jCBoxgastritis.isSelected()  ;
+        System.out.println(gastritis);
+        boolean colitis = jCBoxcolitis.isSelected() ;
+        boolean estreñimiento = jCBoxestrenimiento.isSelected() ;
+        boolean ulcera = jCBoxulcera.isSelected() ;
+        boolean cansancio = jCBoxcansancio.isSelected() ;
+        boolean diabetes = jCBoxdiabetes.isSelected() ;
+        boolean presionAlta = jCBoxpresionalta.isSelected() ;
+        boolean colesterol = jCBoxcolesterol.isSelected() ;
+        boolean alergias = jCBoxalergias.isSelected() ;
+        boolean estres = jCBoxestres.isSelected() ;
+        boolean dolordecabeza = jCBoxdolordecabeza.isSelected() ;
+        boolean dolordecuello = jCBoxdolordecuello.isSelected() ;
+        boolean doloresdeespalda = jCBoxdoloresdeespalda.isSelected() ;
+        boolean artritis = jCBoxartritis.isSelected() ;
+        boolean ansiedad = jCBoxansiedad.isSelected() ;
+        boolean embarazo = jCBoxembarazo.isSelected() ;
+        boolean retencionliquidos = jCBoxretenciondeliquidos.isSelected() ;
+        boolean malacirculacion = jCBoxmalacirculacion.isSelected() ;
+        boolean calambres = jCBoxcalambres.isSelected() ;
+        boolean varices = jCBoxvarices.isSelected() ;
+        boolean doloresdehueso = jCBoxdoloresdehueso.isSelected() ;
+        boolean anemia = jCBoxanemia.isSelected() ;
+        boolean problemadevesicula = jCBoxproblemasdevesicula.isSelected() ;
+        boolean problemaderiñon = jCBoxproblemasderinon.isSelected() ;
+        boolean celulitis= jCBoxcelulitis.isSelected();
+        
+        expediente.insertarProblemasdeSalud(gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes, presionAlta, 
+                colesterol, alergias, estres, dolordecabeza, dolordecuello, doloresdeespalda, artritis, ansiedad, embarazo, 
+                retencionliquidos, malacirculacion, calambres, varices, doloresdehueso, anemia, problemadevesicula, 
+                problemaderiñon, celulitis);
+        
     }//GEN-LAST:event_botonaceptarexpedienteActionPerformed
 
     private void jCBoxdoloresdehuesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxdoloresdehuesoActionPerformed
@@ -1110,6 +1148,14 @@ public class PanelExpediente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextFieldedadKeyTyped
 
+    private void jCBoxproblemasderinonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxproblemasderinonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxproblemasderinonActionPerformed
+     
+  
+    
+    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelCambiosCorporales;
@@ -1124,6 +1170,7 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JCheckBox jCBoxartritis;
     private javax.swing.JCheckBox jCBoxcalambres;
     private javax.swing.JCheckBox jCBoxcansancio;
+    private javax.swing.JCheckBox jCBoxcelulitis;
     private javax.swing.JCheckBox jCBoxcolesterol;
     private javax.swing.JCheckBox jCBoxcolitis;
     private javax.swing.JCheckBox jCBoxdiabetes;
@@ -1138,6 +1185,7 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JCheckBox jCBoxmalacirculacion;
     private javax.swing.JCheckBox jCBoxmantener;
     private javax.swing.JCheckBox jCBoxpresionalta;
+    private javax.swing.JCheckBox jCBoxproblemasderinon;
     private javax.swing.JCheckBox jCBoxproblemasdevesicula;
     private javax.swing.JCheckBox jCBoxretenciondeliquidos;
     private javax.swing.JCheckBox jCBoxsubir;
@@ -1185,7 +1233,6 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JLabel labelpesosquiere;
     private javax.swing.JLabel labeltelefonocasa;
     private javax.swing.JLabel labeltelefonotrabajo;
-    private javax.swing.JCheckBox problemasderinon;
     private javax.swing.JTable tablacambioscorporales;
     // End of variables declaration//GEN-END:variables
 }

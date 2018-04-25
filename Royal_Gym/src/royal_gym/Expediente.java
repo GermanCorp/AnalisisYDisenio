@@ -21,12 +21,66 @@ public class Expediente {
     static ResultSet resultado;
     
    
-    public void insertarProblemasdeSalud(String problema) {
+    public void insertarProblemasdeSalud(
+        boolean gastritis,
+        boolean colitis,
+        boolean estreñimiento,
+        boolean ulcera,
+        boolean cansancio,
+        boolean diabetes,
+        boolean presionAlta,
+        boolean colesterol,
+        boolean alergias,
+        boolean estres,
+        boolean dolordecabeza,
+        boolean dolordecuello,
+        boolean doloresdeespalda,
+        boolean artritis,
+        boolean ansiedad,
+        boolean embarazo,
+        boolean retencionliquidos,
+        boolean malacirculacion,
+        boolean calambres,
+        boolean varices,
+        boolean doloresdehueso,
+        boolean anemia,
+        boolean problemadevesicula,
+        boolean problemaderiñon,
+        boolean celulitis) {
+        
         try {
-            String sql = "insert into Pagos(cliente) values(?)";
+            String sql = "insert into problemasdesalud(Gastritis,Colitis,Estreñimiento,Ulcera,Cansancio,Diabetes,PresionAlta,"
+                    + "Colesterol,Alergias,Estres,Dolordecabeza,Dolordecuello,Doloresdeespalda,Artritis,Ansiedad,EmbarazoLactancia,"
+                    + "Retenciondeliquidos,Malacirculacion,Calambres,Varices,Doloresdehueso,Anemia,ProblemadeVesicula,Problemaderiñon,Celulitis)"
+                    + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             
-            consulta.setString(1, problema);
+ 
+            consulta.setBoolean(1, gastritis);
+            consulta.setBoolean(2, colitis);
+            consulta.setBoolean(3, estreñimiento);
+            consulta.setBoolean(4, ulcera);
+            consulta.setBoolean(5, cansancio);
+            consulta.setBoolean(6, diabetes);
+            consulta.setBoolean(7, presionAlta);
+            consulta.setBoolean(8,  colesterol);
+            consulta.setBoolean(9,  alergias);
+            consulta.setBoolean(10, estres);
+            consulta.setBoolean(11, dolordecabeza);
+            consulta.setBoolean(12,  dolordecuello);
+            consulta.setBoolean(13, doloresdeespalda);
+            consulta.setBoolean(14, artritis);
+            consulta.setBoolean(15, ansiedad);
+            consulta.setBoolean(16, embarazo);
+            consulta.setBoolean(17, retencionliquidos);
+            consulta.setBoolean(18, malacirculacion);
+            consulta.setBoolean(19, calambres);
+            consulta.setBoolean(20, varices);
+            consulta.setBoolean(21, doloresdehueso);
+            consulta.setBoolean(22, anemia);
+            consulta.setBoolean(23, problemadevesicula);
+            consulta.setBoolean(24, problemaderiñon);
+            consulta.setBoolean(25, celulitis);
             consulta.execute();
 
         } catch (Exception e) {
@@ -66,9 +120,12 @@ public class Expediente {
             resultado = statement.executeQuery(consulta);
             
              ArrayList<Object[]> filas = new ArrayList<>();
-            
+             int contador = 0;
              
+             //for(int i = 0; i<filas.size();i++)
+             {
                 while (resultado.next()) {
+                    
                     filas.add(
                     new Object[]{
                     resultado.getDouble("peso"),
@@ -81,14 +138,14 @@ public class Expediente {
                             
                      );
                   
+                   //contador = contador - filas.size() +1;
+                    datosPago = new Object[filas.size()][];
+                    filas.toArray(datosPago);
+                    
+                    //System.out.println(contador);
+                }
                 
-                
-            // i = i -i +1;
-            datosPago = new Object[filas.size()][];
-            filas.toArray(datosPago);
-            
-               
-             }
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

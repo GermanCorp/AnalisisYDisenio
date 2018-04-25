@@ -6,6 +6,7 @@
 package presentacion;
 
 import com.mxrck.autocompleter.TextAutoCompleter;
+import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
@@ -17,6 +18,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Conexion;
+import royal_gym.FormatoTabla;
 import royal_gym.Pagos;
 
 /**
@@ -27,8 +29,10 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     int filaseleccionadatablapagos;   
     final Conexion con;
     Pagos pagos = new Pagos();
-    int d,m,a;
+    public  int d,m,a;
     int df,mf,af;
+    public  int totalanio;
+    public int totalmes;
   
     
     private static Statement statement;
@@ -56,6 +60,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         tablaPagos.setModel(modeloTablaPagos);
         
         items();
+        tablaPagos.setDefaultRenderer (Object.class, new FormatoTabla());
         
     }
     
@@ -455,8 +460,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         String mes = Integer.toString(m);
         String anio = Integer.toString(a);
         String fecha = (anio + "-" + mes + "-" + dia);
-        
-        
+       
          String tiempo = jtfTiempoAPagar.getText();
          int mess = Integer.parseInt(tiempo);
          int diaa = Integer.parseInt(tiempo);
@@ -468,8 +472,9 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
          int td = 0;
          String fechaFinal = "";
          
-         
-          if(jcbTiempoPago.getSelectedIndex() == 0){
+         //sumar dias a la fecha
+          if(jcbTiempoPago.getSelectedIndex() == 0)
+          {
            int totaldia = d + diaa;
             
              if(totaldia >30){
@@ -482,14 +487,14 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             }else{
             String totaldi = Integer.toString(totaldia);
             fechaFinal = (anio + "-" + mes + "-" +  totaldi);
-         }   
-         
-       } 
-         
+             }   
+          } 
          
          
-         if(jcbTiempoPago.getSelectedIndex() == 1){
-           int totalmes = m + mess;
+         //Sumar meses a la fecha actual
+         if(jcbTiempoPago.getSelectedIndex() == 1)
+         {
+            totalmes = m + mess;
             
              if(totalmes >12){
              tm = totalmes - 12;
@@ -501,19 +506,20 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             }else{
             String totalm = Integer.toString(totalmes);
             fechaFinal = (anio + "-" + totalm + "-" + dia);
-         }   
-         
+            
+            }   
         }    
          
-         
-         if(jcbTiempoPago.getSelectedIndex() == 2){
-           int totalanio = a + annio;
+         //sumar anio  a la fecha actual
+         if(jcbTiempoPago.getSelectedIndex() == 2)
+         {
+            totalanio = a + annio;
             
              String totalan = Integer.toString( totalanio);
             fechaFinal = (totalan + "-" + mes + "-" + dia);
-            
+            }
          
-        } 
+         
          
          //validaciones para campos vacios
         if (jtfBuscarCliente.getText().equals("") && jtfMontoAPagar.getText().equals("") && jtfTiempoAPagar.getText().equals("")) {
@@ -534,7 +540,9 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                     jcbTiempoPago.getSelectedItem().toString(), "No aplica", fecha,fechaFinal);
             }
         }
-
+        
+        
+      
         jtfBuscarCliente.setText("");
         jtfMontoAPagar.setText("");
         jtfTiempoAPagar.setText("");

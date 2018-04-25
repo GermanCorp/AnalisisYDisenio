@@ -77,29 +77,7 @@ public class Pagos {
         return datosPago;
     }
     
-    
-    // método para llenar combobox de clientes
-    public static ArrayList<String> llenarCombo() {
-        ArrayList<String> lista = new ArrayList<String>();
-        String q = "Select nombres ||' '|| apellidos as nombreCompleto from cliente ORDER BY nombres ||' '|| apellidos ASC";
-        //String q = "SELECT CONCAT(nombres,', ',apellidos) AS NombreCompleto FROM cliente";
-
-        try {
-            resultado = statement.executeQuery(q);
-            System.out.println("Correcto");
-        } catch (Exception e) {
-            System.out.println("No Correcto");
-        }
-
-        try {
-            while (resultado.next()) {
-                lista.add(resultado.getString("nombreCompleto"));
-            }
-        } catch (Exception e) {
-
-        }
-        return lista;
-    }
+  
     
     //metodo para buscar en la tabla pagos
     public Object[][] buscarPago(String nombre) {
@@ -122,7 +100,8 @@ public class Pagos {
                             resultado.getString("Tiempo"),
                             resultado.getString("tipo_tiempo"),
                             resultado.getString("tpo_plan"),
-                            resultado.getString("fecha_pago"),});
+                            resultado.getString("fecha_pago"),
+                            resultado.getString("fecha_vencimiento"),});
             }
             datosCliente = new Object[filas.size()][];
             filas.toArray(datosCliente);
@@ -154,6 +133,7 @@ public class Pagos {
                             resultado.getString("tipo_tiempo"),
                             resultado.getString("tpo_plan"),
                             resultado.getString("fecha_pago"),
+                            resultado.getString("fecha_vencimiento"),
                                 });
 						
 			}

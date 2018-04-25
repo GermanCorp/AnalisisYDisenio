@@ -6,6 +6,7 @@
 package presentacion;
 
 
+import java.awt.Container;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -13,6 +14,8 @@ import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 
 /**
@@ -38,6 +41,7 @@ public class Expediente extends javax.swing.JDialog {
     public Expediente(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
         setBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds());
 
         // Close the dialog when Esc is pressed
@@ -69,6 +73,8 @@ public class Expediente extends javax.swing.JDialog {
     private void initComponents() {
 
         panelExpediente1 = new presentacion.PanelExpediente();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        panelExpediente2 = new presentacion.PanelExpediente();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -76,21 +82,17 @@ public class Expediente extends javax.swing.JDialog {
             }
         });
 
+        jScrollPane1.setViewportView(panelExpediente2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelExpediente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelExpediente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
         );
 
         pack();
@@ -114,7 +116,9 @@ public class Expediente extends javax.swing.JDialog {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
     private presentacion.PanelExpediente panelExpediente1;
+    private presentacion.PanelExpediente panelExpediente2;
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;

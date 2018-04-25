@@ -138,7 +138,6 @@ public class PanelCompras extends javax.swing.JPanel {
         jtfdescuentocompra = new javax.swing.JTextField();
         jtfISVcompra = new javax.swing.JTextField();
         jtftotalcompra = new javax.swing.JTextField();
-        botonagregarproducto = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablacompras = new javax.swing.JTable();
 
@@ -197,13 +196,6 @@ public class PanelCompras extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel4.setText("TOTAL");
 
-        botonagregarproducto.setText("Agregar Nuevo  Producto");
-        botonagregarproducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonagregarproductoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelagregarcompraLayout = new javax.swing.GroupLayout(panelagregarcompra);
         panelagregarcompra.setLayout(panelagregarcompraLayout);
         panelagregarcompraLayout.setHorizontalGroup(
@@ -227,9 +219,7 @@ public class PanelCompras extends javax.swing.JPanel {
                         .addGroup(panelagregarcompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfdescuentocompra, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtfISVcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addComponent(botonagregarproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))
+                        .addGap(31, 236, Short.MAX_VALUE))
                     .addGroup(panelagregarcompraLayout.createSequentialGroup()
                         .addGroup(panelagregarcompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfsubtotalcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,19 +242,14 @@ public class PanelCompras extends javax.swing.JPanel {
                         .addGroup(panelagregarcompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtfsubtotalcompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
-                        .addGroup(panelagregarcompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelagregarcompraLayout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addGroup(panelagregarcompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtfdescuentocompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(7, 7, 7)
-                                .addGroup(panelagregarcompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jtfISVcompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3)))
-                            .addGroup(panelagregarcompraLayout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(botonagregarproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(7, 7, 7)
+                        .addGroup(panelagregarcompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfdescuentocompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(7, 7, 7)
+                        .addGroup(panelagregarcompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtfISVcompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
                         .addGap(7, 7, 7)
                         .addGroup(panelagregarcompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -312,12 +297,6 @@ public class PanelCompras extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonagregarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonagregarproductoActionPerformed
-        // TODO add your handling code here:
-       
-
-    }//GEN-LAST:event_botonagregarproductoActionPerformed
-
     private void jbeliminarcompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbeliminarcompraActionPerformed
         // TODO add your handling code here:
         DefaultTableModel dtm = (DefaultTableModel) tablacompras.getModel(); //TableProducto es el nombre de mi tabla ;)
@@ -360,7 +339,6 @@ public class PanelCompras extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonagregarproducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
