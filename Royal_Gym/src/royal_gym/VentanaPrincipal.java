@@ -1,6 +1,9 @@
 package royal_gym;
 
 import presentacion.Configuracion;
+import presentacion.ListaProductos;
+import presentacion.PanelNuevoUsuario;
+import presentacion.PanelUsuariosExistentes;
 
 public class VentanaPrincipal extends javax.swing.JFrame 
 {
@@ -27,7 +30,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
         panelUtilidad1 = new presentacion.PanelUtilidad();
         panelVentas1 = new presentacion.PanelVentas();
         panelRegistroProductos1 = new presentacion.PanelRegistroProductos();
-        panelCompras1 = new presentacion.PanelCompras();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemSalir = new javax.swing.JMenuItem();
@@ -65,7 +67,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
             }
         });
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Productos.png")), panelRegistroProductos1); // NOI18N
-        jTabbedPane1.addTab("Compras", panelCompras1);
 
         jMenu1.setText("Archivo");
 
@@ -108,6 +109,14 @@ public class VentanaPrincipal extends javax.swing.JFrame
         });
 
         jMenuItem2.setText("Nuevo Usuario");
+        jMenuItem2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem2MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuItem2MousePressed(evt);
+            }
+        });
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -116,6 +125,11 @@ public class VentanaPrincipal extends javax.swing.JFrame
         jMenu3.add(jMenuItem2);
 
         jMenuItem3.setText("Usuario Registrados");
+        jMenuItem3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuItem3MousePressed(evt);
+            }
+        });
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -169,15 +183,17 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        
+       /// PanelNuevoUsuario ventana = new PanelNuevoUsuario();
+       // ventana.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-      
-        
+       // PanelUsuariosExistentes ventana = new PanelUsuariosExistentes();
+        //ventana.setVisible(true);
+         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItemConfiguracionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemConfiguracionMousePressed
@@ -192,6 +208,21 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     }//GEN-LAST:event_panelVentas1FocusLost
 
+    private void jMenuItem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2MouseClicked
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_jMenuItem2MouseClicked
+
+    private void jMenuItem2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2MousePressed
+        // TODO add your handling code here:
+        new PanelNuevoUsuario(new javax.swing.JDialog(), true).setVisible(true);
+    }//GEN-LAST:event_jMenuItem2MousePressed
+
+    private void jMenuItem3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem3MousePressed
+        // TODO add your handling code here:
+        new PanelUsuariosExistentes(new javax.swing.JDialog(), true).setVisible(true);
+    }//GEN-LAST:event_jMenuItem3MousePressed
+
     // <editor-fold defaultstate="collapsed" desc="Elementos de Ventana Principal">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -204,7 +235,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuItemConfiguracion;
     private javax.swing.JMenuItem jMenuItemSalir;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private presentacion.PanelCompras panelCompras1;
     private presentacion.PanelCumpleaneros panelCumpleaneros1;
     private presentacion.PanelGastos panelGastos1;
     private presentacion.PanelInventarioMaquinaria panelInventarioMaquinaria1;
