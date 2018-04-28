@@ -629,6 +629,9 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         
         jPopupMenu1.setVisible(false);
         new Expediente(new javax.swing.JDialog(), true).setVisible(true);
+        
+       
+       
     }//GEN-LAST:event_jMenuItemExpedienteMousePressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

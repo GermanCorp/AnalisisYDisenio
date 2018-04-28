@@ -60,6 +60,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         tablaPagos.setModel(modeloTablaPagos);
         
         items();
+        
         tablaPagos.setDefaultRenderer (Object.class, new FormatoTabla());
         
     }
@@ -325,7 +326,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tablaPagos);
 
-        combobuscarportipoplan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Individual", "Pareja", "Grupo", "Estudiante", "Todo" }));
+        combobuscarportipoplan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Individual", "Pareja", "Grupo", "Estudiante", "No aplica", "Todo" }));
         combobuscarportipoplan.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 combobuscarportipoplanItemStateChanged(evt);
@@ -615,12 +616,18 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
 
     private void tablaPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPagosMouseClicked
         // TODO add your handling code here:
+          if(evt.getClickCount()==2)
+         {
         filaseleccionadatablapagos = tablaPagos.getSelectedRow();
         jtfBuscarCliente.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 1).toString());
         jtfMontoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 2).toString());
         jtfTiempoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 3).toString());
         jcbTiempoPago.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 4));
         jcbPagoPlan.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 5));
+         }
+          
+          
+          
     }//GEN-LAST:event_tablaPagosMouseClicked
 
     private void combobuscarportipoplanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combobuscarportipoplanItemStateChanged
@@ -651,9 +658,16 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                                     
                                 case 4:    
 					
-					 DefaultTableModel modeloTablaPagos4 = new DefaultTableModel(pagos.getPago(), columnasPagos);
+					 DefaultTableModel modeloTablaPagos4 = new DefaultTableModel(pagos.getClienteTipoPlan(combobuscarportipoplan.getSelectedItem().toString()), columnasPagos);
                                          tablaPagos.setModel(modeloTablaPagos4);
-					break;        
+					break;  
+                                        
+                                        
+                                case 5:    
+					
+					 DefaultTableModel modeloTablaPagos5 = new DefaultTableModel(pagos.getPago(), columnasPagos);
+                                         tablaPagos.setModel(modeloTablaPagos5);
+					break;          
 					
 				}
 			
