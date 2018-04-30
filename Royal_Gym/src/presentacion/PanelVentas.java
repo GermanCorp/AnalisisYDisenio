@@ -27,6 +27,7 @@ public class PanelVentas extends javax.swing.JPanel {
     private double isv;
     private double descuento;
     private String cliente;
+    
     private static Statement statement;
     DecimalFormat df = new DecimalFormat("#,##0.00");
    
@@ -39,7 +40,8 @@ public class PanelVentas extends javax.swing.JPanel {
         jbAGuardarVenta.setHorizontalTextPosition( SwingConstants.CENTER );
         jbAGuardarVenta.setVerticalTextPosition( SwingConstants.BOTTOM );
         jbEliminarFila.setHorizontalTextPosition( SwingConstants.CENTER );
-        jbEliminarFila.setVerticalTextPosition(SwingConstants.BOTTOM);        
+        jbEliminarFila.setVerticalTextPosition(SwingConstants.BOTTOM); 
+        jbEliminarFila.setEnabled(false);
     }
     
     public PanelVentas(String cliente) {
@@ -242,7 +244,12 @@ public class PanelVentas extends javax.swing.JPanel {
         });
 
         jbEliminarFila.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Eliminar_fila.png"))); // NOI18N
-        jbEliminarFila.setText("<html>\n<center>Eliminar<center>\n <center>Producto<center>");
+        jbEliminarFila.setText("<html> <center>Eliminar<center>  <center>Producto<center>");
+        jbEliminarFila.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEliminarFilaActionPerformed(evt);
+            }
+        });
 
         jtfISV.setEditable(false);
         jtfISV.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -367,7 +374,7 @@ public class PanelVentas extends javax.swing.JPanel {
         jtablaProductosAVender.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtablaProductosAVender.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
                 "Código", "Cantidad", "Descripción", "Precio Unitario", "Descuento", "Sub-total", "ISV%", "Total"
@@ -501,6 +508,19 @@ public class PanelVentas extends javax.swing.JPanel {
         }
         setValoresVenta();
     }//GEN-LAST:event_jbAGuardarVentaActionPerformed
+
+    private void jbEliminarFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarFilaActionPerformed
+        DefaultTableModel modelo;
+        int filaSeleccinada = jtablaProductosAVender.getSelectedRow();
+        modelo = (DefaultTableModel) jtablaProductosAVender.getModel();
+        modelo.removeRow(filaSeleccinada);
+        
+        Double totalPorProducto = (Double.parseDouble(jtablaProductosAVender.getValueAt(filaSeleccinada, 7).toString()));
+        Double descuentoPorProducto = (Double.parseDouble(jtablaProductosAVender.getValueAt(filaSeleccinada, 4).toString()));
+        
+        setTotal(totalPorProducto);
+        setValoresVenta();
+    }//GEN-LAST:event_jbEliminarFilaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

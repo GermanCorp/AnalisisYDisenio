@@ -284,8 +284,11 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/iconos/Eliminar_fila.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;center&gt;Eliminar&lt;center&gt;&#xa; &lt;center&gt;Producto&lt;center&gt;"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;center&gt;Eliminar&lt;center&gt;  &lt;center&gt;Producto&lt;center&gt;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbEliminarFilaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jtfISV">
           <Properties>
@@ -381,7 +384,7 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="8" rowCount="0">
+              <Table columnCount="8" rowCount="1">
                 <Column editable="false" title="C&#xf3;digo" type="java.lang.Object"/>
                 <Column editable="false" title="Cantidad" type="java.lang.Object"/>
                 <Column editable="false" title="Descripci&#xf3;n" type="java.lang.Object"/>
