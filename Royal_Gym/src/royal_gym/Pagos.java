@@ -1,6 +1,7 @@
 package royal_gym;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,14 +17,15 @@ public class Pagos {
     
     private static Statement statement;
     static ResultSet resultado;
+    public  String mesv ;
     
    
     
      
     // método para insertar pagos a la base de datos
-    public void insertarPagos(String cliente, String monto, String tiempo, String tipotiempo, String tipoplan, String fecha) {
+    public void insertarPagos(String cliente, String monto, String tiempo, String tipotiempo, String tipoplan, String fecha,String fechaFinal) {
         try {
-            String sql = "insert into Pagos(cliente, monto, tiempo , tipo_tiempo, tpo_plan,fecha_pago ) values(?,?,?,?,?,?)";
+            String sql = "insert into Pagos(cliente, monto, tiempo , tipo_tiempo, tpo_plan,fecha_pago,fecha_vencimiento ) values(?,?,?,?,?,?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             
             consulta.setString(1, cliente);
@@ -32,6 +34,7 @@ public class Pagos {
             consulta.setString(4, tipotiempo);
             consulta.setString(5, tipoplan);
             consulta.setString(6, fecha);
+            consulta.setString(7, fechaFinal);
             consulta.execute();
 
         } catch (Exception e) {
@@ -46,7 +49,7 @@ public class Pagos {
         Object[][] datosPago = null;
 
         try {
-            String consulta = "SELECT cliente,monto,tiempo,tipo_tiempo,tpo_plan,fecha_pago  FROM pagos order by id_pago DESC ";
+            String consulta = "SELECT cliente,monto,tiempo,tipo_tiempo,tpo_plan,fecha_pago,fecha_vencimiento  FROM pagos order by fecha_vencimiento ASC ";
             statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
             int numeroLista = 1;
@@ -61,7 +64,8 @@ public class Pagos {
                     resultado.getString("Tiempo"),
                     resultado.getString("tipo_tiempo"),
                     resultado.getString("tpo_plan"),
-                    resultado.getString("fecha_pago"),}
+                    resultado.getString("fecha_pago"),
+                    resultado.getString("fecha_vencimiento"),}
                 );
                 
             }
@@ -73,29 +77,7 @@ public class Pagos {
         return datosPago;
     }
     
-    
-    // método para llenar combobox de clientes
-    public static ArrayList<String> llenarCombo() {
-        ArrayList<String> lista = new ArrayList<String>();
-        String q = "Select nombres ||' '|| apellidos as nombreCompleto from cliente ORDER BY nombres ||' '|| apellidos ASC";
-        //String q = "SELECT CONCAT(nombres,', ',apellidos) AS NombreCompleto FROM cliente";
-
-        try {
-            resultado = statement.executeQuery(q);
-            System.out.println("Correcto");
-        } catch (Exception e) {
-            System.out.println("No Correcto");
-        }
-
-        try {
-            while (resultado.next()) {
-                lista.add(resultado.getString("nombreCompleto"));
-            }
-        } catch (Exception e) {
-
-        }
-        return lista;
-    }
+  
     
     //metodo para buscar en la tabla pagos
     public Object[][] buscarPago(String nombre) {
@@ -118,7 +100,8 @@ public class Pagos {
                             resultado.getString("Tiempo"),
                             resultado.getString("tipo_tiempo"),
                             resultado.getString("tpo_plan"),
-                            resultado.getString("fecha_pago"),});
+                            resultado.getString("fecha_pago"),
+                            resultado.getString("fecha_vencimiento"),});
             }
             datosCliente = new Object[filas.size()][];
             filas.toArray(datosCliente);
@@ -144,12 +127,13 @@ public class Pagos {
 			while (resultado.next()) {
 				d.add(new Object[] { 
                                     numeroLista++,
-						resultado.getString("Cliente"),
+			   resultado.getString("Cliente"),
                             resultado.getString("Monto"),
                             resultado.getString("Tiempo"),
                             resultado.getString("tipo_tiempo"),
                             resultado.getString("tpo_plan"),
                             resultado.getString("fecha_pago"),
+                            resultado.getString("fecha_vencimiento"),
                                 });
 						
 			}
@@ -160,10 +144,6 @@ public class Pagos {
 			System.out.println(e.getMessage());
 		}
 		return datos;
-	}
-
-    
-    
-    
+    }
     
 }

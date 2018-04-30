@@ -101,6 +101,8 @@ public class ListaProductosComprar extends javax.swing.JDialog {
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
+        setTitle("Productos");
+        setMinimumSize(new java.awt.Dimension(0, 0));
         setPreferredSize(new java.awt.Dimension(657, 516));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -155,7 +157,7 @@ public class ListaProductosComprar extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tablaProductos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 590, 220));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 590, 240));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Cantidad:");
@@ -220,7 +222,7 @@ public class ListaProductosComprar extends javax.swing.JDialog {
     }//GEN-LAST:event_tablaProductosMousePressed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        //doClose(RET_OK);
+        
         DefaultTableModel modelo;
         int filaSeleccinada = tablaProductos.getSelectedRow();
         String codigo;
@@ -245,13 +247,13 @@ public class ListaProductosComprar extends javax.swing.JDialog {
             double isv = (x-(x/1.15));
             double subTotal = (x/1.15);
             importe = String.valueOf(x);
-            double pv = (Double.parseDouble(importe)/1.15);
+            double pv = (Double.parseDouble(precioVenta)/1.15);
 
             modelo = (DefaultTableModel) panelcompras.tablacompras.getModel();
             String elementosFila [] = {codigo, cantidad, descripcion, df.format(pv),descuento,  df.format(subTotal),   df.format(isv), importe};
             modelo.addRow(elementosFila);
 
-            double calcula  = (Double.parseDouble(importe)* Integer.parseInt(jtfCantidad.getText()));
+            double calcula  = (Double.parseDouble(precioVenta)* Integer.parseInt(jtfCantidad.getText()));
             double des = (Double.parseDouble(descuento));
 
             descuentoTotal = descuentoTotal + des;

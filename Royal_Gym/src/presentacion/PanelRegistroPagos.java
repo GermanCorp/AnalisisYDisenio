@@ -6,6 +6,7 @@
 package presentacion;
 
 import com.mxrck.autocompleter.TextAutoCompleter;
+import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
@@ -17,6 +18,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Conexion;
+import royal_gym.FormatoTabla;
 import royal_gym.Pagos;
 
 /**
@@ -27,8 +29,11 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     int filaseleccionadatablapagos;   
     final Conexion con;
     Pagos pagos = new Pagos();
-    int d,m,a;
+    public  int d,m,a;
     int df,mf,af;
+    public  int totalanio;
+    public int totalmes;
+  
     
     private static Statement statement;
     static ResultSet resultado;
@@ -42,6 +47,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         "Tipo de Pago",
         "Tipo de Plan",
         "Fecha de Pago",
+        "Fecha de Vencimiento",
        
     };
     
@@ -55,16 +61,14 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         
         items();
         
+        tablaPagos.setDefaultRenderer (Object.class, new FormatoTabla());
+        
     }
     
      public void items(){
        //String nombre = jtfBuscarCliente.getText();
        TextAutoCompleter  textAutoCompleter = new  TextAutoCompleter(jtfBuscarCliente);
-       
-       
-      
-
-            
+          
         try {
             String consulta = "Select nombres ||' '|| apellidos as nombreCompleto from cliente ORDER BY nombres ||' '|| apellidos ASC";
             statement = Conexion.getConexion().createStatement();
@@ -80,6 +84,8 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             System.out.println("buscar:" + e.getMessage());
         }
      }
+     
+   
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -185,7 +191,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             }
         });
 
-        jcbTiempoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dia", "Semana", "Mes" }));
+        jcbTiempoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dia", "Mes", "Año" }));
         jcbTiempoPago.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcbTiempoPagoItemStateChanged(evt);
@@ -320,7 +326,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tablaPagos);
 
-        combobuscarportipoplan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Individual", "Pareja", "Grupo", "Estudiante", "Todo" }));
+        combobuscarportipoplan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Individual", "Pareja", "Grupo", "Estudiante", "No aplica", "Todo" }));
         combobuscarportipoplan.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 combobuscarportipoplanItemStateChanged(evt);
@@ -446,8 +452,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     }//GEN-LAST:event_jcbPagoPlanActionPerformed
 
     private void jbPagoAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoAceptarActionPerformed
-        Calendar c;
-        c = Calendar.getInstance();
+        Calendar c = Calendar.getInstance();
          d = c.get(Calendar.DATE);
          m = 1 + (c.get(Calendar.MONTH));
          a = c.get(Calendar.YEAR);
@@ -456,21 +461,89 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         String mes = Integer.toString(m);
         String anio = Integer.toString(a);
         String fecha = (anio + "-" + mes + "-" + dia);
-
-        //if (validarInformacion() == true) {
-
+       
+         String tiempo = jtfTiempoAPagar.getText();
+         int mess = Integer.parseInt(tiempo);
+         int diaa = Integer.parseInt(tiempo);
+         int annio = Integer.parseInt(tiempo);
+         
+         int tm = 0;
+         int an = 0;
+         int me = 0;
+         int td = 0;
+         String fechaFinal = "";
+         
+         //sumar dias a la fecha
+          if(jcbTiempoPago.getSelectedIndex() == 0)
+          {
+           int totaldia = d + diaa;
+            
+             if(totaldia >30){
+             td = totaldia - 30;
+             me = m + 1;
+             
+             String totald = Integer.toString(td);
+             String mees = Integer.toString(me);
+             fechaFinal = (anio+ "-" + mees + "-" + totald);
+            }else{
+            String totaldi = Integer.toString(totaldia);
+            fechaFinal = (anio + "-" + mes + "-" +  totaldi);
+             }   
+          } 
+         
+         
+         //Sumar meses a la fecha actual
+         if(jcbTiempoPago.getSelectedIndex() == 1)
+         {
+            totalmes = m + mess;
+            
+             if(totalmes >12){
+             tm = totalmes - 12;
+             an = a + 1;
+             
+             String totalme = Integer.toString(tm);
+             String anioo = Integer.toString(an);
+             fechaFinal = (anioo+ "-" + totalme + "-" + dia);
+            }else{
+            String totalm = Integer.toString(totalmes);
+            fechaFinal = (anio + "-" + totalm + "-" + dia);
+            
+            }   
+        }    
+         
+         //sumar anio  a la fecha actual
+         if(jcbTiempoPago.getSelectedIndex() == 2)
+         {
+            totalanio = a + annio;
+            
+             String totalan = Integer.toString( totalanio);
+            fechaFinal = (totalan + "-" + mes + "-" + dia);
+            }
+         
+         
+         
+         //validaciones para campos vacios
+        if (jtfBuscarCliente.getText().equals("") && jtfMontoAPagar.getText().equals("") && jtfTiempoAPagar.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese toda la informacion", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfBuscarCliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese toda la informacion", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfMontoAPagar.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese toda la informacion", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfTiempoAPagar.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese toda la informacion", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else {
+      
             if (jcbPagoPlan.getSelectedItem() != null) {
                 pagos.insertarPagos(jtfBuscarCliente.getText(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
-                    jcbTiempoPago.getSelectedItem().toString(), jcbPagoPlan.getSelectedItem().toString(), fecha);
+                    jcbTiempoPago.getSelectedItem().toString(), jcbPagoPlan.getSelectedItem().toString(), fecha,fechaFinal);
             } else {
                 pagos.insertarPagos(jtfBuscarCliente.getText(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
-                    jcbTiempoPago.getSelectedItem().toString(), "No aplica", fecha);
+                    jcbTiempoPago.getSelectedItem().toString(), "No aplica", fecha,fechaFinal);
             }
-
-        //} else {
-            JOptionPane.showMessageDialog(this, "Ingrese toda la informacion");
+        }
         
-
+        
+      
         jtfBuscarCliente.setText("");
         jtfMontoAPagar.setText("");
         jtfTiempoAPagar.setText("");
@@ -481,6 +554,10 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         tablaPagos.setModel(modeloTablaPagos);
     }//GEN-LAST:event_jbPagoAceptarActionPerformed
 
+   
+    
+    
+    
     private void jbPagoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoCancelarActionPerformed
         jtfBuscarCliente.setText("");
         jtfMontoAPagar.setText("");
@@ -539,12 +616,18 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
 
     private void tablaPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPagosMouseClicked
         // TODO add your handling code here:
+          if(evt.getClickCount()==2)
+         {
         filaseleccionadatablapagos = tablaPagos.getSelectedRow();
         jtfBuscarCliente.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 1).toString());
         jtfMontoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 2).toString());
         jtfTiempoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 3).toString());
         jcbTiempoPago.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 4));
         jcbPagoPlan.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 5));
+         }
+          
+          
+          
     }//GEN-LAST:event_tablaPagosMouseClicked
 
     private void combobuscarportipoplanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combobuscarportipoplanItemStateChanged
@@ -575,9 +658,16 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                                     
                                 case 4:    
 					
-					 DefaultTableModel modeloTablaPagos4 = new DefaultTableModel(pagos.getPago(), columnasPagos);
+					 DefaultTableModel modeloTablaPagos4 = new DefaultTableModel(pagos.getClienteTipoPlan(combobuscarportipoplan.getSelectedItem().toString()), columnasPagos);
                                          tablaPagos.setModel(modeloTablaPagos4);
-					break;        
+					break;  
+                                        
+                                        
+                                case 5:    
+					
+					 DefaultTableModel modeloTablaPagos5 = new DefaultTableModel(pagos.getPago(), columnasPagos);
+                                         tablaPagos.setModel(modeloTablaPagos5);
+					break;          
 					
 				}
 			
@@ -604,71 +694,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         return plan;
     }
 
-     public void fechaFinal(){
-     int tiempo = jcbTiempoPago.getSelectedIndex() ;{
-         switch(tiempo){
-             
-            case 0:
-                 m =+ 1;
-             break;
-             
-            case 2:
-                 if(m == 02)
-                     mf = m + 1;
-             break;
-             
-            case 3:
-                 if(m == 03)
-                     mf = m + 1;
-             break;
-             
-            case 4:
-                 if(m == 04)
-                     mf = m + 1;
-             break;
-             
-            case 5:
-                 if(m == 05)
-                     mf = m + 1;
-             break;
-             
-             case 6:
-                 if(m == 06)
-                     mf = m + 1;
-             break;
-             
-            case 7:
-                 if(m == 07)
-                     mf = m + 1;
-             break;
-             
-             case 8:
-                 if(m == 8)
-                     mf = m + 1;
-             break;
-             
-             case 9:
-                 if(m == 9)
-                     mf = m + 1;
-             break;
-             
-             case 10:
-                 if(m == 10)
-                     mf = m + 1;
-             break;
-             
-             case 11:
-                 if(m == 11)
-                     mf = m + 1;
-             break;
-             
-             case 12:
-                 if(m == 12)
-                     mf = m + 1;
-             break;
-         }
-     }
-     }
+
      
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelTablaPagos;

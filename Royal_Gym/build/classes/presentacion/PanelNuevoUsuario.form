@@ -62,7 +62,7 @@
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnCancelar" min="-2" pref="181" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="lblUsuario3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblusuario" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -88,7 +88,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="lblUsuario3" min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="lblusuario" min="-2" pref="26" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="panelUsuario" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
@@ -273,7 +273,7 @@
             <Property name="text" type="java.lang.String" value="Contrase&#xf1;a:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblUsuario3">
+        <Component class="javax.swing.JLabel" name="lblusuario">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century Gothic" size="24" style="0"/>

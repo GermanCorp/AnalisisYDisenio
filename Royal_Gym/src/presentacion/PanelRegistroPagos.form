@@ -263,8 +263,8 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
                 <StringItem index="0" value="Dia"/>
-                <StringItem index="1" value="Semana"/>
-                <StringItem index="2" value="Mes"/>
+                <StringItem index="1" value="Mes"/>
+                <StringItem index="2" value="A&#xf1;o"/>
               </StringArray>
             </Property>
           </Properties>
@@ -410,12 +410,13 @@
         <Component class="javax.swing.JComboBox" name="combobuscarportipoplan">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
+              <StringArray count="6">
                 <StringItem index="0" value="Individual"/>
                 <StringItem index="1" value="Pareja"/>
                 <StringItem index="2" value="Grupo"/>
                 <StringItem index="3" value="Estudiante"/>
-                <StringItem index="4" value="Todo"/>
+                <StringItem index="4" value="No aplica"/>
+                <StringItem index="5" value="Todo"/>
               </StringArray>
             </Property>
           </Properties>
