@@ -602,7 +602,7 @@ public class Conexion {
         }
 }
     
-    public Object[][] getCumpleaneros() {
+   public Object[][] getCumpleaneros() {
         Object[][] datosCliente = null;
 
         try {
@@ -634,6 +634,7 @@ public class Conexion {
         }
         return datosCliente;
     }
+
     
      // método para llenar la tabla de Usuarios Existentes
     public Object[][] getUsuarios() {
