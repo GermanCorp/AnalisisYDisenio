@@ -452,6 +452,8 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     }//GEN-LAST:event_jcbPagoPlanActionPerformed
 
     private void jbPagoAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoAceptarActionPerformed
+        try{
+        
         Calendar c = Calendar.getInstance();
          d = c.get(Calendar.DATE);
          m = 1 + (c.get(Calendar.MONTH));
@@ -552,8 +554,15 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
 
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(pagos.getPago(),columnasPagos);
         tablaPagos.setModel(modeloTablaPagos);
+        
+        }catch(Exception ex){
+            
+        }
     }//GEN-LAST:event_jbPagoAceptarActionPerformed
 
+    public void calcularFechaVencimiento(){
+    
+}
    
     
     
@@ -716,6 +725,6 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     private javax.swing.JTextField jtfTiempoAPagar;
     private javax.swing.JTextField jtfbuscarpago;
     private javax.swing.JPanel panelDatosPago;
-    private javax.swing.JTable tablaPagos;
+    public static javax.swing.JTable tablaPagos;
     // End of variables declaration//GEN-END:variables
 }

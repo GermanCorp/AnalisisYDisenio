@@ -10,7 +10,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -23,10 +25,30 @@ import presentacion.PanelRegistroPagos;
  * @author Jazmin Vargas
  */
 public class FormatoTabla extends DefaultTableCellRenderer {
+   
+   
 
     @Override
     public Component getTableCellRendererComponent(JTable jtable, Object o, boolean bln, boolean bln1, int i, int i1) {
-        
+//     
+//        Date fechaActual = Calendar.getInstance().getTime();
+//        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+//        String fecha;
+//        fecha = jtable.getValueAt(i, 7).toString();
+//        Date fechafromtable = null;
+//        try{
+//            fechafromtable = formato.parse(fecha);
+//        }catch(Exception ex){
+//            
+//            }
+//        if(formato.format(fechaActual).equals(fecha))
+//        {this.setBackground(Color.yellow);
+//            
+//    }else 
+//        
+//            
+//    }
+//        
        /* 
         JLabel celda = new JLabel() {
             @Override
@@ -48,7 +70,8 @@ public class FormatoTabla extends DefaultTableCellRenderer {
 
         };
         
-*/
+*/     
+  
        Calendar c1 = Calendar.getInstance();
         int mes = c1.get(Calendar.MONTH)+1;
         int anio = c1.get(Calendar.YEAR);
@@ -57,21 +80,31 @@ public class FormatoTabla extends DefaultTableCellRenderer {
        
         JPanel p = new JPanel();
         p.setLayout(new BorderLayout());
-        p.add(new JLabel());
         p.add(new JLabel(o.toString()));
-       
+      
        
        if (i1 == 7)
-       { 
-           p.setBackground(Color.red);
-            return p;
-       }  
-        
-        return super.getTableCellRendererComponent(jtable, o, bln, bln1, i, i1); //To change body of generated methods, choose Tools | Templates  
+       {
+        String[] parts = o.toString().split("-");
+             String a = parts[0];
+             String m = parts[1];
+             String d = parts[2];
+             
+            
+            
+         if(a == anioo) {  
+         p.setBackground(Color.red);
+           
+         }else  
+                p.setBackground(Color.blue);
+                
+        }
+       return p;
+        //return super.getTableCellRendererComponent(jtable, o, bln, bln1, i, i1); //To change body of generated methods, choose Tools | Templates  
 
     }
    
-}       
+}      
 
 
 /*
