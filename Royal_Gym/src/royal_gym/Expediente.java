@@ -139,7 +139,7 @@ public class Expediente {
                             
                      );
                   
-                   //contador = contador - filas.size() +1;
+                   //contador = contador - filas +1;
                     datosPago = new Object[filas.size()][];
                     filas.toArray(datosPago);
                     

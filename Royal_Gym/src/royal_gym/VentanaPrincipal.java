@@ -156,10 +156,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
-       
-    }//GEN-LAST:event_jTabbedPane1FocusGained
         
     private void jMenuItemSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemSalirMouseClicked
 
@@ -200,14 +196,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
         new Configuracion(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jMenuItemConfiguracionMousePressed
 
-    private void panelRegistroProductos1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelRegistroProductos1FocusGained
-
-    }//GEN-LAST:event_panelRegistroProductos1FocusGained
-
-    private void panelVentas1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelVentas1FocusLost
-
-    }//GEN-LAST:event_panelVentas1FocusLost
-
     private void jMenuItem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2MouseClicked
         // TODO add your handling code here:
          
@@ -222,6 +210,18 @@ public class VentanaPrincipal extends javax.swing.JFrame
         // TODO add your handling code here:
         new PanelUsuariosExistentes(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jMenuItem3MousePressed
+
+    private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
+
+    }//GEN-LAST:event_jTabbedPane1FocusGained
+
+    private void panelRegistroProductos1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelRegistroProductos1FocusGained
+
+    }//GEN-LAST:event_panelRegistroProductos1FocusGained
+
+    private void panelVentas1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelVentas1FocusLost
+
+    }//GEN-LAST:event_panelVentas1FocusLost
 
     // <editor-fold defaultstate="collapsed" desc="Elementos de Ventana Principal">
     // Variables declaration - do not modify//GEN-BEGIN:variables

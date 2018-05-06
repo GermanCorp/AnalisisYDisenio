@@ -29,12 +29,37 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     int filaseleccionadatablapagos;   
     final Conexion con;
     Pagos pagos = new Pagos();
-    public  int d,m,a;
-    int df,mf,af;
-    public  int totalanio;
-    public int totalmes;
-  
     
+     int d,m,a;
+     int df,mf,af;
+     int totalanio;
+     int totalmes;
+     String dia ;
+     String mes ;
+     String anio ;
+     String fecha ;
+     int tm = 0;
+     int an = 0;
+     int me = 0;
+     int td = 0;
+     String tiempo;
+     int mess ;
+     int diaa ;
+     int annio;
+     
+     String totalme ;
+     String anioo;
+     String totalm ;
+     String totalan ;
+     
+     
+     String totald ;
+     String mees;
+     String totaldi;
+     
+     String fechaFinal = "";
+            
+
     private static Statement statement;
     static ResultSet resultado;
    
@@ -55,6 +80,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         initComponents();
         this.con = new Conexion();
         con.conectar();
+        jcbPagoPlan.setEnabled(false);
         
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(pagos.getPago(), columnasPagos);
         tablaPagos.setModel(modeloTablaPagos);
@@ -117,10 +143,11 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(85, 96, 128));
+        setPreferredSize(new java.awt.Dimension(933, 541));
 
         panelDatosPago.setBackground(new java.awt.Color(85, 96, 128));
         panelDatosPago.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registrar Pago", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
-        panelDatosPago.setPreferredSize(new java.awt.Dimension(344, 460));
+        panelDatosPago.setPreferredSize(new java.awt.Dimension(350, 487));
 
         jtfClienteAPagar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfClienteAPagar.setForeground(new java.awt.Color(255, 255, 255));
@@ -164,7 +191,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             }
         });
 
-        jcbPagoPlan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Individual", "Pareja", "Grupo", "Estudiante" }));
+        jcbPagoPlan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Individual", "Pareja", "Grupo", "Estudiante" }));
         jcbPagoPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbPagoPlanActionPerformed(evt);
@@ -191,7 +218,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             }
         });
 
-        jcbTiempoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dia", "Mes", "Año" }));
+        jcbTiempoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el tiempo a pagar", "Dia", "Mes", "Año" }));
         jcbTiempoPago.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcbTiempoPagoItemStateChanged(evt);
@@ -210,7 +237,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/RegistroNuevoPagos.png"))); // NOI18N
 
         jtfBuscarCliente.setMinimumSize(new java.awt.Dimension(6, 30));
-        jtfBuscarCliente.setPreferredSize(new java.awt.Dimension(6, 30));
+        jtfBuscarCliente.setPreferredSize(new java.awt.Dimension(6, 23));
         jtfBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfBuscarClienteActionPerformed(evt);
@@ -223,37 +250,28 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDatosPagoLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosPagoLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelDatosPagoLayout.createSequentialGroup()
-                                .addComponent(jlTiempoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(90, 90, 90))
-                            .addGroup(panelDatosPagoLayout.createSequentialGroup()
-                                .addComponent(jtfTiempoAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jcbTiempoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(47, 47, 47))
-                    .addGroup(panelDatosPagoLayout.createSequentialGroup()
-                        .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(panelDatosPagoLayout.createSequentialGroup()
-                                    .addComponent(jLabel11)
-                                    .addGap(20, 20, 20)
-                                    .addComponent(jlRegistroClientes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jtfPagoTipodePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jcbPagoPlan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosPagoLayout.createSequentialGroup()
-                                    .addComponent(jbPagoAceptar)
-                                    .addGap(46, 46, 46)
-                                    .addComponent(jbPagoCancelar)))
-                            .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jlMontoPagar, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                                .addComponent(jtfClienteAPagar)
-                                .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jtfMontoAPagar)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelDatosPagoLayout.createSequentialGroup()
+                            .addComponent(jLabel11)
+                            .addGap(20, 20, 20)
+                            .addComponent(jlRegistroClientes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jtfPagoTipodePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosPagoLayout.createSequentialGroup()
+                            .addComponent(jbPagoAceptar)
+                            .addGap(65, 65, 65)
+                            .addComponent(jbPagoCancelar)))
+                    .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jtfTiempoAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jlMontoPagar, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                            .addComponent(jtfClienteAPagar)
+                            .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                            .addComponent(jtfMontoAPagar))
+                        .addComponent(jcbTiempoPago, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcbPagoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlTiempoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
         panelDatosPagoLayout.setVerticalGroup(
             panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,7 +283,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addComponent(jtfClienteAPagar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jlMontoPagar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -273,14 +291,14 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jlTiempoPago)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcbTiempoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfTiempoAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(jtfPagoTipodePlan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jcbPagoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbPagoAceptar)
                     .addComponent(jbPagoCancelar))
@@ -351,11 +369,11 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                 .addGroup(PanelTablaPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
                     .addGroup(PanelTablaPagosLayout.createSequentialGroup()
-                        .addComponent(jtfbuscarpago, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                        .addComponent(jtfbuscarpago, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(combobuscarportipoplan, 0, 112, Short.MAX_VALUE)))
+                        .addComponent(combobuscarportipoplan, 0, 110, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         PanelTablaPagosLayout.setVerticalGroup(
@@ -372,7 +390,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                             .addComponent(combobuscarportipoplan, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
                 .addGap(40, 40, 40))
         );
 
@@ -382,9 +400,9 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(panelDatosPago, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(PanelTablaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
+                .addComponent(panelDatosPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(PanelTablaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -392,8 +410,8 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
-                    .addComponent(PanelTablaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE))
+                    .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+                    .addComponent(PanelTablaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -452,31 +470,50 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     }//GEN-LAST:event_jcbPagoPlanActionPerformed
 
     private void jbPagoAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoAceptarActionPerformed
-        try{
         
-        Calendar c = Calendar.getInstance();
+          Calendar c = Calendar.getInstance();
          d = c.get(Calendar.DATE);
          m = 1 + (c.get(Calendar.MONTH));
          a = c.get(Calendar.YEAR);
 
-        String dia = Integer.toString(d);
-        String mes = Integer.toString(m);
-        String anio = Integer.toString(a);
-        String fecha = (anio + "-" + mes + "-" + dia);
+         dia = Integer.toString(d);
+         mes = Integer.toString(m);
+         anio = Integer.toString(a);
+         fecha = (anio + "-" + mes + "-" + dia);
+        
+         int comboBoxTiempoPago = jcbTiempoPago.getSelectedIndex(); 
+         int comboBoxPagoPlan = jcbPagoPlan.getSelectedIndex();
+         
+         //validaciones para campos vacios
+        if (jtfBuscarCliente.getText().isEmpty()
+                && jtfMontoAPagar.getText().isEmpty()
+                && jtfTiempoAPagar.getText().isEmpty()
+                && comboBoxTiempoPago == 0
+                && comboBoxPagoPlan == 0) 
+        {
+            JOptionPane.showMessageDialog(this, "ingrese Toda la Información", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfBuscarCliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar el NOMBRE del Cliente", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfMontoAPagar.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar el MONTO a a pagar", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfTiempoAPagar. getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar el TIEMPO a pagar", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jcbTiempoPago.getSelectedIndex()== 0) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar el TIEMPO a pagar" , "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jcbPagoPlan.getSelectedIndex()== 0) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar el TIPO DE PLAN a pagar", "Error!", JOptionPane.ERROR_MESSAGE);
        
-         String tiempo = jtfTiempoAPagar.getText();
-         int mess = Integer.parseInt(tiempo);
-         int diaa = Integer.parseInt(tiempo);
-         int annio = Integer.parseInt(tiempo);
-         
-         int tm = 0;
-         int an = 0;
-         int me = 0;
-         int td = 0;
-         String fechaFinal = "";
-         
+        } else {
+            
+          
+       
+         tiempo = jtfTiempoAPagar.getText();
+         mess = Integer.parseInt(tiempo);
+         diaa = Integer.parseInt(tiempo);
+         annio = Integer.parseInt(tiempo);
+        
          //sumar dias a la fecha
-          if(jcbTiempoPago.getSelectedIndex() == 0)
+          if(jcbTiempoPago.getSelectedIndex() == 1)
           {
            int totaldia = d + diaa;
             
@@ -495,7 +532,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
          
          
          //Sumar meses a la fecha actual
-         if(jcbTiempoPago.getSelectedIndex() == 1)
+         if(jcbTiempoPago.getSelectedIndex() == 2)
          {
             totalmes = m + mess;
             
@@ -503,37 +540,26 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
              tm = totalmes - 12;
              an = a + 1;
              
-             String totalme = Integer.toString(tm);
-             String anioo = Integer.toString(an);
+             totalme = Integer.toString(tm);
+             anioo = Integer.toString(an);
              fechaFinal = (anioo+ "-" + totalme + "-" + dia);
             }else{
-            String totalm = Integer.toString(totalmes);
+            totalm = Integer.toString(totalmes);
             fechaFinal = (anio + "-" + totalm + "-" + dia);
             
             }   
         }    
          
          //sumar anio  a la fecha actual
-         if(jcbTiempoPago.getSelectedIndex() == 2)
-         {
+          if(jcbTiempoPago.getSelectedIndex() == 3)
+           {
             totalanio = a + annio;
             
-             String totalan = Integer.toString( totalanio);
+            totalan = Integer.toString( totalanio);
             fechaFinal = (totalan + "-" + mes + "-" + dia);
             }
-         
-         
-         
-         //validaciones para campos vacios
-        if (jtfBuscarCliente.getText().equals("") && jtfMontoAPagar.getText().equals("") && jtfTiempoAPagar.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Ingrese toda la informacion", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (jtfBuscarCliente.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese toda la informacion", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jtfMontoAPagar.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese toda la informacion", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jtfTiempoAPagar.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese toda la informacion", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else {
+            
+            
       
             if (jcbPagoPlan.getSelectedItem() != null) {
                 pagos.insertarPagos(jtfBuscarCliente.getText(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
@@ -542,7 +568,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                 pagos.insertarPagos(jtfBuscarCliente.getText(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
                     jcbTiempoPago.getSelectedItem().toString(), "No aplica", fecha,fechaFinal);
             }
-        }
+        
         
         
       
@@ -554,18 +580,9 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
 
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(pagos.getPago(),columnasPagos);
         tablaPagos.setModel(modeloTablaPagos);
-        
-        }catch(Exception ex){
-            
         }
     }//GEN-LAST:event_jbPagoAceptarActionPerformed
 
-    public void calcularFechaVencimiento(){
-    
-}
-   
-    
-    
     
     private void jbPagoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoCancelarActionPerformed
         jtfBuscarCliente.setText("");
@@ -578,10 +595,12 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     private void jcbTiempoPagoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbTiempoPagoItemStateChanged
         if(evt.getStateChange() == ItemEvent.SELECTED)
         {
-            if(this.jcbTiempoPago.getSelectedIndex()>0)
+           if(this.jcbTiempoPago.getSelectedIndex()==2)
             {
-                this.jcbPagoPlan.setModel(new DefaultComboBoxModel
-                    (this.getTipoTiempo(this.jcbTiempoPago.getSelectedItem().toString())));
+                jcbPagoPlan.setEnabled(true);
+                
+//                this.jcbPagoPlan.setModel(new DefaultComboBoxModel
+//                    (this.getTipoTiempo(this.jcbTiempoPago.getSelectedItem().toString())));
             }
         }
     }//GEN-LAST:event_jcbTiempoPagoItemStateChanged
