@@ -17,6 +17,8 @@ public class PanelExpediente extends javax.swing.JPanel {
 
     final Conexion con;
     Expediente expediente= new Expediente();
+    
+    private String nombre;
    
     
     private final String[] columnasCambios = {
@@ -37,7 +39,8 @@ public class PanelExpediente extends javax.swing.JPanel {
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(),columnasCambios);
         tablacambioscorporales.setModel(modeloTablaPagos);    
     }
-
+   
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -111,7 +111,7 @@ public class Expediente {
         }
     }// fin de insertar pago
 
-     public Object[][] getCambios() {
+    public Object[][] getCambios() {
         Object[][] datosPago = null;
 
         try {
