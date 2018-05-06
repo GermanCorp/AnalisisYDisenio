@@ -29,11 +29,12 @@ public class ListaProductos extends javax.swing.JDialog {
         
     Productos productos = new Productos();
     PanelVentas pventas;
+    
+    
     private final String[] columnasProductos = {
         "Codigo",
         "Descripción",
         "Precio de Venta"
-        
     };
     
     /** A return status code - returned if Cancel button has been pressed */
@@ -53,7 +54,8 @@ public class ListaProductos extends javax.swing.JDialog {
         //getContentPane().setBackground( new java.awt.Color(85,96,128));
         //setBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds());
         //setSize(this.getToolkit().getScreenSize()); 
-        setLocationRelativeTo(pventas);
+        setLocationRelativeTo(null);
+        
 
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
@@ -245,6 +247,7 @@ public class ListaProductos extends javax.swing.JDialog {
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         //doClose(RET_OK);
+        
         DefaultTableModel modelo;
         int filaSeleccinada = tablaProductos.getSelectedRow();
         String codigo;
@@ -266,10 +269,10 @@ public class ListaProductos extends javax.swing.JDialog {
             descuento = jtfDescuento.getText();
                     
             DecimalFormat df = new DecimalFormat("#,##0.00");
-            double x = ((Double.parseDouble(precioVenta) * Integer.parseInt(cantidad)) - Double.parseDouble(descuento));
-            double isv = (x-(x/1.15));
-            double subTotal = (x/1.15);
-            importe = String.valueOf(x);
+            double totalPorProducto = ((Double.parseDouble(precioVenta) * Integer.parseInt(cantidad)) - Double.parseDouble(descuento));
+            double isv = (totalPorProducto-(totalPorProducto/1.15));
+            double subTotal = (totalPorProducto-isv);
+            importe = String.valueOf(totalPorProducto);
             double pv = (Double.parseDouble(precioVenta)/1.15);
             
             modelo = (DefaultTableModel) pventas.jtablaProductosAVender.getModel();
@@ -279,10 +282,16 @@ public class ListaProductos extends javax.swing.JDialog {
             double calcula  = (Double.parseDouble(precioVenta)* Integer.parseInt(jtfCantidad.getText()));
             double des = (Double.parseDouble(descuento));
             
+            
+            
+            
+            //pventas.setDescuento(descuentoTotal);
+            //pventas.setTotal(total);
             descuentoTotal = descuentoTotal + des;
             total = total + calcula - des;
             
             PanelVentas ventas = new PanelVentas(total, total/1.15, total-(total/1.15), descuentoTotal);
+            
             ventas.setValoresVenta(); 
             
             jtfCantidad.setText("1");

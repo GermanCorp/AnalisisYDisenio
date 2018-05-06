@@ -17,7 +17,7 @@ public class Cumpleaneros {
     static ResultSet resultado;
     Conexion con = new Conexion();
     
-     // método para cerrar la base de datos
+     // mÃ©todo para cerrar la base de datos
     public void cerrar() {
         try {
             conexion.close();
@@ -32,7 +32,7 @@ public class Cumpleaneros {
         return df.format(numero);
     }
     
-     // método para llenar la tabla de edad de los clientes
+     // mÃ©todo para llenar la tabla de edad de los clientes
     public Object[][] getEdadClientes() {
         Object[][] edadCliente = null;
 
@@ -51,7 +51,7 @@ public class Cumpleaneros {
                             numeroLista++,
                             resultado.getString("Nombre"),
                             resultado.getString("fechaNacimiento"),
-                            df.format(resultado.getDouble("Edad")) + " años"
+                            df.format(resultado.getDouble("Edad")) + " aÃ±os"
                         }
                 );
             }
@@ -66,3 +66,4 @@ public class Cumpleaneros {
         return edadCliente;
 }
 }
+
