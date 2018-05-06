@@ -4,24 +4,34 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Clientes;
+import royal_gym.Conexion;
 
 public class PanelRegistroClientes extends javax.swing.JPanel {
+     private static Statement statement;
+    static ResultSet resultado;
     Clientes clientes = new Clientes();
+    PanelExpediente panelExpediente;
     
     //Columnas de la tabla Clientes
     private final String[] columnasClientes = {"No.", "Nombres", "Fecha de Nacimiento", "Altura", "Peso", "Masa Corporal", "Clasificación"};
    
+  
     //Constructor
     public PanelRegistroClientes() {
         initComponents();
         clientes.modeloTablaCliente(columnasClientes, tablaClientes);
+        panelDatosCliente = new PanelExpediente();
     }
-    
        private Date fechaJCalendar(JDateChooser calendario) {
         Date date = calendario.getDate();
         long d = date.getTime();

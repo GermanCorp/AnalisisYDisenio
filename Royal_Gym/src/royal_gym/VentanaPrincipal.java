@@ -1,5 +1,7 @@
 package royal_gym;
 
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import presentacion.Configuracion;
 import presentacion.ListaProductos;
 import presentacion.PanelNuevoUsuario;
@@ -12,7 +14,8 @@ public class VentanaPrincipal extends javax.swing.JFrame
     public VentanaPrincipal() {
         initComponents();
         setTitle("Royal Gym");
-        
+        //setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/iconos/LOGO_ROYALGYM_04.png")));
+        setIconImage(new ImageIcon(getClass().getResource("/iconos/LOGO_ROYALGYM_03.png")).getImage());
        }
 
     
@@ -147,11 +150,11 @@ public class VentanaPrincipal extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1081, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 756, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
         );
 
         pack();
