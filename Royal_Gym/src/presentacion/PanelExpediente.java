@@ -1208,7 +1208,7 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JTextField jTextFieldfechainicio;
     private javax.swing.JTextField jTextFieldfechanacimiento;
     private javax.swing.JTextField jTextFieldmejorhoralla;
-    private javax.swing.JTextField jTextFieldnombre;
+    public static javax.swing.JTextField jTextFieldnombre;
     private javax.swing.JTextField jTextFieldpeso;
     private javax.swing.JTextField jTextFieldpesoideal;
     private javax.swing.JTextField jTextFieldtelefonocasa;

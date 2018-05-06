@@ -4,22 +4,48 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Clientes;
+import royal_gym.Conexion;
 
 public class PanelRegistroClientes extends javax.swing.JPanel {
+     private static Statement statement;
+    static ResultSet resultado;
     Clientes clientes = new Clientes();
+    PanelExpediente panelExpediente;
     
     //Columnas de la tabla Clientes
     private final String[] columnasClientes = {"No.", "Nombres", "Fecha de Nacimiento", "Altura", "Peso", "Masa Corporal", "Clasificación"};
    
+    
+    //variables para el expediente
+    String nombres;
+    String telefonoTrabajo;
+    String direccion;
+    String mejorHoraLLamar;
+    String estatura;
+    String peso;
+    String edad;
+    String pesoIdeal;
+    String fechaInicio;
+    String telefonoCasa;
+    String celular;
+    String fechaNacimiento;   
+    
+    
     //Constructor
     public PanelRegistroClientes() {
         initComponents();
         clientes.modeloTablaCliente(columnasClientes, tablaClientes);
+        panelDatosCliente = new PanelExpediente();
     }
     
        private Date fechaJCalendar(JDateChooser calendario) {
@@ -637,6 +663,18 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new Expediente(new javax.swing.JDialog(), true).setVisible(true);
+        int filaSeleccionada = tablaClientes.getSelectedRow();
+        
+        try {
+             String consulta = "Select nombres FROM cliente WHERE FechaNacimiento = '" + tablaClientes.getValueAt(filaSeleccionada, 0).toString() + "'"; 
+             statement = Conexion.getConexion().createStatement();
+             resultado = statement.executeQuery(consulta);
+             
+             panelExpediente.jTextFieldnombre.setText(resultado.getString("Nombres"));
+         } catch (SQLException ex) {
+             Logger.getLogger(PanelRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
+         }
+            
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
