@@ -20,7 +20,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
      private static Statement statement;
     static ResultSet resultado;
     Clientes clientes = new Clientes();
-    PanelExpediente panelExpediente;
+    
     
     //Columnas de la tabla Clientes
     private final String[] columnasClientes = {"No.", "Nombres", "Fecha de Nacimiento", "Altura", "Peso", "Masa Corporal", "Clasificación"};
@@ -30,7 +30,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     public PanelRegistroClientes() {
         initComponents();
         clientes.modeloTablaCliente(columnasClientes, tablaClientes);
-        panelDatosCliente = new PanelExpediente();
+        
     }
        private Date fechaJCalendar(JDateChooser calendario) {
         Date date = calendario.getDate();
@@ -316,11 +316,11 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarRegistroCliente)
                     .addComponent(btnCancelarRegistroCliente))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         PanelTabla.setBackground(new java.awt.Color(85, 96, 128));
@@ -410,7 +410,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                 .addGap(29, 29, 29)
                 .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -646,7 +646,11 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jMenuItemExpedienteMousePressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new Expediente(new javax.swing.JDialog(), true).setVisible(true);
+        //new Expediente(new javax.swing.JDialog(), true).setVisible(true);
+        
+         new Expediente(new javax.swing.JDialog(), true).setVisible(true);
+        
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
