@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static presentacion.PanelVentas.jtablaProductosAVender;
 import royal_gym.Clientes;
 import royal_gym.Conexion;
 
@@ -20,6 +21,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
      private static Statement statement;
     static ResultSet resultado;
     Clientes clientes = new Clientes();
+    PanelExpediente panelExpediente = new PanelExpediente();
     
     
     //Columnas de la tabla Clientes
@@ -647,9 +649,23 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //new Expediente(new javax.swing.JDialog(), true).setVisible(true);
-        
          new Expediente(new javax.swing.JDialog(), true).setVisible(true);
-        
+         
+         int filaSeleccionada = tablaClientes.getSelectedRow();
+         
+         try{
+                Statement statement = Conexion.getConexion().createStatement();
+                String consulta2 = "select nombres ||' '|| apellidos as nombreCompleto from cliente  WHERE nombres ||' '||apellidos LIKE '%' ||'"+ tablaClientes.getValueAt(filaSeleccionada, 1).toString()+"'|| '%' ORDER BY nombres";        
+                ResultSet resultado2 = statement.executeQuery(consulta2);
+                
+                while (resultado.next()){
+                    
+                    panelExpediente.jTextFieldnombre.setText(resultado2.getString("nombreCompleto"));
+                }
+           }catch(Exception ex){
+             
+             
+         }
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
