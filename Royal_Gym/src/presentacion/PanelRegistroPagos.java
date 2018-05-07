@@ -311,6 +311,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         PanelTablaPagos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pagos Registrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         PanelTablaPagos.setPreferredSize(new java.awt.Dimension(1213, 830));
 
+        jtfbuscarpago.setText("BUSCAR:");
         jtfbuscarpago.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 jtfbuscarpagoCaretUpdate(evt);
