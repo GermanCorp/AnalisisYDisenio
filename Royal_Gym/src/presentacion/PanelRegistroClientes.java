@@ -20,7 +20,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
      private static Statement statement;
     static ResultSet resultado;
     Clientes clientes = new Clientes();
-    PanelExpediente panelExpediente;
+    
     
     //Columnas de la tabla Clientes
     private final String[] columnasClientes = {"No.", "Nombres", "Fecha de Nacimiento", "Altura", "Peso", "Masa Corporal", "Clasificación"};
@@ -30,7 +30,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     public PanelRegistroClientes() {
         initComponents();
         clientes.modeloTablaCliente(columnasClientes, tablaClientes);
-        panelDatosCliente = new PanelExpediente();
+        
     }
        private Date fechaJCalendar(JDateChooser calendario) {
         Date date = calendario.getDate();
@@ -646,7 +646,11 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jMenuItemExpedienteMousePressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new Expediente(new javax.swing.JDialog(), true).setVisible(true);
+        //new Expediente(new javax.swing.JDialog(), true).setVisible(true);
+        
+        PanelExpediente panelExpediente = new PanelExpediente();
+        panelExpediente.setVisible(true);
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

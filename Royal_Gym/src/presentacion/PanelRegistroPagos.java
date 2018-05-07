@@ -191,6 +191,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             }
         });
 
+        jcbPagoPlan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jcbPagoPlan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Individual", "Pareja", "Grupo", "Estudiante" }));
         jcbPagoPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,7 +204,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         jtfPagoTipodePlan.setText("Tipo de Plan:");
 
         jbPagoAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Aceptar.png"))); // NOI18N
-        jbPagoAceptar.setText("Aceptar");
+        jbPagoAceptar.setText("Guardar");
         jbPagoAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbPagoAceptarActionPerformed(evt);
@@ -218,6 +219,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             }
         });
 
+        jcbTiempoPago.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jcbTiempoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el tiempo a pagar", "Dia", "Mes", "Año" }));
         jcbTiempoPago.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -271,7 +273,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                         .addComponent(jcbTiempoPago, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jcbPagoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jlTiempoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         panelDatosPagoLayout.setVerticalGroup(
             panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,7 +304,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                 .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbPagoAceptar)
                     .addComponent(jbPagoCancelar))
-                .addGap(20, 20, 20))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         PanelTablaPagos.setBackground(new java.awt.Color(85, 96, 128));
@@ -344,6 +346,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tablaPagos);
 
+        combobuscarportipoplan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         combobuscarportipoplan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Individual", "Pareja", "Grupo", "Estudiante", "No aplica", "Todo" }));
         combobuscarportipoplan.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -356,7 +359,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Tipo de Plan:");
 
@@ -369,11 +372,11 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                 .addGroup(PanelTablaPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
                     .addGroup(PanelTablaPagosLayout.createSequentialGroup()
-                        .addComponent(jtfbuscarpago, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                        .addComponent(jtfbuscarpago, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(combobuscarportipoplan, 0, 110, Short.MAX_VALUE)))
+                        .addComponent(combobuscarportipoplan, 0, 107, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         PanelTablaPagosLayout.setVerticalGroup(
@@ -390,7 +393,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                             .addComponent(combobuscarportipoplan, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addGap(40, 40, 40))
         );
 
@@ -410,8 +413,8 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
-                    .addComponent(PanelTablaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE))
+                    .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+                    .addComponent(PanelTablaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
