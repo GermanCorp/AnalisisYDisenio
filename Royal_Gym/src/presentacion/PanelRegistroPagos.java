@@ -581,6 +581,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         jcbTiempoPago.setSelectedIndex(0);
         jcbPagoPlan.setSelectedIndex(0);
 
+        JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(pagos.getPago(),columnasPagos);
         tablaPagos.setModel(modeloTablaPagos);
         }
