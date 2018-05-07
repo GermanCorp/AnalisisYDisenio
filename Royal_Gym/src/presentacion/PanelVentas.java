@@ -41,6 +41,7 @@ public class PanelVentas extends javax.swing.JPanel {
         jbAGuardarVenta.setVerticalTextPosition( SwingConstants.BOTTOM );
         jbEliminarFila.setHorizontalTextPosition( SwingConstants.CENTER );
         jbEliminarFila.setVerticalTextPosition(SwingConstants.BOTTOM); 
+        jbEliminarFila.setEnabled(false);
     }
     
     public PanelVentas(String cliente) {
