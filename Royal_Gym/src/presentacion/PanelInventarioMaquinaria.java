@@ -70,6 +70,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
 
         PanelDatos.setBackground(new java.awt.Color(85, 96, 128));
         PanelDatos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Datos de inventario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        PanelDatos.setPreferredSize(new java.awt.Dimension(350, 503));
 
         jlNombreEquipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlNombreEquipo.setForeground(new java.awt.Color(255, 255, 255));
@@ -103,7 +104,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
         jlDescripcionEquipo.setText("Descripcion");
 
         btnAceptarInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Aceptar.png"))); // NOI18N
-        btnAceptarInventario.setText("Aceptar");
+        btnAceptarInventario.setText("Guardar");
         btnAceptarInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarInventarioActionPerformed(evt);
@@ -146,11 +147,11 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
                         .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(PanelDatosLayout.createSequentialGroup()
                                 .addComponent(btnAceptarInventario)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                                 .addComponent(btnCancelarInventario))
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfCantidadEquipo, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfNombreEquipo))
+                            .addComponent(jtfNombreEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
                         .addGap(20, 20, 20))))
         );
         PanelDatosLayout.setVerticalGroup(
@@ -209,6 +210,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tablaInventarioEquipo);
 
+        jtfBuscarInventario.setText("BUSCAR:");
         jtfBuscarInventario.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 jtfBuscarInventarioCaretUpdate(evt);
@@ -256,7 +258,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
                 .addGap(36, 36, 36)
                 .addComponent(jtfBuscarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
                 .addGap(84, 84, 84)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)

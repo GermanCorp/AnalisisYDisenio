@@ -71,7 +71,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
             }
         });
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Productos.png")), panelRegistroProductos1); // NOI18N
-        jTabbedPane1.addTab("Compras", panelCompras1);
+        jTabbedPane1.addTab("Compras", new javax.swing.ImageIcon(getClass().getResource("/iconos/Agregar_Producto.png")), panelCompras1); // NOI18N
 
         jMenu1.setText("Archivo");
 

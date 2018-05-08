@@ -39,7 +39,6 @@ public class PanelGastos extends javax.swing.JPanel {
             }
         };
         jtfBuscarGasto = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(85, 96, 128));
 
@@ -218,7 +217,6 @@ public class PanelGastos extends javax.swing.JPanel {
         });
         scrollTablaClientes1.setViewportView(tablaGastos);
 
-        jtfBuscarGasto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jtfBuscarGasto.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 jtfBuscarGastoCaretUpdate(evt);
@@ -235,8 +233,6 @@ public class PanelGastos extends javax.swing.JPanel {
             }
         });
 
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Buscar.png"))); // NOI18N
-
         javax.swing.GroupLayout PanelTablaGastosLayout = new javax.swing.GroupLayout(PanelTablaGastos);
         PanelTablaGastos.setLayout(PanelTablaGastosLayout);
         PanelTablaGastosLayout.setHorizontalGroup(
@@ -244,22 +240,17 @@ public class PanelGastos extends javax.swing.JPanel {
             .addGroup(PanelTablaGastosLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(PanelTablaGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelTablaGastosLayout.createSequentialGroup()
-                        .addComponent(jtfBuscarGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel18))
-                    .addComponent(scrollTablaClientes1))
+                    .addComponent(scrollTablaClientes1, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                    .addComponent(jtfBuscarGasto))
                 .addGap(20, 20, 20))
         );
         PanelTablaGastosLayout.setVerticalGroup(
             PanelTablaGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelTablaGastosLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(PanelTablaGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jtfBuscarGasto)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jtfBuscarGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollTablaClientes1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(scrollTablaClientes1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
 
@@ -358,7 +349,6 @@ public class PanelGastos extends javax.swing.JPanel {
     private javax.swing.JPanel PanelTablaGastos;
     private javax.swing.JButton btnAceptarRegistroGasto;
     private javax.swing.JButton btnCancelarRegistroGasto;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JCheckBox jcbPersonalizarFechaGasto;
     private com.toedter.calendar.JDateChooser jdcFechaGasto;
     private javax.swing.JLabel jlDescripcionGAsto;

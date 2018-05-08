@@ -32,20 +32,15 @@ public class FormatoTabla extends DefaultTableCellRenderer {
         String mess = Integer.toString(mes);
         String anioo = Integer.toString(anio);
        
-        JPanel p = new JPanel();
-        p.setLayout(new BorderLayout());
-        p.add(new JLabel(o.toString()));
-      
+        JLabel p = new JLabel(o.toString());
+        p.setOpaque(true);
        if (i1 == 7)
        {
-        String[] parts = o.toString().split("-");
+            String[] parts = o.toString().split("-");
              String a = parts[0];
-             String m = parts[1];
-             String d = parts[2];
-             
-        if(a == anioo && m == mess) {  
+             String m = parts[1];            
+        if( (a == null ? anioo == null : a.equals(anioo)) && (m == null ? mess == null : m.equals(mess))) {  
            p.setBackground(Color.red);
-        
         }else{
              p.setBackground(Color.blue);
         }

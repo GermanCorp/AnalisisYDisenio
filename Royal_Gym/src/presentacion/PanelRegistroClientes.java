@@ -75,8 +75,6 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         };
         jtfBuscarCliente = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         jMenuItemModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/jpop_modificar.png"))); // NOI18N
         jMenuItemModificar.setText("Modificar");
@@ -210,7 +208,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         jLabel7.setText("Kgs.");
 
         btnAceptarRegistroCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Aceptar.png"))); // NOI18N
-        btnAceptarRegistroCliente.setText("Aceptar");
+        btnAceptarRegistroCliente.setText("Guardar");
         btnAceptarRegistroCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarRegistroClienteActionPerformed(evt);
@@ -353,7 +351,6 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         });
         scrollTablaClientes.setViewportView(tablaClientes);
 
-        jtfBuscarCliente.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jtfBuscarCliente.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 jtfBuscarClienteCaretUpdate(evt);
@@ -377,15 +374,6 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Modificar");
-
-        jButton3.setText("Ver Expediente");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout PanelTablaLayout = new javax.swing.GroupLayout(PanelTabla);
         PanelTabla.setLayout(PanelTablaLayout);
         PanelTablaLayout.setHorizontalGroup(
@@ -393,17 +381,13 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             .addGroup(PanelTablaLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                    .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
                     .addGroup(PanelTablaLayout.createSequentialGroup()
                         .addComponent(jtfBuscarCliente)
                         .addGap(119, 119, 119))
                     .addGroup(PanelTablaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
+                        .addComponent(jButton1)))
                 .addGap(20, 20, 20))
         );
         PanelTablaLayout.setVerticalGroup(
@@ -413,12 +397,8 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
-                .addGap(29, 29, 29)
-                .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)))
+                .addGap(31, 31, 31)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -647,28 +627,6 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
        
     }//GEN-LAST:event_jMenuItemExpedienteMousePressed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        //new Expediente(new javax.swing.JDialog(), true).setVisible(true);
-         new Expediente(new javax.swing.JDialog(), true).setVisible(true);
-         
-         int filaSeleccionada = tablaClientes.getSelectedRow();
-         
-         try{
-                Statement statement = Conexion.getConexion().createStatement();
-                String consulta2 = "select nombres ||' '|| apellidos as nombreCompleto from cliente  WHERE nombres ||' '||apellidos LIKE '%' ||'"+ tablaClientes.getValueAt(filaSeleccionada, 1).toString()+"'|| '%' ORDER BY nombres";        
-                ResultSet resultado2 = statement.executeQuery(consulta2);
-                
-                while (resultado.next()){
-                    
-                    panelExpediente.jTextFieldnombre.setText(resultado2.getString("nombreCompleto"));
-                }
-           }catch(Exception ex){
-             
-             
-         }
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int filaSeleccionada = tablaClientes.getSelectedRow();
             String nombreCliente = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
@@ -687,8 +645,6 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     private javax.swing.JButton btnAceptarRegistroCliente;
     private javax.swing.JButton btnCancelarRegistroCliente;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
