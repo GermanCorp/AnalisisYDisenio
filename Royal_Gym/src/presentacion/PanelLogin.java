@@ -276,6 +276,8 @@ public class PanelLogin extends javax.swing.JFrame {
         }
          if (LoginEntrar.ingreso(usuario.getText(),String.valueOf(contraseña.getPassword())) != 1) {
              JOptionPane.showMessageDialog(null, "Usuario/Contrasena Incorrecta");
+             usuario.setText("");
+            contraseña.setText("");
           
 				   try {
                  UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
