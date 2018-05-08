@@ -131,8 +131,8 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         jlRegistroClientes1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jtfBuscarCliente = new javax.swing.JTextField();
+        botonAgregarCliente = new javax.swing.JButton();
         PanelTablaPagos = new javax.swing.JPanel();
-        jtfbuscarpago = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaPagos = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex){
@@ -141,6 +141,8 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         };
         combobuscarportipoplan = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jtfbuscarpago = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(85, 96, 128));
         setPreferredSize(new java.awt.Dimension(933, 541));
@@ -246,6 +248,13 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             }
         });
 
+        botonAgregarCliente.setText("+");
+        botonAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarClienteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelDatosPagoLayout = new javax.swing.GroupLayout(panelDatosPago);
         panelDatosPago.setLayout(panelDatosPagoLayout);
         panelDatosPagoLayout.setHorizontalGroup(
@@ -263,16 +272,18 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                             .addComponent(jbPagoAceptar)
                             .addGap(65, 65, 65)
                             .addComponent(jbPagoCancelar)))
-                    .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jtfTiempoAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jlMontoPagar, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                            .addComponent(jtfClienteAPagar)
-                            .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                            .addComponent(jtfMontoAPagar))
+                        .addComponent(jlMontoPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jtfClienteAPagar)
+                        .addComponent(jtfMontoAPagar)
                         .addComponent(jcbTiempoPago, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jcbPagoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jlTiempoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jlTiempoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelDatosPagoLayout.createSequentialGroup()
+                            .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonAgregarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         panelDatosPagoLayout.setVerticalGroup(
@@ -285,8 +296,10 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addComponent(jtfClienteAPagar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonAgregarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addComponent(jlMontoPagar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtfMontoAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,31 +317,12 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                 .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbPagoAceptar)
                     .addComponent(jbPagoCancelar))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         PanelTablaPagos.setBackground(new java.awt.Color(85, 96, 128));
         PanelTablaPagos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pagos Registrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         PanelTablaPagos.setPreferredSize(new java.awt.Dimension(1213, 830));
-
-        jtfbuscarpago.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jtfbuscarpagoCaretUpdate(evt);
-            }
-        });
-        jtfbuscarpago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfbuscarpagoActionPerformed(evt);
-            }
-        });
-        jtfbuscarpago.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtfbuscarpagoKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtfbuscarpagoKeyTyped(evt);
-            }
-        });
 
         tablaPagos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tablaPagos.setModel(new javax.swing.table.DefaultTableModel(
@@ -363,6 +357,44 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Tipo de Plan:");
 
+        jPanel1.setBackground(new java.awt.Color(85, 96, 128));
+
+        jtfbuscarpago.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jtfbuscarpagoCaretUpdate(evt);
+            }
+        });
+        jtfbuscarpago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfbuscarpagoActionPerformed(evt);
+            }
+        });
+        jtfbuscarpago.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfbuscarpagoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfbuscarpagoKeyTyped(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jtfbuscarpago, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout PanelTablaPagosLayout = new javax.swing.GroupLayout(PanelTablaPagos);
         PanelTablaPagos.setLayout(PanelTablaPagosLayout);
         PanelTablaPagosLayout.setHorizontalGroup(
@@ -370,31 +402,31 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             .addGroup(PanelTablaPagosLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(PanelTablaPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
                     .addGroup(PanelTablaPagosLayout.createSequentialGroup()
-                        .addComponent(jtfbuscarpago, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(11, 11, 11)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(combobuscarportipoplan, 0, 107, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(combobuscarportipoplan, 0, 80, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
+                .addGap(20, 20, 20))
         );
         PanelTablaPagosLayout.setVerticalGroup(
             PanelTablaPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelTablaPagosLayout.createSequentialGroup()
                 .addGroup(PanelTablaPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelTablaPagosLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jtfbuscarpago, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelTablaPagosLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(49, 49, 49)
                         .addGroup(PanelTablaPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(combobuscarportipoplan, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(40, 40, 40))
+                            .addComponent(jLabel1)))
+                    .addGroup(PanelTablaPagosLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -413,8 +445,8 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
-                    .addComponent(PanelTablaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE))
+                    .addComponent(panelDatosPago, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                    .addComponent(PanelTablaPagos, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -715,6 +747,12 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_combobuscarportipoplanActionPerformed
 
+    private void botonAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarClienteActionPerformed
+        // TODO add your handling code here:
+        new ListaClientes(new javax.swing.JDialog(), true).setVisible(true);
+        
+    }//GEN-LAST:event_botonAgregarClienteActionPerformed
+
      public String[] getTipoTiempo(String tiempo) {
         String[] plan = new String[4];
         if (tiempo.equalsIgnoreCase("Mes")) {
@@ -730,9 +768,11 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
      
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelTablaPagos;
+    private javax.swing.JButton botonAgregarCliente;
     private javax.swing.JComboBox<String> combobuscarportipoplan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbPagoAceptar;
     private javax.swing.JButton jbPagoCancelar;

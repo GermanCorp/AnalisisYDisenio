@@ -102,7 +102,6 @@ public class ListaProductosComprar extends javax.swing.JDialog {
         cancelButton = new javax.swing.JButton();
 
         setTitle("Productos");
-        setMinimumSize(new java.awt.Dimension(0, 0));
         setPreferredSize(new java.awt.Dimension(657, 516));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

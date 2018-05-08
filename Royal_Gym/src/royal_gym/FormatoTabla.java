@@ -40,15 +40,13 @@ public class FormatoTabla extends DefaultTableCellRenderer {
              String a = parts[0];
              String m = parts[1];            
         if( (a == null ? anioo == null : a.equals(anioo)) && (m == null ? mess == null : m.equals(mess))) {  
-           p.setBackground(Color.red);
-        }else{
-             p.setBackground(Color.blue);
+           p.setBackground(Color.orange);
+        
         }
-     
      }
        return p;
-      
-   }
+    }  
+   
 }
 
 
