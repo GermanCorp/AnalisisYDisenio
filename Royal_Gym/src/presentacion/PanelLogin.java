@@ -24,7 +24,9 @@ public class PanelLogin extends javax.swing.JFrame {
     ResultSet rs = null;
     PreparedStatement pst = null;
     Connection conn = null;
-    LoginEntrar LE = new LoginEntrar();
+    LoginEntrar LE ;
+    PanelNuevaContraseña pnc;
+    
     
 
     public PanelLogin() {
@@ -179,6 +181,11 @@ public class PanelLogin extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Olvidé la contraseña");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelLoginLayout = new javax.swing.GroupLayout(panelLogin);
         panelLogin.setLayout(panelLoginLayout);
@@ -267,8 +274,11 @@ public class PanelLogin extends javax.swing.JFrame {
         } else if (contraseña.getPassword().length==0) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
         }
-         if (LoginEntrar.ingreso(usuario.getText(),String.valueOf(contraseña.getPassword())) == 1) {
-             //JOptionPane.showMessageDialog(null, "Bienvenido");
+         if (LoginEntrar.ingreso(usuario.getText(),String.valueOf(contraseña.getPassword())) != 1) {
+             JOptionPane.showMessageDialog(null, "Usuario/Contrasena Incorrecta");
+             usuario.setText("");
+            contraseña.setText("");
+          
 				   try {
                  UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                  //UIManager.setLookAndFeel(javax.swing.plaf.nimbus.NimbusLookAndFeel.class.getName());
@@ -309,6 +319,12 @@ public class PanelLogin extends javax.swing.JFrame {
             btnAceptar.doClick();
         }
     }//GEN-LAST:event_contraseñaKeyTyped
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        PanelNuevaContraseña pnc = new PanelNuevaContraseña();
+        pnc.setVisible(true);
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
