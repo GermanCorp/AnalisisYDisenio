@@ -21,7 +21,9 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
      private static Statement statement;
     static ResultSet resultado;
     Clientes clientes = new Clientes();
-    PanelExpediente panelExpediente = new PanelExpediente();
+    
+    
+    public String nombreCliente;
     
     
     //Columnas de la tabla Clientes
@@ -622,6 +624,9 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         
         jPopupMenu1.setVisible(false);
         new Expediente(new javax.swing.JDialog(), true).setVisible(true);
+        
+        int filaSeleccionada = tablaClientes.getSelectedRow();
+          nombreCliente = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
         
        
        
