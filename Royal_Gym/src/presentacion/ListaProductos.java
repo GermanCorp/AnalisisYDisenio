@@ -248,7 +248,8 @@ PanelVentas ventas;
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         //doClose(RET_OK);
-        
+        double calcula = 0;
+        double des = 0;
         DefaultTableModel modelo;
         int filaSeleccinada = tablaProductos.getSelectedRow();
         String codigo;
@@ -260,7 +261,7 @@ PanelVentas ventas;
         
         
         if(filaSeleccinada == -1){
-            JOptionPane.showMessageDialog(null, "Debe seleccinar un producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Seleccione un producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }else{
             modelo = (DefaultTableModel) tablaProductos.getModel();
             codigo = tablaProductos.getValueAt(filaSeleccinada, 0).toString();
@@ -273,34 +274,35 @@ PanelVentas ventas;
             double totalPorProducto = ((Double.parseDouble(precioVenta) * Integer.parseInt(cantidad)) - Double.parseDouble(descuento));
             double isv = (totalPorProducto-(totalPorProducto/1.15));
             double subTotal = (totalPorProducto-isv);
-            importe = String.valueOf(totalPorProducto);
-            double pv = (Double.parseDouble(precioVenta)/1.15);
             
-            modelo = (DefaultTableModel) pventas.jtablaProductosAVender.getModel();
-            String elementosFila [] = {codigo, cantidad, descripcion, df.format(pv),descuento,  df.format(subTotal),   df.format(isv), importe};
+            //importe = String.valueOf(totalPorProducto);
+            //double pv = (Double.parseDouble(precioVenta)/1.15);
+            
+            modelo = (DefaultTableModel) PanelVentas.jtablaProductosAVender.getModel();
+            String elementosFila [] = {codigo, cantidad, descripcion, df.format((Double.parseDouble(precioVenta)/1.15)),descuento,  df.format(subTotal),   df.format(isv), df.format(totalPorProducto)};
             modelo.addRow(elementosFila);
             
-            double calcula  = (Double.parseDouble(precioVenta)* Integer.parseInt(jtfCantidad.getText()));
-            double des = (Double.parseDouble(descuento));
-            
-            
-            
-            
+            calcula  = (Double.parseDouble(precioVenta)* Integer.parseInt(jtfCantidad.getText()));
+            des = (Double.parseDouble(descuento));
+
             //pventas.setDescuento(descuentoTotal);
             //pventas.setTotal(total);
-            descuentoTotal = descuentoTotal + des;
-            total = total + calcula - des;
+            //descuentoTotal = descuentoTotal + des;
+            //total = total + calcula - des;
             
-            ventas = new PanelVentas(total, total/1.15, total-(total/1.15), descuentoTotal);
-            ventas.total = this.total;
-            ventas.subTotal = total/1.15;
-            ventas.isv = total-(total/1.15);
-            ventas.descuento = descuentoTotal;
+            
+            PanelVentas.total = PanelVentas.total + calcula - des;
+            PanelVentas.subTotal = PanelVentas.total/1.15;
+            PanelVentas.isv = PanelVentas.total-(PanelVentas.total/1.15);
+            PanelVentas.descuento = PanelVentas.descuento + des;
+            
+            ventas = new PanelVentas(PanelVentas.total, PanelVentas.subTotal, PanelVentas.isv, PanelVentas.descuento);
             
             ventas.setValoresVenta(); 
             
             jtfCantidad.setText("1");
             jtfDescuento.setText("0");
+           
         }
     }//GEN-LAST:event_okButtonActionPerformed
 
