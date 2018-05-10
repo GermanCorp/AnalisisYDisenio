@@ -5,7 +5,10 @@
  */
 package presentacion;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
+import static presentacion.PanelVentas.jtablaProductosAVender;
 import royal_gym.Conexion;
 import royal_gym.Expediente;
 
@@ -17,6 +20,9 @@ public class PanelExpediente extends javax.swing.JPanel {
 
     final Conexion con;
     Expediente expediente= new Expediente();
+    PanelRegistroClientes pr = new PanelRegistroClientes();
+    
+  
     
     private String nombre;
 
@@ -45,7 +51,22 @@ public class PanelExpediente extends javax.swing.JPanel {
         con.conectar();
         
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(),columnasCambios);
-        tablacambioscorporales.setModel(modeloTablaPagos);    
+        tablacambioscorporales.setModel(modeloTablaPagos);  
+        
+        try{
+        Statement statement = Conexion.getConexion().createStatement();
+                String consulta2 = "Select nombres ||' '||apellidos as NombreCompleto FROM cliente WHERE nombres ||' '||apellidos = '" +pr.nombreCliente+ "'  ";        
+                ResultSet resultado2 = statement.executeQuery(consulta2);
+                
+                  while (resultado2.next()) {
+                      
+                      jTextFieldnombre.setText(resultado2.getString("NombreCompleto"));
+                      
+                  }
+        }catch(Exception ex){
+            System.out.println("buscarCliente:" + ex.getMessage());
+        }
+        
     }
    
    

@@ -26,7 +26,8 @@ public class ListaProductos extends javax.swing.JDialog {
    
     static double total;
     static double descuentoTotal;
-        
+    
+PanelVentas ventas;    
     Productos productos = new Productos();
     PanelVentas pventas;
     
@@ -290,7 +291,11 @@ public class ListaProductos extends javax.swing.JDialog {
             descuentoTotal = descuentoTotal + des;
             total = total + calcula - des;
             
-            PanelVentas ventas = new PanelVentas(total, total/1.15, total-(total/1.15), descuentoTotal);
+            ventas = new PanelVentas(total, total/1.15, total-(total/1.15), descuentoTotal);
+            ventas.total = this.total;
+            ventas.subTotal = total/1.15;
+            ventas.isv = total-(total/1.15);
+            ventas.descuento = descuentoTotal;
             
             ventas.setValoresVenta(); 
             

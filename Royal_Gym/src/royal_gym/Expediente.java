@@ -20,6 +20,7 @@ import static royal_gym.Pagos.resultado;
 public class Expediente {
     private static Statement statement;
     static ResultSet resultado;
+    int contador = 0;
     
    
     public void insertarProblemasdeSalud(
@@ -121,10 +122,8 @@ public class Expediente {
             resultado = statement.executeQuery(consulta);
             
              ArrayList<Object[]> filas = new ArrayList<>();
-             int contador = 0;
-             
-             //for(int i = 0; i<filas.size();i++)
-             {
+            {
+                
                 while (resultado.next()) {
                     
                     filas.add(
@@ -135,20 +134,12 @@ public class Expediente {
                     resultado.getDouble("porcentajedemusculo"),
                     resultado.getDouble("calorias"),
                     resultado.getInt("edad"),
-                    resultado.getInt("grasaviceral"),}      
-                            
-                     );
+                    resultado.getInt("grasaviceral"),} );
                   
-                   //contador = contador - filas +1;
                     datosPago = new Object[filas.size()][];
-                    filas.toArray(datosPago);
-                    
-                    //System.out.println(contador);
-                }
-                
+                    filas.toArray(datosPago);} 
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
         }
         return datosPago;
     }
