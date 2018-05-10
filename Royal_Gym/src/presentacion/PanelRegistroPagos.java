@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.DefaultComboBoxModel;
@@ -27,8 +28,10 @@ import royal_gym.Pagos;
  */
 public class PanelRegistroPagos extends javax.swing.JPanel {
     int filaseleccionadatablapagos;   
-    final Conexion con;
+    final Conexion con = new Conexion();
     Pagos pagos = new Pagos();
+    private String cliente;
+    
     
      int d,m,a;
      int df,mf,af;
@@ -78,19 +81,37 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     
     public PanelRegistroPagos() {
         initComponents();
-        this.con = new Conexion();
+        
         con.conectar();
         jcbPagoPlan.setEnabled(false);
         
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(pagos.getPago(), columnasPagos);
         tablaPagos.setModel(modeloTablaPagos);
-        
-        items();
+       
         
         tablaPagos.setDefaultRenderer (Object.class, new FormatoTabla());
         
     }
+
+    public PanelRegistroPagos( String cliente) {
+        
+        this.cliente = cliente;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
+    }
     
+    public void setNombreCliente(){
+        jtfBuscarCliente.setText(getCliente());
+    }
+    
+    
+    /*
      public void items(){
        //String nombre = jtfBuscarCliente.getText();
        TextAutoCompleter  textAutoCompleter = new  TextAutoCompleter(jtfBuscarCliente);
@@ -109,7 +130,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         } catch (Exception e) {
             System.out.println("buscar:" + e.getMessage());
         }
-     }
+     }*/
      
    
     
@@ -749,7 +770,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
 
     private void botonAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarClienteActionPerformed
         // TODO add your handling code here:
-        new ListaClientes(new javax.swing.JDialog(), true).setVisible(true);
+        new ListaClientes2(new javax.swing.JDialog(), true).setVisible(true);
         
     }//GEN-LAST:event_botonAgregarClienteActionPerformed
 

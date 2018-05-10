@@ -28,12 +28,49 @@ public class Utilidad {
     }
     
     
+    //metodo para llenar la tabla con los ingresos(pagos) segun el rango de fecha seleccionado
+    public Object[][] getUtilidad(String fechaInicio, String fechaFin) {
+        Object[][] datosPago = null;
+
+        try {
+            String consulta = "SELECT fecha_pago AS Fecha , cliente AS Nombre , monto As Monto  from pagos where fecha_pago between ? and ? "
+                    + "UNION "
+                    + "SELECT Fecha AS Fecha , Descripcion AS Nombre, monto As Monto from gasto where Fecha between ? and ? ";
+
+            PreparedStatement statement = conexion.prepareStatement(consulta);
+            statement.setString(1, fechaInicio);
+            statement.setString(2, fechaFin);
+            resultado = statement.executeQuery();
+            int numeroLista = 1;
+
+            ArrayList<Object[]> filas = new ArrayList<>();
+           
+            while (resultado.next()) {
+                
+                filas.add(
+                        new Object[]{
+                            numeroLista++,
+                            resultado.getString("Fecha"),
+                            resultado.getString("Nombre"),
+                            resultado.getString("Monto"),
+                            }
+                );
+            }
+            datosPago = new Object[filas.size()][];
+            filas.toArray(datosPago);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosPago;
+    }
+    
+    
     //metodo para llenar la tabla con los gastos  que hubieron  segun el rango de fecha seleccionado
     public Object[][] getGastosSeleccionados(String fechaInicio, String fechaFin) {
         Object[][] datosPago = null;
 
         try {
-            String consulta = "Select Fecha, Descripcion, monto from gasto where Fecha between ? and ?";
+            String consulta = "Select Fecha, Descripcion, Monto from gasto where Fecha between ? and ?";
 
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setString(1, fechaInicio);
@@ -44,13 +81,13 @@ public class Utilidad {
             ArrayList<Object[]> filas = new ArrayList<>();
           
             while (resultado.next()) {
-                totalGastos += resultado.getDouble("monto");
+                totalGastos += resultado.getDouble("Monto");
                 filas.add(
                         new Object[]{
                             numeroLista++,
                             resultado.getString("Fecha"),
                             resultado.getString("Descripcion"),
-                            resultado.getString("monto")
+                            resultado.getString("Monto")
 
                         }
                 );
@@ -68,8 +105,7 @@ public class Utilidad {
         Object[][] datosPago = null;
 
         try {
-            String consulta = "Select fecha_pago, cliente, monto from pagos "
-                    + " where fecha_pago between ? and ? ORDER BY fecha_pago";
+            String consulta = "Select fecha_pago, cliente, monto from pagos where fecha_pago between ? and ? ";
 
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setString(1, fechaInicio);
@@ -86,7 +122,7 @@ public class Utilidad {
                             numeroLista++,
                             resultado.getString("fecha_pago"),
                             resultado.getString("cliente"),
-                            resultado.getDouble("monto"),}
+                            resultado.getString("monto"),}
                 );
             }
             datosPago = new Object[filas.size()][];
@@ -97,9 +133,9 @@ public class Utilidad {
         return datosPago;
     }
 
-    public String formatearNumero(double totalg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    public String formatearNumero(double totalg) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
     
     

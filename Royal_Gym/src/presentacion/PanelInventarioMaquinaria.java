@@ -2,9 +2,13 @@ package presentacion;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -63,13 +67,12 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
             }
         };
         jtfBuscarInventario = new javax.swing.JTextField();
-        jbModificar = new javax.swing.JButton();
         jbEliminar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(85, 96, 128));
 
         PanelDatos.setBackground(new java.awt.Color(85, 96, 128));
-        PanelDatos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Datos de inventario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        PanelDatos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Datos de inventario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         PanelDatos.setPreferredSize(new java.awt.Dimension(350, 503));
 
         jlNombreEquipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -104,7 +107,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
         jlDescripcionEquipo.setText("Descripcion");
 
         btnAceptarInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Aceptar.png"))); // NOI18N
-        btnAceptarInventario.setText("Guardar");
+        btnAceptarInventario.setText("Aceptar");
         btnAceptarInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarInventarioActionPerformed(evt);
@@ -151,7 +154,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
                                 .addComponent(btnCancelarInventario))
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfCantidadEquipo, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfNombreEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
+                            .addComponent(jtfNombreEquipo))
                         .addGap(20, 20, 20))))
         );
         PanelDatosLayout.setVerticalGroup(
@@ -171,17 +174,17 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
                 .addComponent(jtfCantidadEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jlDescripcionEquipo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelarInventario)
                     .addComponent(btnAceptarInventario))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 23, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(85, 96, 126));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Inventario Registrado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 20), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Inventario Registrado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
         tablaInventarioEquipo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tablaInventarioEquipo.setModel(new javax.swing.table.DefaultTableModel(
@@ -210,7 +213,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tablaInventarioEquipo);
 
-        jtfBuscarInventario.setText("BUSCAR:");
+        jtfBuscarInventario.setPreferredSize(new java.awt.Dimension(6, 22));
         jtfBuscarInventario.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 jtfBuscarInventarioCaretUpdate(evt);
@@ -219,13 +222,6 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
         jtfBuscarInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfBuscarInventarioActionPerformed(evt);
-            }
-        });
-
-        jbModificar.setText("Modificar");
-        jbModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbModificarActionPerformed(evt);
             }
         });
 
@@ -245,25 +241,23 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
                         .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
-                    .addComponent(jtfBuscarInventario, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(22, 22, 22))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jtfBuscarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(119, 119, 119)))
+                .addGap(20, 20, 20))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(20, 20, 20)
                 .addComponent(jtfBuscarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                .addGap(84, 84, 84)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33))
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -272,7 +266,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(PanelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PanelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
@@ -282,9 +276,9 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(PanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -330,7 +324,28 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfCantidadEquipoKeyTyped
 
     private void btnAceptarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarInventarioActionPerformed
-        
+
+
+        int r = tablaInventarioEquipo.getSelectedRow();
+
+        if (r == -1) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un articulo", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else {
+            int mjs  = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea modificar el articulo seleccionado?");
+            if(mjs == JOptionPane.YES_OPTION){
+                String nombremaquina = tablaInventarioEquipo.getValueAt(r, 1).toString();
+                
+             im.ModificarInventario(jtfNombreEquipo.getText(), jtfCantidadEquipo.getText(), taDescripcionEquipo.getText(), jtfNombreEquipo.getText());
+            DefaultTableModel modeloTablaInventario = new DefaultTableModel(im.getInventario(), columnasInventario);
+            tablaInventarioEquipo.setModel(modeloTablaInventario);
+            JOptionPane.showMessageDialog(null, "Registro modificado con exito");
+            jtfNombreEquipo.setText("");
+            jtfCantidadEquipo.setText("");
+            taDescripcionEquipo.setText("");
+                  
+            }
+           
+        }
         //validaciones para los JTextField 1,2 y textArea1 para campos vacios
         if (jtfNombreEquipo.getText().equals("") && jtfCantidadEquipo.getText().equals("") && taDescripcionEquipo.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
@@ -390,31 +405,6 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
         tablaInventarioEquipo.setModel(modeloTablaBuscarInventario);
     }//GEN-LAST:event_jtfBuscarInventarioCaretUpdate
 
-    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-        // TODO add your handling code here:
-        int r = tablaInventarioEquipo.getSelectedRow();
-
-        if (r == -1) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un articulo", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        } else {
-            int mjs  = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea modificar el articulo seleccionado?");
-            if(mjs == JOptionPane.YES_OPTION){
-                String nombremaquina = tablaInventarioEquipo.getValueAt(r, 1).toString();
-                
-             im.ModificarInventario(jtfNombreEquipo.getText(), jtfCantidadEquipo.getText(), taDescripcionEquipo.getText(), jtfNombreEquipo.getText());
-            DefaultTableModel modeloTablaInventario = new DefaultTableModel(im.getInventario(), columnasInventario);
-            tablaInventarioEquipo.setModel(modeloTablaInventario);
-            JOptionPane.showMessageDialog(null, "Registro modificado con exito");
-            jtfNombreEquipo.setText("");
-            jtfCantidadEquipo.setText("");
-            taDescripcionEquipo.setText("");
-                  
-            }
-           
-        }
-        
-    }//GEN-LAST:event_jbModificarActionPerformed
-
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
           // TODO add your handling code here:
         int r = tablaInventarioEquipo.getSelectedRow();
@@ -441,7 +431,6 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfBuscarInventarioActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelDatos;
     private javax.swing.JButton btnAceptarInventario;
@@ -452,7 +441,6 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton jbEliminar;
-    private javax.swing.JButton jbModificar;
     private javax.swing.JLabel jlCantidadEquipo;
     private javax.swing.JLabel jlDescripcionEquipo;
     private javax.swing.JLabel jlNombreEquipo;

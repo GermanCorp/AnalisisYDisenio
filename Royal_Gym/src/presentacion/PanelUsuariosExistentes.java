@@ -202,23 +202,6 @@ public class PanelUsuariosExistentes extends javax.swing.JDialog {
         tablaUsuariosExistentes.setModel(modeloTablaBuscarUsuarios);
     }//GEN-LAST:event_txtBuscarCaretUpdate
 
-    public static void main(String args[]) {
-        
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                PanelUsuariosExistentes dialog = new PanelUsuariosExistentes(new javax.swing.JDialog(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelBusquedaUsuarios;
     private javax.swing.JPanel PanelUsuariosExistentes;

@@ -21,10 +21,11 @@ import royal_gym.Utilidad;
 public class PanelUtilidad extends javax.swing.JPanel {
     DecimalFormat df = new DecimalFormat("#,##0.00");
     
+    
      private final String[] columnasUtilidad = {
         "No.",
         "Fecha ",
-        "Descripción ",
+        "Nombre ",
         "Monto"
     };
 
@@ -55,12 +56,6 @@ public class PanelUtilidad extends javax.swing.JPanel {
         PaneltablaUtilidad = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tablautilidadingresos = new javax.swing.JTable(){
-            public boolean isCellEditable(int rowIndex, int colIndex){
-                return false;
-            }
-        };
-        jScrollPane6 = new javax.swing.JScrollPane();
-        tablautilidadgastos = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex){
                 return false;
             }
@@ -112,7 +107,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
         });
 
         buttonGroup1.add(tbtodo);
-        tbtodo.setText("Ingresso y Gastos");
+        tbtodo.setText("Ingresos y Gastos");
         tbtodo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 tbtodoItemStateChanged(evt);
@@ -188,17 +183,6 @@ public class PanelUtilidad extends javax.swing.JPanel {
         ));
         jScrollPane5.setViewportView(tablautilidadingresos);
 
-        tablautilidadgastos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        tablautilidadgastos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane6.setViewportView(tablautilidadgastos);
-
         javax.swing.GroupLayout PaneltablaUtilidadLayout = new javax.swing.GroupLayout(PaneltablaUtilidad);
         PaneltablaUtilidad.setLayout(PaneltablaUtilidadLayout);
         PaneltablaUtilidadLayout.setHorizontalGroup(
@@ -206,17 +190,13 @@ public class PanelUtilidad extends javax.swing.JPanel {
             .addGroup(PaneltablaUtilidadLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
         PaneltablaUtilidadLayout.setVerticalGroup(
             PaneltablaUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PaneltablaUtilidadLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(PaneltablaUtilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
 
@@ -323,9 +303,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
 
     private void tbingresosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tbingresosItemStateChanged
         // TODO add your handling code here:
-        
-        
-        if (evt.getStateChange() == ItemEvent.SELECTED) {
+          if (evt.getStateChange() == ItemEvent.SELECTED) {
 
             PaneltablaUtilidad.setVisible(true);
             jScrollPane5.setVisible(true);
@@ -346,7 +324,9 @@ public class PanelUtilidad extends javax.swing.JPanel {
             jScrollPane5.setVisible(false);
             Paneltotales.setVisible(false);
 
+
         }
+              
     }//GEN-LAST:event_tbingresosItemStateChanged
 
     private void tbingresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbingresosActionPerformed
@@ -356,7 +336,8 @@ public class PanelUtilidad extends javax.swing.JPanel {
     private void tbgastosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tbgastosItemStateChanged
         // TODO add your handling code here:
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-
+            
+            
             PaneltablaUtilidad.setVisible(true);
             jScrollPane5.setVisible(true);
             Paneltotales.setVisible(true);
@@ -370,13 +351,19 @@ public class PanelUtilidad extends javax.swing.JPanel {
             jlTotalGastos.setText("L. "+df.format(totalg));
             jlTotalIngresos.setText("L. 0.00");
             jlTotalUtilidad.setText("L. 0.00");
+            
+            
 
         } else {
             PaneltablaUtilidad.setVisible(false);
             jScrollPane5.setVisible(false);
             Paneltotales.setVisible(false);
+            
+            
 
         }
+        
+        
     }//GEN-LAST:event_tbgastosItemStateChanged
 
     private void tbgastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbgastosActionPerformed
@@ -389,16 +376,15 @@ public class PanelUtilidad extends javax.swing.JPanel {
 
             PaneltablaUtilidad.setVisible(true);
             jScrollPane5.setVisible(true);
-            jScrollPane6.setVisible(true);
             Paneltotales.setVisible(true);
             TitledBorder t = (TitledBorder )PaneltablaUtilidad.getBorder();
             t.setTitle("Ingresos y Gastos");
 
-            DefaultTableModel modeloTablaUtilidadIngresos = new DefaultTableModel(utilidad.getIngresosSeleccinados(fechaJCalendar(jdcfechaInicio).toString(), fechaJCalendar(jdcfechaFinal).toString()), columnasUtilidad);
+            DefaultTableModel modeloTablaUtilidadIngresos = new DefaultTableModel(utilidad.getUtilidad(fechaJCalendar(jdcfechaInicio).toString(), fechaJCalendar(jdcfechaFinal).toString()), columnasUtilidad);
             tablautilidadingresos.setModel(modeloTablaUtilidadIngresos);
 
-            DefaultTableModel modeloTablaUtilidadGastos = new DefaultTableModel(utilidad.getGastosSeleccionados(fechaJCalendar(jdcfechaInicio).toString(), fechaJCalendar(jdcfechaFinal).toString()), columnasUtilidad);
-            tablautilidadgastos.setModel(modeloTablaUtilidadGastos);
+//            DefaultTableModel modeloTablaUtilidadGastos = new DefaultTableModel(utilidad.getGastosSeleccionados(fechaJCalendar(jdcfechaInicio).toString(), fechaJCalendar(jdcfechaFinal).toString()), columnasUtilidad);
+//            tablautilidadgastos.setModel(modeloTablaUtilidadGastos);
 
             double totalg = utilidad.totalGastos;
             jlTotalGastos.setText("L. "+df.format(totalg));
@@ -412,10 +398,15 @@ public class PanelUtilidad extends javax.swing.JPanel {
         } else {
             PaneltablaUtilidad.setVisible(false);
             jScrollPane5.setVisible(false);
-            jScrollPane6.setVisible(false);
             Paneltotales.setVisible(false);
+            
+             jlTotalGastos.setText("L. 0.00");
+             jlTotalIngresos.setText("L. 0.00");
+             jlTotalUtilidad.setText("L. 0.00");
 
         }
+        
+       
     }//GEN-LAST:event_tbtodoItemStateChanged
 
     private Date fechaJCalendar(JDateChooser calendario) {
@@ -438,7 +429,6 @@ public class PanelUtilidad extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private com.toedter.calendar.JDateChooser jdcfechaFinal;
     private com.toedter.calendar.JDateChooser jdcfechaInicio;
@@ -448,7 +438,6 @@ public class PanelUtilidad extends javax.swing.JPanel {
     private javax.swing.JLabel labeltotalgastos;
     private javax.swing.JLabel labeltotalingresos;
     private javax.swing.JLabel labelutilidad;
-    private javax.swing.JTable tablautilidadgastos;
     private javax.swing.JTable tablautilidadingresos;
     private javax.swing.JToggleButton tbgastos;
     private javax.swing.JToggleButton tbingresos;
