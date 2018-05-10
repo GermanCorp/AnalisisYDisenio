@@ -588,14 +588,16 @@ public class Conexion {
 	}
     
     //metodo para insertar un nuevo usuario a la base de datos
-    public void nuevoUser(String nombre,String User, String Pass ) {
+    public void nuevoUser(String nombre,String User, String Pass,String PreguntaA,String PreguntaB ) {
         try {
-            String sql = "insert into login (nombre,usuario, contraseña) values (?,?,?)";
+            String sql = "insert into login (nombre,usuario, contraseña,cual es el nombre de tu mascota,cual es el nombre de tu madre) values (?,?,?,?,?)";
             Connection con = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
             PreparedStatement consulta = con.prepareStatement(sql);
             consulta.setString(1, nombre);
             consulta.setString(2, User);
             consulta.setString(3,Pass);
+            consulta.setString(4, PreguntaA);
+            consulta.setString(5, PreguntaB);
             consulta.execute();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -708,4 +710,34 @@ public class Conexion {
           }
        
     }
+        public static void nuevaContraseña (String PreguntaA,String PreguntaB)
+        {
+            int resultado = 0;
+            String SSQL = "select * from Login where Cual es el nombre de tu mascota = ? AND Cual es el nombre de tu madre = ?";
+            Connection conect = null;
+            
+            try{
+                conect = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
+                PreparedStatement st = conect.prepareStatement(SSQL);
+                
+                st.setString(1, PreguntaA);
+                st.setString(2, PreguntaB);
+                ResultSet rs = st.executeQuery();
+                
+                if(rs.next()){
+                    resultado = 1;
+                }
+            }catch(Exception ex){
+                ex.printStackTrace();
+                
+            }finally{
+                try{
+                    conect.close();
+                }catch(Exception ex){
+                    ex.printStackTrace();
+                }
+            }
+            
+        }
+     
 }

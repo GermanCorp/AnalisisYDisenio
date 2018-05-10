@@ -25,7 +25,7 @@ public class PanelLogin extends javax.swing.JFrame {
     PreparedStatement pst = null;
     Connection conn = null;
     LoginEntrar LE ;
-    PanelNuevaContraseña pnc;
+    PanelPreguntasContrasena pnc;
     
     
 
@@ -56,6 +56,7 @@ public class PanelLogin extends javax.swing.JFrame {
         contraseña = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        lblSalida = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -187,6 +188,9 @@ public class PanelLogin extends javax.swing.JFrame {
             }
         });
 
+        lblSalida.setFont(new java.awt.Font("Century Gothic", 3, 14)); // NOI18N
+        lblSalida.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout panelLoginLayout = new javax.swing.GroupLayout(panelLogin);
         panelLogin.setLayout(panelLoginLayout);
         panelLoginLayout.setHorizontalGroup(
@@ -202,12 +206,13 @@ public class PanelLogin extends javax.swing.JFrame {
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelLoginLayout.createSequentialGroup()
-                        .addGap(117, 117, 117)
+                        .addGap(95, 95, 95)
                         .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(btnAceptar)
                             .addComponent(btnCancelar)
-                            .addComponent(jLabel4))))
-                .addGap(50, 50, 50))
+                            .addComponent(jLabel4)
+                            .addComponent(lblSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         panelLoginLayout.setVerticalGroup(
             panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,11 +227,13 @@ public class PanelLogin extends javax.swing.JFrame {
                 .addComponent(lblContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
+                .addComponent(lblSalida, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addContainerGap())
         );
@@ -239,7 +246,7 @@ public class PanelLogin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -274,8 +281,9 @@ public class PanelLogin extends javax.swing.JFrame {
         } else if (contraseña.getPassword().length==0) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
         }
-         if (LoginEntrar.ingreso(usuario.getText(),String.valueOf(contraseña.getPassword())) != 1) {
-             JOptionPane.showMessageDialog(null, "Usuario/Contrasena Incorrecta");
+        else if (LoginEntrar.ingreso(usuario.getText(),String.valueOf(contraseña.getPassword())) != 1) {
+             lblSalida.setText("Usuario/Contraseña Incorrecta");
+             //JOptionPane.showMessageDialog(null, "Usuario/Contrasena Incorrecta");
              usuario.setText("");
             contraseña.setText("");
           
@@ -322,7 +330,7 @@ public class PanelLogin extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
-        PanelNuevaContraseña pnc = new PanelNuevaContraseña();
+        PanelPreguntasContrasena pnc = new PanelPreguntasContrasena();
         pnc.setVisible(true);
     }//GEN-LAST:event_jLabel4MouseClicked
 
@@ -359,6 +367,7 @@ public class PanelLogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblContrasena;
+    private javax.swing.JLabel lblSalida;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel panelLogin;
     public static javax.swing.JTextField usuario;
