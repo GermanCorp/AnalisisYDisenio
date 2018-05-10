@@ -192,8 +192,8 @@ public class ListaClientes2 extends javax.swing.JDialog {
         int filaSeleccionada = tablaClientes.getSelectedRow();
         String nombreCliente = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
         cliente = nombreCliente;
-        PanelVentas ventas = new PanelVentas(cliente);
-        ventas.setNombreCliente();
+        PanelRegistroPagos pagos = new PanelRegistroPagos(cliente);
+        pagos.setNombreCliente();
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
