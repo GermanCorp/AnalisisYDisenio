@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> b08b261871d7c7fee175b234f545ac0bfca4ef0a
+>>>>>>> 570ff1397bfd04b6ddb7b80eded88492139976ab
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="2"/>
   </SyntheticProperties>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+>>>>>>> 8b3db1302621399ed402a52f99fe5cbd118c7852
+>>>>>>> b08b261871d7c7fee175b234f545ac0bfca4ef0a
+>>>>>>> 570ff1397bfd04b6ddb7b80eded88492139976ab
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
