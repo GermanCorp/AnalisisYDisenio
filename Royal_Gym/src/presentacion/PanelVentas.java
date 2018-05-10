@@ -22,11 +22,11 @@ import royal_gym.Conexion;
  * @author Alexis
  */
 public class PanelVentas extends javax.swing.JPanel {
-    public double total;
-    private double subTotal;
-    private double isv;
-    private double descuento;
-    private String cliente;
+    public static double total = 0;
+    public static double subTotal = 0;
+    public static double isv = 0;
+    public static double descuento = 0;
+    public static String cliente;
     
     private static Statement statement;
     DecimalFormat df = new DecimalFormat("#,##0.00");
@@ -132,10 +132,10 @@ public class PanelVentas extends javax.swing.JPanel {
     }
     
     public void setValoresVenta(){
-        jtfSubTotal.setText("L. " + df.format(getSubTotal()));
-        jtfISV.setText("L." + df.format(getIsv()));
-        jtfDescuento.setText("- L. " + df.format(getDescuento()));
-        jtfTotalVenta.setText("L. " + df.format(getTotal()));
+        jtfSubTotal.setText("L. " + df.format(subTotal));
+        jtfISV.setText("L." + df.format(isv));
+        jtfDescuento.setText("- L. " + df.format(descuento));
+        jtfTotalVenta.setText("L. " + df.format(total));
     }
     
 
@@ -173,6 +173,7 @@ public class PanelVentas extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(85, 96, 128));
 
+        jtfDireccion.setEditable(false);
         jtfDireccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtfDireccion.setText("DIRECCIÓN:");
         jtfDireccion.addActionListener(new java.awt.event.ActionListener() {
@@ -181,9 +182,11 @@ public class PanelVentas extends javax.swing.JPanel {
             }
         });
 
+        jtfNombre.setEditable(false);
         jtfNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtfNombre.setText("NOMBRE:");
 
+        jtfTelefono.setEditable(false);
         jtfTelefono.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtfTelefono.setText("TEL:");
 
@@ -280,6 +283,7 @@ public class PanelVentas extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Sub Total");
 
+        jtfNumeoFactura.setEditable(false);
         jtfNumeoFactura.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -373,7 +377,7 @@ public class PanelVentas extends javax.swing.JPanel {
         jtablaProductosAVender.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtablaProductosAVender.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Cantidad", "Descripción", "Precio Unitario", "Descuento", "Sub-total", "ISV%", "Total"
@@ -468,8 +472,10 @@ public class PanelVentas extends javax.swing.JPanel {
 
     private void jbAGuardarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAGuardarVentaActionPerformed
         DefaultTableModel modelo;
-        
-        try {
+        if(total == 0){
+            JOptionPane.showMessageDialog(null, "No hay ninguna venta que guardar");
+        }else {
+             try {
             for (int i = 0 ; i <jtablaProductosAVender.getRowCount(); i++){
                 PreparedStatement pStatement = Conexion.getConexion().prepareStatement("insert into detallefactura(factura, idProducto, cantidad,descuento) values (?,?,?,?)");
                 pStatement.setString(1, jtfNumeoFactura.getText());
@@ -506,19 +512,32 @@ public class PanelVentas extends javax.swing.JPanel {
             modelo.removeRow(i);
         }
         setValoresVenta();
+        }
     }//GEN-LAST:event_jbAGuardarVentaActionPerformed
 
     private void jbEliminarFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarFilaActionPerformed
         DefaultTableModel modelo;
         int filaSeleccinada = jtablaProductosAVender.getSelectedRow();
+        
+        if(filaSeleccinada == -1){
+            JOptionPane.showMessageDialog(null, "Seleccione un producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Double totalPorProducto = (Double.parseDouble(jtablaProductosAVender.getValueAt(filaSeleccinada, 7).toString()));
+        Double descuentoPorProducto = (Double.parseDouble(jtablaProductosAVender.getValueAt(filaSeleccinada, 4).toString()));
+
+        total = total - totalPorProducto;
+        descuento = descuento - descuentoPorProducto;
+        isv = total*0.15;
+        subTotal = total - isv;
+        
+        
         modelo = (DefaultTableModel) jtablaProductosAVender.getModel();
         modelo.removeRow(filaSeleccinada);
         
-        Double totalPorProducto = (Double.parseDouble(jtablaProductosAVender.getValueAt(filaSeleccinada, 7).toString()));
-        Double descuentoPorProducto = (Double.parseDouble(jtablaProductosAVender.getValueAt(filaSeleccinada, 4).toString()));
-        
-        setTotal(totalPorProducto);
         setValoresVenta();
+        }
+        
+        //jtfNumeoFactura.setText(String.valueOf(total));
     }//GEN-LAST:event_jbEliminarFilaActionPerformed
 
 

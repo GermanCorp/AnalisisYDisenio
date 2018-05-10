@@ -7,11 +7,15 @@ import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import static presentacion.PanelVentas.jtablaProductosAVender;
 import royal_gym.Clientes;
@@ -21,20 +25,21 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
      private static Statement statement;
     static ResultSet resultado;
     Clientes clientes = new Clientes();
+    private String idCliente;
     
     
     public String nombreCliente;
     
     
     //Columnas de la tabla Clientes
-    private final String[] columnasClientes = {"No.", "Nombres", "Fecha de Nacimiento", "Altura", "Peso", "Masa Corporal", "Clasificación"};
+    private final String[] columnasClientes = {"Id", "Nombres", "Apellidos", "Fecha de Nacimiento", "Altura", "Peso", "Masa Corporal", "Clasificación"};
    
   
     //Constructor
     public PanelRegistroClientes() {
         initComponents();
         clientes.modeloTablaCliente(columnasClientes, tablaClientes);
-        
+       
     }
        private Date fechaJCalendar(JDateChooser calendario) {
         Date date = calendario.getDate();
@@ -127,8 +132,8 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             }
         });
 
-        btnCancelarRegistroCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Cancelar.png"))); // NOI18N
-        btnCancelarRegistroCliente.setText("Cancelar");
+        btnCancelarRegistroCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/btn_limpiar.png"))); // NOI18N
+        btnCancelarRegistroCliente.setText("Limpiar");
         btnCancelarRegistroCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarRegistroClienteActionPerformed(evt);
@@ -209,7 +214,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Kgs.");
 
-        btnAceptarRegistroCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Aceptar.png"))); // NOI18N
+        btnAceptarRegistroCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/btn_guardar.png"))); // NOI18N
         btnAceptarRegistroCliente.setText("Guardar");
         btnAceptarRegistroCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,11 +265,11 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(jtfApellidoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelDatosClienteLayout.createSequentialGroup()
-                        .addComponent(btnAceptarRegistroCliente)
-                        .addGap(65, 65, 65)
-                        .addComponent(btnCancelarRegistroCliente))
+                        .addComponent(jLabel9)
+                        .addGap(20, 20, 20)
+                        .addComponent(jlRegistroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
                     .addGroup(panelDatosClienteLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -273,16 +278,18 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jtfPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7))
-                    .addGroup(panelDatosClienteLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(20, 20, 20)
-                        .addComponent(jlRegistroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(panelDatosClienteLayout.createSequentialGroup()
+                            .addComponent(btnAceptarRegistroCliente)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCancelarRegistroCliente)
+                            .addGap(7, 7, 7))
+                        .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
         panelDatosClienteLayout.setVerticalGroup(
             panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,11 +325,11 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptarRegistroCliente)
-                    .addComponent(btnCancelarRegistroCliente))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(btnCancelarRegistroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAceptarRegistroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         PanelTabla.setBackground(new java.awt.Color(85, 96, 128));
@@ -344,6 +351,9 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         tablaClientes.setComponentPopupMenu(jPopupMenu1);
         tablaClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaClientesMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tablaClientesMousePressed(evt);
             }
@@ -353,9 +363,18 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         });
         scrollTablaClientes.setViewportView(tablaClientes);
 
+        jtfBuscarCliente.setToolTipText("");
         jtfBuscarCliente.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 jtfBuscarClienteCaretUpdate(evt);
+            }
+        });
+        jtfBuscarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtfBuscarClienteMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jtfBuscarClienteMousePressed(evt);
             }
         });
         jtfBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -369,6 +388,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/btn_eliminar.png"))); // NOI18N
         jButton1.setText("Eliminar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -383,7 +403,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             .addGroup(PanelTablaLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                    .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
                     .addGroup(PanelTablaLayout.createSequentialGroup()
                         .addComponent(jtfBuscarCliente)
                         .addGap(119, 119, 119))
@@ -398,9 +418,9 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
-                .addGap(31, 31, 31)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addComponent(jButton1)
                 .addContainerGap())
         );
 
@@ -432,6 +452,10 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         jdcFecha.setDate(null);
         jtfPeso.setText("");
         jtfAltura.setText("");
+        btnAceptarRegistroCliente.setText("Guardar");
+        btnAceptarRegistroCliente.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_guardar.png")));
+        btnCancelarRegistroCliente.setText("Limpiar");
+        btnCancelarRegistroCliente.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_limpiar.png")));
     }//GEN-LAST:event_btnCancelarRegistroClienteActionPerformed
 
     private void jtfNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNombreClienteActionPerformed
@@ -478,12 +502,16 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
 
     
     private void btnAceptarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteActionPerformed
+            
         Configuracion config = new Configuracion();
         Calendar cal = Calendar.getInstance();
         int anioActual = cal.get(Calendar.YEAR);
         int menorEdadPermitida = anioActual - config.getEdadPermitida();
         int mayorEdadPermitida = anioActual - 100;
-
+        
+        
+        //if (evt.getActionCommand().equals("Guardar")){
+            
         if (jtfNombreCliente.getText().isEmpty()
                 && jtfApellidoCliente.getText().isEmpty()
                 && jdcFecha.getDate() == null
@@ -506,6 +534,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Debe ingresar el peso del cliente", "Error!", JOptionPane.ERROR_MESSAGE);
         } else {
 
+            if (evt.getActionCommand().equals("Guardar")){
             clientes.insertarCliente(jtfNombreCliente.getText(),
                     jtfApellidoCliente.getText(),
                     fechaJCalendar(jdcFecha).toString(),
@@ -518,9 +547,40 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             jtfAltura.setText("");
             jtfPeso.setText("");
 
+        
         JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
         clientes.modeloTablaCliente(columnasClientes, tablaClientes);
+           
+            } else if(evt.getActionCommand().equals("Modificar")){
+               
+                clientes.modificarClientes(
+                    idCliente,
+                    jtfNombreCliente.getText(),
+                    jtfApellidoCliente.getText(),
+                    fechaJCalendar(jdcFecha).toString(),
+                    jtfAltura.getText(),
+                    jtfPeso.getText());
+                
+                jtfNombreCliente.setText("");
+            jtfApellidoCliente.setText("");
+            jdcFecha.setDate(null);
+            jtfAltura.setText("");
+            jtfPeso.setText("");
+
+         btnAceptarRegistroCliente.setText("Guardar");
+        btnAceptarRegistroCliente.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_guardar.png")));       
+        JOptionPane.showMessageDialog(this, "Modificacion Exitosa", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
+        clientes.modeloTablaCliente(columnasClientes, tablaClientes);
+       
+            }
+            
+            
         }
+        
+        //}else if(evt.getActionCommand().equals("Modificar")){
+            
+        //}
+        
     }//GEN-LAST:event_btnAceptarRegistroClienteActionPerformed
 
     private void btnAceptarRegistroClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteKeyPressed
@@ -607,10 +667,11 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         jPopupMenu1.setVisible(false);
         int filaSeleccionada = tablaClientes.getSelectedRow();
             String nombreCliente = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
-            String fechaNacimiento = tablaClientes.getValueAt(filaSeleccionada, 2).toString();
+            String apellidos = tablaClientes.getValueAt(filaSeleccionada, 2).toString();
+            String nacimiento = tablaClientes.getValueAt(filaSeleccionada, 3).toString();
             int mjs = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea eliminar a "+ nombreCliente+" ?");
             if(mjs == JOptionPane.YES_OPTION){
-                clientes.eliminarCliente(nombreCliente, fechaNacimiento);
+                clientes.eliminarCliente(nombreCliente, apellidos, nacimiento);
                 clientes.modeloTablaCliente(columnasClientes, tablaClientes);
                 JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente");
             }
@@ -634,15 +695,61 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int filaSeleccionada = tablaClientes.getSelectedRow();
-            String nombreCliente = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
-            String fechaNacimiento = tablaClientes.getValueAt(filaSeleccionada, 2).toString();
-            int mjs = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea eliminar a "+ nombreCliente+" ?");
+        
+        if(filaSeleccionada == -1){
+            JOptionPane.showMessageDialog(null, "Seleccione un cliente", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }else{
+            
+            String nombres = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
+            String apellidos = tablaClientes.getValueAt(filaSeleccionada, 2).toString();
+            String nacimiento = tablaClientes.getValueAt(filaSeleccionada, 3).toString();
+            int mjs = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea eliminar a "+ nombres+" ?");
             if(mjs == JOptionPane.YES_OPTION){
-                clientes.eliminarCliente(nombreCliente, fechaNacimiento);
+                clientes.eliminarCliente(nombres, apellidos, nacimiento);
                 clientes.modeloTablaCliente(columnasClientes, tablaClientes);
                 JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente");
             }
+        }
+            
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jtfBuscarClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfBuscarClienteMousePressed
+        
+    }//GEN-LAST:event_jtfBuscarClienteMousePressed
+
+    private void jtfBuscarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfBuscarClienteMouseClicked
+
+    }//GEN-LAST:event_jtfBuscarClienteMouseClicked
+
+    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
+        // TODO add your handling code here:
+         if(evt.getClickCount()==2)
+         {
+            
+            
+             btnAceptarRegistroCliente.setText("Modificar");
+             btnAceptarRegistroCliente.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_modificar.png")));
+             btnCancelarRegistroCliente.setText("Cancelar");
+             btnCancelarRegistroCliente.setIcon(new ImageIcon(Class.class.getResource("/iconos/Cancelar.png")));
+             
+             int filaseleccionada = tablaClientes.getSelectedRow();
+             idCliente = (tablaClientes.getValueAt(filaseleccionada, 0).toString());
+             
+             jtfNombreCliente.setText(tablaClientes.getValueAt(filaseleccionada, 1).toString());
+             jtfApellidoCliente.setText(tablaClientes.getValueAt(filaseleccionada, 2).toString());
+             String date = tablaClientes.getValueAt(filaseleccionada, 3).toString();
+             java.util.Date date2 = null;
+             try {
+                 date2 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+             } catch (ParseException ex) {
+                 Logger.getLogger(PanelRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
+             }
+             jdcFecha.setDate(date2);
+             jtfAltura.setText(tablaClientes.getValueAt(filaseleccionada, 4).toString());
+             jtfPeso.setText(tablaClientes.getValueAt(filaseleccionada, 5).toString());
+             
+        }
+    }//GEN-LAST:event_tablaClientesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
