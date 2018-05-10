@@ -38,7 +38,8 @@ public class Clientes {
     public Object[][] getClientes() {
         Object[][] datosCliente = null;
         try {
-            String consulta = "Select nombres ||' '||apellidos as NombreCompleto, fechaNacimiento, altura, peso, Peso / (Altura * Altura) as imc FROM cliente AS a ORDER BY nombres";
+//            String consulta = "Select nombres ||' '||apellidos as NombreCompleto, fechaNacimiento, altura, peso, Peso / (Altura * Altura) as imc FROM cliente AS a ORDER BY nombres";
+            String consulta = "Select idCliente, nombres, apellidos, fechaNacimiento, altura, peso, Peso / (Altura * Altura) as imc FROM cliente ORDER BY nombres";
             statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
 
@@ -49,11 +50,13 @@ public class Clientes {
             while (resultado.next()) {
                 filas.add(
                         new Object[]{
-                            numeroLista++,
-                            resultado.getString("NombreCompleto"),
+                            //numeroLista++,
+                            resultado.getString("idCliente"),
+                            resultado.getString("Nombres"),
+                            resultado.getString("apellidos"),
                             resultado.getString("FechaNacimiento"),
-                            formatearNumero(resultado.getDouble("Altura")) + " mt",
-                            formatearNumero(resultado.getDouble("Peso")) + " kg",
+                            formatearNumero(resultado.getDouble("Altura")),
+                            formatearNumero(resultado.getDouble("Peso")),
                             formatearNumero(resultado.getDouble("imc")),
                             clasificaciónIMC(resultado.getDouble("imc"))
                         }
@@ -116,7 +119,7 @@ public class Clientes {
     public Object[][] buscarCliente(String nombres, String apellidos) {
         Object[][] datosCliente = null;
         try {
-            String consulta = "SELECT nombres ||' '||apellidos as NombreCompleto, fechaNacimiento, altura, peso, Peso / (Altura * Altura) as imc FROM cliente WHERE nombres ||' '||apellidos LIKE '%' || ? || '%' ORDER BY nombres";
+            String consulta = "SELECT idCliente, nombres, apellidos, fechaNacimiento, altura, peso, Peso / (Altura * Altura) as imc FROM cliente WHERE nombres ||' '||apellidos LIKE '%' || ? || '%' ORDER BY nombres";
             PreparedStatement statement = Conexion.getConexion().prepareStatement(consulta);
             statement.setString(1, nombres);
             //statement.setString(2, apellidos);
@@ -129,12 +132,14 @@ public class Clientes {
             while (resultado.next()) {
                 filas.add(
                         new Object[]{
-                            numeroLista++,
-                            resultado.getString("NombreCompleto"),
+                            //numeroLista++,
+                            resultado.getString("idCliente"),
+                            resultado.getString("Nombres"),
+                            resultado.getString("apellidos"),
                             resultado.getString("FechaNacimiento"),
-                            resultado.getString("Altura"),
-                            resultado.getString("Peso"),
-                            df.format(resultado.getDouble("imc")),
+                            formatearNumero(resultado.getDouble("Altura")),
+                            formatearNumero(resultado.getDouble("Peso")),
+                            formatearNumero(resultado.getDouble("imc")),
                             clasificaciónIMC(resultado.getDouble("imc"))
                         }
                 );
@@ -147,13 +152,14 @@ public class Clientes {
         return datosCliente;
     }// </editor-fold>
     
-    public void eliminarCliente(String nombreCliente, String fechaNacimiento) {
+    public void eliminarCliente(String nombreCliente, String apellidos, String fechaNacimiento) {
 
         try {
-            String sql = "Delete from cliente where nombres ||' '|| apellidos = ? and fechaNacimiento = ?";
+            String sql = "Delete from cliente where nombres = ? and apellidos = ? and fechaNacimiento = ?";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, nombreCliente);
-            consulta.setString(2, fechaNacimiento);
+            consulta.setString(2, apellidos);
+            consulta.setString(3, fechaNacimiento);
             consulta.execute();
 
         } catch (Exception e) {
@@ -176,5 +182,21 @@ public class Clientes {
         }
         return datosCliente;
     }
-    
+ 
+    public void modificarClientes(String id, String nombres, String apellidos, String nacimiento, String altura, String peso){
+        try {
+            String sql = "update cliente set nombres = ?, apellidos = ?, fechaNacimiento = ?, altura = ?, peso = ? where idCliente = ?";
+            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
+            consulta.setString(1, nombres);
+            consulta.setString(2, apellidos);
+            consulta.setString(3, nacimiento);
+            consulta.setString(4, altura);
+            consulta.setString(5, peso);
+            consulta.setString(6, id);
+            consulta.execute();
+
+        } catch (Exception e) {
+            System.out.println("error en Modificar Cliente" + e.getMessage());
+        }
+    }
 }

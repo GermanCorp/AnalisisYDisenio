@@ -527,6 +527,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
 
     private void jbPagoAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoAceptarActionPerformed
         
+        
           Calendar c = Calendar.getInstance();
          d = c.get(Calendar.DATE);
          m = 1 + (c.get(Calendar.MONTH));

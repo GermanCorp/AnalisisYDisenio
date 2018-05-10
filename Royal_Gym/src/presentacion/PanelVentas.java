@@ -22,10 +22,10 @@ import royal_gym.Conexion;
  * @author Alexis
  */
 public class PanelVentas extends javax.swing.JPanel {
-    public static double total;
-    public static double subTotal;
-    public static double isv;
-    public static double descuento;
+    public static double total = 0;
+    public static double subTotal = 0;
+    public static double isv = 0;
+    public static double descuento = 0;
     public static String cliente;
     
     private static Statement statement;
@@ -132,10 +132,10 @@ public class PanelVentas extends javax.swing.JPanel {
     }
     
     public void setValoresVenta(){
-        jtfSubTotal.setText("L. " + df.format(getSubTotal()));
-        jtfISV.setText("L." + df.format(getIsv()));
-        jtfDescuento.setText("- L. " + df.format(getDescuento()));
-        jtfTotalVenta.setText("L. " + df.format(getTotal()));
+        jtfSubTotal.setText("L. " + df.format(subTotal));
+        jtfISV.setText("L." + df.format(isv));
+        jtfDescuento.setText("- L. " + df.format(descuento));
+        jtfTotalVenta.setText("L. " + df.format(total));
     }
     
 
@@ -472,8 +472,10 @@ public class PanelVentas extends javax.swing.JPanel {
 
     private void jbAGuardarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAGuardarVentaActionPerformed
         DefaultTableModel modelo;
-        
-        try {
+        if(total == 0){
+            JOptionPane.showMessageDialog(null, "No hay ninguna venta que guardar");
+        }else {
+             try {
             for (int i = 0 ; i <jtablaProductosAVender.getRowCount(); i++){
                 PreparedStatement pStatement = Conexion.getConexion().prepareStatement("insert into detallefactura(factura, idProducto, cantidad,descuento) values (?,?,?,?)");
                 pStatement.setString(1, jtfNumeoFactura.getText());
@@ -510,25 +512,31 @@ public class PanelVentas extends javax.swing.JPanel {
             modelo.removeRow(i);
         }
         setValoresVenta();
+        }
     }//GEN-LAST:event_jbAGuardarVentaActionPerformed
 
     private void jbEliminarFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarFilaActionPerformed
-        
         DefaultTableModel modelo;
         int filaSeleccinada = jtablaProductosAVender.getSelectedRow();
-        Double totalPorProducto = (Double.parseDouble(jtablaProductosAVender.getValueAt(filaSeleccinada, 7).toString()));
+        
+        if(filaSeleccinada == -1){
+            JOptionPane.showMessageDialog(null, "Seleccione un producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Double totalPorProducto = (Double.parseDouble(jtablaProductosAVender.getValueAt(filaSeleccinada, 7).toString()));
         Double descuentoPorProducto = (Double.parseDouble(jtablaProductosAVender.getValueAt(filaSeleccinada, 4).toString()));
-        
-        modelo = (DefaultTableModel) jtablaProductosAVender.getModel();
-        modelo.removeRow(filaSeleccinada);
-        
-        
-        
+
         total = total - totalPorProducto;
         descuento = descuento - descuentoPorProducto;
         isv = total*0.15;
         subTotal = total - isv;
+        
+        
+        modelo = (DefaultTableModel) jtablaProductosAVender.getModel();
+        modelo.removeRow(filaSeleccinada);
+        
         setValoresVenta();
+        }
+        
         //jtfNumeoFactura.setText(String.valueOf(total));
     }//GEN-LAST:event_jbEliminarFilaActionPerformed
 

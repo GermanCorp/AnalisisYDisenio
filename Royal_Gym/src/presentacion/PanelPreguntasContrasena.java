@@ -186,26 +186,16 @@ public class PanelPreguntasContrasena extends javax.swing.JFrame
             JOptionPane.showMessageDialog(this, "Debe responder la pregunta 2", "Error!", JOptionPane.ERROR_MESSAGE);
         }  
         
-        PanelNuevaClave PNC = new PanelNuevaClave();
-        PNC.setVisible(true);
-        
-        /*if(Conexion.nuevaContraseña(txtPregunta1.getText(), txtPregunta2.getText() == 1)))
+        /*
+        if(Conexion.nuevaContraseña(txtPregunta1.getText(), txtPregunta2.getText() == 1)))
         {
             txtPregunta1.setText("");
             txtPregunta2.setText("");
             PanelNuevaClave PNC = new PanelNuevaClave();
             PNC.setVisible(true);
             
-        }*/
-        
-         
-        
-            
-        
-        
-       
-            
-        
+        }
+        */ 
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void txtPregunta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPregunta1ActionPerformed

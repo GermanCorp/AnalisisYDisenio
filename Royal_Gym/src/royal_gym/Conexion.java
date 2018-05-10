@@ -556,7 +556,7 @@ public class Conexion {
     }
     
     // metodo para ingresar a ventana principal desde login
-    public static int ingreso(String usuario, String clave) {
+    public static void ingreso(String usuario, String clave) {
 
 		int resultado = 0;
 		String sql = "select * from login where usuario=? and contraseña=sha1(?)";
@@ -584,7 +584,7 @@ public class Conexion {
 				ex.printStackTrace();
 			}
 		}
-		return resultado;
+		
 	}
     
     //metodo para insertar un nuevo usuario a la base de datos
@@ -710,6 +710,7 @@ public class Conexion {
           }
        
     }
+        //Metodo Nueva Contrasena para acceder a Panel Nueva Clave
         public static void nuevaContraseña (String PreguntaA,String PreguntaB)
         {
             int resultado = 0;

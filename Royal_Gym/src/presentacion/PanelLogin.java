@@ -281,13 +281,11 @@ public class PanelLogin extends javax.swing.JFrame {
         } else if (contraseña.getPassword().length==0) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
         }
-        else if (LoginEntrar.ingreso(usuario.getText(),String.valueOf(contraseña.getPassword())) != 1) {
-             lblSalida.setText("Usuario/Contraseña Incorrecta");
+           else if (LoginEntrar.ingreso(usuario.getText(),String.valueOf(contraseña.getPassword())) == 1) {
+            // lblSalida.setText("Usuario/Contraseña Incorrecta");
              //JOptionPane.showMessageDialog(null, "Usuario/Contrasena Incorrecta");
-             usuario.setText("");
-            contraseña.setText("");
-          
-				   try {
+            
+            try {
                  UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                  //UIManager.setLookAndFeel(javax.swing.plaf.nimbus.NimbusLookAndFeel.class.getName());
              } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
@@ -302,8 +300,8 @@ public class PanelLogin extends javax.swing.JFrame {
              ventana.setDefaultCloseOperation(EXIT_ON_CLOSE);
              dispose();
                                 
-        usuario.setText("");
-        contraseña.setText("");
+        /*usuario.setText("");
+        contraseña.setText("");*/
                                          
 	} 
         

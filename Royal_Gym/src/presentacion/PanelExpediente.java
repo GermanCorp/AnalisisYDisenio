@@ -8,6 +8,7 @@ package presentacion;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
+import static presentacion.PanelRegistroPagos.tablaPagos;
 import static presentacion.PanelVentas.jtablaProductosAVender;
 import royal_gym.Conexion;
 import royal_gym.Expediente;
@@ -20,19 +21,11 @@ public class PanelExpediente extends javax.swing.JPanel {
 
     final Conexion con;
     Expediente expediente= new Expediente();
-    PanelRegistroClientes pr = new PanelRegistroClientes();
+   
     
-  
+    public static String id;
     
-    private String nombre;
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    
    
     
     private final String[] columnasCambios = {
@@ -53,14 +46,73 @@ public class PanelExpediente extends javax.swing.JPanel {
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(),columnasCambios);
         tablacambioscorporales.setModel(modeloTablaPagos);  
         
+        System.out.println(id);
+        
+        
         try{
         Statement statement = Conexion.getConexion().createStatement();
-                String consulta2 = "Select nombres ||' '||apellidos as NombreCompleto FROM cliente WHERE nombres ||' '||apellidos = '" +pr.nombreCliente+ "'  ";        
+                String consulta2 = "select cl.nombres ||' '||apellidos As nombreCompleto, "
+                        + "cl.FechaNacimiento,cl.Altura,cl.Peso, \n" +
+                        "cl.TelefonoTrabajo,cl.Direccion,cl.MejorHoraParaLlamar,cl.FechaDeInicio,\n" +
+                        "cl.TelefonoCasa,cl.Celular,cl.Edad,cl.PesoIdeal,cl.PesoQuiereSubir,\n" +
+                        "cl.PesoQuiereBajar,cl.PesoQuiereMantener, ps.Gastritis, ps.Colitis, \n" +
+                        "ps.Estreñimiento, ps.Ulcera,ps.Cansancio, ps.Diabetes, ps.PresionAlta,\n" +
+                        "ps.Colesterol, ps.Alergias,ps.Estres, ps.Dolordecabeza, ps.Dolordecuello,\n" +
+                        "ps.Doloresdeespalda,ps.Artritis,ps.Ansiedad,ps.EmbarazoLactancia,\n" +
+                        "ps.Retenciondeliquidos,ps.Malacirculacion,ps.Calambres,ps.Varices,ps.Doloresdehueso,\n" +
+                        "ps.Celulitis,ps.Problemadevesicula,ps.Problemaderiñon,\n" +
+                        "cp.peso, cp.imc,cp.porcentajedegrasa, cp.porcentajedemusculo, cp.calorias,\n" +
+                        "cp.edad, cp.grasaviceral from problemasdesalud ps\n" +
+                        "left join cambioscorporales cp on ps.id_cliente=cp.id_cliente left join cliente cl  on \n" +
+                        "ps.id_cliente = cl.idCliente where ps.id_cliente='"+id+"' ";      
                 ResultSet resultado2 = statement.executeQuery(consulta2);
                 
+              System.out.println(consulta2);  
                   while (resultado2.next()) {
                       
                       jTextFieldnombre.setText(resultado2.getString("NombreCompleto"));
+                      jTextFieldfechanacimiento.setText(resultado2.getString("FechaNacimiento"));
+                      jTextFieldtelefonotrab.setText(resultado2.getString("TelefonoTrabajo"));
+                      jTextFieldcelular.setText(resultado2.getString("Celular"));
+                      jTextFielddireccion.setText(resultado2.getString("Direccion"));
+                      jTextFieldedad.setText(resultado2.getString("Edad"));
+                      jTextFieldestatura.setText(resultado2.getString("Altura"));
+                      jTextFieldpeso.setText(resultado2.getString("Peso"));
+                      jTextFieldmejorhoralla.setText(resultado2.getString("MejorHoraParaLlamar"));
+                      jTextFieldfechainicio.setText(resultado2.getString("FechaDeInicio"));
+                      jTextFieldtelefonocasa.setText(resultado2.getString("TelefonoCasa"));
+                      jTextFieldpesoideal.setText(resultado2.getString("PesoIdeal"));
+                      jCBoxBajar.setSelected(resultado2.getBoolean("PesoQuiereBajar"));
+                      jCBoxsubir.setSelected(resultado2.getBoolean("PesoQuiereSubir"));
+                      jCBoxmantener.setSelected(resultado2.getBoolean("PesoQuiereMantener"));
+                      
+                      
+                      jCBoxalergias.setSelected(resultado2.getBoolean("Alergias"));
+                     // jCBoxanemia.setSelected(resultado2.getBoolean("Anemia"));
+                      jCBoxansiedad.setSelected(resultado2.getBoolean("Ansiedad"));
+                      jCBoxartritis.setSelected(resultado2.getBoolean("Artritis"));
+                      jCBoxcalambres.setSelected(resultado2.getBoolean("Calambres"));
+                      jCBoxcansancio.setSelected(resultado2.getBoolean("Cansancio"));
+                      jCBoxcelulitis.setSelected(resultado2.getBoolean("Celulitis"));
+                      jCBoxcolesterol.setSelected(resultado2.getBoolean("Colesterol"));
+                      jCBoxcolitis.setSelected(resultado2.getBoolean("Colitis"));
+                      jCBoxdiabetes.setSelected(resultado2.getBoolean("Diabetes"));
+                      jCBoxdolordecabeza.setSelected(resultado2.getBoolean("Dolordecabeza"));
+                      jCBoxdolordecuello.setSelected(resultado2.getBoolean("Dolordecuello"));
+                      jCBoxdoloresdeespalda.setSelected(resultado2.getBoolean("Doloresdeespalda"));
+                      jCBoxdoloresdehueso.setSelected(resultado2.getBoolean("Doloresdehueso"));
+                      jCBoxembarazo.setSelected(resultado2.getBoolean("EmbarazoLactancia"));
+                      jCBoxestrenimiento.setSelected(resultado2.getBoolean("Estreñimiento"));
+                      jCBoxestres.setSelected(resultado2.getBoolean("Estres"));
+                      jCBoxgastritis.setSelected(resultado2.getBoolean("Gastritis"));
+                      jCBoxmalacirculacion.setSelected(resultado2.getBoolean("Malacirculacion"));
+                      jCBoxpresionalta.setSelected(resultado2.getBoolean("PresionAlta"));
+                      jCBoxproblemasderinon.setSelected(resultado2.getBoolean("Problemaderiñon"));
+                      jCBoxproblemasdevesicula.setSelected(resultado2.getBoolean("Problemadevesicula"));
+                      jCBoxretenciondeliquidos.setSelected(resultado2.getBoolean("Retenciondeliquidos"));
+                      jCBoxulcera.setSelected(resultado2.getBoolean("Ulcera"));
+                      jCBoxvarices.setSelected(resultado2.getBoolean("Varices"));
+                    
                       
                   }
         }catch(Exception ex){
@@ -70,9 +122,7 @@ public class PanelExpediente extends javax.swing.JPanel {
     }
    
    
-    public void setNombreCliente(){
-        jTextFieldnombre.setText(getNombre());
-    }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -135,7 +185,6 @@ public class PanelExpediente extends javax.swing.JPanel {
         jCBoxanemia = new javax.swing.JCheckBox();
         jCBoxproblemasdevesicula = new javax.swing.JCheckBox();
         jCBoxproblemasderinon = new javax.swing.JCheckBox();
-        jCheckBox28 = new javax.swing.JCheckBox();
         jCBoxcelulitis = new javax.swing.JCheckBox();
         PanelCambiosCorporales = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -164,39 +213,51 @@ public class PanelExpediente extends javax.swing.JPanel {
         PanelDatosCliente.setBackground(new java.awt.Color(85, 96, 128));
         PanelDatosCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
+        labelnombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelnombre.setForeground(new java.awt.Color(255, 255, 255));
         labelnombre.setText("Nombre:");
 
+        labeltelefonotrabajo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labeltelefonotrabajo.setForeground(new java.awt.Color(255, 255, 255));
         labeltelefonotrabajo.setText("Telefono Trabajo:");
 
+        labeldireccion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labeldireccion.setForeground(new java.awt.Color(255, 255, 255));
         labeldireccion.setText("Direccion:");
 
+        labelhoraparallamar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelhoraparallamar.setForeground(new java.awt.Color(255, 255, 255));
         labelhoraparallamar.setText("Mejor hora para llamar:");
 
+        labelestatura.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelestatura.setForeground(new java.awt.Color(255, 255, 255));
         labelestatura.setText("Estatura:");
 
+        labelfechainicio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelfechainicio.setForeground(new java.awt.Color(255, 255, 255));
         labelfechainicio.setText("Fecha de Inicio:");
 
+        labeltelefonocasa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labeltelefonocasa.setForeground(new java.awt.Color(255, 255, 255));
         labeltelefonocasa.setText("Telefono casa:");
 
+        labelcelular.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelcelular.setForeground(new java.awt.Color(255, 255, 255));
         labelcelular.setText("Celular:");
 
+        labelfechanacimiento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelfechanacimiento.setForeground(new java.awt.Color(255, 255, 255));
         labelfechanacimiento.setText("Fecha de nacimiento:");
 
+        labelpeso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelpeso.setForeground(new java.awt.Color(255, 255, 255));
         labelpeso.setText("Peso:");
 
+        labeledad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labeledad.setForeground(new java.awt.Color(255, 255, 255));
         labeledad.setText("Edad:");
 
+        labelpesoideal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelpesoideal.setForeground(new java.awt.Color(255, 255, 255));
         labelpesoideal.setText("Peso Ideal:");
 
@@ -347,60 +408,62 @@ public class PanelExpediente extends javax.swing.JPanel {
             PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                        .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(labelhoraparallamar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldmejorhoralla))
-                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(labeldireccion)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFielddireccion))
-                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(labeltelefonotrabajo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldtelefonotrab))
-                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(labelnombre)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                         .addComponent(labelestatura)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldestatura, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
+                        .addComponent(jTextFieldestatura, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
                         .addComponent(labelpeso)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldpeso, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addComponent(jTextFieldpeso, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosClienteLayout.createSequentialGroup()
+                            .addComponent(labelhoraparallamar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextFieldmejorhoralla))
+                        .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                            .addComponent(labeldireccion)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextFielddireccion))
+                        .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                            .addComponent(labeltelefonotrabajo)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextFieldtelefonotrab))
+                        .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                            .addComponent(labelnombre)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextFieldnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                                .addComponent(labelfechainicio)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldfechainicio))
+                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                                .addComponent(labeltelefonocasa)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldtelefonocasa))
+                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                                .addComponent(labelcelular)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldcelular))
+                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                                .addComponent(labelfechanacimiento)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldfechanacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
                         .addComponent(labeledad)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                        .addComponent(labelfechainicio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldfechainicio))
-                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                        .addComponent(labeltelefonocasa)
+                        .addComponent(jTextFieldedad, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelpesoideal, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldtelefonocasa))
-                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                        .addComponent(labelcelular)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldcelular))
-                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                        .addComponent(jTextFieldedad, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(labelpesoideal, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldpesoideal, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                        .addComponent(labelfechanacimiento)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldfechanacimiento)))
+                        .addComponent(jTextFieldpesoideal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         PanelDatosClienteLayout.setVerticalGroup(
@@ -410,49 +473,52 @@ public class PanelExpediente extends javax.swing.JPanel {
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelnombre)
                     .addComponent(labelfechainicio)
-                    .addComponent(jTextFieldnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldfechainicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldfechainicio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labeltelefonotrabajo)
                     .addComponent(labeltelefonocasa)
-                    .addComponent(jTextFieldtelefonotrab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldtelefonocasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldtelefonotrab, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldtelefonocasa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labeldireccion)
                     .addComponent(labelcelular)
-                    .addComponent(jTextFielddireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldcelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFielddireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldcelular, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelhoraparallamar)
                     .addComponent(labelfechanacimiento)
-                    .addComponent(jTextFieldmejorhoralla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldfechanacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldmejorhoralla, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldfechanacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelestatura)
                     .addComponent(labelpeso)
                     .addComponent(labeledad)
                     .addComponent(labelpesoideal)
-                    .addComponent(jTextFieldpeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldpesoideal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldestatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldpeso, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldedad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldpesoideal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldestatura, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         PanelProblemasdeSalud.setBackground(new java.awt.Color(85, 96, 128));
         PanelProblemasdeSalud.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Problemas de salud", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
+        labelpesosquiere.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelpesosquiere.setForeground(new java.awt.Color(255, 255, 255));
         labelpesosquiere.setText("Peso Quiere:");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Problemas de salud:");
 
         jCBoxBajar.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxBajar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxBajar.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxBajar.setText("Bajar");
         jCBoxBajar.addActionListener(new java.awt.event.ActionListener() {
@@ -462,6 +528,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         });
 
         jCBoxmantener.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxmantener.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxmantener.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxmantener.setText("Mantener");
         jCBoxmantener.addActionListener(new java.awt.event.ActionListener() {
@@ -471,6 +538,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         });
 
         jCBoxgastritis.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxgastritis.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxgastritis.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxgastritis.setText("Gastritis");
         jCBoxgastritis.addActionListener(new java.awt.event.ActionListener() {
@@ -480,6 +548,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         });
 
         jCBoxcolitis.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxcolitis.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxcolitis.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxcolitis.setText("Colitis");
         jCBoxcolitis.addActionListener(new java.awt.event.ActionListener() {
@@ -489,6 +558,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         });
 
         jCBoxsubir.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxsubir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxsubir.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxsubir.setText("Subir");
         jCBoxsubir.addActionListener(new java.awt.event.ActionListener() {
@@ -498,6 +568,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         });
 
         jCBoxestrenimiento.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxestrenimiento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxestrenimiento.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxestrenimiento.setText("Estrenimiento");
         jCBoxestrenimiento.addActionListener(new java.awt.event.ActionListener() {
@@ -507,42 +578,52 @@ public class PanelExpediente extends javax.swing.JPanel {
         });
 
         jCBoxcansancio.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxcansancio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxcansancio.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxcansancio.setText("Cansancio");
 
         jCBoxulcera.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxulcera.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxulcera.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxulcera.setText("Ulcera");
 
         jCBoxdiabetes.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxdiabetes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxdiabetes.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxdiabetes.setText("Diabetes");
 
         jCBoxpresionalta.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxpresionalta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxpresionalta.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxpresionalta.setText("Presion Alta");
 
         jCBoxcolesterol.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxcolesterol.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxcolesterol.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxcolesterol.setText("Colesterol");
 
         jCBoxalergias.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxalergias.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxalergias.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxalergias.setText("Alergias");
 
         jCBoxestres.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxestres.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxestres.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxestres.setText("Estres");
 
         jCBoxdolordecabeza.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxdolordecabeza.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxdolordecabeza.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxdolordecabeza.setText("Dolor de Cabeza");
 
         jCBoxdolordecuello.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxdolordecuello.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxdolordecuello.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxdolordecuello.setText("Dolor de Cuello");
 
         jCBoxdoloresdeespalda.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxdoloresdeespalda.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxdoloresdeespalda.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxdoloresdeespalda.setText("Dolores de Espalda");
         jCBoxdoloresdeespalda.addActionListener(new java.awt.event.ActionListener() {
@@ -552,6 +633,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         });
 
         jCBoxartritis.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxartritis.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxartritis.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxartritis.setText("Artritis");
         jCBoxartritis.addActionListener(new java.awt.event.ActionListener() {
@@ -561,6 +643,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         });
 
         jCBoxansiedad.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxansiedad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxansiedad.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxansiedad.setText("Ansiedad");
         jCBoxansiedad.addActionListener(new java.awt.event.ActionListener() {
@@ -570,6 +653,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         });
 
         jCBoxembarazo.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxembarazo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxembarazo.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxembarazo.setText("Embarazo/Lactancia");
         jCBoxembarazo.addActionListener(new java.awt.event.ActionListener() {
@@ -579,22 +663,27 @@ public class PanelExpediente extends javax.swing.JPanel {
         });
 
         jCBoxretenciondeliquidos.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxretenciondeliquidos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxretenciondeliquidos.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxretenciondeliquidos.setText("Retencion de Liquidos");
 
         jCBoxmalacirculacion.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxmalacirculacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxmalacirculacion.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxmalacirculacion.setText("Mala Circulacion");
 
         jCBoxcalambres.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxcalambres.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxcalambres.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxcalambres.setText("Calambres");
 
         jCBoxvarices.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxvarices.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxvarices.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxvarices.setText("Varices");
 
         jCBoxdoloresdehueso.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxdoloresdehueso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxdoloresdehueso.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxdoloresdehueso.setText("Dolores de Hueso");
         jCBoxdoloresdehueso.addActionListener(new java.awt.event.ActionListener() {
@@ -604,14 +693,17 @@ public class PanelExpediente extends javax.swing.JPanel {
         });
 
         jCBoxanemia.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxanemia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxanemia.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxanemia.setText("Anemia");
 
         jCBoxproblemasdevesicula.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxproblemasdevesicula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxproblemasdevesicula.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxproblemasdevesicula.setText("Problemas de Vesicula");
 
         jCBoxproblemasderinon.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxproblemasderinon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxproblemasderinon.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxproblemasderinon.setText("Problemas de Rinon");
         jCBoxproblemasderinon.addActionListener(new java.awt.event.ActionListener() {
@@ -620,16 +712,8 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
-        jCheckBox28.setBackground(new java.awt.Color(85, 96, 128));
-        jCheckBox28.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox28.setText("Celulitis");
-        jCheckBox28.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox28ActionPerformed(evt);
-            }
-        });
-
         jCBoxcelulitis.setBackground(new java.awt.Color(85, 96, 128));
+        jCBoxcelulitis.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxcelulitis.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxcelulitis.setText("Celulitis");
 
@@ -657,23 +741,17 @@ public class PanelExpediente extends javax.swing.JPanel {
                             .addComponent(jCBoxdiabetes)
                             .addComponent(jCBoxcansancio)
                             .addComponent(jCBoxpresionalta))
+                        .addGap(100, 100, 100)
                         .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelProblemasdeSaludLayout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jCBoxestres, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jCBoxdolordecabeza, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addComponent(jCBoxartritis)
-                                    .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jCBoxdoloresdeespalda, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jCBoxdolordecuello))
-                                    .addComponent(jCBoxcolesterol))
-                                .addGap(20, 20, 20))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelProblemasdeSaludLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCBoxalergias, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45)))
+                            .addComponent(jCBoxdolordecabeza)
+                            .addComponent(jCBoxartritis)
+                            .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jCBoxdoloresdeespalda, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jCBoxdolordecuello))
+                            .addComponent(jCBoxcolesterol)
+                            .addComponent(jCBoxestres, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCBoxalergias, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(100, 100, 100)
                         .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCBoxvarices)
                             .addComponent(jCBoxretenciondeliquidos)
@@ -682,14 +760,13 @@ public class PanelExpediente extends javax.swing.JPanel {
                             .addComponent(jCBoxansiedad)
                             .addComponent(jCBoxdoloresdehueso)
                             .addComponent(jCBoxcalambres))))
-                .addGap(20, 20, 20)
+                .addGap(100, 100, 100)
                 .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox28)
                     .addComponent(jCBoxproblemasdevesicula)
                     .addComponent(jCBoxanemia)
                     .addComponent(jCBoxproblemasderinon)
                     .addComponent(jCBoxcelulitis))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(367, Short.MAX_VALUE))
         );
         PanelProblemasdeSaludLayout.setVerticalGroup(
             PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -713,31 +790,26 @@ public class PanelExpediente extends javax.swing.JPanel {
                     .addGroup(PanelProblemasdeSaludLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jLabel2)
-                        .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelProblemasdeSaludLayout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jCBoxgastritis)
-                                    .addComponent(jCBoxcolesterol)
-                                    .addComponent(jCBoxansiedad)
-                                    .addComponent(jCBoxanemia))
-                                .addGap(10, 10, 10)
-                                .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jCBoxcolitis)
-                                    .addComponent(jCBoxalergias)
-                                    .addComponent(jCBoxembarazo)
-                                    .addComponent(jCBoxproblemasdevesicula))
-                                .addGap(10, 10, 10)
-                                .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jCBoxestrenimiento)
-                                    .addComponent(jCBoxestres)
-                                    .addComponent(jCBoxretenciondeliquidos)
-                                    .addComponent(jCBoxproblemasderinon))
-                                .addGap(10, 10, 10)
-                                .addComponent(jCBoxdolordecabeza))
-                            .addGroup(PanelProblemasdeSaludLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jCheckBox28)))
+                        .addGap(20, 20, 20)
+                        .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCBoxgastritis)
+                            .addComponent(jCBoxcolesterol)
+                            .addComponent(jCBoxansiedad)
+                            .addComponent(jCBoxanemia))
+                        .addGap(10, 10, 10)
+                        .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCBoxcolitis)
+                            .addComponent(jCBoxalergias)
+                            .addComponent(jCBoxembarazo)
+                            .addComponent(jCBoxproblemasdevesicula))
+                        .addGap(10, 10, 10)
+                        .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCBoxestrenimiento)
+                            .addComponent(jCBoxestres)
+                            .addComponent(jCBoxretenciondeliquidos)
+                            .addComponent(jCBoxproblemasderinon))
+                        .addGap(10, 10, 10)
+                        .addComponent(jCBoxdolordecabeza)
                         .addGap(10, 10, 10)
                         .addGroup(PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCBoxdolordecuello)
@@ -758,6 +830,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         PanelCambiosCorporales.setBackground(new java.awt.Color(85, 96, 128));
         PanelCambiosCorporales.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cambios Corporales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Peso:");
 
@@ -767,6 +840,7 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("IMC:");
 
@@ -776,18 +850,29 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("%Grasa:");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("%Musculo:");
 
+        jtfmusculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfmusculoActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Calorias:");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Edad/B:");
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Grasa Viceral:");
 
@@ -826,8 +911,8 @@ public class PanelExpediente extends javax.swing.JPanel {
                     .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfpeso, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                        .addComponent(jtfpeso, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -836,7 +921,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                 .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jtfgrasaviceral)
                     .addComponent(jtfedad)
-                    .addComponent(jtfcalorias, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
+                    .addComponent(jtfcalorias, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
             .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
                 .addContainerGap()
@@ -851,8 +936,8 @@ public class PanelExpediente extends javax.swing.JPanel {
                         .addGap(10, 10, 10)
                         .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jtfpeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfcalorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtfpeso, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfcalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCambiosCorporalesLayout.createSequentialGroup()
                         .addContainerGap()
@@ -860,20 +945,20 @@ public class PanelExpediente extends javax.swing.JPanel {
                         .addGap(18, 18, 18)))
                 .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jtfimc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfimc, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfedad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(20, 20, 20)
                 .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jtfgrasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfgrasa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jtfgrasaviceral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfgrasaviceral, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jtfmusculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jtfmusculo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -926,7 +1011,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addComponent(botoncancelarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1035, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1183,10 +1268,6 @@ public class PanelExpediente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextFieldtelefonotrabKeyTyped
 
-    private void jCheckBox28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox28ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox28ActionPerformed
-
     private void jTextFieldtelefonocasaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonocasaKeyTyped
         // TODO add your handling code here:
         if(!Character.isDigit(evt.getKeyChar())){
@@ -1205,6 +1286,10 @@ public class PanelExpediente extends javax.swing.JPanel {
     private void jCBoxproblemasderinonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxproblemasderinonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBoxproblemasderinonActionPerformed
+
+    private void jtfmusculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfmusculoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfmusculoActionPerformed
      
   
     
@@ -1245,7 +1330,6 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JCheckBox jCBoxsubir;
     private javax.swing.JCheckBox jCBoxulcera;
     private javax.swing.JCheckBox jCBoxvarices;
-    private javax.swing.JCheckBox jCheckBox28;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
