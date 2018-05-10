@@ -27,8 +27,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     Clientes clientes = new Clientes();
     private String idCliente;
     
-    
-    public String nombreCliente;
+ 
     
     
     //Columnas de la tabla Clientes
@@ -326,7 +325,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCancelarRegistroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptarRegistroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -682,12 +681,16 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jMenuItemExpedienteActionPerformed
 
     private void jMenuItemExpedienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemExpedienteMousePressed
+           
+        int filaSeleccionada = tablaClientes.getSelectedRow();
+        PanelExpediente rc = new PanelExpediente();
+        rc.id = tablaClientes.getValueAt(filaSeleccionada, 0).toString();
+        
         
         jPopupMenu1.setVisible(false);
         new Expediente(new javax.swing.JDialog(), true).setVisible(true);
-        
-        int filaSeleccionada = tablaClientes.getSelectedRow();
-          nombreCliente = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
+     
+         
         
        
        
