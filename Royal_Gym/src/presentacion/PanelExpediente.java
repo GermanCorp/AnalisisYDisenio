@@ -1115,7 +1115,10 @@ public class PanelExpediente extends javax.swing.JPanel {
             jTextFieldcelular.getText(),
             jtfedad.getText(),
             jTextFieldpesoideal.getText(),
-            jCBoxsubir.isSelected(), jCBoxBajar.isSelected(), jCBoxmantener.isSelected());
+            jCBoxsubir.isSelected(), 
+            jCBoxBajar.isSelected());
+           // jCBoxmantener.isSelected()
+       
         
         
         expediente.insertarCambiosCorporales(
@@ -1125,7 +1128,8 @@ public class PanelExpediente extends javax.swing.JPanel {
         jtfmusculo.getText(),
         jtfcalorias.getText(),
         jtfedad.getText(),
-        jtfgrasaviceral.getText());
+        jtfgrasaviceral.getText(),
+        id);
        
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(),columnasCambios);
         tablacambioscorporales.setModel(modeloTablaPagos);

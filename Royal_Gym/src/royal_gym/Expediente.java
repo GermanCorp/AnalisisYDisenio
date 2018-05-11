@@ -92,9 +92,9 @@ public class Expediente {
     }// fin de insertar pago
     
     
-    public void insertarCambiosCorporales(String peso,String imc, String grasa, String musculo,String calorias, String edad, String grasaviceral) {
+    public void insertarCambiosCorporales(String id,String peso,String imc, String grasa, String musculo,String calorias, String edad, String grasaviceral) {
         try {
-            String sql = "insert into cambioscorporales(peso, imc, porcentajedegrasa , porcentajedemusculo, calorias, edad , grasaviceral) values(?,?,?,?,?,?,?)";
+            String sql = "insert into cambioscorporales(peso, imc, porcentajedegrasa , porcentajedemusculo, calorias, edad , grasaviceral, id_cliente) values(?,?,?,?,?,?,?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             
             consulta.setString(1, peso);
@@ -104,6 +104,8 @@ public class Expediente {
             consulta.setString(5, calorias);
             consulta.setString(6, edad);
             consulta.setString(7, grasaviceral);
+            consulta.setString(8, id);
+            
             consulta.execute();
 
         } catch (Exception e) {
@@ -148,11 +150,11 @@ public class Expediente {
     
     public void actualizarTablaClientes(String id, String telefonoTra, String direccion, String mejorHoraParaLlamar, 
             String fechaInicio, String telefonoCasa , String celular, String edad, String pesoIdeal, Boolean subir, 
-            Boolean bajar, Boolean mantener){
+            Boolean bajar){
         try {
             String sql = "update cliente set TelefonoTrabajo = ?, Direccion = ?, MejorHoraParaLlamar = ?, FechaDeInicio = ?,"
                     + " TelefonoCasa = ? , Celular = ? , Edad = ? , PesoIdeal = ? , PesoQuiereSubir = ?,PesoQuiereBajar = ? "
-                    + "PesoQuiereMantener = ? where idCliente = ?";
+                    + " where idCliente = ?";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, telefonoTra);
             consulta.setString(2, direccion);
@@ -164,7 +166,7 @@ public class Expediente {
             consulta.setString(8, pesoIdeal);
             consulta.setBoolean(9, subir);
             consulta.setBoolean(10, bajar);
-            consulta.setBoolean(11, mantener);
+            //consulta.setBoolean(11, mantener);
             consulta.setString(12, id);
             consulta.execute();
 

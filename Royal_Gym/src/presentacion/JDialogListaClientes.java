@@ -25,6 +25,7 @@ import royal_gym.Conexion;
 public class JDialogListaClientes extends javax.swing.JDialog {
     
   
+    String nombre = "";
     private final Conexion con;
     Clientes clientes = new Clientes();
     PanelRegistroPagos pagos;
@@ -181,9 +182,11 @@ public class JDialogListaClientes extends javax.swing.JDialog {
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
             doClose(RET_OK);
-            int filaSeleccionada = jTableClientes.getSelectedRow();
-            String nombreCliente = jTableClientes.getValueAt(filaSeleccionada, 1).toString();
            
+            int filaSeleccionada = jTableClientes.getSelectedRow();
+            nombre  = jTableClientes.getValueAt(filaSeleccionada, 1).toString();
+            PanelRegistroPagos pago = new PanelRegistroPagos(nombre);
+            pago.setNombreCliente();
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
