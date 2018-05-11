@@ -42,7 +42,7 @@ public class PreguntasContrasenas
     public static void preguntasContraseña(String PreguntaA,String PreguntaB)
     {
         int resultado = 0;
-        String SSQL = "SELECT * from Login Where Cual es el nombre de tu mascota = ? AND Cual es el nombre de tu madre = ?";
+        String SSQL = "SELECT * from Login Where Cual es el nombre_mascota = ? AND Cual es el nombre_madre = ?";
         Connection conect = null;
         
         try{

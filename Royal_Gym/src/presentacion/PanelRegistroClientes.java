@@ -80,7 +80,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             }
         };
         jtfBuscarCliente = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnEliminarCliente = new javax.swing.JButton();
 
         jMenuItemModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/jpop_modificar.png"))); // NOI18N
         jMenuItemModificar.setText("Modificar");
@@ -387,11 +387,11 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/btn_eliminar.png"))); // NOI18N
-        jButton1.setText("Eliminar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/btn_eliminar.png"))); // NOI18N
+        btnEliminarCliente.setText("Eliminar");
+        btnEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnEliminarClienteActionPerformed(evt);
             }
         });
 
@@ -408,7 +408,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                         .addGap(119, 119, 119))
                     .addGroup(PanelTablaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(btnEliminarCliente)))
                 .addGap(20, 20, 20))
         );
         PanelTablaLayout.setVerticalGroup(
@@ -419,7 +419,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
-                .addComponent(jButton1)
+                .addComponent(btnEliminarCliente)
                 .addContainerGap())
         );
 
@@ -446,6 +446,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRegistroClienteActionPerformed
+        btnEliminarCliente.setEnabled(true);
         jtfNombreCliente.setText("");
         jtfApellidoCliente.setText("");
         jdcFecha.setDate(null);
@@ -552,6 +553,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
            
             } else if(evt.getActionCommand().equals("Modificar")){
                
+                btnEliminarCliente.setEnabled(true);
                 clientes.modificarClientes(
                     idCliente,
                     jtfNombreCliente.getText(),
@@ -659,6 +661,28 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     private void jMenuItemModificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemModificarMousePressed
         // TODO add your handling code here:
         
+        btnEliminarCliente.setEnabled(false);
+             btnAceptarRegistroCliente.setText("Modificar");
+             btnAceptarRegistroCliente.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_modificar.png")));
+             btnCancelarRegistroCliente.setText("Cancelar");
+             btnCancelarRegistroCliente.setIcon(new ImageIcon(Class.class.getResource("/iconos/Cancelar.png")));
+             
+             int filaseleccionada = tablaClientes.getSelectedRow();
+             idCliente = (tablaClientes.getValueAt(filaseleccionada, 0).toString());
+             
+             jtfNombreCliente.setText(tablaClientes.getValueAt(filaseleccionada, 1).toString());
+             jtfApellidoCliente.setText(tablaClientes.getValueAt(filaseleccionada, 2).toString());
+             String date = tablaClientes.getValueAt(filaseleccionada, 3).toString();
+             java.util.Date date2 = null;
+             try {
+                 date2 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+             } catch (ParseException ex) {
+                 Logger.getLogger(PanelRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
+             }
+             jdcFecha.setDate(date2);
+             jtfAltura.setText(tablaClientes.getValueAt(filaseleccionada, 4).toString());
+             jtfPeso.setText(tablaClientes.getValueAt(filaseleccionada, 5).toString());
+        
     }//GEN-LAST:event_jMenuItemModificarMousePressed
 
     private void jMenuItemEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemEliminarMousePressed
@@ -696,7 +720,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
        
     }//GEN-LAST:event_jMenuItemExpedienteMousePressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteActionPerformed
         int filaSeleccionada = tablaClientes.getSelectedRow();
         
         if(filaSeleccionada == -1){
@@ -714,7 +738,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             }
         }
             
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnEliminarClienteActionPerformed
 
     private void jtfBuscarClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfBuscarClienteMousePressed
         
@@ -729,7 +753,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
          if(evt.getClickCount()==2)
          {
             
-            
+            btnEliminarCliente.setEnabled(false);
              btnAceptarRegistroCliente.setText("Modificar");
              btnAceptarRegistroCliente.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_modificar.png")));
              btnCancelarRegistroCliente.setText("Cancelar");
@@ -759,7 +783,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     private javax.swing.JPanel PanelTabla;
     private javax.swing.JButton btnAceptarRegistroCliente;
     private javax.swing.JButton btnCancelarRegistroCliente;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnEliminarCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

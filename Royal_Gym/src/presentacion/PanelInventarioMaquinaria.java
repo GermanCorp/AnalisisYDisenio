@@ -364,7 +364,8 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
                 String nombremaquina = tablaInventarioEquipo.getValueAt(r, 1).toString();
                 
                //Metodo para modoficar los inventarios de equipos
-             im.ModificarInventario(jtfNombreEquipo.getText(),
+             im.ModificarInventario(
+                     jtfNombreEquipo.getText(),
                      jtfCantidadEquipo.getText(), 
                      taDescripcionEquipo.getText());
                      
