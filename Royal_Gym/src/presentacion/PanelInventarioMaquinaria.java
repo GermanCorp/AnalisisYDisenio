@@ -326,7 +326,33 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfCantidadEquipoKeyTyped
 
     private void btnAceptarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarInventarioActionPerformed
-
+        
+          //validaciones para los JTextField 1,2 y textArea1 para campos vacios
+        if (jtfNombreEquipo.getText().equals("") && jtfCantidadEquipo.getText().equals("") && taDescripcionEquipo.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfNombreEquipo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar el nombre del Equipo", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfCantidadEquipo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar la cantidad de Equipo", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (taDescripcionEquipo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar la descripcion del Equipo", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else 
+        {
+            //metodogo para insertar datos de inventario equipo
+            im.insertarInventario(
+                jtfNombreEquipo.getText(),
+                jtfCantidadEquipo.getText(),
+                taDescripcionEquipo.getText());
+            
+            //vacia los JTextField
+            jtfNombreEquipo.setText("");
+            jtfCantidadEquipo.setText("");
+            taDescripcionEquipo.setText("");
+            
+             DefaultTableModel modeloTablaInventario = new DefaultTableModel(im.getInventario(), columnasInventario);
+            tablaInventarioEquipo.setModel(modeloTablaInventario);
+            
+        }
 
         int r = tablaInventarioEquipo.getSelectedRow();
 
@@ -337,10 +363,17 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
             if(mjs == JOptionPane.YES_OPTION){
                 String nombremaquina = tablaInventarioEquipo.getValueAt(r, 1).toString();
                 
-             im.ModificarInventario(jtfNombreEquipo.getText(), jtfCantidadEquipo.getText(), taDescripcionEquipo.getText(), jtfNombreEquipo.getText());
+               //Metodo para modoficar los inventarios de equipos
+             im.ModificarInventario(
+                     jtfNombreEquipo.getText(),
+                     jtfCantidadEquipo.getText(), 
+                     taDescripcionEquipo.getText());
+                     
+             
             DefaultTableModel modeloTablaInventario = new DefaultTableModel(im.getInventario(), columnasInventario);
             tablaInventarioEquipo.setModel(modeloTablaInventario);
             JOptionPane.showMessageDialog(null, "Registro modificado con exito");
+            
             jtfNombreEquipo.setText("");
             jtfCantidadEquipo.setText("");
             taDescripcionEquipo.setText("");
@@ -348,29 +381,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
             }
            
         }
-        //validaciones para los JTextField 1,2 y textArea1 para campos vacios
-        if (jtfNombreEquipo.getText().equals("") && jtfCantidadEquipo.getText().equals("") && taDescripcionEquipo.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (jtfNombreEquipo.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe Ingresar el nombre del Equipo", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jtfCantidadEquipo.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe Ingresar la cantidad de Equipo", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (taDescripcionEquipo.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe Ingresar la descripcion del Equipo", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else {
-            //metodogo getText para cada los JTextField 1,2 y textArea1 y asi obtener el texto
-            im.insertarInventario(
-                jtfNombreEquipo.getText(),
-                jtfCantidadEquipo.getText(),
-                taDescripcionEquipo.getText());
-
-            DefaultTableModel modeloTablaInventario = new DefaultTableModel(im.getInventario(), columnasInventario);
-            tablaInventarioEquipo.setModel(modeloTablaInventario);
-
-            jtfNombreEquipo.setText("");
-            jtfCantidadEquipo.setText("");
-            taDescripcionEquipo.setText("");
-        }
+      
     }//GEN-LAST:event_btnAceptarInventarioActionPerformed
 
     private void btnCancelarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarInventarioActionPerformed

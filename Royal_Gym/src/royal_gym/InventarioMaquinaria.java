@@ -100,20 +100,19 @@ public class InventarioMaquinaria
         return datosInventario;
     }
 
-    // modificar Inventario
-    public void ModificarInventario(String nombremaquina, String cantidad, String descripcion, String nombre) {
-
+  // modificar Inventario
+    public void  ModificarInventario(String nombre, String cantidad, String descripcion)
+{
         try {
-            String sql = "update inventario set nombre = ?, cantidad = ?, descripcion = ? where nombre = ?";
+            String sql = "update cliente set nombre = ?, cantidad = ?, descripcion = ?,where cod_equipo = ?";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
-            consulta.setString(1, nombremaquina);
+            consulta.setString(1, nombre);
             consulta.setString(2, cantidad);
             consulta.setString(3, descripcion);
-            consulta.setString(4, nombre);
             consulta.execute();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("error en Modificar Inventario" + e.getMessage());
         }
     }
 
