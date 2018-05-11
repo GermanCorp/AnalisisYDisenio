@@ -1,10 +1,14 @@
 package presentacion;
 
 import javax.swing.JOptionPane;
+import royal_gym.ModificarContrasena;
+import royal_gym.Conexion;
 
-public class PanelNuevaClave extends javax.swing.JFrame {
+public class PanelModificarContrasena extends javax.swing.JFrame 
+{
+   Conexion con;
 
-    public PanelNuevaClave() {
+    public PanelModificarContrasena() {
         initComponents();
         setResizable(false);
         setLayout(null);
@@ -150,6 +154,12 @@ public class PanelNuevaClave extends javax.swing.JFrame {
         {
            JOptionPane.showMessageDialog(null, "Debe Ingresar la Contraseña Nueva");
         }
+        
+       else if (con.modificarContrasena(String.valueOf(jpfContraseñaNueva.getPassword())== 1)
+        {
+            
+        }
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     public static void main(String args[]) {
@@ -158,7 +168,7 @@ public class PanelNuevaClave extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PanelNuevaClave().setVisible(true);
+                new PanelModificarContrasena().setVisible(true);
             }
         });
     }

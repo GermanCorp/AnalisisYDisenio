@@ -33,9 +33,7 @@ public class Utilidad {
         Object[][] datosPago = null;
 
         try {
-            String consulta = "SELECT fecha_pago  , cliente  , monto  from pagos where fecha_pago between ? and ? "
-                    + "UNION "
-                    + "SELECT Fecha ,Descripcion , monto  from gasto where Fecha between ? and ? ";
+            String consulta = "SELECT * from Utilidad where fecha_pago between ? and ? ";
 
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setString(1, fechaInicio);
@@ -51,7 +49,7 @@ public class Utilidad {
                         new Object[]{
                             numeroLista++,
                             resultado.getString("fecha_pago"),
-                            resultado.getString("cliente"),
+                            resultado.getString("Nombre"),
                             resultado.getString("monto"),
                             
                             }
@@ -68,6 +66,7 @@ public class Utilidad {
     
     //metodo para llenar la tabla con los gastos  que hubieron  segun el rango de fecha seleccionado
     public Object[][] getGastosSeleccionados(String fechaInicio, String fechaFin) {
+        totalGastos = 0;
         Object[][] datosPago = null;
 
         try {
@@ -103,6 +102,7 @@ public class Utilidad {
 
     //metodo para llenar la tabla con los ingresos(pagos) segun el rango de fecha seleccionado
     public Object[][] getIngresosSeleccinados(String fechaInicio, String fechaFin) {
+        totalIngresos = 0;
         Object[][] datosPago = null;
 
         try {

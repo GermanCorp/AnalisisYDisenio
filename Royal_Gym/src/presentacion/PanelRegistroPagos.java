@@ -31,8 +31,8 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     int filaseleccionadatablapagos;   
     final Conexion con = new Conexion();
     Pagos pagos = new Pagos();
-    private String cliente;
     
+    public static String cliente;
     
      int d,m,a;
      int df,mf,af;
@@ -92,24 +92,13 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         
         tablaPagos.setDefaultRenderer (Object.class, new FormatoTabla());
         
-    }
-
-    public PanelRegistroPagos( String cliente) {
+        jTextFieldNombreCliente.setText(cliente);
         
-        this.cliente = cliente;
     }
 
-    public String getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(String cliente) {
-        this.cliente = cliente;
-    }
+   
     
-    public void setNombreCliente(){
-        jtfBuscarCliente.setText(getCliente());
-    }
+   
     
     
     /*
@@ -152,8 +141,8 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         jcbTiempoPago = new javax.swing.JComboBox<>();
         jlRegistroClientes1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jtfBuscarCliente = new javax.swing.JTextField();
         botonAgregarCliente = new javax.swing.JButton();
+        jTextFieldNombreCliente = new javax.swing.JTextField();
         PanelTablaPagos = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaPagos = new javax.swing.JTable(){
@@ -262,20 +251,14 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/RegistroNuevoPagos.png"))); // NOI18N
 
-        jtfBuscarCliente.setMinimumSize(new java.awt.Dimension(6, 30));
-        jtfBuscarCliente.setPreferredSize(new java.awt.Dimension(6, 23));
-        jtfBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfBuscarClienteActionPerformed(evt);
-            }
-        });
-
         botonAgregarCliente.setText("+");
         botonAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAgregarClienteActionPerformed(evt);
             }
         });
+
+        jTextFieldNombreCliente.setEditable(false);
 
         javax.swing.GroupLayout panelDatosPagoLayout = new javax.swing.GroupLayout(panelDatosPago);
         panelDatosPago.setLayout(panelDatosPagoLayout);
@@ -302,9 +285,9 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                         .addComponent(jcbTiempoPago, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jcbPagoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jlTiempoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(panelDatosPagoLayout.createSequentialGroup()
-                            .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosPagoLayout.createSequentialGroup()
+                            .addComponent(jTextFieldNombreCliente)
+                            .addGap(18, 18, 18)
                             .addComponent(botonAgregarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -318,9 +301,9 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addComponent(jtfClienteAPagar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAgregarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botonAgregarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jTextFieldNombreCliente))
                 .addGap(28, 28, 28)
                 .addComponent(jlMontoPagar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -335,11 +318,11 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                 .addComponent(jtfPagoTipodePlan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jcbPagoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbPagoAceptar)
                     .addComponent(jbPagoCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         PanelTablaPagos.setBackground(new java.awt.Color(85, 96, 128));
@@ -530,6 +513,13 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     private void jbPagoAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoAceptarActionPerformed
         
         
+         String fechaActual;
+         
+         Date fechaSistema = new Date();
+         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+         fechaActual = formato.format(fechaSistema);
+        
+        
          Calendar c = Calendar.getInstance();
          d = c.get(Calendar.DATE);
          m = 1 + (c.get(Calendar.MONTH));
@@ -544,14 +534,14 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
          int comboBoxPagoPlan = jcbPagoPlan.getSelectedIndex();
          
          //validaciones para campos vacios
-        if (jtfBuscarCliente.getText().isEmpty()
+        if (jTextFieldNombreCliente.getText().isEmpty()
                 && jtfMontoAPagar.getText().isEmpty()
                 && jtfTiempoAPagar.getText().isEmpty()
                 && comboBoxTiempoPago == 0
                 && comboBoxPagoPlan == 0) 
         {
             JOptionPane.showMessageDialog(this, "ingrese Toda la Información", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jtfBuscarCliente.getText().isEmpty()) {
+        } else if (jTextFieldNombreCliente.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el NOMBRE del Cliente", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jtfMontoAPagar.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el MONTO a a pagar", "Error!", JOptionPane.ERROR_MESSAGE);
@@ -621,17 +611,17 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             
       
             if (jcbPagoPlan.getSelectedItem() != null) {
-                pagos.insertarPagos(jtfBuscarCliente.getText(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
-                    jcbTiempoPago.getSelectedItem().toString(), jcbPagoPlan.getSelectedItem().toString(), fecha,fechaFinal);
+                pagos.insertarPagos(jTextFieldNombreCliente.getText(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
+                    jcbTiempoPago.getSelectedItem().toString(), jcbPagoPlan.getSelectedItem().toString(), fechaActual,fechaFinal);
             } else {
-                pagos.insertarPagos(jtfBuscarCliente.getText(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
-                    jcbTiempoPago.getSelectedItem().toString(), "No aplica", fecha,fechaFinal);
+                pagos.insertarPagos(jTextFieldNombreCliente.getText(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
+                    jcbTiempoPago.getSelectedItem().toString(), "No aplica", fechaActual,fechaFinal);
             }
         
         
         
       
-        jtfBuscarCliente.setText("");
+        jTextFieldNombreCliente.setText("");
         jtfMontoAPagar.setText("");
         jtfTiempoAPagar.setText("");
         jcbTiempoPago.setSelectedIndex(0);
@@ -645,7 +635,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
 
     
     private void jbPagoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoCancelarActionPerformed
-        jtfBuscarCliente.setText("");
+        jTextFieldNombreCliente.setText("");
         jtfMontoAPagar.setText("");
         jtfTiempoAPagar.setText("");
         jcbTiempoPago.setSelectedIndex(0);
@@ -707,7 +697,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
           if(evt.getClickCount()==2)
          {
         filaseleccionadatablapagos = tablaPagos.getSelectedRow();
-        jtfBuscarCliente.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 1).toString());
+        jTextFieldNombreCliente.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 1).toString());
         jtfMontoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 2).toString());
         jtfTiempoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 3).toString());
         jcbTiempoPago.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 4));
@@ -763,17 +753,13 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         
     }//GEN-LAST:event_combobuscarportipoplanItemStateChanged
 
-    private void jtfBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfBuscarClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfBuscarClienteActionPerformed
-
     private void combobuscarportipoplanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobuscarportipoplanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combobuscarportipoplanActionPerformed
 
     private void botonAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarClienteActionPerformed
         // TODO add your handling code here:
-        new ListaClientes2(new javax.swing.JDialog(), true).setVisible(true);
+        new JDialogListaClientes(new javax.swing.JDialog(), true).setVisible(true);
         
     }//GEN-LAST:event_botonAgregarClienteActionPerformed
 
@@ -798,6 +784,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    public static javax.swing.JTextField jTextFieldNombreCliente;
     private javax.swing.JButton jbPagoAceptar;
     private javax.swing.JButton jbPagoCancelar;
     private javax.swing.JComboBox<String> jcbPagoPlan;
@@ -805,7 +792,6 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     private javax.swing.JLabel jlMontoPagar;
     private javax.swing.JLabel jlRegistroClientes1;
     private javax.swing.JLabel jlTiempoPago;
-    private javax.swing.JTextField jtfBuscarCliente;
     private javax.swing.JLabel jtfClienteAPagar;
     private javax.swing.JTextField jtfMontoAPagar;
     private javax.swing.JLabel jtfPagoTipodePlan;

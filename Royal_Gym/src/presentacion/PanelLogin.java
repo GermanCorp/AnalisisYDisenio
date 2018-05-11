@@ -13,6 +13,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import royal_gym.LoginEntrar;
+import royal_gym.VP;
 import royal_gym.VentanaPrincipal;
 import static sun.security.jgss.GSSUtil.login;
 
@@ -26,6 +27,7 @@ public class PanelLogin extends javax.swing.JFrame {
     Connection conn = null;
     LoginEntrar LE ;
     PanelPreguntasContrasena pnc;
+    VP vp;
     
     
 
@@ -282,8 +284,6 @@ public class PanelLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
         }
            else if (LoginEntrar.ingreso(usuario.getText(),String.valueOf(contraseña.getPassword())) == 1) {
-            // lblSalida.setText("Usuario/Contraseña Incorrecta");
-             //JOptionPane.showMessageDialog(null, "Usuario/Contrasena Incorrecta");
             
             try {
                  UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -293,17 +293,24 @@ public class PanelLogin extends javax.swing.JFrame {
                  // TODO Auto-generated catch block
                  e.printStackTrace();
              }
-             VentanaPrincipal ventana = new VentanaPrincipal();
-             ventana.setVisible(true);
-             ventana.setLocationRelativeTo(null);
-             ventana.setExtendedState(JFrame.MAXIMIZED_BOTH);
-             ventana.setDefaultCloseOperation(EXIT_ON_CLOSE);
+            
+            /*VentanaPrincipal ventana = new VentanaPrincipal();
+             ventana.setVisible(true);*/
+             VP vp = new VP();
+             vp.setVisible(true);
+             vp.setLocationRelativeTo(null);
+             vp.setExtendedState(JFrame.MAXIMIZED_BOTH);
+             vp.setDefaultCloseOperation(EXIT_ON_CLOSE);
              dispose();
-                                
-        /*usuario.setText("");
-        contraseña.setText("");*/
-                                         
-	} 
+                                                                  
+	}
+           else 
+        {
+               lblSalida.setText("Usuario/Contrasena Incorrecta");
+                usuario.setText("");
+                contraseña.setText("");
+        }
+               
         
     }//GEN-LAST:event_btnAceptarActionPerformed
 

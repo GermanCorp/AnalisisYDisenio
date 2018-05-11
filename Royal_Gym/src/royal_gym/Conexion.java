@@ -223,7 +223,7 @@ public class Conexion {
         Object[][] datosInventario = null;
 
         try {
-            String consulta = "SELECT nombre, cantidad, descripcion,cod_equipo FROM inventario";
+            String consulta = "SELECT cod_equipo,nombre, cantidad, descripcion FROM inventario";
             statement = conexion.createStatement();
             resultado = statement.executeQuery(consulta);
             int numeroLista = 1;
@@ -233,11 +233,12 @@ public class Conexion {
             while (resultado.next()) {
                 filas.add(
                         new Object[]{
-                            numeroLista++,
+                            //numeroLista++,
+                            resultado.getString("cod_equipo"),
                             resultado.getString("nombre"),
                             resultado.getString("cantidad"),
-                            resultado.getString("descripcion"),
-                            resultado.getString("cod_equipo")
+                            resultado.getString("descripcion")
+                            
                         }
                 );
             }
@@ -345,15 +346,15 @@ public class Conexion {
     }
 
     // modificar Inventario
-    public void ModificarInventario(String nombremaquina, String cantidad, String descripcion, String nombre) {
+    public void ModificarInventario(String nombremaquina, String cantidad, String descripcion, String cod_equipo) {
 
         try {
-            String sql = "update inventario set nombre = ?, cantidad = ?, descripcion = ? where nombre = ?";
+            String sql = "update inventario set nombre = ?, cantidad = ?, descripcion = ? where cod_equipo = ?";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, nombremaquina);
             consulta.setString(2, cantidad);
             consulta.setString(3, descripcion);
-            consulta.setString(4, nombre);
+            consulta.setString(4, cod_equipo);
             consulta.execute();
 
         } catch (Exception e) {
@@ -365,7 +366,7 @@ public class Conexion {
     public void eliminarInventario(String nombremaquina) {
 
         try {
-            String sql = "Delete from inventario where nombre = ?";
+            String sql = "Delete from inventario where cod_equipo = ?";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, nombremaquina);
             consulta.execute();
@@ -710,11 +711,11 @@ public class Conexion {
           }
        
     }
-        //Metodo Nueva Contrasena para acceder a Panel Nueva Clave
-        public static void nuevaContraseña (String PreguntaA,String PreguntaB)
+        //Metodo preguntas Contrasena para acceder a Panel Modificar contrasena
+        public static int preguntasContrasena (String PreguntaA,String PreguntaB,String Usuario)
         {
             int resultado = 0;
-            String SSQL = "select * from Login where Cual es el nombre de tu mascota = ? AND Cual es el nombre de tu madre = ?";
+            String SSQL = "select  pregunta_mascota, pregunta_madre, from Login where usuario = ? ";
             Connection conect = null;
             
             try{
@@ -723,6 +724,7 @@ public class Conexion {
                 
                 st.setString(1, PreguntaA);
                 st.setString(2, PreguntaB);
+                st.setString(3,Usuario);
                 ResultSet rs = st.executeQuery();
                 
                 if(rs.next()){
@@ -738,7 +740,38 @@ public class Conexion {
                     ex.printStackTrace();
                 }
             }
+            return resultado;
             
         }
+        
+         public static int modificarContrasena(String clave) {
+
+		int resultado = 0;
+		String SSQL = "UPDATE Login set contraseña =?";
+		Connection conect = null;
+
+		try {
+               
+                    conect = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
+			PreparedStatement st = conect.prepareStatement(SSQL);
+
+			st.setString(1, clave);
+			ResultSet rs = st.executeQuery();
+
+			if (rs.next()) {
+				resultado = 1;
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+			conect.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+                return resultado;
+		
+	}
      
 }
