@@ -346,19 +346,18 @@ public class Conexion {
     }
 
     // modificar Inventario
-    public void ModificarInventario(String nombremaquina, String cantidad, String descripcion, String cod_equipo) {
-
+    public void  ModificarInventario(String nombre, String cantidad, String descripcion)
+{
         try {
-            String sql = "update inventario set nombre = ?, cantidad = ?, descripcion = ? where cod_equipo = ?";
+            String sql = "update cliente set nombre = ?, cantidad = ?, descripcion = ?,where cod_equipo = ?";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
-            consulta.setString(1, nombremaquina);
+            consulta.setString(1, nombre);
             consulta.setString(2, cantidad);
             consulta.setString(3, descripcion);
-            consulta.setString(4, cod_equipo);
             consulta.execute();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("error en Modificar Inventario" + e.getMessage());
         }
     }
 
@@ -711,7 +710,8 @@ public class Conexion {
           }
        
     }
-        //Metodo preguntas Contrasena para acceder a Panel Modificar contrasena
+     
+    //Metodo preguntas Contrasena para acceder a Panel Modificar contrasena
         public static int preguntasContrasena (String PreguntaA,String PreguntaB,String Usuario)
         {
             int resultado = 0;
