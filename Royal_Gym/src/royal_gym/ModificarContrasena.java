@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class ModificarContrasena 
 {
     
-    public static int modificarContraseña(String clave) {
+    public static int modificarContrasena(String clave) {
 
 		int resultado = 0;
 		String SSQL = "UPDATE Login set contraseña =?";

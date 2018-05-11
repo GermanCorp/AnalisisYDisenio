@@ -712,19 +712,19 @@ public class Conexion {
     }
      
     //Metodo preguntas Contrasena para acceder a Panel Modificar contrasena
-        public static int preguntasContrasena (String PreguntaA,String PreguntaB,String Usuario)
+        public static int preguntasContrasena (String usuario,String preguntaA,String preguntaB)
         {
             int resultado = 0;
-            String SSQL = "select  pregunta_mascota, pregunta_madre, from Login where usuario = ? ";
+            String SSQL = "select nombre_mascota, nombre_madre, from Login where usuario = ? ";
             Connection conect = null;
             
             try{
                 conect = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
                 PreparedStatement st = conect.prepareStatement(SSQL);
                 
-                st.setString(1, PreguntaA);
-                st.setString(2, PreguntaB);
-                st.setString(3,Usuario);
+                st.setString(1, preguntaA);
+                st.setString(2, preguntaB);
+                st.setString(3,usuario);
                 ResultSet rs = st.executeQuery();
                 
                 if(rs.next()){
@@ -744,10 +744,10 @@ public class Conexion {
             
         }
         
-         public static int modificarContrasena(String clave) {
+         public static int modificarContrasena(String clave,String usuario) {
 
 		int resultado = 0;
-		String SSQL = "UPDATE Login set contraseña =?";
+		String SSQL = "UPDATE Login set contraseña =? where usuario = ?";
 		Connection conect = null;
 
 		try {
@@ -756,6 +756,7 @@ public class Conexion {
 			PreparedStatement st = conect.prepareStatement(SSQL);
 
 			st.setString(1, clave);
+                        st.setString(2,usuario);
 			ResultSet rs = st.executeQuery();
 
 			if (rs.next()) {
