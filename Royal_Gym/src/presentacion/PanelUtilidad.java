@@ -303,8 +303,9 @@ public class PanelUtilidad extends javax.swing.JPanel {
 
     private void tbingresosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tbingresosItemStateChanged
         // TODO add your handling code here:
+        
           if (evt.getStateChange() == ItemEvent.SELECTED) {
-
+              double totali = 0;
             PaneltablaUtilidad.setVisible(true);
             jScrollPane5.setVisible(true);
             Paneltotales.setVisible(true);
@@ -314,7 +315,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
             DefaultTableModel modeloTablaUtilidadIngresos = new DefaultTableModel(utilidad.getIngresosSeleccinados(fechaJCalendar(jdcfechaInicio).toString(), fechaJCalendar(jdcfechaFinal).toString()), columnasUtilidad);
             tablautilidadingresos.setModel(modeloTablaUtilidadIngresos);
 
-            double totali = utilidad.totalIngresos;
+            totali = utilidad.totalIngresos;
             jlTotalIngresos.setText("L. "+df.format(totali));
             jlTotalGastos.setText("L. 0.00");
             jlTotalUtilidad.setText("L. 0.00");
@@ -335,6 +336,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
 
     private void tbgastosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tbgastosItemStateChanged
         // TODO add your handling code here:
+        double totalg =0;
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             
             
@@ -347,7 +349,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
             DefaultTableModel modeloTablaUtilidadGastos = new DefaultTableModel(utilidad.getGastosSeleccionados(fechaJCalendar(jdcfechaInicio).toString(), fechaJCalendar(jdcfechaFinal).toString()), columnasUtilidad);
             tablautilidadingresos.setModel(modeloTablaUtilidadGastos);
 
-            double totalg = utilidad.totalGastos;
+             totalg = utilidad.totalGastos;
             jlTotalGastos.setText("L. "+df.format(totalg));
             jlTotalIngresos.setText("L. 0.00");
             jlTotalUtilidad.setText("L. 0.00");
@@ -382,10 +384,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
 
             DefaultTableModel modeloTablaUtilidadIngresos = new DefaultTableModel(utilidad.getUtilidad(fechaJCalendar(jdcfechaInicio).toString(), fechaJCalendar(jdcfechaFinal).toString()), columnasUtilidad);
             tablautilidadingresos.setModel(modeloTablaUtilidadIngresos);
-
-//            DefaultTableModel modeloTablaUtilidadGastos = new DefaultTableModel(utilidad.getGastosSeleccionados(fechaJCalendar(jdcfechaInicio).toString(), fechaJCalendar(jdcfechaFinal).toString()), columnasUtilidad);
-//            tablautilidadgastos.setModel(modeloTablaUtilidadGastos);
-
+            
             double totalg = utilidad.totalGastos;
             jlTotalGastos.setText("L. "+df.format(totalg));
 

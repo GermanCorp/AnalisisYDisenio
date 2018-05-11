@@ -530,6 +530,13 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     private void jbPagoAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoAceptarActionPerformed
         
         
+         String fechaActual;
+         
+         Date fechaSistema = new Date();
+         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+         fechaActual = formato.format(fechaSistema);
+        
+        
          Calendar c = Calendar.getInstance();
          d = c.get(Calendar.DATE);
          m = 1 + (c.get(Calendar.MONTH));
@@ -622,10 +629,10 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
       
             if (jcbPagoPlan.getSelectedItem() != null) {
                 pagos.insertarPagos(jtfBuscarCliente.getText(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
-                    jcbTiempoPago.getSelectedItem().toString(), jcbPagoPlan.getSelectedItem().toString(), fecha,fechaFinal);
+                    jcbTiempoPago.getSelectedItem().toString(), jcbPagoPlan.getSelectedItem().toString(), fechaActual,fechaFinal);
             } else {
                 pagos.insertarPagos(jtfBuscarCliente.getText(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
-                    jcbTiempoPago.getSelectedItem().toString(), "No aplica", fecha,fechaFinal);
+                    jcbTiempoPago.getSelectedItem().toString(), "No aplica", fechaActual,fechaFinal);
             }
         
         
@@ -773,7 +780,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
 
     private void botonAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarClienteActionPerformed
         // TODO add your handling code here:
-        new ListaClientes2(new javax.swing.JDialog(), true).setVisible(true);
+        //new ListaClientes2(new javax.swing.JDialog(), true).setVisible(true);
         
     }//GEN-LAST:event_botonAgregarClienteActionPerformed
 
