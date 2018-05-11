@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class NuevaClave 
+public class PreguntasContrasenas 
 {
     static private Connection conexion;
     private static Statement statement;
@@ -39,7 +39,7 @@ public class NuevaClave
         return conexion;
     }
     
-    public static void nuevaContra(String PreguntaA,String PreguntaB)
+    public static void preguntasContraseña(String PreguntaA,String PreguntaB)
     {
         int resultado = 0;
         String SSQL = "SELECT * from Login Where Cual es el nombre de tu mascota = ? AND Cual es el nombre de tu madre = ?";
@@ -50,7 +50,7 @@ public class NuevaClave
             PreparedStatement st = conect.prepareStatement(SSQL);
             
             st.setString(1, PreguntaA);
-            st.setString(1, PreguntaB);
+            st.setString(2, PreguntaB);
             ResultSet rs = st.executeQuery();
             
             if(rs.next()){
