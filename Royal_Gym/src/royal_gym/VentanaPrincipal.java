@@ -3,6 +3,7 @@ package royal_gym;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import presentacion.Configuracion;
+import presentacion.ListaClientes;
 import presentacion.ListaProductos;
 import presentacion.PanelNuevoUsuario;
 import presentacion.PanelUsuariosExistentes;
@@ -33,7 +34,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
         panelUtilidad1 = new presentacion.PanelUtilidad();
         panelVentas1 = new presentacion.PanelVentas();
         panelRegistroProductos1 = new presentacion.PanelRegistroProductos();
-        panelCompras1 = new presentacion.PanelCompras();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemSalir = new javax.swing.JMenuItem();
@@ -53,6 +53,8 @@ public class VentanaPrincipal extends javax.swing.JFrame
         });
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Pagos.png")), panelRegistroPagos1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Clientes.png")), panelRegistroClientes1); // NOI18N
+
+        panelInventarioMaquinaria1.setPreferredSize(new java.awt.Dimension(919, 584));
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Maquinaria.png")), panelInventarioMaquinaria1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Cumpleañeros.png")), panelCumpleaneros1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Gastos.png")), panelGastos1); // NOI18N
@@ -71,7 +73,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
             }
         });
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Productos.png")), panelRegistroProductos1); // NOI18N
-        jTabbedPane1.addTab("Compras", new javax.swing.ImageIcon(getClass().getResource("/iconos/Agregar_Producto.png")), panelCompras1); // NOI18N
 
         jMenu1.setText("Archivo");
 
@@ -152,7 +153,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 818, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1196, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,16 +185,13 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-       /// PanelNuevoUsuario ventana = new PanelNuevoUsuario();
-       // ventana.setVisible(true);
-        
+        new PanelNuevoUsuario(new javax.swing.JDialog(), true).setVisible(true);    
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-       // PanelUsuariosExistentes ventana = new PanelUsuariosExistentes();
-        //ventana.setVisible(true);
+      new PanelUsuariosExistentes(new javax.swing.JDialog(), true).setVisible(true);
          
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
@@ -240,7 +238,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuItemConfiguracion;
     private javax.swing.JMenuItem jMenuItemSalir;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private presentacion.PanelCompras panelCompras1;
     private presentacion.PanelCumpleaneros panelCumpleaneros1;
     private presentacion.PanelGastos panelGastos1;
     private presentacion.PanelInventarioMaquinaria panelInventarioMaquinaria1;
