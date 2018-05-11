@@ -13,6 +13,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
+import static presentacion.PanelVentas.descuento;
+import static presentacion.PanelVentas.isv;
+import static presentacion.PanelVentas.jtablaProductosAVender;
+import static presentacion.PanelVentas.subTotal;
+import static presentacion.PanelVentas.total;
 import royal_gym.Conexion;
 import royal_gym.Productos;
 
@@ -21,12 +26,11 @@ import royal_gym.Productos;
  * @author Jazmin Vargas
  */
 public class PanelCompras extends javax.swing.JPanel {
-
+public static double total = 0;
+    public static double subTotal = 0;
+    public static double isv = 0;
+    public static double descuento = 0;
     
-    public double total;
-    private double subTotal;
-    private double isv;
-    private double descuento;
     
     private static Statement statement;
     DecimalFormat df = new DecimalFormat("#,##0.00");
@@ -113,10 +117,10 @@ public class PanelCompras extends javax.swing.JPanel {
     }
         
     public void setValoresCompra(){
-        jtfsubtotalcompra.setText("L. " + df.format(getSubTotal()));
-        jtfISVcompra.setText("L." + df.format(getIsv()));
-        jtfdescuentocompra.setText("- L. " + df.format(getDescuento()));
-        jtftotalcompra.setText("L. " + df.format(getTotal()));
+        jtfsubtotalcompra.setText("L. " + df.format(subTotal));
+        jtfISVcompra.setText("L." + df.format(isv));
+        jtfdescuentocompra.setText("- L. " + df.format(descuento));
+        jtftotalcompra.setText("L. " + df.format(total));
     }
   
     @SuppressWarnings("unchecked")
@@ -342,15 +346,35 @@ public class PanelCompras extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbeliminarcompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbeliminarcompraActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel dtm = (DefaultTableModel) tablacompras.getModel(); //TableProducto es el nombre de mi tabla ;)
-        dtm.removeRow(tablacompras.getSelectedRow());
+        DefaultTableModel modelo;
+        int filaSeleccinada = tablacompras.getSelectedRow();
+        
+        if(filaSeleccinada == -1){
+            JOptionPane.showMessageDialog(null, "Seleccione un producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Double totalPorProducto = (Double.parseDouble(tablacompras.getValueAt(filaSeleccinada, 7).toString()));
+        Double descuentoPorProducto = (Double.parseDouble(tablacompras.getValueAt(filaSeleccinada, 4).toString()));
+
+        total = total - totalPorProducto;
+        descuento = descuento - descuentoPorProducto;
+        isv = total*0.15;
+        subTotal = total - isv;
+        
+        
+        modelo = (DefaultTableModel) tablacompras.getModel();
+        modelo.removeRow(filaSeleccinada);
+        
+        setValoresCompra();
+        }
     }//GEN-LAST:event_jbeliminarcompraActionPerformed
 
     private void jbguardarcompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarcompraActionPerformed
-        DefaultTableModel modelo;
-
-        try {
+       DefaultTableModel modelo;
+        if(total == 0){
+           JOptionPane.showMessageDialog(null, "No hay ninguna venta que guardar");
+        }else
+           
+           try {
             for (int i = 0 ; i <tablacompras.getRowCount(); i++){
                 Statement statement = Conexion.getConexion().createStatement();
                 String consulta = "select cantidad from productos where idproducto = '" + tablacompras.getValueAt(i, 0).toString() + "'";
@@ -378,7 +402,7 @@ public class PanelCompras extends javax.swing.JPanel {
 
     private void jbagregarcompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbagregarcompraActionPerformed
         // TODO add your handling code here:
-        new ListaProductosComprar(new javax.swing.JDialog(), true).setVisible(true);
+        new ListaProductosCompra(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jbagregarcompraActionPerformed
 
 
