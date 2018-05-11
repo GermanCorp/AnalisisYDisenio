@@ -32,7 +32,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     final Conexion con = new Conexion();
     Pagos pagos = new Pagos();
     
-    public static String cliente;
+     public static String cliente;
     
      int d,m,a;
      int df,mf,af;
@@ -92,12 +92,26 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         
         tablaPagos.setDefaultRenderer (Object.class, new FormatoTabla());
         
-        jTextFieldNombreCliente.setText(cliente);
+       
         
     }
 
+    public PanelRegistroPagos(String cliente) {
+        this.cliente = cliente;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
+    }
+
    
-    
+    public void setNombreCliente(){
+        jTextFieldNombreCliente.setText(getCliente());
+    }
    
     
     
@@ -758,7 +772,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     }//GEN-LAST:event_combobuscarportipoplanActionPerformed
 
     private void botonAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarClienteActionPerformed
-        // TODO add your handling code here:
+        
         new JDialogListaClientes(new javax.swing.JDialog(), true).setVisible(true);
         
     }//GEN-LAST:event_botonAgregarClienteActionPerformed
