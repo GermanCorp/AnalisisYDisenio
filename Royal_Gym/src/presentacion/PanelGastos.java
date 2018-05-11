@@ -297,7 +297,7 @@ public class PanelGastos extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfMontoGastoKeyTyped
 
     private void btnAceptarRegistroGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroGastoActionPerformed
-
+        
     }//GEN-LAST:event_btnAceptarRegistroGastoActionPerformed
 
     private void btnAceptarRegistroGastoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroGastoKeyPressed
