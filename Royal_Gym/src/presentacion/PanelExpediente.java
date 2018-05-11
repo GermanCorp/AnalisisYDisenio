@@ -7,7 +7,9 @@ package presentacion;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import static presentacion.ListaClientes.RET_CANCEL;
 import static presentacion.PanelRegistroPagos.tablaPagos;
 import static presentacion.PanelVentas.jtablaProductosAVender;
 import royal_gym.Conexion;
@@ -24,8 +26,6 @@ public class PanelExpediente extends javax.swing.JPanel {
    
     
     public static String id;
-    
-    
    
     
     private final String[] columnasCambios = {
@@ -42,12 +42,6 @@ public class PanelExpediente extends javax.swing.JPanel {
         initComponents();
         this.con = new Conexion();
         con.conectar();
-        
-        DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(),columnasCambios);
-        tablacambioscorporales.setModel(modeloTablaPagos);  
-        
-        System.out.println(id);
-        
         
         try{
         Statement statement = Conexion.getConexion().createStatement();
@@ -67,7 +61,10 @@ public class PanelExpediente extends javax.swing.JPanel {
                         "ps.id_cliente = cl.idCliente where ps.id_cliente='"+id+"' ";      
                 ResultSet resultado2 = statement.executeQuery(consulta2);
                 
-              System.out.println(consulta2);  
+              System.out.println(consulta2); 
+               Object[][] datosPago = null;
+              ArrayList<Object[]> filas = new ArrayList<>();
+              {
                   while (resultado2.next()) {
                       
                       jTextFieldnombre.setText(resultado2.getString("NombreCompleto"));
@@ -88,7 +85,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                       
                       
                       jCBoxalergias.setSelected(resultado2.getBoolean("Alergias"));
-                     // jCBoxanemia.setSelected(resultado2.getBoolean("Anemia"));
+                      //jCBoxanemia.setSelected(resultado2.getBoolean("Anemia"));
                       jCBoxansiedad.setSelected(resultado2.getBoolean("Ansiedad"));
                       jCBoxartritis.setSelected(resultado2.getBoolean("Artritis"));
                       jCBoxcalambres.setSelected(resultado2.getBoolean("Calambres"));
@@ -112,9 +109,26 @@ public class PanelExpediente extends javax.swing.JPanel {
                       jCBoxretenciondeliquidos.setSelected(resultado2.getBoolean("Retenciondeliquidos"));
                       jCBoxulcera.setSelected(resultado2.getBoolean("Ulcera"));
                       jCBoxvarices.setSelected(resultado2.getBoolean("Varices"));
-                    
                       
-                  }
+                      
+                      
+                    filas.add(
+                    new Object[]{
+                    resultado2.getDouble("peso"),
+                    resultado2.getDouble("imc"),
+                    resultado2.getDouble("porcentajedegrasa"),
+                    resultado2.getDouble("porcentajedemusculo"),
+                    resultado2.getDouble("calorias"),
+                    resultado2.getInt("edad"),
+                    resultado2.getInt("grasaviceral"),} );
+                  
+                    datosPago = new Object[filas.size()][];
+                    filas.toArray(datosPago);} 
+              
+                    DefaultTableModel modeloTablaPagos = new DefaultTableModel(datosPago, columnasCambios);
+                    tablacambioscorporales.setModel(modeloTablaPagos); 
+                  
+                     }
         }catch(Exception ex){
             System.out.println("buscarCliente:" + ex.getMessage());
         }
@@ -992,8 +1006,15 @@ public class PanelExpediente extends javax.swing.JPanel {
 
         jScrollPane2.setViewportView(jPanel1);
 
+        botoncancelarexpediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/iconos/Archivo_Salir.png"))); // NOI18N
         botoncancelarexpediente.setText("Salir");
+        botoncancelarexpediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botoncancelarexpedienteActionPerformed(evt);
+            }
+        });
 
+        botonaceptarexpediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/iconos/btn_guardar.png"))); // NOI18N
         botonaceptarexpediente.setText("Guardar");
         botonaceptarexpediente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1007,10 +1028,10 @@ public class PanelExpediente extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonaceptarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(botoncancelarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addComponent(botonaceptarexpediente)
+                .addGap(18, 18, 18)
+                .addComponent(botoncancelarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1035, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -1018,8 +1039,8 @@ public class PanelExpediente extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonaceptarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botoncancelarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonaceptarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botoncancelarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1044, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1083,6 +1104,19 @@ public class PanelExpediente extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfimcActionPerformed
 
     private void botonaceptarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarexpedienteActionPerformed
+      
+        expediente.actualizarTablaClientes(
+            id, 
+            jTextFieldtelefonotrab.getText(),
+            jTextFielddireccion.getText(),
+            jTextFieldmejorhoralla.getText(),
+            jTextFieldfechainicio.getText(),
+            jTextFieldtelefonocasa.getText(),
+            jTextFieldcelular.getText(),
+            jtfedad.getText(),
+            jTextFieldpesoideal.getText(),
+            jCBoxsubir.isSelected(), jCBoxBajar.isSelected(), jCBoxmantener.isSelected());
+        
         
         expediente.insertarCambiosCorporales(
         jtfpeso.getText(),
@@ -1099,7 +1133,6 @@ public class PanelExpediente extends javax.swing.JPanel {
         
         
         boolean gastritis = jCBoxgastritis.isSelected()  ;
-        System.out.println(gastritis);
         boolean colitis = jCBoxcolitis.isSelected() ;
         boolean estreñimiento = jCBoxestrenimiento.isSelected() ;
         boolean ulcera = jCBoxulcera.isSelected() ;
@@ -1290,9 +1323,17 @@ public class PanelExpediente extends javax.swing.JPanel {
     private void jtfmusculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfmusculoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfmusculoActionPerformed
+
+    private void botoncancelarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncancelarexpedienteActionPerformed
+        doClose(RET_CANCEL);
+    }//GEN-LAST:event_botoncancelarexpedienteActionPerformed
      
   
-    
+    private void doClose(int retStatus) {
+        returnStatus = retStatus;
+        setVisible(false);
+        //dispose();        
+    } 
     
    
 
@@ -1375,4 +1416,10 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JLabel labeltelefonotrabajo;
     private javax.swing.JTable tablacambioscorporales;
     // End of variables declaration//GEN-END:variables
+
+     private int returnStatus = RET_CANCEL;
+
+    private void dispose() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

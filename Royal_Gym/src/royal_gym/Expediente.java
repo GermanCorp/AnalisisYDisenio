@@ -144,4 +144,33 @@ public class Expediente {
         return datosPago;
     }
     
+    
+    
+    public void actualizarTablaClientes(String id, String telefonoTra, String direccion, String mejorHoraParaLlamar, 
+            String fechaInicio, String telefonoCasa , String celular, String edad, String pesoIdeal, Boolean subir, 
+            Boolean bajar, Boolean mantener){
+        try {
+            String sql = "update cliente set TelefonoTrabajo = ?, Direccion = ?, MejorHoraParaLlamar = ?, FechaDeInicio = ?,"
+                    + " TelefonoCasa = ? , Celular = ? , Edad = ? , PesoIdeal = ? , PesoQuiereSubir = ?,PesoQuiereBajar = ? "
+                    + "PesoQuiereMantener = ? where idCliente = ?";
+            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
+            consulta.setString(1, telefonoTra);
+            consulta.setString(2, direccion);
+            consulta.setString(3, mejorHoraParaLlamar);
+            consulta.setString(4, fechaInicio);
+            consulta.setString(5, telefonoCasa);
+            consulta.setString(6, celular);
+            consulta.setString(7, edad);
+            consulta.setString(8, pesoIdeal);
+            consulta.setBoolean(9, subir);
+            consulta.setBoolean(10, bajar);
+            consulta.setBoolean(11, mantener);
+            consulta.setString(12, id);
+            consulta.execute();
+
+        } catch (Exception e) {
+            System.out.println("error en Modificar Cliente" + e.getMessage());
+        }
+    }
+    
 }

@@ -27,8 +27,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     Clientes clientes = new Clientes();
     private String idCliente;
     
-    
-    public String nombreCliente;
+ 
     
     
     //Columnas de la tabla Clientes
@@ -682,12 +681,16 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jMenuItemExpedienteActionPerformed
 
     private void jMenuItemExpedienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemExpedienteMousePressed
+           
+        int filaSeleccionada = tablaClientes.getSelectedRow();
+        PanelExpediente rc = new PanelExpediente();
+        rc.id = tablaClientes.getValueAt(filaSeleccionada, 0).toString();
+        
         
         jPopupMenu1.setVisible(false);
         new Expediente(new javax.swing.JDialog(), true).setVisible(true);
-        
-        int filaSeleccionada = tablaClientes.getSelectedRow();
-          nombreCliente = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
+     
+         
         
        
        
