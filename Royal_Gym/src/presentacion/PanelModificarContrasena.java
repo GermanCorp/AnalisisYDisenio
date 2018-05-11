@@ -155,7 +155,7 @@ public class PanelModificarContrasena extends javax.swing.JFrame
            JOptionPane.showMessageDialog(null, "Debe Ingresar la Contraseña Nueva");
         }
         
-       else if (con.modificarContrasena(String.valueOf(jpfContraseñaNueva.getPassword())== 1)
+      // else if (con.modificarContrasena(String.valueOf(jpfContraseñaNueva.getPassword())== 1)
         {
             
         }
