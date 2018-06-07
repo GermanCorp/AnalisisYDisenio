@@ -5,6 +5,9 @@
  */
 package royal_gym;
 
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author alxcr
@@ -30,65 +33,47 @@ public class VP extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         panelVentas1 = new presentacion.PanelVentas();
         panelRegistroClientes1 = new presentacion.PanelRegistroClientes();
+        jlMensajes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Vender.png")), panelVentas1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Clientes.png")), panelRegistroClientes1); // NOI18N
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1208, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 599, Short.MAX_VALUE)
-
-
-            .addGap(0, 599, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 599, Short.MAX_VALUE))
-
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 599, Short.MAX_VALUE)
-
-
-        );
+        jlMensajes.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jlMensajes.setForeground(new java.awt.Color(255, 0, 0));
+        jlMensajes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlMensajes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlMensajesMouseClicked(evt);
+            }
+        });
+        getContentPane().add(jlMensajes, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jlMensajesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlMensajesMouseClicked
+        // TODO add your handling code here:
+        royal_gym.VP.jlMensajes.setText("");
+    }//GEN-LAST:event_jlMensajesMouseClicked
+
+    
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                        //UIManager.setLookAndFeel(javax.swing.plaf.nimbus.NimbusLookAndFeel.class.getName());
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         /* Create and display the form */
         Conexion conectar = new Conexion();
@@ -102,6 +87,7 @@ public class VP extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane jTabbedPane1;
+    public static javax.swing.JLabel jlMensajes;
     private presentacion.PanelRegistroClientes panelRegistroClientes1;
     private presentacion.PanelVentas panelVentas1;
     // End of variables declaration//GEN-END:variables
