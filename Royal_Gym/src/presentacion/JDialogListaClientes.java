@@ -171,10 +171,12 @@ public class JDialogListaClientes extends javax.swing.JDialog {
 
     private void jTableClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientesMouseClicked
             if(evt.getClickCount()==2){
-        doClose(RET_OK);
-        PanelRegistroPagos pago = new PanelRegistroPagos();
-        int filaSeleccionada = jTableClientes.getSelectedRow();
-           pago.cliente  = jTableClientes.getValueAt(filaSeleccionada, 1).toString();
+            doClose(RET_OK);
+        
+            int filaSeleccionada = jTableClientes.getSelectedRow();
+            nombre  = jTableClientes.getValueAt(filaSeleccionada, 1).toString();
+            PanelRegistroPagos pago = new PanelRegistroPagos(nombre);
+            pago.setNombreCliente();
              
           
         }        

@@ -399,7 +399,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
             jScrollPane5.setVisible(false);
             Paneltotales.setVisible(false);
             
-             jlTotalGastos.setText("L. 0.00");
+            jlTotalGastos.setText("L. 0.00");
              jlTotalIngresos.setText("L. 0.00");
              jlTotalUtilidad.setText("L. 0.00");
 

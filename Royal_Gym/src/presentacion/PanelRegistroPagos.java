@@ -332,11 +332,11 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
                 .addComponent(jtfPagoTipodePlan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jcbPagoPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(panelDatosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbPagoAceptar)
-                    .addComponent(jbPagoCancelar))
-                .addContainerGap(37, Short.MAX_VALUE))
+                    .addComponent(jbPagoAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbPagoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         PanelTablaPagos.setBackground(new java.awt.Color(85, 96, 128));
@@ -700,7 +700,8 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         }
 
         int limit = 10;
-        if (jtfbuscarpago.getText().length() == limit) {
+        if (jtfbuscarpago.getText().length() == limit) { 
+            
             evt.consume();
 
         }

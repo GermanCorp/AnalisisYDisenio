@@ -805,6 +805,6 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     private javax.swing.JTextField jtfPeso;
     private javax.swing.JPanel panelDatosCliente;
     private javax.swing.JScrollPane scrollTablaClientes;
-    private javax.swing.JTable tablaClientes;
+    public static javax.swing.JTable tablaClientes;
     // End of variables declaration//GEN-END:variables
 }

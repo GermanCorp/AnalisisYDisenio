@@ -26,14 +26,14 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        panelRegistroPagos1 = new presentacion.PanelRegistroPagos();
         panelRegistroClientes1 = new presentacion.PanelRegistroClientes();
-        panelInventarioMaquinaria1 = new presentacion.PanelInventarioMaquinaria();
         panelCumpleaneros1 = new presentacion.PanelCumpleaneros();
-        panelGastos1 = new presentacion.PanelGastos();
-        panelUtilidad1 = new presentacion.PanelUtilidad();
-        panelVentas1 = new presentacion.PanelVentas();
+        panelRegistroPagos1 = new presentacion.PanelRegistroPagos();
+        panelInventarioMaquinaria1 = new presentacion.PanelInventarioMaquinaria();
         panelRegistroProductos1 = new presentacion.PanelRegistroProductos();
+        panelVentas1 = new presentacion.PanelVentas();
+        panelCompra1 = new presentacion.PanelCompra();
+        panelUtilidad1 = new presentacion.PanelUtilidad();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemSalir = new javax.swing.JMenuItem();
@@ -46,26 +46,18 @@ public class VentanaPrincipal extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setToolTipText("");
         jTabbedPane1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTabbedPane1FocusGained(evt);
             }
         });
-        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Pagos.png")), panelRegistroPagos1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Clientes.png")), panelRegistroClientes1); // NOI18N
+        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Cumpleañeros.png")), panelCumpleaneros1); // NOI18N
+        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Pagos.png")), panelRegistroPagos1); // NOI18N
 
         panelInventarioMaquinaria1.setPreferredSize(new java.awt.Dimension(919, 584));
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Maquinaria.png")), panelInventarioMaquinaria1); // NOI18N
-        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Cumpleañeros.png")), panelCumpleaneros1); // NOI18N
-        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Gastos.png")), panelGastos1); // NOI18N
-        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Utilidad.png")), panelUtilidad1); // NOI18N
-
-        panelVentas1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                panelVentas1FocusLost(evt);
-            }
-        });
-        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Vender.png")), panelVentas1); // NOI18N
 
         panelRegistroProductos1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -73,6 +65,15 @@ public class VentanaPrincipal extends javax.swing.JFrame
             }
         });
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Productos.png")), panelRegistroProductos1); // NOI18N
+
+        panelVentas1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                panelVentas1FocusLost(evt);
+            }
+        });
+        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Vender.png")), panelVentas1); // NOI18N
+        jTabbedPane1.addTab("Comprar", panelCompra1);
+        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Utilidad.png")), panelUtilidad1); // NOI18N
 
         jMenu1.setText("Archivo");
 
@@ -218,13 +219,13 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     }//GEN-LAST:event_jTabbedPane1FocusGained
 
-    private void panelRegistroProductos1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelRegistroProductos1FocusGained
-
-    }//GEN-LAST:event_panelRegistroProductos1FocusGained
-
     private void panelVentas1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelVentas1FocusLost
 
     }//GEN-LAST:event_panelVentas1FocusLost
+
+    private void panelRegistroProductos1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelRegistroProductos1FocusGained
+
+    }//GEN-LAST:event_panelRegistroProductos1FocusGained
 
     // <editor-fold defaultstate="collapsed" desc="Elementos de Ventana Principal">
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -238,8 +239,8 @@ public class VentanaPrincipal extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuItemConfiguracion;
     private javax.swing.JMenuItem jMenuItemSalir;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private presentacion.PanelCompra panelCompra1;
     private presentacion.PanelCumpleaneros panelCumpleaneros1;
-    private presentacion.PanelGastos panelGastos1;
     private presentacion.PanelInventarioMaquinaria panelInventarioMaquinaria1;
     private presentacion.PanelRegistroClientes panelRegistroClientes1;
     private presentacion.PanelRegistroPagos panelRegistroPagos1;

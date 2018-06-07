@@ -107,7 +107,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
         jlDescripcionEquipo.setText("Descripcion");
 
         btnAceptarInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/btn_guardar.png"))); // NOI18N
-        btnAceptarInventario.setText("Aceptar");
+        btnAceptarInventario.setText("Guardar");
         btnAceptarInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarInventarioActionPerformed(evt);

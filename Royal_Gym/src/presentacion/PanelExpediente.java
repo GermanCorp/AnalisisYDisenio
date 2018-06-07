@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import static presentacion.ListaClientes.RET_CANCEL;
+import static presentacion.PanelRegistroPagos.jTextFieldNombreCliente;
 import static presentacion.PanelRegistroPagos.tablaPagos;
 import static presentacion.PanelVentas.jtablaProductosAVender;
 import royal_gym.Conexion;
@@ -42,6 +43,8 @@ public class PanelExpediente extends javax.swing.JPanel {
         initComponents();
         this.con = new Conexion();
         con.conectar();
+        
+        
         
         try{
         Statement statement = Conexion.getConexion().createStatement();
@@ -1116,12 +1119,13 @@ public class PanelExpediente extends javax.swing.JPanel {
             jtfedad.getText(),
             jTextFieldpesoideal.getText(),
             jCBoxsubir.isSelected(), 
-            jCBoxBajar.isSelected());
-           // jCBoxmantener.isSelected()
+            jCBoxBajar.isSelected(),
+            jCBoxmantener.isSelected());
        
         
         
         expediente.insertarCambiosCorporales(
+        
         jtfpeso.getText(),
         jtfimc.getText(),
         jtfgrasa.getText(),
@@ -1162,7 +1166,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         boolean problemaderiñon = jCBoxproblemasderinon.isSelected() ;
         boolean celulitis= jCBoxcelulitis.isSelected();
         
-        expediente.insertarProblemasdeSalud(gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes, presionAlta, 
+        expediente.insertarProblemasdeSalud(id,gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes, presionAlta, 
                 colesterol, alergias, estres, dolordecabeza, dolordecuello, doloresdeespalda, artritis, ansiedad, embarazo, 
                 retencionliquidos, malacirculacion, calambres, varices, doloresdehueso, anemia, problemadevesicula, 
                 problemaderiñon, celulitis);

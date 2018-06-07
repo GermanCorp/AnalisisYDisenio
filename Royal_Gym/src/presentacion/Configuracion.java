@@ -35,7 +35,7 @@ public class Configuracion extends javax.swing.JDialog {
     public static final int RET_OK = 1;
 
     public Configuracion (){
-        setTitle("Configuración");
+        
         
         try{
             configInput = new FileInputStream("config.properties");
@@ -49,6 +49,7 @@ public class Configuracion extends javax.swing.JDialog {
     
     public Configuracion(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
+        setTitle("Configuración");
         initComponents();
         setLocationRelativeTo(null);
         

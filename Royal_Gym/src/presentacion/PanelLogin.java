@@ -294,9 +294,9 @@ public class PanelLogin extends javax.swing.JFrame {
                  e.printStackTrace();
              }
             
-            /*VentanaPrincipal ventana = new VentanaPrincipal();
-             ventana.setVisible(true);*/
-             VP vp = new VP();
+            VentanaPrincipal vp = new VentanaPrincipal();
+             
+             
              vp.setVisible(true);
              vp.setLocationRelativeTo(null);
              vp.setExtendedState(JFrame.MAXIMIZED_BOTH);
