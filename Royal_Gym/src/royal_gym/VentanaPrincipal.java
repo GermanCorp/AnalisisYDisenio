@@ -1,10 +1,7 @@
 package royal_gym;
 
-import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import presentacion.Configuracion;
-import presentacion.ListaClientes;
-import presentacion.ListaProductos;
 import presentacion.PanelNuevoUsuario;
 import presentacion.PanelUsuariosExistentes;
 
@@ -14,12 +11,11 @@ public class VentanaPrincipal extends javax.swing.JFrame
 // Constructor
     public VentanaPrincipal() {
         initComponents();
-        setTitle("Royal Gym");
+        //setTitle("Royal Gym");
         //setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/iconos/LOGO_ROYALGYM_04.png")));
-        setIconImage(new ImageIcon(getClass().getResource("/iconos/LOGO_ROYALGYM_03.png")).getImage());
+        //setIconImage(new ImageIcon(getClass().getResource("/iconos/LOGO_ROYALGYM_03.png")).getImage());
        }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

@@ -1,67 +1,32 @@
 package presentacion;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Properties;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
 public class Configuracion extends javax.swing.JDialog {
 
-    Properties config = new Properties();
-    InputStream configInput = null;
-    OutputStream configOutput = null;
-    private int edadPermitida;
-    
-
-    public int getEdadPermitida() {
-        return edadPermitida;
-    }
-
-    public void setEdadPermitida(int edadPermitida) {
-        this.edadPermitida = edadPermitida;
-    }
-    
     public static final int RET_CANCEL = 0;
     public static final int RET_OK = 1;
 
-    public Configuracion (){
-        
-        
-        try{
-            configInput = new FileInputStream("config.properties");
-            config.load(configInput);
-            edadPermitida = Integer.parseInt(config.getProperty("edadPermitida"));
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error cargando configuración\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        
-    }
-    
+       
     public Configuracion(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/iconos/Herramientas_configuracion_3.png"));
+        setIconImage(icon);
         setTitle("Configuración");
         initComponents();
         setLocationRelativeTo(null);
         
-        try{
-            configInput = new FileInputStream("config.properties");
-            config.load(configInput);
-            edadPermitida = Integer.parseInt(config.getProperty("edadPermitida"));
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error cargando configuración\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-       jtfEdadPermitida.setText(config.getProperty("edadPermitida"));
+        jtfEdadPermitida.setText(String.valueOf(PanelRegistroClientes.edadMinima()));
+        jtfEdadmaxima.setText(String.valueOf(PanelRegistroClientes.edadMaxima()));
+        
         
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
@@ -75,23 +40,11 @@ public class Configuracion extends javax.swing.JDialog {
         });
     }
 
-
-    /**
-     * @return the return status of this dialog - one of RET_OK or RET_CANCEL
-     */
     public int getReturnStatus() {
         return returnStatus;
     }
 
-        public void escribirPropiedades(String property, String value){
-        try{
-            configOutput = new FileOutputStream("config.properties");
-            config.setProperty(property, value);
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error guardando configuración\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -100,6 +53,10 @@ public class Configuracion extends javax.swing.JDialog {
         cancelButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jtfEdadPermitida = new javax.swing.JTextField();
+        jtfEdadmaxima = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -121,45 +78,74 @@ public class Configuracion extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("Edad mínima para realizar pagos");
+        jLabel1.setText("Rango de edad Permitida para realizar pagos:");
 
+        jtfEdadPermitida.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtfEdadPermitida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfEdadPermitidaActionPerformed(evt);
             }
         });
 
+        jtfEdadmaxima.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfEdadmaxima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfEdadmaximaActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("a");
+
+        jLabel3.setText("De");
+
+        jLabel4.setText("años");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtfEdadPermitida, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfEdadmaxima, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(okButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfEdadPermitida, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 10, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(okButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cancelButton)
-                .addContainerGap())
+                        .addComponent(cancelButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jtfEdadPermitida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
+                .addGap(17, 99, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
                     .addComponent(okButton))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jtfEdadPermitida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jtfEdadmaxima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getRootPane().setDefaultButton(okButton);
@@ -168,9 +154,9 @@ public class Configuracion extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        escribirPropiedades("edadPermitida", jtfEdadPermitida.getText());
-        doClose(RET_OK);
-        
+        new royal_gym.Clientes().modificarEdadPermitida(jtfEdadPermitida.getText(), "edadMinima");
+        new royal_gym.Clientes().modificarEdadPermitida(jtfEdadmaxima.getText(), "edadMaxima");
+        doClose(RET_CANCEL);
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -187,6 +173,10 @@ public class Configuracion extends javax.swing.JDialog {
     private void jtfEdadPermitidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfEdadPermitidaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfEdadPermitidaActionPerformed
+
+    private void jtfEdadmaximaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfEdadmaximaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfEdadmaximaActionPerformed
     
     private void doClose(int retStatus) {
         returnStatus = retStatus;
@@ -201,7 +191,11 @@ public class Configuracion extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jtfEdadPermitida;
+    private javax.swing.JTextField jtfEdadmaxima;
     private javax.swing.JButton okButton;
     // End of variables declaration//GEN-END:variables
 

@@ -10,44 +10,71 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Clientes;
 import royal_gym.Conexion;
+import royal_gym.Ventas;
 
 /**
  *
  * @author Alexis
  */
 public class PanelVentas extends javax.swing.JPanel {
+
     public static double total = 0;
     public static double subTotal = 0;
     public static double isv = 0;
     public static double descuento = 0;
     public static String cliente;
-    
+    static ResultSet resultado;
+    java.util.Date date = new Date();
+    java.sql.Date fechaActual = new java.sql.Date(date.getTime());
+
     private static Statement statement;
     DecimalFormat df = new DecimalFormat("#,##0.00");
-   
+    DecimalFormat fac = new DecimalFormat("00000000");
+    int nfac = numeroFactura();
+
     public PanelVentas() {
         initComponents();
-        jbAgregarCliente.setHorizontalTextPosition( SwingConstants.CENTER );
-        jbAgregarCliente.setVerticalTextPosition( SwingConstants.BOTTOM );
-        jbAgregarProducto.setHorizontalTextPosition( SwingConstants.CENTER );
-        jbAgregarProducto.setVerticalTextPosition( SwingConstants.BOTTOM );
-        jbAGuardarVenta.setHorizontalTextPosition( SwingConstants.CENTER );
-        jbAGuardarVenta.setVerticalTextPosition( SwingConstants.BOTTOM );
-        jbEliminarFila.setHorizontalTextPosition( SwingConstants.CENTER );
-        jbEliminarFila.setVerticalTextPosition(SwingConstants.BOTTOM); 
+        nfac += 1;
+        jbAgregarCliente.setHorizontalTextPosition(SwingConstants.CENTER);
+        jbAgregarCliente.setVerticalTextPosition(SwingConstants.BOTTOM);
+        jbAgregarProducto.setHorizontalTextPosition(SwingConstants.CENTER);
+        jbAgregarProducto.setVerticalTextPosition(SwingConstants.BOTTOM);
+        jbAGuardarVenta.setHorizontalTextPosition(SwingConstants.CENTER);
+        jbAGuardarVenta.setVerticalTextPosition(SwingConstants.BOTTOM);
+        jbEliminarFila.setHorizontalTextPosition(SwingConstants.CENTER);
+        jbEliminarFila.setVerticalTextPosition(SwingConstants.BOTTOM);
+        jtfNumeoFactura.setText(fac.format(nfac));
     }
-    
+
     public PanelVentas(String cliente) {
         this.cliente = cliente;
     }
-    
-    public PanelVentas (double total, double subTotal, double isv, double descuento){
+
+    // retorna el ultimo numero de factura
+    public static int numeroFactura() {
+        int numFactura = 0;
+        try {
+            String consulta = "SELECT factura FROM detalleFactura order by FACTURA DESC LIMIT 1";
+            statement = Conexion.getConexion().createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            while (resultado.next()) {
+                numFactura = resultado.getInt("factura");
+            }
+        } catch (Exception e) {
+            System.out.println("error numeroDeFactura" + e.getMessage());
+        }
+        return numFactura;
+    }
+
+    public PanelVentas(double total, double subTotal, double isv, double descuento) {
         this.total = total;
         this.subTotal = subTotal;
         this.isv = isv;
@@ -86,7 +113,6 @@ public class PanelVentas extends javax.swing.JPanel {
         PanelVentas.jtfTotalVenta = jtfTotalVenta;
     }
 
-    
     public String getCliente() {
         return cliente;
     }
@@ -126,18 +152,17 @@ public class PanelVentas extends javax.swing.JPanel {
     public void setCliente(String cliente) {
         this.cliente = cliente;
     }
-    
-    public void setNombreCliente(){
+
+    public void setNombreCliente() {
         jtfNombre.setText(getCliente());
     }
-    
-    public void setValoresVenta(){
+
+    public void setValoresVenta() {
         jtfSubTotal.setText("L. " + df.format(subTotal));
         jtfISV.setText("L." + df.format(isv));
         jtfDescuento.setText("- L. " + df.format(descuento));
         jtfTotalVenta.setText("L. " + df.format(total));
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -437,12 +462,14 @@ public class PanelVentas extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfDireccionActionPerformed
 
     private void jbAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarProductoActionPerformed
+        royal_gym.VP.jlMensajes.setText("");
         new ListaProductos(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jbAgregarProductoActionPerformed
 
     private void jbAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarClienteActionPerformed
         //NewOkCancelDialog clientes = new ListaClientes(new javax.swing.JDialog(), true);
         //clientes.setVisible(true);
+        royal_gym.VP.jlMensajes.setText("");
         new ListaClientes(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jbAgregarClienteActionPerformed
 
@@ -455,7 +482,7 @@ public class PanelVentas extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfSubTotalActionPerformed
 
     private void jtablaProductosAVenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtablaProductosAVenderMouseClicked
-        
+        royal_gym.VP.jlMensajes.setText("");
     }//GEN-LAST:event_jtablaProductosAVenderMouseClicked
 
     private void jtablaProductosAVenderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtablaProductosAVenderFocusGained
@@ -467,76 +494,85 @@ public class PanelVentas extends javax.swing.JPanel {
     }//GEN-LAST:event_jtablaProductosAVenderFocusLost
 
     private void jtfDescuentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfDescuentoFocusLost
-  
+
     }//GEN-LAST:event_jtfDescuentoFocusLost
 
     private void jbAGuardarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAGuardarVentaActionPerformed
         DefaultTableModel modelo;
-        if(total == 0){
-            JOptionPane.showMessageDialog(null, "No hay ninguna venta que guardar");
-        }else {
-             try {
-            for (int i = 0 ; i <jtablaProductosAVender.getRowCount(); i++){
-                PreparedStatement pStatement = Conexion.getConexion().prepareStatement("insert into detallefactura(factura, idProducto, cantidad,descuento) values (?,?,?,?)");
-                pStatement.setString(1, jtfNumeoFactura.getText());
-                pStatement.setString(2, jtablaProductosAVender.getValueAt(i, 0).toString());
-                pStatement.setString(3, jtablaProductosAVender.getValueAt(i, 1).toString());
-                pStatement.setString(4, jtablaProductosAVender.getValueAt(i, 4).toString());
-                pStatement.execute();
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        
-        try {
-            for (int i = 0 ; i <jtablaProductosAVender.getRowCount(); i++){
-                Statement statement = Conexion.getConexion().createStatement();
-                String consulta2 = "select cantidad from productos where idproducto = '" + jtablaProductosAVender.getValueAt(i, 0).toString() + "'";        
-                ResultSet resultado2 = statement.executeQuery(consulta2);
-               
-                String sql = "update productos set cantidad = ? where idproducto = '" + jtablaProductosAVender.getValueAt(i, 0).toString() + "'";  
-                PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
-               
-                String cantidadTotal = resultado2.getString("cantidad");
-                double total = ((Double.parseDouble(cantidadTotal)) - (Double.parseDouble(jtablaProductosAVender.getValueAt(i, 1).toString())));
-                consulta.setString(1,String.valueOf(total));
-                consulta.execute();
-            }
-            
+        if (total == 0) {
+            //JOptionPane.showMessageDialog(null, "No hay ninguna venta que guardar");
+            royal_gym.VP.jlMensajes.setText("No hay ninguna venta que guardar");
+        } else {
+            try {
+                for (int i = 0; i < jtablaProductosAVender.getRowCount(); i++) {
+                    PreparedStatement pStatement = Conexion.getConexion().prepareStatement("insert into detallefactura(fecha, factura, idProducto, cantidad, descuento) values (?, ?,?,?,?)");
+                    pStatement.setString(1, String.valueOf(fechaActual));
+                    pStatement.setString(2, String.valueOf(nfac));
+                    pStatement.setString(3, jtablaProductosAVender.getValueAt(i, 0).toString());
+                    pStatement.setString(4, jtablaProductosAVender.getValueAt(i, 1).toString());
+                    pStatement.setString(5, jtablaProductosAVender.getValueAt(i, 4).toString());
+                    pStatement.execute();
+                }
             } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-        
-        modelo = (DefaultTableModel) jtablaProductosAVender.getModel();
-        for (int i = jtablaProductosAVender.getRowCount() -1; i >= 0; i--){
-            modelo.removeRow(i);
-        }
-        setValoresVenta();
+                JOptionPane.showMessageDialog(null, e);
+            }
+
+            try {
+                for (int i = 0; i < jtablaProductosAVender.getRowCount(); i++) {
+                    Statement statement = Conexion.getConexion().createStatement();
+                    String consulta2 = "select cantidad from productos where idproducto = '" + jtablaProductosAVender.getValueAt(i, 0).toString() + "'";
+                    ResultSet resultado2 = statement.executeQuery(consulta2);
+
+                    String sql = "update productos set cantidad = ? where idproducto = '" + jtablaProductosAVender.getValueAt(i, 0).toString() + "'";
+                    PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
+
+                    String cantidadTotal = resultado2.getString("cantidad");
+                    double total = ((Double.parseDouble(cantidadTotal)) - (Double.parseDouble(jtablaProductosAVender.getValueAt(i, 1).toString())));
+                    consulta.setString(1, String.valueOf(total));
+                    consulta.execute();
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+
+            modelo = (DefaultTableModel) jtablaProductosAVender.getModel();
+            for (int i = jtablaProductosAVender.getRowCount() - 1; i >= 0; i--) {
+                modelo.removeRow(i);
+            }
+            total = 0;
+            subTotal = 0;
+            isv = 0;
+            descuento = 0;
+            setValoresVenta();
+            royal_gym.VP.jlMensajes.setText("¡Venta registrada exitosamente!");
+            nfac += 1;
+            jtfNumeoFactura.setText(fac.format(nfac));
         }
     }//GEN-LAST:event_jbAGuardarVentaActionPerformed
 
     private void jbEliminarFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarFilaActionPerformed
         DefaultTableModel modelo;
         int filaSeleccinada = jtablaProductosAVender.getSelectedRow();
-        
-        if(filaSeleccinada == -1){
-            JOptionPane.showMessageDialog(null, "Seleccione un producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        }else{
-            Double totalPorProducto = (Double.parseDouble(jtablaProductosAVender.getValueAt(filaSeleccinada, 7).toString()));
-        Double descuentoPorProducto = (Double.parseDouble(jtablaProductosAVender.getValueAt(filaSeleccinada, 4).toString()));
 
-        total = total - totalPorProducto;
-        descuento = descuento - descuentoPorProducto;
-        isv = total*0.15;
-        subTotal = total - isv;
-        
-        
-        modelo = (DefaultTableModel) jtablaProductosAVender.getModel();
-        modelo.removeRow(filaSeleccinada);
-        
-        setValoresVenta();
+        if (filaSeleccinada == -1) {
+            //JOptionPane.showMessageDialog(null, "Seleccione un producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            royal_gym.VP.jlMensajes.setText("Seleccione un Producto");
+        } else {
+            Double totalPorProducto = (Double.parseDouble(jtablaProductosAVender.getValueAt(filaSeleccinada, 7).toString()));
+            Double descuentoPorProducto = (Double.parseDouble(jtablaProductosAVender.getValueAt(filaSeleccinada, 4).toString()));
+
+            total = total - totalPorProducto;
+            descuento = descuento - descuentoPorProducto;
+            isv = total * 0.15;
+            subTotal = total - isv;
+
+            modelo = (DefaultTableModel) jtablaProductosAVender.getModel();
+            modelo.removeRow(filaSeleccinada);
+
+            setValoresVenta();
         }
-        
+
         //jtfNumeoFactura.setText(String.valueOf(total));
     }//GEN-LAST:event_jbEliminarFilaActionPerformed
 

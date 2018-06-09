@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import static presentacion.PanelVentas.jtablaProductosAVender;
+import static presentacion.PanelVentas.resultado;
 import royal_gym.Clientes;
 import royal_gym.Conexion;
 
@@ -26,6 +27,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     static ResultSet resultado;
     Clientes clientes = new Clientes();
     private String idCliente;
+    
     
  
     
@@ -38,13 +40,55 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     public PanelRegistroClientes() {
         initComponents();
         clientes.modeloTablaCliente(columnasClientes, tablaClientes);
-       
+        ocultarColumna();       
     }
+    
+    // Devuelve la edad permitida
+    public static int edadMinima() {
+        int edadM = 0;
+        try {
+            String consulta = "SELECT valor FROM configuracion where descripConfig = 'edadMinima'";
+            statement = Conexion.getConexion().createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            while (resultado.next()) {
+                edadM = resultado.getInt("valor");
+            }
+        } catch (Exception e) {
+            System.out.println("error edadMinima" + e.getMessage());
+        }
+        return edadM;
+    }
+    
+    
+        public static int edadMaxima() {
+        int edadM = 0;
+        try {
+            String consulta = "SELECT valor FROM configuracion where descripConfig = 'edadMaxima'";
+            statement = Conexion.getConexion().createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            while (resultado.next()) {
+                edadM = resultado.getInt("valor");
+            }
+        } catch (Exception e) {
+            System.out.println("error edadMinima" + e.getMessage());
+        }
+        return edadM;
+    }
+    
+    
        private Date fechaJCalendar(JDateChooser calendario) {
         Date date = calendario.getDate();
         long d = date.getTime();
         java.sql.Date fecha = new java.sql.Date(d);
         return fecha;
+    }
+       
+       private void ocultarColumna() {
+        tablaClientes.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablaClientes.getColumnModel().getColumn(0).setMinWidth(0);
+        tablaClientes.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
     
     @SuppressWarnings("unchecked")
@@ -81,6 +125,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         };
         jtfBuscarCliente = new javax.swing.JTextField();
         btnEliminarCliente = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         jMenuItemModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/jpop_modificar.png"))); // NOI18N
         jMenuItemModificar.setText("Modificar");
@@ -395,6 +440,10 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Buscar Cliente:");
+
         javax.swing.GroupLayout PanelTablaLayout = new javax.swing.GroupLayout(PanelTabla);
         PanelTabla.setLayout(PanelTablaLayout);
         PanelTablaLayout.setHorizontalGroup(
@@ -404,6 +453,8 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
                     .addGroup(PanelTablaLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtfBuscarCliente)
                         .addGap(119, 119, 119))
                     .addGroup(PanelTablaLayout.createSequentialGroup()
@@ -415,7 +466,9 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelTablaLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
@@ -503,11 +556,10 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     
     private void btnAceptarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteActionPerformed
             
-        Configuracion config = new Configuracion();
         Calendar cal = Calendar.getInstance();
         int anioActual = cal.get(Calendar.YEAR);
-        int menorEdadPermitida = anioActual - config.getEdadPermitida();
-        int mayorEdadPermitida = anioActual - 100;
+        int menorEdadPermitida = anioActual - edadMinima();
+        int mayorEdadPermitida = anioActual - edadMaxima();
         
         
         //if (evt.getActionCommand().equals("Guardar")){
@@ -525,9 +577,9 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         } else if (jdcFecha.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Debe seleccinar la FECHA de nacimiento", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jdcFecha.getCalendar().get(Calendar.YEAR) > menorEdadPermitida) {
-            JOptionPane.showMessageDialog(this, "El cliente debe ser mayor de " + config.getEdadPermitida() + " años", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El cliente debe ser mayor de " + edadMinima() + " años", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jdcFecha.getCalendar().get(Calendar.YEAR) < mayorEdadPermitida) {
-            JOptionPane.showMessageDialog(this, "El cliente podría no estar apto para ejercitarse", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El cliente podría no estar apto para ejercitarse.\nUna persona mayor de "+ edadMaxima()+ " años no puede realizar pagos.\n¡Valla a configuración y cambie la edad maxima permitida!", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jtfAltura.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe ingresar la altura del cliente", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jtfPeso.getText().isEmpty()) {
@@ -550,6 +602,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         
         JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
         clientes.modeloTablaCliente(columnasClientes, tablaClientes);
+        ocultarColumna();
            
             } else if(evt.getActionCommand().equals("Modificar")){
                
@@ -570,8 +623,10 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
 
          btnAceptarRegistroCliente.setText("Guardar");
         btnAceptarRegistroCliente.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_guardar.png")));       
-        JOptionPane.showMessageDialog(this, "Modificacion Exitosa", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
+        //JOptionPane.showMessageDialog(this, "Modificacion Exitosa", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
+        royal_gym.VP.jlMensajes.setText("Cliente editado exitosamente");
         clientes.modeloTablaCliente(columnasClientes, tablaClientes);
+        ocultarColumna();
        
             }
             
@@ -630,6 +685,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     private void jtfBuscarClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarClienteCaretUpdate
         DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(clientes.buscarCliente(jtfBuscarCliente.getText(),jtfBuscarCliente.getText()), columnasClientes);
         tablaClientes.setModel(modeloTablaBuscarClientes);
+        ocultarColumna();
     }//GEN-LAST:event_jtfBuscarClienteCaretUpdate
 
     private void jtfBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfBuscarClienteActionPerformed
@@ -724,7 +780,8 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         int filaSeleccionada = tablaClientes.getSelectedRow();
         
         if(filaSeleccionada == -1){
-            JOptionPane.showMessageDialog(null, "Seleccione un cliente", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "Seleccione un cliente", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            royal_gym.VP.jlMensajes.setText("Seleccione un cliente");
         }else{
             
             String nombres = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
@@ -734,7 +791,9 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             if(mjs == JOptionPane.YES_OPTION){
                 clientes.eliminarCliente(nombres, apellidos, nacimiento);
                 clientes.modeloTablaCliente(columnasClientes, tablaClientes);
-                JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente");
+                ocultarColumna();
+                //JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente");
+                royal_gym.VP.jlMensajes.setText("Cliente eliminado exitosamente");
             }
         }
             
@@ -750,7 +809,8 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
 
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
         // TODO add your handling code here:
-         if(evt.getClickCount()==2)
+        royal_gym.VP.jlMensajes.setText(""); 
+        if(evt.getClickCount()==2)
          {
             
             btnEliminarCliente.setEnabled(false);
@@ -791,6 +851,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuItem jMenuItemEliminar;
     private javax.swing.JMenuItem jMenuItemExpediente;
