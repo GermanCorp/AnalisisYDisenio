@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import static presentacion.PanelVentas.jtablaProductosAVender;
+import static presentacion.PanelVentas.resultado;
 import royal_gym.Clientes;
 import royal_gym.Conexion;
 
@@ -26,6 +27,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     static ResultSet resultado;
     Clientes clientes = new Clientes();
     private String idCliente;
+    
     
  
     
@@ -38,9 +40,44 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     public PanelRegistroClientes() {
         initComponents();
         clientes.modeloTablaCliente(columnasClientes, tablaClientes);
-        ocultarColumna();
-       
+        ocultarColumna();       
     }
+    
+    // Devuelve la edad permitida
+    public static int edadMinima() {
+        int edadM = 0;
+        try {
+            String consulta = "SELECT valor FROM configuracion where descripConfig = 'edadMinima'";
+            statement = Conexion.getConexion().createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            while (resultado.next()) {
+                edadM = resultado.getInt("valor");
+            }
+        } catch (Exception e) {
+            System.out.println("error edadMinima" + e.getMessage());
+        }
+        return edadM;
+    }
+    
+    
+        public static int edadMaxima() {
+        int edadM = 0;
+        try {
+            String consulta = "SELECT valor FROM configuracion where descripConfig = 'edadMaxima'";
+            statement = Conexion.getConexion().createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            while (resultado.next()) {
+                edadM = resultado.getInt("valor");
+            }
+        } catch (Exception e) {
+            System.out.println("error edadMinima" + e.getMessage());
+        }
+        return edadM;
+    }
+    
+    
        private Date fechaJCalendar(JDateChooser calendario) {
         Date date = calendario.getDate();
         long d = date.getTime();
@@ -519,11 +556,10 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     
     private void btnAceptarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroClienteActionPerformed
             
-        Configuracion config = new Configuracion();
         Calendar cal = Calendar.getInstance();
         int anioActual = cal.get(Calendar.YEAR);
-        int menorEdadPermitida = anioActual - config.getEdadPermitida();
-        int mayorEdadPermitida = anioActual - 100;
+        int menorEdadPermitida = anioActual - edadMinima();
+        int mayorEdadPermitida = anioActual - edadMaxima();
         
         
         //if (evt.getActionCommand().equals("Guardar")){
@@ -541,9 +577,9 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         } else if (jdcFecha.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Debe seleccinar la FECHA de nacimiento", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jdcFecha.getCalendar().get(Calendar.YEAR) > menorEdadPermitida) {
-            JOptionPane.showMessageDialog(this, "El cliente debe ser mayor de " + config.getEdadPermitida() + " años", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El cliente debe ser mayor de " + edadMinima() + " años", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jdcFecha.getCalendar().get(Calendar.YEAR) < mayorEdadPermitida) {
-            JOptionPane.showMessageDialog(this, "El cliente podría no estar apto para ejercitarse", "Error!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El cliente podría no estar apto para ejercitarse.\nUna persona mayor de "+ edadMaxima()+ " años no puede realizar pagos.\n¡Valla a configuración y cambie la edad maxima permitida!", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jtfAltura.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe ingresar la altura del cliente", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jtfPeso.getText().isEmpty()) {

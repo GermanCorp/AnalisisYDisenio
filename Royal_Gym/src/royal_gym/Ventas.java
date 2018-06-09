@@ -58,4 +58,19 @@ public class Ventas {
         }
     }
     
+    public static int numeroFactura(){
+        int numFactura = 0;
+        try {
+            String consulta = "SELECT factura FROM detalleFactura order by FACTURA DESC LIMIT 1";
+            statement = Conexion.getConexion().createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            while (resultado.next()) {
+                numFactura = resultado.getInt("factura");
+            }
+        } catch (Exception e) {
+            System.out.println("error numeroDeFactura" + e.getMessage());
+        }
+        return numFactura;
+    }
 }

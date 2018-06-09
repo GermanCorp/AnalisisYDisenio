@@ -10,12 +10,14 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Clientes;
 import royal_gym.Conexion;
+import royal_gym.Ventas;
 
 /**
  *
@@ -28,12 +30,18 @@ public class PanelVentas extends javax.swing.JPanel {
     public static double isv = 0;
     public static double descuento = 0;
     public static String cliente;
+    static ResultSet resultado;
+    java.util.Date date = new Date();
+    java.sql.Date fechaActual = new java.sql.Date(date.getTime());
 
     private static Statement statement;
     DecimalFormat df = new DecimalFormat("#,##0.00");
+    DecimalFormat fac = new DecimalFormat("00000000");
+    int nfac = numeroFactura();
 
     public PanelVentas() {
         initComponents();
+        nfac += 1;
         jbAgregarCliente.setHorizontalTextPosition(SwingConstants.CENTER);
         jbAgregarCliente.setVerticalTextPosition(SwingConstants.BOTTOM);
         jbAgregarProducto.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -42,10 +50,28 @@ public class PanelVentas extends javax.swing.JPanel {
         jbAGuardarVenta.setVerticalTextPosition(SwingConstants.BOTTOM);
         jbEliminarFila.setHorizontalTextPosition(SwingConstants.CENTER);
         jbEliminarFila.setVerticalTextPosition(SwingConstants.BOTTOM);
+        jtfNumeoFactura.setText(fac.format(nfac));
     }
 
     public PanelVentas(String cliente) {
         this.cliente = cliente;
+    }
+
+    // retorna el ultimo numero de factura
+    public static int numeroFactura() {
+        int numFactura = 0;
+        try {
+            String consulta = "SELECT factura FROM detalleFactura order by FACTURA DESC LIMIT 1";
+            statement = Conexion.getConexion().createStatement();
+            resultado = statement.executeQuery(consulta);
+
+            while (resultado.next()) {
+                numFactura = resultado.getInt("factura");
+            }
+        } catch (Exception e) {
+            System.out.println("error numeroDeFactura" + e.getMessage());
+        }
+        return numFactura;
     }
 
     public PanelVentas(double total, double subTotal, double isv, double descuento) {
@@ -456,7 +482,7 @@ public class PanelVentas extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfSubTotalActionPerformed
 
     private void jtablaProductosAVenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtablaProductosAVenderMouseClicked
-royal_gym.VP.jlMensajes.setText("");
+        royal_gym.VP.jlMensajes.setText("");
     }//GEN-LAST:event_jtablaProductosAVenderMouseClicked
 
     private void jtablaProductosAVenderFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtablaProductosAVenderFocusGained
@@ -479,11 +505,12 @@ royal_gym.VP.jlMensajes.setText("");
         } else {
             try {
                 for (int i = 0; i < jtablaProductosAVender.getRowCount(); i++) {
-                    PreparedStatement pStatement = Conexion.getConexion().prepareStatement("insert into detallefactura(factura, idProducto, cantidad,descuento) values (?,?,?,?)");
-                    pStatement.setString(1, jtfNumeoFactura.getText());
-                    pStatement.setString(2, jtablaProductosAVender.getValueAt(i, 0).toString());
-                    pStatement.setString(3, jtablaProductosAVender.getValueAt(i, 1).toString());
-                    pStatement.setString(4, jtablaProductosAVender.getValueAt(i, 4).toString());
+                    PreparedStatement pStatement = Conexion.getConexion().prepareStatement("insert into detallefactura(fecha, factura, idProducto, cantidad, descuento) values (?, ?,?,?,?)");
+                    pStatement.setString(1, String.valueOf(fechaActual));
+                    pStatement.setString(2, String.valueOf(nfac));
+                    pStatement.setString(3, jtablaProductosAVender.getValueAt(i, 0).toString());
+                    pStatement.setString(4, jtablaProductosAVender.getValueAt(i, 1).toString());
+                    pStatement.setString(5, jtablaProductosAVender.getValueAt(i, 4).toString());
                     pStatement.execute();
                 }
             } catch (Exception e) {
@@ -519,6 +546,8 @@ royal_gym.VP.jlMensajes.setText("");
             descuento = 0;
             setValoresVenta();
             royal_gym.VP.jlMensajes.setText("¡Venta registrada exitosamente!");
+            nfac += 1;
+            jtfNumeoFactura.setText(fac.format(nfac));
         }
     }//GEN-LAST:event_jbAGuardarVentaActionPerformed
 

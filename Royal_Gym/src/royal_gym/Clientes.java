@@ -20,6 +20,10 @@ public class Clientes {
     // variables
     private static Statement statement;
     static ResultSet resultado;
+
+    public static int numeroFactura() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private int datos = 0;
 
     public Clientes() {
@@ -193,6 +197,19 @@ public class Clientes {
             consulta.setString(4, altura);
             consulta.setString(5, peso);
             consulta.setString(6, id);
+            consulta.execute();
+
+        } catch (Exception e) {
+            System.out.println("error en Modificar Cliente" + e.getMessage());
+        }
+    }
+    
+        public void modificarEdadPermitida(String valor, String descripcion){
+        try {
+            String sql = "update configuracion set valor = ? where descripConfig = ?";
+            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
+            consulta.setString(1, valor);
+            consulta.setString(2, descripcion);
             consulta.execute();
 
         } catch (Exception e) {
