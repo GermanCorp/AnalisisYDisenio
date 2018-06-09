@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package presentacion;
 
 import java.sql.ResultSet;
@@ -23,12 +19,10 @@ import royal_gym.Expediente;
 public class PanelExpediente extends javax.swing.JPanel {
 
     final Conexion con;
-    Expediente expediente= new Expediente();
-   
-    
+    Expediente expediente = new Expediente();
+
     public static String id;
-   
-    
+
     private final String[] columnasCambios = {
         "Peso",
         "Imc",
@@ -38,109 +32,106 @@ public class PanelExpediente extends javax.swing.JPanel {
         "Edad/B",
         "Grasa Viceral"
     };
-    
+
     public PanelExpediente() {
         initComponents();
         this.con = new Conexion();
         con.conectar();
-        
-        
-        
-        try{
-        Statement statement = Conexion.getConexion().createStatement();
-                String consulta2 = "select cl.nombres ||' '||apellidos As nombreCompleto, "
-                        + "cl.FechaNacimiento,cl.Altura,cl.Peso, \n" +
-                        "cl.TelefonoTrabajo,cl.Direccion,cl.MejorHoraParaLlamar,cl.FechaDeInicio,\n" +
-                        "cl.TelefonoCasa,cl.Celular,cl.Edad,cl.PesoIdeal,cl.PesoQuiereSubir,\n" +
-                        "cl.PesoQuiereBajar,cl.PesoQuiereMantener, ps.Gastritis, ps.Colitis, \n" +
-                        "ps.Estreñimiento, ps.Ulcera,ps.Cansancio, ps.Diabetes, ps.PresionAlta,\n" +
-                        "ps.Colesterol, ps.Alergias,ps.Estres, ps.Dolordecabeza, ps.Dolordecuello,\n" +
-                        "ps.Doloresdeespalda,ps.Artritis,ps.Ansiedad,ps.EmbarazoLactancia,\n" +
-                        "ps.Retenciondeliquidos,ps.Malacirculacion,ps.Calambres,ps.Varices,ps.Doloresdehueso,\n" +
-                        "ps.Celulitis,ps.Problemadevesicula,ps.Problemaderiñon,\n" +
-                        "cp.peso, cp.imc,cp.porcentajedegrasa, cp.porcentajedemusculo, cp.calorias,\n" +
-                        "cp.edad, cp.grasaviceral from problemasdesalud ps\n" +
-                        "left join cambioscorporales cp on ps.id_cliente=cp.id_cliente left join cliente cl  on \n" +
-                        "ps.id_cliente = cl.idCliente where ps.id_cliente='"+id+"' ";      
-                ResultSet resultado2 = statement.executeQuery(consulta2);
-                
-              System.out.println(consulta2); 
-               Object[][] datosPago = null;
-              ArrayList<Object[]> filas = new ArrayList<>();
-              {
-                  while (resultado2.next()) {
-                      
-                      jTextFieldnombre.setText(resultado2.getString("NombreCompleto"));
-                      jTextFieldfechanacimiento.setText(resultado2.getString("FechaNacimiento"));
-                      jTextFieldtelefonotrab.setText(resultado2.getString("TelefonoTrabajo"));
-                      jTextFieldcelular.setText(resultado2.getString("Celular"));
-                      jTextFielddireccion.setText(resultado2.getString("Direccion"));
-                      jTextFieldedad.setText(resultado2.getString("Edad"));
-                      jTextFieldestatura.setText(resultado2.getString("Altura"));
-                      jTextFieldpeso.setText(resultado2.getString("Peso"));
-                      jTextFieldmejorhoralla.setText(resultado2.getString("MejorHoraParaLlamar"));
-                      jTextFieldfechainicio.setText(resultado2.getString("FechaDeInicio"));
-                      jTextFieldtelefonocasa.setText(resultado2.getString("TelefonoCasa"));
-                      jTextFieldpesoideal.setText(resultado2.getString("PesoIdeal"));
-                      jCBoxBajar.setSelected(resultado2.getBoolean("PesoQuiereBajar"));
-                      jCBoxsubir.setSelected(resultado2.getBoolean("PesoQuiereSubir"));
-                      jCBoxmantener.setSelected(resultado2.getBoolean("PesoQuiereMantener"));
-                      
-                      
-                      jCBoxalergias.setSelected(resultado2.getBoolean("Alergias"));
-                      //jCBoxanemia.setSelected(resultado2.getBoolean("Anemia"));
-                      jCBoxansiedad.setSelected(resultado2.getBoolean("Ansiedad"));
-                      jCBoxartritis.setSelected(resultado2.getBoolean("Artritis"));
-                      jCBoxcalambres.setSelected(resultado2.getBoolean("Calambres"));
-                      jCBoxcansancio.setSelected(resultado2.getBoolean("Cansancio"));
-                      jCBoxcelulitis.setSelected(resultado2.getBoolean("Celulitis"));
-                      jCBoxcolesterol.setSelected(resultado2.getBoolean("Colesterol"));
-                      jCBoxcolitis.setSelected(resultado2.getBoolean("Colitis"));
-                      jCBoxdiabetes.setSelected(resultado2.getBoolean("Diabetes"));
-                      jCBoxdolordecabeza.setSelected(resultado2.getBoolean("Dolordecabeza"));
-                      jCBoxdolordecuello.setSelected(resultado2.getBoolean("Dolordecuello"));
-                      jCBoxdoloresdeespalda.setSelected(resultado2.getBoolean("Doloresdeespalda"));
-                      jCBoxdoloresdehueso.setSelected(resultado2.getBoolean("Doloresdehueso"));
-                      jCBoxembarazo.setSelected(resultado2.getBoolean("EmbarazoLactancia"));
-                      jCBoxestrenimiento.setSelected(resultado2.getBoolean("Estreñimiento"));
-                      jCBoxestres.setSelected(resultado2.getBoolean("Estres"));
-                      jCBoxgastritis.setSelected(resultado2.getBoolean("Gastritis"));
-                      jCBoxmalacirculacion.setSelected(resultado2.getBoolean("Malacirculacion"));
-                      jCBoxpresionalta.setSelected(resultado2.getBoolean("PresionAlta"));
-                      jCBoxproblemasderinon.setSelected(resultado2.getBoolean("Problemaderiñon"));
-                      jCBoxproblemasdevesicula.setSelected(resultado2.getBoolean("Problemadevesicula"));
-                      jCBoxretenciondeliquidos.setSelected(resultado2.getBoolean("Retenciondeliquidos"));
-                      jCBoxulcera.setSelected(resultado2.getBoolean("Ulcera"));
-                      jCBoxvarices.setSelected(resultado2.getBoolean("Varices"));
-                      
-                      
-                      
+
+        try {
+            Statement statement = Conexion.getConexion().createStatement();
+            String consulta2 = "select cl.nombres ||' '||apellidos As nombreCompleto, "
+                    + "cl.FechaNacimiento,cl.Altura,cl.Peso, \n"
+                    + "cl.TelefonoTrabajo,cl.Direccion,cl.MejorHoraParaLlamar,cl.FechaDeInicio,\n"
+                    + "cl.TelefonoCasa,cl.Celular,cl.Edad,cl.PesoIdeal,cl.PesoQuiereSubir,\n"
+                    + "cl.PesoQuiereBajar,cl.PesoQuiereMantener, ps.Gastritis, ps.Colitis, \n"
+                    + "ps.Estreñimiento, ps.Ulcera,ps.Cansancio, ps.Diabetes, ps.PresionAlta,\n"
+                    + "ps.Colesterol, ps.Alergias,ps.Estres, ps.Dolordecabeza, ps.Dolordecuello,\n"
+                    + "ps.Doloresdeespalda,ps.Artritis,ps.Ansiedad,ps.EmbarazoLactancia,\n"
+                    + "ps.Retenciondeliquidos,ps.Malacirculacion,ps.Calambres,ps.Varices,ps.Doloresdehueso,\n"
+                    + "ps.Celulitis,ps.Problemadevesicula,ps.Problemaderiñon,\n"
+                    + "cp.peso, cp.imc,cp.porcentajedegrasa, cp.porcentajedemusculo, cp.calorias,\n"
+                    + "cp.edad, cp.grasaviceral\n"
+                    + "from cliente cl \n"
+                    + "left outer join problemasdesalud ps on ps.id_cliente = cl.idCliente \n"
+                    + "left outer join cambioscorporales cp on ps.id_cliente=cp.id_cliente \n"
+                    + "where cl.idCliente='" + id + "' ";
+            ResultSet resultado2 = statement.executeQuery(consulta2);
+
+            //System.out.println(consulta2); 
+            Object[][] datosPago = null;
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado2.next()) {
+
+                jTextFieldnombre.setText(resultado2.getString("NombreCompleto"));
+                jTextFieldfechanacimiento.setText(resultado2.getString("FechaNacimiento"));
+                jTextFieldtelefonotrab.setText(resultado2.getString("TelefonoTrabajo"));
+                jTextFieldcelular.setText(resultado2.getString("Celular"));
+                jTextFielddireccion.setText(resultado2.getString("Direccion"));
+                jTextFieldedad.setText(resultado2.getString("Edad"));
+                try {
+                    jTextFieldestatura.setText(resultado2.getString("Altura"));
+                    jTextFieldpeso.setText(resultado2.getString("Peso"));
+                    jTextFieldmejorhoralla.setText(resultado2.getString("MejorHoraParaLlamar"));
+                    jTextFieldfechainicio.setText(resultado2.getString("FechaDeInicio"));
+                    jTextFieldtelefonocasa.setText(resultado2.getString("TelefonoCasa"));
+                    jTextFieldpesoideal.setText(resultado2.getString("PesoIdeal"));
+                    jCBoxBajar.setSelected(resultado2.getBoolean("PesoQuiereBajar"));
+                    jCBoxsubir.setSelected(resultado2.getBoolean("PesoQuiereSubir"));
+                    jCBoxmantener.setSelected(resultado2.getBoolean("PesoQuiereMantener"));
+
+                    jCBoxalergias.setSelected(resultado2.getBoolean("Alergias"));
+                    //jCBoxanemia.setSelected(resultado2.getBoolean("Anemia"));
+                    jCBoxansiedad.setSelected(resultado2.getBoolean("Ansiedad"));
+                    jCBoxartritis.setSelected(resultado2.getBoolean("Artritis"));
+                    jCBoxcalambres.setSelected(resultado2.getBoolean("Calambres"));
+                    jCBoxcansancio.setSelected(resultado2.getBoolean("Cansancio"));
+                    jCBoxcelulitis.setSelected(resultado2.getBoolean("Celulitis"));
+                    jCBoxcolesterol.setSelected(resultado2.getBoolean("Colesterol"));
+                    jCBoxcolitis.setSelected(resultado2.getBoolean("Colitis"));
+                    jCBoxdiabetes.setSelected(resultado2.getBoolean("Diabetes"));
+                    jCBoxdolordecabeza.setSelected(resultado2.getBoolean("Dolordecabeza"));
+                    jCBoxdolordecuello.setSelected(resultado2.getBoolean("Dolordecuello"));
+                    jCBoxdoloresdeespalda.setSelected(resultado2.getBoolean("Doloresdeespalda"));
+                    jCBoxdoloresdehueso.setSelected(resultado2.getBoolean("Doloresdehueso"));
+                    jCBoxembarazo.setSelected(resultado2.getBoolean("EmbarazoLactancia"));
+                    jCBoxestrenimiento.setSelected(resultado2.getBoolean("Estreñimiento"));
+                    jCBoxestres.setSelected(resultado2.getBoolean("Estres"));
+                    jCBoxgastritis.setSelected(resultado2.getBoolean("Gastritis"));
+                    jCBoxmalacirculacion.setSelected(resultado2.getBoolean("Malacirculacion"));
+                    jCBoxpresionalta.setSelected(resultado2.getBoolean("PresionAlta"));
+                    jCBoxproblemasderinon.setSelected(resultado2.getBoolean("Problemaderiñon"));
+                    jCBoxproblemasdevesicula.setSelected(resultado2.getBoolean("Problemadevesicula"));
+                    jCBoxretenciondeliquidos.setSelected(resultado2.getBoolean("Retenciondeliquidos"));
+                    jCBoxulcera.setSelected(resultado2.getBoolean("Ulcera"));
+                    jCBoxvarices.setSelected(resultado2.getBoolean("Varices"));
+
                     filas.add(
-                    new Object[]{
-                    resultado2.getDouble("peso"),
-                    resultado2.getDouble("imc"),
-                    resultado2.getDouble("porcentajedegrasa"),
-                    resultado2.getDouble("porcentajedemusculo"),
-                    resultado2.getDouble("calorias"),
-                    resultado2.getInt("edad"),
-                    resultado2.getInt("grasaviceral"),} );
-                  
-                    datosPago = new Object[filas.size()][];
-                    filas.toArray(datosPago);} 
-              
-                    DefaultTableModel modeloTablaPagos = new DefaultTableModel(datosPago, columnasCambios);
-                    tablacambioscorporales.setModel(modeloTablaPagos); 
-                  
-                     }
-        }catch(Exception ex){
+                            new Object[]{
+                                resultado2.getDouble("peso"),
+                                resultado2.getDouble("imc"),
+                                resultado2.getDouble("porcentajedegrasa"),
+                                resultado2.getDouble("porcentajedemusculo"),
+                                resultado2.getDouble("calorias"),
+                                resultado2.getInt("edad"),
+                                resultado2.getInt("grasaviceral"),});
+                } catch (Exception ex) {
+                    System.out.println("interna:" + ex.getMessage());
+                }
+                datosPago = new Object[filas.size()][];
+                filas.toArray(datosPago);
+            }
+
+            DefaultTableModel modeloTablaPagos = new DefaultTableModel(datosPago, columnasCambios);
+            tablacambioscorporales.setModel(modeloTablaPagos);
+
+        } catch (Exception ex) {
             System.out.println("buscarCliente:" + ex.getMessage());
         }
-        
+
     }
-   
-   
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1107,70 +1098,65 @@ public class PanelExpediente extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfimcActionPerformed
 
     private void botonaceptarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarexpedienteActionPerformed
-      
+
         expediente.actualizarTablaClientes(
-            id, 
-            jTextFieldtelefonotrab.getText(),
-            jTextFielddireccion.getText(),
-            jTextFieldmejorhoralla.getText(),
-            jTextFieldfechainicio.getText(),
-            jTextFieldtelefonocasa.getText(),
-            jTextFieldcelular.getText(),
-            jtfedad.getText(),
-            jTextFieldpesoideal.getText(),
-            jCBoxsubir.isSelected(), 
-            jCBoxBajar.isSelected(),
-            jCBoxmantener.isSelected());
-       
-        
-        
+                id,
+                jTextFieldtelefonotrab.getText(),
+                jTextFielddireccion.getText(),
+                jTextFieldmejorhoralla.getText(),
+                jTextFieldfechainicio.getText(),
+                jTextFieldtelefonocasa.getText(),
+                jTextFieldcelular.getText(),
+                jtfedad.getText(),
+                jTextFieldpesoideal.getText(),
+                jCBoxsubir.isSelected(),
+                jCBoxBajar.isSelected(),
+                jCBoxmantener.isSelected());
+
         expediente.insertarCambiosCorporales(
-        
-        jtfpeso.getText(),
-        jtfimc.getText(),
-        jtfgrasa.getText(),
-        jtfmusculo.getText(),
-        jtfcalorias.getText(),
-        jtfedad.getText(),
-        jtfgrasaviceral.getText(),
-        id);
-       
-        DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(),columnasCambios);
+                jtfpeso.getText(),
+                jtfimc.getText(),
+                jtfgrasa.getText(),
+                jtfmusculo.getText(),
+                jtfcalorias.getText(),
+                jtfedad.getText(),
+                jtfgrasaviceral.getText(),
+                id);
+
+        DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(), columnasCambios);
         tablacambioscorporales.setModel(modeloTablaPagos);
-        
-        
-        
-        boolean gastritis = jCBoxgastritis.isSelected()  ;
-        boolean colitis = jCBoxcolitis.isSelected() ;
-        boolean estreñimiento = jCBoxestrenimiento.isSelected() ;
-        boolean ulcera = jCBoxulcera.isSelected() ;
-        boolean cansancio = jCBoxcansancio.isSelected() ;
-        boolean diabetes = jCBoxdiabetes.isSelected() ;
-        boolean presionAlta = jCBoxpresionalta.isSelected() ;
-        boolean colesterol = jCBoxcolesterol.isSelected() ;
-        boolean alergias = jCBoxalergias.isSelected() ;
-        boolean estres = jCBoxestres.isSelected() ;
-        boolean dolordecabeza = jCBoxdolordecabeza.isSelected() ;
-        boolean dolordecuello = jCBoxdolordecuello.isSelected() ;
-        boolean doloresdeespalda = jCBoxdoloresdeespalda.isSelected() ;
-        boolean artritis = jCBoxartritis.isSelected() ;
-        boolean ansiedad = jCBoxansiedad.isSelected() ;
-        boolean embarazo = jCBoxembarazo.isSelected() ;
-        boolean retencionliquidos = jCBoxretenciondeliquidos.isSelected() ;
-        boolean malacirculacion = jCBoxmalacirculacion.isSelected() ;
-        boolean calambres = jCBoxcalambres.isSelected() ;
-        boolean varices = jCBoxvarices.isSelected() ;
-        boolean doloresdehueso = jCBoxdoloresdehueso.isSelected() ;
-        boolean anemia = jCBoxanemia.isSelected() ;
-        boolean problemadevesicula = jCBoxproblemasdevesicula.isSelected() ;
-        boolean problemaderiñon = jCBoxproblemasderinon.isSelected() ;
-        boolean celulitis= jCBoxcelulitis.isSelected();
-        
-        expediente.insertarProblemasdeSalud(id,gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes, presionAlta, 
-                colesterol, alergias, estres, dolordecabeza, dolordecuello, doloresdeespalda, artritis, ansiedad, embarazo, 
-                retencionliquidos, malacirculacion, calambres, varices, doloresdehueso, anemia, problemadevesicula, 
+
+        boolean gastritis = jCBoxgastritis.isSelected();
+        boolean colitis = jCBoxcolitis.isSelected();
+        boolean estreñimiento = jCBoxestrenimiento.isSelected();
+        boolean ulcera = jCBoxulcera.isSelected();
+        boolean cansancio = jCBoxcansancio.isSelected();
+        boolean diabetes = jCBoxdiabetes.isSelected();
+        boolean presionAlta = jCBoxpresionalta.isSelected();
+        boolean colesterol = jCBoxcolesterol.isSelected();
+        boolean alergias = jCBoxalergias.isSelected();
+        boolean estres = jCBoxestres.isSelected();
+        boolean dolordecabeza = jCBoxdolordecabeza.isSelected();
+        boolean dolordecuello = jCBoxdolordecuello.isSelected();
+        boolean doloresdeespalda = jCBoxdoloresdeespalda.isSelected();
+        boolean artritis = jCBoxartritis.isSelected();
+        boolean ansiedad = jCBoxansiedad.isSelected();
+        boolean embarazo = jCBoxembarazo.isSelected();
+        boolean retencionliquidos = jCBoxretenciondeliquidos.isSelected();
+        boolean malacirculacion = jCBoxmalacirculacion.isSelected();
+        boolean calambres = jCBoxcalambres.isSelected();
+        boolean varices = jCBoxvarices.isSelected();
+        boolean doloresdehueso = jCBoxdoloresdehueso.isSelected();
+        boolean anemia = jCBoxanemia.isSelected();
+        boolean problemadevesicula = jCBoxproblemasdevesicula.isSelected();
+        boolean problemaderiñon = jCBoxproblemasderinon.isSelected();
+        boolean celulitis = jCBoxcelulitis.isSelected();
+
+        expediente.insertarProblemasdeSalud(id, gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes, presionAlta,
+                colesterol, alergias, estres, dolordecabeza, dolordecuello, doloresdeespalda, artritis, ansiedad, embarazo,
+                retencionliquidos, malacirculacion, calambres, varices, doloresdehueso, anemia, problemadevesicula,
                 problemaderiñon, celulitis);
-        
+
     }//GEN-LAST:event_botonaceptarexpedienteActionPerformed
 
     private void jCBoxdoloresdehuesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxdoloresdehuesoActionPerformed
@@ -1219,91 +1205,91 @@ public class PanelExpediente extends javax.swing.JPanel {
 
     private void jTextFieldnombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldnombreKeyPressed
         // TODO add your handling code here:
-         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldnombreKeyPressed
 
     private void jTextFieldtelefonotrabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonotrabKeyPressed
         // TODO add your handling code here:
-         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldtelefonotrabKeyPressed
 
     private void jTextFielddireccionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielddireccionKeyPressed
         // TODO add your handling code here:
-         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFielddireccionKeyPressed
 
     private void jTextFieldmejorhorallaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldmejorhorallaKeyPressed
         // TODO add your handling code here:
-         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldmejorhorallaKeyPressed
 
     private void jTextFieldestaturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldestaturaKeyPressed
         // TODO add your handling code here:
-         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldestaturaKeyPressed
 
     private void jTextFieldpesoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldpesoKeyPressed
         // TODO add your handling code here:
-         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldpesoKeyPressed
 
     private void jTextFieldedadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldedadKeyPressed
         // TODO add your handling code here:
-         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldedadKeyPressed
 
     private void jTextFieldpesoidealKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldpesoidealKeyPressed
         // TODO add your handling code here:
-         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldpesoidealKeyPressed
 
     private void jTextFieldfechainicioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldfechainicioKeyPressed
         // TODO add your handling code here:
-         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldfechainicioKeyPressed
 
     private void jTextFieldtelefonocasaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonocasaKeyPressed
         // TODO add your handling code here:
-         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldtelefonocasaKeyPressed
 
     private void jTextFieldcelularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldcelularKeyPressed
         // TODO add your handling code here:
-         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldcelularKeyPressed
 
     private void jTextFieldfechanacimientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldfechanacimientoKeyPressed
         // TODO add your handling code here:
-         if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldfechanacimientoKeyPressed
 
     private void jTextFieldtelefonotrabKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonotrabKeyTyped
         // TODO add your handling code here:
-        if(!Character.isDigit(evt.getKeyChar())){
+        if (!Character.isDigit(evt.getKeyChar())) {
             evt.consume();
 
         }
@@ -1311,7 +1297,7 @@ public class PanelExpediente extends javax.swing.JPanel {
 
     private void jTextFieldtelefonocasaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonocasaKeyTyped
         // TODO add your handling code here:
-        if(!Character.isDigit(evt.getKeyChar())){
+        if (!Character.isDigit(evt.getKeyChar())) {
             evt.consume();
 
         }
@@ -1319,7 +1305,7 @@ public class PanelExpediente extends javax.swing.JPanel {
 
     private void jTextFieldedadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldedadKeyTyped
         // TODO add your handling code here:
-        if(!Character.isDigit(evt.getKeyChar())){
+        if (!Character.isDigit(evt.getKeyChar())) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldedadKeyTyped
@@ -1335,15 +1321,13 @@ public class PanelExpediente extends javax.swing.JPanel {
     private void botoncancelarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncancelarexpedienteActionPerformed
         doClose(RET_CANCEL);
     }//GEN-LAST:event_botoncancelarexpedienteActionPerformed
-     
-  
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
         //dispose();        
-    } 
-    
-   
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelCambiosCorporales;
@@ -1425,7 +1409,7 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JTable tablacambioscorporales;
     // End of variables declaration//GEN-END:variables
 
-     private int returnStatus = RET_CANCEL;
+    private int returnStatus = RET_CANCEL;
 
     private void dispose() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

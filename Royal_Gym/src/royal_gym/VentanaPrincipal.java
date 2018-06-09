@@ -32,7 +32,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
         panelInventarioMaquinaria1 = new presentacion.PanelInventarioMaquinaria();
         panelRegistroProductos1 = new presentacion.PanelRegistroProductos();
         panelVentas1 = new presentacion.PanelVentas();
-        panelCompra1 = new presentacion.PanelCompra();
         panelUtilidad1 = new presentacion.PanelUtilidad();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -72,7 +71,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
             }
         });
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Vender.png")), panelVentas1); // NOI18N
-        jTabbedPane1.addTab("Comprar", panelCompra1);
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Utilidad.png")), panelUtilidad1); // NOI18N
 
         jMenu1.setText("Archivo");
@@ -239,7 +237,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuItemConfiguracion;
     private javax.swing.JMenuItem jMenuItemSalir;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private presentacion.PanelCompra panelCompra1;
     private presentacion.PanelCumpleaneros panelCumpleaneros1;
     private presentacion.PanelInventarioMaquinaria panelInventarioMaquinaria1;
     private presentacion.PanelRegistroClientes panelRegistroClientes1;
