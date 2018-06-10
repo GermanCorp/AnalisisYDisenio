@@ -126,7 +126,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         jtfBuscarCliente = new javax.swing.JTextField();
         btnEliminarCliente = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        btnEliminarCliente1 = new javax.swing.JButton();
+        btnExpediente = new javax.swing.JButton();
 
         jMenuItemModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/jpop_modificar.png"))); // NOI18N
         jMenuItemModificar.setText("Modificar");
@@ -448,11 +448,11 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Buscar Cliente:");
 
-        btnEliminarCliente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/expediente.png"))); // NOI18N
-        btnEliminarCliente1.setText("Expediente");
-        btnEliminarCliente1.addActionListener(new java.awt.event.ActionListener() {
+        btnExpediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/expediente.png"))); // NOI18N
+        btnExpediente.setText("Expediente");
+        btnExpediente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarCliente1ActionPerformed(evt);
+                btnExpedienteActionPerformed(evt);
             }
         });
 
@@ -470,7 +470,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                         .addComponent(jtfBuscarCliente))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelTablaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnEliminarCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
                         .addComponent(btnEliminarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -488,7 +488,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 .addGap(27, 27, 27)
                 .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEliminarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminarCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -854,9 +854,9 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tablaClientesMouseClicked
 
-    private void btnEliminarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCliente1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarCliente1ActionPerformed
+    private void btnExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpedienteActionPerformed
+
+    }//GEN-LAST:event_btnExpedienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -864,7 +864,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     private javax.swing.JButton btnAceptarRegistroCliente;
     private javax.swing.JButton btnCancelarRegistroCliente;
     private javax.swing.JButton btnEliminarCliente;
-    private javax.swing.JButton btnEliminarCliente1;
+    private javax.swing.JButton btnExpediente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

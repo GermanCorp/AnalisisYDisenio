@@ -447,7 +447,7 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="btnEliminarCliente1" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="btnExpediente" min="-2" pref="130" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                           <Component id="btnEliminarCliente" min="-2" pref="130" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
@@ -470,7 +470,7 @@
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnEliminarCliente" min="-2" pref="64" max="-2" attributes="0"/>
-                      <Component id="btnEliminarCliente1" min="-2" pref="65" max="-2" attributes="0"/>
+                      <Component id="btnExpediente" min="-2" pref="65" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
@@ -557,7 +557,7 @@
             <Property name="text" type="java.lang.String" value="Buscar Cliente:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnEliminarCliente1">
+        <Component class="javax.swing.JButton" name="btnExpediente">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/iconos/expediente.png"/>
@@ -565,7 +565,7 @@
             <Property name="text" type="java.lang.String" value="Expediente"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarCliente1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExpedienteActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
