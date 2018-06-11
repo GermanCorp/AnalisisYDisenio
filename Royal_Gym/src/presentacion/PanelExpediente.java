@@ -1,11 +1,20 @@
 
 package presentacion;
 
+import com.toedter.calendar.JDateChooser;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import static presentacion.ListaClientes.RET_CANCEL;
+import static presentacion.PanelRegistroClientes.tablaClientes;
 import static presentacion.PanelRegistroPagos.jTextFieldNombreCliente;
 import static presentacion.PanelRegistroPagos.tablaPagos;
 import static presentacion.PanelVentas.jtablaProductosAVender;
@@ -70,11 +79,19 @@ public class PanelExpediente extends javax.swing.JPanel {
                 jTextFieldcelular.setText(resultado2.getString("Celular"));
                 jTextFielddireccion.setText(resultado2.getString("Direccion"));
                 jTextFieldedad.setText(resultado2.getString("Edad"));
-                try {
+                
                     jTextFieldestatura.setText(resultado2.getString("Altura"));
                     jTextFieldpeso.setText(resultado2.getString("Peso"));
                     jTextFieldmejorhoralla.setText(resultado2.getString("MejorHoraParaLlamar"));
-                    jTextFieldfechainicio.setText(resultado2.getString("FechaDeInicio"));
+                    
+                    String fecha = resultado2.getString("FechaDeInicio");
+                    java.util.Date date2 = null;
+                    date2 = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+                    jDateChooserFechaInicio.setDate(date2);
+                    
+//                    jDateChooserFechaInicio.setDateFormatString("dd/MM/yyyy"); // Sirve para mostrar el formato en el date chooser
+//                    jDateChooserFechaInicio.setDate(new Date(resultado2.getDate("FechaDeInicio").getTime())); // la fecha como tal
+                    //jDateChooserFechaInicio.setDate(resultado2.getDate("FechaDeInicio"));
                     jTextFieldtelefonocasa.setText(resultado2.getString("TelefonoCasa"));
                     jTextFieldpesoideal.setText(resultado2.getString("PesoIdeal"));
                     jCBoxBajar.setSelected(resultado2.getBoolean("PesoQuiereBajar"));
@@ -116,9 +133,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                                 resultado2.getDouble("calorias"),
                                 resultado2.getInt("edad"),
                                 resultado2.getInt("grasaviceral"),});
-                } catch (Exception ex) {
-                    System.out.println("interna:" + ex.getMessage());
-                }
+                
                 datosPago = new Object[filas.size()][];
                 filas.toArray(datosPago);
             }
@@ -136,7 +151,6 @@ public class PanelExpediente extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         PanelDatosCliente = new javax.swing.JPanel();
         labelnombre = new javax.swing.JLabel();
@@ -156,13 +170,13 @@ public class PanelExpediente extends javax.swing.JPanel {
         jTextFieldmejorhoralla = new javax.swing.JTextField();
         jTextFieldtelefonotrab = new javax.swing.JTextField();
         jTextFieldtelefonocasa = new javax.swing.JTextField();
-        jTextFieldfechainicio = new javax.swing.JTextField();
         jTextFieldestatura = new javax.swing.JTextField();
         jTextFieldfechanacimiento = new javax.swing.JTextField();
         jTextFieldpeso = new javax.swing.JTextField();
         jTextFieldedad = new javax.swing.JTextField();
         jTextFieldpesoideal = new javax.swing.JTextField();
         jTextFieldcelular = new javax.swing.JTextField();
+        jDateChooserFechaInicio = new com.toedter.calendar.JDateChooser();
         PanelProblemasdeSalud = new javax.swing.JPanel();
         labelpesosquiere = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -269,6 +283,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         labelpesoideal.setForeground(new java.awt.Color(255, 255, 255));
         labelpesoideal.setText("Peso Ideal:");
 
+        jTextFieldnombre.setEditable(false);
         jTextFieldnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldnombreActionPerformed(evt);
@@ -288,6 +303,9 @@ public class PanelExpediente extends javax.swing.JPanel {
         jTextFielddireccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextFielddireccionKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFielddireccionKeyTyped(evt);
             }
         });
 
@@ -330,17 +348,7 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
-        jTextFieldfechainicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldfechainicioActionPerformed(evt);
-            }
-        });
-        jTextFieldfechainicio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldfechainicioKeyPressed(evt);
-            }
-        });
-
+        jTextFieldestatura.setEditable(false);
         jTextFieldestatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldestaturaActionPerformed(evt);
@@ -352,6 +360,7 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        jTextFieldfechanacimiento.setEditable(false);
         jTextFieldfechanacimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldfechanacimientoActionPerformed(evt);
@@ -371,6 +380,9 @@ public class PanelExpediente extends javax.swing.JPanel {
         jTextFieldpeso.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextFieldpesoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldpesoKeyTyped(evt);
             }
         });
 
@@ -408,6 +420,16 @@ public class PanelExpediente extends javax.swing.JPanel {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextFieldcelularKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldcelularKeyTyped(evt);
+            }
+        });
+
+        jDateChooserFechaInicio.setDateFormatString("yyyy-MM-dd");
+        jDateChooserFechaInicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jDateChooserFechaInicioMouseClicked(evt);
+            }
         });
 
         javax.swing.GroupLayout PanelDatosClienteLayout = new javax.swing.GroupLayout(PanelDatosCliente);
@@ -444,12 +466,8 @@ public class PanelExpediente extends javax.swing.JPanel {
                             .addComponent(jTextFieldnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(labelfechainicio)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldfechainicio))
+                        .addGap(33, 33, 33)
+                        .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                                 .addComponent(labeltelefonocasa)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -459,9 +477,16 @@ public class PanelExpediente extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldcelular))
                             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(labelfechanacimiento)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldfechanacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                                        .addComponent(labelfechanacimiento)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldfechanacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                                        .addComponent(labelfechainicio)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jDateChooserFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(labeledad)
@@ -478,11 +503,12 @@ public class PanelExpediente extends javax.swing.JPanel {
             PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelnombre)
-                    .addComponent(labelfechainicio)
-                    .addComponent(jTextFieldnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldfechainicio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateChooserFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelnombre)
+                        .addComponent(labelfechainicio)
+                        .addComponent(jTextFieldnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(14, 14, 14)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labeltelefonotrabajo)
@@ -774,7 +800,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                     .addComponent(jCBoxanemia)
                     .addComponent(jCBoxproblemasderinon)
                     .addComponent(jCBoxcelulitis))
-                .addContainerGap(367, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelProblemasdeSaludLayout.setVerticalGroup(
             PanelProblemasdeSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -847,6 +873,11 @@ public class PanelExpediente extends javax.swing.JPanel {
                 jtfpesoActionPerformed(evt);
             }
         });
+        jtfpeso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfpesoKeyTyped(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -857,10 +888,21 @@ public class PanelExpediente extends javax.swing.JPanel {
                 jtfimcActionPerformed(evt);
             }
         });
+        jtfimc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfimcKeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("%Grasa:");
+
+        jtfgrasa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfgrasaKeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -871,18 +913,41 @@ public class PanelExpediente extends javax.swing.JPanel {
                 jtfmusculoActionPerformed(evt);
             }
         });
+        jtfmusculo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfmusculoKeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Calorias:");
 
+        jtfcalorias.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfcaloriasKeyTyped(evt);
+            }
+        });
+
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Edad/B:");
 
+        jtfedad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfedadKeyTyped(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Grasa Viceral:");
+
+        jtfgrasaviceral.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfgrasaviceralKeyTyped(evt);
+            }
+        });
 
         tablacambioscorporales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -968,37 +1033,32 @@ public class PanelExpediente extends javax.swing.JPanel {
                     .addComponent(jtfmusculo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(PanelDatosCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(28, 28, 28))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(PanelProblemasdeSalud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanelDatosCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanelProblemasdeSalud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(PanelDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(PanelProblemasdeSalud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        jScrollPane2.setViewportView(jPanel1);
 
         botoncancelarexpediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/iconos/Archivo_Salir.png"))); // NOI18N
         botoncancelarexpediente.setText("Salir");
@@ -1023,97 +1083,45 @@ public class PanelExpediente extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonaceptarexpediente)
-                .addGap(18, 18, 18)
+                .addGap(47, 47, 47)
                 .addComponent(botoncancelarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1035, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonaceptarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botoncancelarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1044, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botoncancelarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonaceptarexpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldnombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldnombreActionPerformed
-
-    private void jTextFielddireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFielddireccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFielddireccionActionPerformed
-
-    private void jTextFieldmejorhorallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldmejorhorallaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldmejorhorallaActionPerformed
-
-    private void jTextFieldtelefonotrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldtelefonotrabActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldtelefonotrabActionPerformed
-
-    private void jTextFieldtelefonocasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldtelefonocasaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldtelefonocasaActionPerformed
-
-    private void jTextFieldfechainicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldfechainicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldfechainicioActionPerformed
-
-    private void jTextFieldestaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldestaturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldestaturaActionPerformed
-
-    private void jTextFieldfechanacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldfechanacimientoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldfechanacimientoActionPerformed
-
-    private void jTextFieldpesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldpesoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldpesoActionPerformed
-
-    private void jTextFieldedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldedadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldedadActionPerformed
-
-    private void jTextFieldpesoidealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldpesoidealActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldpesoidealActionPerformed
-
-    private void jTextFieldcelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldcelularActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldcelularActionPerformed
-
-    private void jtfpesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfpesoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfpesoActionPerformed
-
-    private void jtfimcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfimcActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfimcActionPerformed
-
     private void botonaceptarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarexpedienteActionPerformed
-
+ 
         expediente.actualizarTablaClientes(
-                id,
+                
                 jTextFieldtelefonotrab.getText(),
-                jTextFielddireccion.getText(),
+                jTextFielddireccion.getText().trim(),
                 jTextFieldmejorhoralla.getText(),
-                jTextFieldfechainicio.getText(),
+                fechaJCalendar(jDateChooserFechaInicio).toString(),
                 jTextFieldtelefonocasa.getText(),
                 jTextFieldcelular.getText(),
                 jtfedad.getText(),
                 jTextFieldpesoideal.getText(),
                 jCBoxsubir.isSelected(),
                 jCBoxBajar.isSelected(),
-                jCBoxmantener.isSelected());
+                jCBoxmantener.isSelected(),
+                id);
 
-        expediente.insertarCambiosCorporales(
+        expediente.actualizarCambiosCorporales(
                 jtfpeso.getText(),
                 jtfimc.getText(),
                 jtfgrasa.getText(),
@@ -1123,8 +1131,8 @@ public class PanelExpediente extends javax.swing.JPanel {
                 jtfgrasaviceral.getText(),
                 id);
 
-        DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(), columnasCambios);
-        tablacambioscorporales.setModel(modeloTablaPagos);
+//        DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(), columnasCambios);
+//        tablacambioscorporales.setModel(modeloTablaPagos);
 
         boolean gastritis = jCBoxgastritis.isSelected();
         boolean colitis = jCBoxcolitis.isSelected();
@@ -1152,12 +1160,32 @@ public class PanelExpediente extends javax.swing.JPanel {
         boolean problemaderiñon = jCBoxproblemasderinon.isSelected();
         boolean celulitis = jCBoxcelulitis.isSelected();
 
-        expediente.insertarProblemasdeSalud(id, gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes, presionAlta,
+        expediente.actualizarProblemasDeSalud(id, gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes, presionAlta,
                 colesterol, alergias, estres, dolordecabeza, dolordecuello, doloresdeespalda, artritis, ansiedad, embarazo,
                 retencionliquidos, malacirculacion, calambres, varices, doloresdehueso, anemia, problemadevesicula,
                 problemaderiñon, celulitis);
 
     }//GEN-LAST:event_botonaceptarexpedienteActionPerformed
+
+    private void botoncancelarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncancelarexpedienteActionPerformed
+        doClose(RET_CANCEL);
+    }//GEN-LAST:event_botoncancelarexpedienteActionPerformed
+
+    private void jtfmusculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfmusculoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfmusculoActionPerformed
+
+    private void jtfimcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfimcActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfimcActionPerformed
+
+    private void jtfpesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfpesoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfpesoActionPerformed
+
+    private void jCBoxproblemasderinonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxproblemasderinonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxproblemasderinonActionPerformed
 
     private void jCBoxdoloresdehuesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxdoloresdehuesoActionPerformed
         // TODO add your handling code here:
@@ -1184,7 +1212,11 @@ public class PanelExpediente extends javax.swing.JPanel {
     }//GEN-LAST:event_jCBoxestrenimientoActionPerformed
 
     private void jCBoxsubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxsubirActionPerformed
-        // TODO add your handling code here:
+        if(jCBoxsubir.isSelected()){
+           jCBoxBajar.setSelected(false);
+           jCBoxmantener.setSelected(false);
+            
+        }
     }//GEN-LAST:event_jCBoxsubirActionPerformed
 
     private void jCBoxcolitisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxcolitisActionPerformed
@@ -1196,82 +1228,21 @@ public class PanelExpediente extends javax.swing.JPanel {
     }//GEN-LAST:event_jCBoxgastritisActionPerformed
 
     private void jCBoxmantenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxmantenerActionPerformed
-        // TODO add your handling code here:
+                                                  
+        if( jCBoxmantener.isSelected()){
+           jCBoxsubir.setSelected(false);
+           jCBoxBajar.setSelected(false);
+            
+        }
     }//GEN-LAST:event_jCBoxmantenerActionPerformed
 
     private void jCBoxBajarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxBajarActionPerformed
-        // TODO add your handling code here:
+        if(jCBoxBajar.isSelected()){
+           jCBoxsubir.setSelected(false);
+           jCBoxmantener.setSelected(false);
+            
+        }
     }//GEN-LAST:event_jCBoxBajarActionPerformed
-
-    private void jTextFieldnombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldnombreKeyPressed
-        // TODO add your handling code here:
-        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextFieldnombreKeyPressed
-
-    private void jTextFieldtelefonotrabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonotrabKeyPressed
-        // TODO add your handling code here:
-        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextFieldtelefonotrabKeyPressed
-
-    private void jTextFielddireccionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielddireccionKeyPressed
-        // TODO add your handling code here:
-        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextFielddireccionKeyPressed
-
-    private void jTextFieldmejorhorallaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldmejorhorallaKeyPressed
-        // TODO add your handling code here:
-        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextFieldmejorhorallaKeyPressed
-
-    private void jTextFieldestaturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldestaturaKeyPressed
-        // TODO add your handling code here:
-        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextFieldestaturaKeyPressed
-
-    private void jTextFieldpesoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldpesoKeyPressed
-        // TODO add your handling code here:
-        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextFieldpesoKeyPressed
-
-    private void jTextFieldedadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldedadKeyPressed
-        // TODO add your handling code here:
-        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextFieldedadKeyPressed
-
-    private void jTextFieldpesoidealKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldpesoidealKeyPressed
-        // TODO add your handling code here:
-        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextFieldpesoidealKeyPressed
-
-    private void jTextFieldfechainicioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldfechainicioKeyPressed
-        // TODO add your handling code here:
-        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextFieldfechainicioKeyPressed
-
-    private void jTextFieldtelefonocasaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonocasaKeyPressed
-        // TODO add your handling code here:
-        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextFieldtelefonocasaKeyPressed
 
     private void jTextFieldcelularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldcelularKeyPressed
         // TODO add your handling code here:
@@ -1280,6 +1251,50 @@ public class PanelExpediente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextFieldcelularKeyPressed
 
+    private void jTextFieldcelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldcelularActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldcelularActionPerformed
+
+    private void jTextFieldpesoidealKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldpesoidealKeyPressed
+        // TODO add your handling code here:
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldpesoidealKeyPressed
+
+    private void jTextFieldpesoidealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldpesoidealActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldpesoidealActionPerformed
+
+    private void jTextFieldedadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldedadKeyTyped
+        // TODO add your handling code here:
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldedadKeyTyped
+
+    private void jTextFieldedadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldedadKeyPressed
+        // TODO add your handling code here:
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldedadKeyPressed
+
+    private void jTextFieldedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldedadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldedadActionPerformed
+
+    private void jTextFieldpesoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldpesoKeyPressed
+        // TODO add your handling code here:
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldpesoKeyPressed
+
+    private void jTextFieldpesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldpesoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldpesoActionPerformed
+
     private void jTextFieldfechanacimientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldfechanacimientoKeyPressed
         // TODO add your handling code here:
         if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
@@ -1287,13 +1302,20 @@ public class PanelExpediente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextFieldfechanacimientoKeyPressed
 
-    private void jTextFieldtelefonotrabKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonotrabKeyTyped
+    private void jTextFieldfechanacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldfechanacimientoActionPerformed
         // TODO add your handling code here:
-        if (!Character.isDigit(evt.getKeyChar())) {
-            evt.consume();
+    }//GEN-LAST:event_jTextFieldfechanacimientoActionPerformed
 
+    private void jTextFieldestaturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldestaturaKeyPressed
+        // TODO add your handling code here:
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
         }
-    }//GEN-LAST:event_jTextFieldtelefonotrabKeyTyped
+    }//GEN-LAST:event_jTextFieldestaturaKeyPressed
+
+    private void jTextFieldestaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldestaturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldestaturaActionPerformed
 
     private void jTextFieldtelefonocasaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonocasaKeyTyped
         // TODO add your handling code here:
@@ -1303,30 +1325,166 @@ public class PanelExpediente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextFieldtelefonocasaKeyTyped
 
-    private void jTextFieldedadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldedadKeyTyped
+    private void jTextFieldtelefonocasaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonocasaKeyPressed
+        // TODO add your handling code here:
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldtelefonocasaKeyPressed
+
+    private void jTextFieldtelefonocasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldtelefonocasaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldtelefonocasaActionPerformed
+
+    private void jTextFieldtelefonotrabKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonotrabKeyTyped
         // TODO add your handling code here:
         if (!Character.isDigit(evt.getKeyChar())) {
             evt.consume();
+
         }
-    }//GEN-LAST:event_jTextFieldedadKeyTyped
+    }//GEN-LAST:event_jTextFieldtelefonotrabKeyTyped
 
-    private void jCBoxproblemasderinonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxproblemasderinonActionPerformed
+    private void jTextFieldtelefonotrabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonotrabKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCBoxproblemasderinonActionPerformed
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldtelefonotrabKeyPressed
 
-    private void jtfmusculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfmusculoActionPerformed
+    private void jTextFieldtelefonotrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldtelefonotrabActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtfmusculoActionPerformed
+    }//GEN-LAST:event_jTextFieldtelefonotrabActionPerformed
 
-    private void botoncancelarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncancelarexpedienteActionPerformed
-        doClose(RET_CANCEL);
-    }//GEN-LAST:event_botoncancelarexpedienteActionPerformed
+    private void jTextFieldmejorhorallaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldmejorhorallaKeyPressed
+        // TODO add your handling code here:
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldmejorhorallaKeyPressed
+
+    private void jTextFieldmejorhorallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldmejorhorallaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldmejorhorallaActionPerformed
+
+    private void jTextFielddireccionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielddireccionKeyPressed
+        // TODO add your handling code here:
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFielddireccionKeyPressed
+
+    private void jTextFielddireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFielddireccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFielddireccionActionPerformed
+
+    private void jTextFieldnombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldnombreKeyPressed
+        // TODO add your handling code here:
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldnombreKeyPressed
+
+    private void jTextFieldnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldnombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldnombreActionPerformed
+
+    private void jTextFielddireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielddireccionKeyTyped
+       
+        Character s = evt.getKeyChar();
+        
+        if(!Character.isLetter(s) && s != KeyEvent.VK_SPACE){
+            evt.consume();   
+        }
+        
+    }//GEN-LAST:event_jTextFielddireccionKeyTyped
+
+    private void jTextFieldpesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldpesoKeyTyped
+         if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && jTextFieldpeso.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldpesoKeyTyped
+
+    private void jDateChooserFechaInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateChooserFechaInicioMouseClicked
+      
+        
+        
+    }//GEN-LAST:event_jDateChooserFechaInicioMouseClicked
+
+    private void jTextFieldcelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldcelularKeyTyped
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jTextFieldcelularKeyTyped
+
+    private void jtfpesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfpesoKeyTyped
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jtfpesoKeyTyped
+
+    private void jtfimcKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfimcKeyTyped
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jtfimcKeyTyped
+
+    private void jtfgrasaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfgrasaKeyTyped
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jtfgrasaKeyTyped
+
+    private void jtfmusculoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfmusculoKeyTyped
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jtfmusculoKeyTyped
+
+    private void jtfcaloriasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfcaloriasKeyTyped
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jtfcaloriasKeyTyped
+
+    private void jtfedadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfedadKeyTyped
+       if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jtfedadKeyTyped
+
+    private void jtfgrasaviceralKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfgrasaviceralKeyTyped
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jtfgrasaviceralKeyTyped
 
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
-        //dispose();        
+        dispose();        
     }
+    
+    private Date fechaJCalendar(JDateChooser calendario) {
+    
+        Date date = calendario.getDate();
+        long d = date.getTime();
+        java.sql.Date fecha = new java.sql.Date(d);
+        return fecha;
+        
+        
+    }
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1363,6 +1521,7 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JCheckBox jCBoxsubir;
     private javax.swing.JCheckBox jCBoxulcera;
     private javax.swing.JCheckBox jCBoxvarices;
+    private com.toedter.calendar.JDateChooser jDateChooserFechaInicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1373,12 +1532,10 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextFieldcelular;
     private javax.swing.JTextField jTextFielddireccion;
     private javax.swing.JTextField jTextFieldedad;
     private javax.swing.JTextField jTextFieldestatura;
-    private javax.swing.JTextField jTextFieldfechainicio;
     private javax.swing.JTextField jTextFieldfechanacimiento;
     private javax.swing.JTextField jTextFieldmejorhoralla;
     public static javax.swing.JTextField jTextFieldnombre;
