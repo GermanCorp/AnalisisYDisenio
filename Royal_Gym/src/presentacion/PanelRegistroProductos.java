@@ -2,13 +2,23 @@ package presentacion;
 
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static presentacion.PanelRegistroClientes.edadMaxima;
+import static presentacion.PanelRegistroClientes.edadMinima;
+import static presentacion.PanelRegistroClientes.tablaClientes;
 import royal_gym.Productos;
 
 public class PanelRegistroProductos extends javax.swing.JPanel {
 
     Productos productos = new Productos();
+    private String idProducto;
 
     //Columnas de la tabla Clientes
     private final String[] columnasProductos = {"Código", "Descripción", "Medida", "Costo", "Precio de Venta", "Cantidad en Inventario"};
@@ -19,8 +29,17 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
         actualizarTablaProductos();
     }
 
+    // oculta la primera columna de la tabla
+    private void ocultarColumna() {
+        tablaProductos.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablaProductos.getColumnModel().getColumn(0).setMinWidth(0);
+        tablaProductos.getColumnModel().getColumn(0).setPreferredWidth(0);
+    }
+
+    // llenar la tabla de productos
     public void actualizarTablaProductos() {
         productos.modeloTablaProductos(columnasProductos, tablaProductos);
+        ocultarColumna();
     }
 
     @SuppressWarnings("unchecked")
@@ -53,6 +72,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
         jtfBuscarProductos = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jbEliminar = new javax.swing.JButton();
 
         jMenuItemModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/jpop_modificar.png"))); // NOI18N
         jMenuItemModificar.setText("Modificar");
@@ -89,8 +109,8 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
             }
         });
 
-        btnCancelarRegistroProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Cancelar.png"))); // NOI18N
-        btnCancelarRegistroProducto.setText("Cancelar");
+        btnCancelarRegistroProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/btn_limpiar_02.png"))); // NOI18N
+        btnCancelarRegistroProducto.setText("Limpiar");
         btnCancelarRegistroProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarRegistroProductoActionPerformed(evt);
@@ -141,8 +161,8 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
             }
         });
 
-        btnAceptarRegistroProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Aceptar.png"))); // NOI18N
-        btnAceptarRegistroProducto.setText("Aceptar");
+        btnAceptarRegistroProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/btn_guardar_2.png"))); // NOI18N
+        btnAceptarRegistroProducto.setText("Guardar");
         btnAceptarRegistroProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarRegistroProductoActionPerformed(evt);
@@ -195,26 +215,29 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
         panelDatosCliente.setLayout(panelDatosClienteLayout);
         panelDatosClienteLayout.setHorizontalGroup(
             panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDatosClienteLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosClienteLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4)
-                    .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jtfDescripcionProducto)
-                        .addComponent(jLabel2)
-                        .addGroup(panelDatosClienteLayout.createSequentialGroup()
-                            .addComponent(btnAceptarRegistroProducto)
-                            .addGap(65, 65, 65)
-                            .addComponent(btnCancelarRegistroProducto))
-                        .addComponent(jLabel1)
                         .addComponent(jcbMedidaProducto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6))
+                        .addGroup(panelDatosClienteLayout.createSequentialGroup()
+                            .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel6))
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(panelDatosClienteLayout.createSequentialGroup()
+                            .addComponent(btnAceptarRegistroProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                            .addComponent(btnCancelarRegistroProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jtfCantidad, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jtfPrecioProducto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                         .addComponent(jtfCostoProducto, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         panelDatosClienteLayout.setVerticalGroup(
             panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,11 +262,11 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
                 .addComponent(jLabel6)
                 .addGap(0, 0, 0)
                 .addComponent(jtfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptarRegistroProducto)
-                    .addComponent(btnCancelarRegistroProducto))
-                .addContainerGap(13, Short.MAX_VALUE))
+                    .addComponent(btnAceptarRegistroProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelarRegistroProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
 
         PanelTabla.setBackground(new java.awt.Color(85, 96, 128));
@@ -305,6 +328,14 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Buscar producto:");
 
+        jbEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/btn_eliminar.png"))); // NOI18N
+        jbEliminar.setText("Eliminar");
+        jbEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelTablaLayout = new javax.swing.GroupLayout(PanelTabla);
         PanelTabla.setLayout(PanelTablaLayout);
         PanelTablaLayout.setHorizontalGroup(
@@ -319,10 +350,14 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
                         .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelTablaLayout.createSequentialGroup()
                                 .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jtfBuscarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfBuscarProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE))
                             .addComponent(scrollTablaClientes))))
                 .addGap(20, 20, 20))
+            .addGroup(PanelTablaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelTablaLayout.setVerticalGroup(
             PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,7 +368,9 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
                     .addComponent(jtfBuscarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
@@ -342,7 +379,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(20, 20, 20)
                 .addComponent(panelDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(PanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -363,6 +400,12 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
         jtfDescripcionProducto.setText("");
         jtfPrecioProducto.setText("");
         jtfCostoProducto.setText("");
+        jtfCantidad.setText("");
+        btnAceptarRegistroProducto.setText("Guardar");
+        btnAceptarRegistroProducto.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_guardar_2.png")));
+        btnCancelarRegistroProducto.setText("Limpiar");
+        btnCancelarRegistroProducto.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_limpiar_02.png")));
+        jbEliminar.setEnabled(true);
     }//GEN-LAST:event_btnCancelarRegistroProductoActionPerformed
 
     private void jtfDescripcionProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDescripcionProductoActionPerformed
@@ -396,13 +439,60 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfCostoProductoKeyTyped
 
     private void btnAceptarRegistroProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroProductoActionPerformed
-        productos.insertarProducto(jtfDescripcionProducto.getText(), jcbMedidaProducto.getSelectedItem().toString(), jtfCostoProducto.getText(), jtfPrecioProducto.getText(), jtfCantidad.getText());
-        actualizarTablaProductos();
-        jtfDescripcionProducto.setText("");
-        jcbMedidaProducto.setSelectedItem(null);
-        jtfCostoProducto.setText("");
-        jtfPrecioProducto.setText("");
-        jtfCantidad.setText("");
+
+        if (jtfDescripcionProducto.getText().isEmpty()
+                && jtfCostoProducto.getText().isEmpty()
+                && jtfPrecioProducto.getText().isEmpty()
+                && jtfCantidad.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "ingrese Toda la Información", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfDescripcionProducto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar la descripción del producto", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfCostoProducto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar el costo del producto", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfPrecioProducto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar el precio del producto", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfCantidad.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar la cantidad de productos", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            if (evt.getActionCommand().equals("Guardar")) {
+                productos.insertarProducto(
+                        jtfDescripcionProducto.getText(),
+                        jcbMedidaProducto.getSelectedItem().toString(),
+                        jtfCostoProducto.getText(), jtfPrecioProducto.getText(),
+                        jtfCantidad.getText());
+
+                jtfDescripcionProducto.setText("");
+                jtfCostoProducto.setText("");
+                jtfPrecioProducto.setText("");
+                jcbMedidaProducto.setSelectedItem("Unidad");
+                jtfCantidad.setText("");
+                actualizarTablaProductos();
+
+            } else if (evt.getActionCommand().equals("Modificar")) {
+                jbEliminar.setEnabled(true);
+                productos.modificarProducto(
+                        jtfDescripcionProducto.getText(),
+                        jcbMedidaProducto.getSelectedItem().toString(),
+                        jtfCostoProducto.getText(),
+                        jtfPrecioProducto.getText(),
+                        jtfCantidad.getText(),
+                        idProducto
+                );
+
+                jtfDescripcionProducto.setText("");
+                jtfCostoProducto.setText("");
+                jcbMedidaProducto.setSelectedItem("Unidad");
+                jtfPrecioProducto.setText("");
+                jtfCantidad.setText("");
+
+                btnAceptarRegistroProducto.setText("Guardar");
+                btnAceptarRegistroProducto.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_guardar_2.png")));
+                //JOptionPane.showMessageDialog(this, "Modificacion Exitosa", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
+                royal_gym.VP.jlMensajes.setText("Producto editado exitosamente");
+                actualizarTablaProductos();
+            }
+        }
     }//GEN-LAST:event_btnAceptarRegistroProductoActionPerformed
 
     private void btnAceptarRegistroProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroProductoKeyPressed
@@ -443,6 +533,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     private void jtfBuscarProductosCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarProductosCaretUpdate
         DefaultTableModel modeloTablaBuscarProductos = new DefaultTableModel(productos.buscarProductos(jtfBuscarProductos.getText()), columnasProductos);
         tablaProductos.setModel(modeloTablaBuscarProductos);
+        ocultarColumna();
     }//GEN-LAST:event_jtfBuscarProductosCaretUpdate
 
     private void jtfBuscarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfBuscarProductosActionPerformed
@@ -506,13 +597,49 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfCantidadKeyTyped
 
     private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
+        int filaseleccionada = tablaProductos.getSelectedRow();
+        idProducto = (tablaProductos.getValueAt(filaseleccionada, 0).toString());
 
+        royal_gym.VP.jlMensajes.setText("");
+        if (evt.getClickCount() == 2) {
+            jbEliminar.setEnabled(false);
+            btnAceptarRegistroProducto.setText("Modificar");
+            btnAceptarRegistroProducto.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_modificar.png")));
+            btnCancelarRegistroProducto.setText("Cancelar");
+            btnCancelarRegistroProducto.setIcon(new ImageIcon(Class.class.getResource("/iconos/Cancelar.png")));
+
+            filaseleccionada = tablaProductos.getSelectedRow();
+            idProducto = (tablaProductos.getValueAt(filaseleccionada, 0).toString());
+            jtfDescripcionProducto.setText(tablaProductos.getValueAt(filaseleccionada, 1).toString());
+            jcbMedidaProducto.setSelectedItem(tablaProductos.getValueAt(filaseleccionada, 2).toString());
+            jtfCostoProducto.setText(tablaProductos.getValueAt(filaseleccionada, 3).toString());
+            jtfPrecioProducto.setText(tablaProductos.getValueAt(filaseleccionada, 4).toString());
+            jtfCantidad.setText(tablaProductos.getValueAt(filaseleccionada, 5).toString());
+            jtfBuscarProductos.setText("");
+        }
     }//GEN-LAST:event_tablaProductosMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         actualizarTablaProductos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        int filaSeleccionada = tablaProductos.getSelectedRow();
+        
+
+        if (filaSeleccionada == -1) {
+            royal_gym.VP.jlMensajes.setText("Seleccione un producto");
+        } else {
+            String nombres = tablaProductos.getValueAt(filaSeleccionada, 1).toString();
+            int mjs = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea eliminar " + nombres + "?");
+            if (mjs == JOptionPane.YES_OPTION) {
+                productos.eliminarProducto(idProducto);
+                actualizarTablaProductos();
+                royal_gym.VP.jlMensajes.setText("Producto eliminado exitosamente");
+            }
+
+        }
+    }//GEN-LAST:event_jbEliminarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelTabla;
@@ -528,6 +655,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     private javax.swing.JMenuItem jMenuItemEliminar;
     private javax.swing.JMenuItem jMenuItemModificar;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JButton jbEliminar;
     private javax.swing.JComboBox<String> jcbMedidaProducto;
     private javax.swing.JTextField jtfBuscarProductos;
     private javax.swing.JTextField jtfCantidad;
