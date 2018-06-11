@@ -89,8 +89,10 @@ public class VP extends javax.swing.JFrame {
 
         jMenu2.setText("Herramientas");
 
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Herramientas_Usuarios.png"))); // NOI18N
         jMenu5.setText("Usuarios");
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nuevoUsuario.png"))); // NOI18N
         jMenuItem2.setText("Nuevo Usuario");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +101,7 @@ public class VP extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem2);
 
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/usuariosRegistrados.png"))); // NOI18N
         jMenuItem3.setText("Usuarios Registrados");
         jMenu5.add(jMenuItem3);
 

@@ -14,29 +14,22 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import static royal_gym.Conexion.resultado;
 
-
 public class Clientes {
-    
+
     // variables
     private static Statement statement;
     static ResultSet resultado;
-
-    public static int numeroFactura() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     private int datos = 0;
 
     public Clientes() {
-        
+
     }
-    
-    
+
     // Modelo de la tabla de Clientes
     public void modeloTablaCliente(String[] columnas, JTable tabla) {
         DefaultTableModel modeloTablaClientes = new DefaultTableModel(getClientes(), columnas);
         tabla.setModel(modeloTablaClientes);
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="Método para Obtener Clientes">                
     public Object[][] getClientes() {
@@ -47,9 +40,8 @@ public class Clientes {
             statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
 
-            int numeroLista = 1;
+            //int numeroLista = 1;
             ArrayList<Object[]> filas = new ArrayList<>();
-
 
             while (resultado.next()) {
                 filas.add(
@@ -102,7 +94,7 @@ public class Clientes {
         DecimalFormat df = new DecimalFormat("#,##0.00");
         return df.format(numero);
     }// </editor-fold>
-    
+
     // <editor-fold defaultstate="collapsed" desc="Método para insertar un cliente">  
     public void insertarCliente(String nombres, String apellidos, String fechaNacimiento, String altura, String peso) {
         try {
@@ -118,7 +110,7 @@ public class Clientes {
             System.out.println(e.getMessage());
         }
     }// </editor-fold> 
-    
+
     // <editor-fold defaultstate="collapsed" desc="Método para buscar un clientes">  
     public Object[][] buscarCliente(String nombres, String apellidos) {
         Object[][] datosCliente = null;
@@ -155,7 +147,7 @@ public class Clientes {
         }
         return datosCliente;
     }// </editor-fold>
-    
+
     public void eliminarCliente(String nombreCliente, String apellidos, String fechaNacimiento) {
 
         try {
@@ -170,7 +162,7 @@ public class Clientes {
             System.out.println("error en Eliminar Cliente" + e.getMessage());
         }
     }
-    
+
     public String getCliente() {
         String datosCliente = null;
         try {
@@ -180,14 +172,14 @@ public class Clientes {
 
             while (resultado.next()) {
                 datosCliente = resultado.getString(1);
-                        }
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return datosCliente;
     }
- 
-    public void modificarClientes(String id, String nombres, String apellidos, String nacimiento, String altura, String peso){
+
+    public void modificarClientes(String id, String nombres, String apellidos, String nacimiento, String altura, String peso) {
         try {
             String sql = "update cliente set nombres = ?, apellidos = ?, fechaNacimiento = ?, altura = ?, peso = ? where idCliente = ?";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
@@ -203,8 +195,8 @@ public class Clientes {
             System.out.println("error en Modificar Cliente" + e.getMessage());
         }
     }
-    
-        public void modificarEdadPermitida(String valor, String descripcion){
+
+    public void modificarEdadPermitida(String valor, String descripcion) {
         try {
             String sql = "update configuracion set valor = ? where descripConfig = ?";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);

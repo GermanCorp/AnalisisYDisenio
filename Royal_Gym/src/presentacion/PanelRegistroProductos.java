@@ -2,32 +2,27 @@ package presentacion;
 
 import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import royal_gym.Clientes;
 import royal_gym.Productos;
 
 public class PanelRegistroProductos extends javax.swing.JPanel {
+
     Productos productos = new Productos();
-    
+
     //Columnas de la tabla Clientes
-    private final String[] columnasProductos = { "Código", "Descripción", "Medida", "Costo", "Precio de Venta", "Cantidad en Inventario"};
-   
+    private final String[] columnasProductos = {"Código", "Descripción", "Medida", "Costo", "Precio de Venta", "Cantidad en Inventario"};
+
     //Constructor
     public PanelRegistroProductos() {
-        
         initComponents();
+        actualizarTablaProductos();
+    }
+
+    public void actualizarTablaProductos() {
         productos.modeloTablaProductos(columnasProductos, tablaProductos);
     }
 
-   
-    
-   public void actualizarTablaProductos(){
-       productos.modeloTablaProductos(columnasProductos, tablaProductos);
-   }
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -57,6 +52,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
         };
         jtfBuscarProductos = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         jMenuItemModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/jpop_modificar.png"))); // NOI18N
         jMenuItemModificar.setText("Modificar");
@@ -243,11 +239,11 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
                 .addComponent(jLabel6)
                 .addGap(0, 0, 0)
                 .addComponent(jtfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarRegistroProducto)
                     .addComponent(btnCancelarRegistroProducto))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         PanelTabla.setBackground(new java.awt.Color(85, 96, 128));
@@ -305,6 +301,10 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Buscar producto:");
+
         javax.swing.GroupLayout PanelTablaLayout = new javax.swing.GroupLayout(PanelTabla);
         PanelTabla.setLayout(PanelTablaLayout);
         PanelTablaLayout.setHorizontalGroup(
@@ -314,11 +314,14 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
                     .addGroup(PanelTablaLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1))
-                    .addGroup(PanelTablaLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelTablaLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
-                            .addComponent(jtfBuscarProductos))))
+                            .addGroup(PanelTablaLayout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jtfBuscarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(scrollTablaClientes))))
                 .addGap(20, 20, 20))
         );
         PanelTablaLayout.setVerticalGroup(
@@ -326,7 +329,9 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
             .addGroup(PanelTablaLayout.createSequentialGroup()
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfBuscarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfBuscarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
@@ -392,7 +397,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
 
     private void btnAceptarRegistroProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroProductoActionPerformed
         productos.insertarProducto(jtfDescripcionProducto.getText(), jcbMedidaProducto.getSelectedItem().toString(), jtfCostoProducto.getText(), jtfPrecioProducto.getText(), jtfCantidad.getText());
-        productos.modeloTablaProductos(columnasProductos, tablaProductos);
+        actualizarTablaProductos();
         jtfDescripcionProducto.setText("");
         jcbMedidaProducto.setSelectedItem(null);
         jtfCostoProducto.setText("");
@@ -418,7 +423,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfPrecioProductoKeyReleased
 
     private void jtfPrecioProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPrecioProductoKeyTyped
-        
+
         char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
             btnAceptarRegistroProducto.doClick();
@@ -453,40 +458,39 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     }//GEN-LAST:event_tablaProductosMouseReleased
 
     private void tablaProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMousePressed
-            Point point = evt.getPoint();
-            int currentRow = tablaProductos.rowAtPoint(point);
-            tablaProductos.setRowSelectionInterval(currentRow, currentRow);
-            
-            
-            
+        Point point = evt.getPoint();
+        int currentRow = tablaProductos.rowAtPoint(point);
+        tablaProductos.setRowSelectionInterval(currentRow, currentRow);
+
+
     }//GEN-LAST:event_tablaProductosMousePressed
 
     private void jMenuItemModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemModificarMouseClicked
-        
+
     }//GEN-LAST:event_jMenuItemModificarMouseClicked
 
     private void jMenuItemEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemEliminarMouseClicked
-            
+
     }//GEN-LAST:event_jMenuItemEliminarMouseClicked
 
     private void jMenuItemModificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemModificarMousePressed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jMenuItemModificarMousePressed
 
     private void jMenuItemEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemEliminarMousePressed
         // TODO add your handling code here:
         jPopupMenu1.setVisible(false);
         int filaSeleccionada = tablaProductos.getSelectedRow();
-            String idProducto = tablaProductos.getValueAt(filaSeleccionada, 0).toString();
-            String nombreProducto = tablaProductos.getValueAt(filaSeleccionada, 1).toString();
-            int mjs = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea eliminar el producto "+ nombreProducto+" ?");
-            if(mjs == JOptionPane.YES_OPTION){
-                productos.eliminarProducto(idProducto);
-                productos.modeloTablaProductos(columnasProductos, tablaProductos);
-                JOptionPane.showMessageDialog(this, "Producto eliminado exitosamente");
-            }
-            
+        String idProducto = tablaProductos.getValueAt(filaSeleccionada, 0).toString();
+        String nombreProducto = tablaProductos.getValueAt(filaSeleccionada, 1).toString();
+        int mjs = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea eliminar el producto " + nombreProducto + " ?");
+        if (mjs == JOptionPane.YES_OPTION) {
+            productos.eliminarProducto(idProducto);
+            productos.modeloTablaProductos(columnasProductos, tablaProductos);
+            JOptionPane.showMessageDialog(this, "Producto eliminado exitosamente");
+        }
+
     }//GEN-LAST:event_jMenuItemEliminarMousePressed
 
     private void jtfCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCantidadActionPerformed
@@ -502,11 +506,11 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfCantidadKeyTyped
 
     private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
-        
+
     }//GEN-LAST:event_tablaProductosMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-          actualizarTablaProductos();
+        actualizarTablaProductos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -520,6 +524,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuItem jMenuItemEliminar;
     private javax.swing.JMenuItem jMenuItemModificar;
     private javax.swing.JPopupMenu jPopupMenu1;

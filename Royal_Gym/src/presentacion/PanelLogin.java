@@ -1,44 +1,20 @@
 package presentacion;
 
 import java.awt.event.KeyEvent;
-import java.sql.Connection;
 import javax.swing.JOptionPane;
 import royal_gym.Conexion;
-import royal_gym.Validaciones;
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import royal_gym.LoginEntrar;
 import royal_gym.VP;
-import royal_gym.VentanaPrincipal;
-import static sun.security.jgss.GSSUtil.login;
 
 public class PanelLogin extends javax.swing.JFrame {
-
-    static private Connection conexion;
-    private static Statement statement;
-    Conexion cn = new Conexion();
-    ResultSet rs = null;
-    PreparedStatement pst = null;
-    Connection conn = null;
-    LoginEntrar LE ;
-    PanelPreguntasContrasena pnc;
-    VP vp;
-    
-    
 
     public PanelLogin() {
         initComponents();
         setLocationRelativeTo(null);
-        setResizable(false);
-        setTitle("Acceso al sistema");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.LE = new LoginEntrar();
-
     }
 
     @SuppressWarnings("unchecked")
@@ -85,11 +61,6 @@ public class PanelLogin extends javax.swing.JFrame {
         btnAceptar.setBorderPainted(false);
         btnAceptar.setContentAreaFilled(false);
         btnAceptar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/btn_entrar_2.png"))); // NOI18N
-        btnAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAceptarMouseClicked(evt);
-            }
-        });
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
@@ -116,11 +87,6 @@ public class PanelLogin extends javax.swing.JFrame {
 
         usuario.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         usuario.setBorder(null);
-        usuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuarioActionPerformed(evt);
-            }
-        });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/login_usuario.png"))); // NOI18N
@@ -150,11 +116,6 @@ public class PanelLogin extends javax.swing.JFrame {
 
         contraseña.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         contraseña.setBorder(null);
-        contraseña.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contraseñaActionPerformed(evt);
-            }
-        });
         contraseña.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 contraseñaKeyTyped(evt);
@@ -184,11 +145,6 @@ public class PanelLogin extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Olvidé la contraseña");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
-            }
-        });
 
         lblSalida.setFont(new java.awt.Font("Century Gothic", 3, 14)); // NOI18N
         lblSalida.setForeground(new java.awt.Color(255, 255, 255));
@@ -255,76 +211,41 @@ public class PanelLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
         System.exit(0);
-         usuario.setText("");
-        contraseña.setText("");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-     //conectarse a la base de datos
-    public static void conectarr() {
-        try {
-            Class.forName("org.sqlite.JDBC");
-            conexion = DriverManager.getConnection("jdbc:sqlite:gimnasio.db");
-            statement = conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-  
     //Evento de boton aceptar para acceso a pantalla principal
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
-        
-         if (usuario.getText().equals("") && contraseña.getPassword().equals("")) {
+        int ingresar = LoginEntrar.ingreso(usuario.getText(), String.valueOf(contraseña.getPassword()));
+
+        if (usuario.getText().equals("") && contraseña.getPassword().equals("")) {
             JOptionPane.showMessageDialog(null, "Debe ingresar el Usuario y Contrasena", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (usuario.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el nombre de usuario", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (contraseña.getPassword().length==0) {
+        } else if (contraseña.getPassword().length == 0) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la contrasena", "Error!", JOptionPane.ERROR_MESSAGE);
-        }
-           else if (LoginEntrar.ingreso(usuario.getText(),String.valueOf(contraseña.getPassword())) == 1) {
-            
+        } else if (ingresar == 1) {
+
             try {
-                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                 //UIManager.setLookAndFeel(javax.swing.plaf.nimbus.NimbusLookAndFeel.class.getName());
-             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-                     | UnsupportedLookAndFeelException e) {
-                 // TODO Auto-generated catch block
-                 e.printStackTrace();
-             }
-            
-            VentanaPrincipal vp = new VentanaPrincipal();
-             
-             
-             vp.setVisible(true);
-             vp.setLocationRelativeTo(null);
-             vp.setExtendedState(JFrame.MAXIMIZED_BOTH);
-             vp.setDefaultCloseOperation(EXIT_ON_CLOSE);
-             dispose();
-                                                                  
-	}
-           else 
-        {
-               lblSalida.setText("Usuario/Contrasena Incorrecta");
-                usuario.setText("");
-                contraseña.setText("");
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                    | UnsupportedLookAndFeelException e) {
+                e.printStackTrace();
+            }
+
+            VP vp = new VP();
+            vp.setVisible(true);
+            vp.setLocationRelativeTo(null);
+            vp.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            vp.setDefaultCloseOperation(EXIT_ON_CLOSE);
+            this.dispose();
+
+        } else {
+            lblSalida.setText("Usuario/Contraseña Incorrecta");
+            usuario.setText("");
+            contraseña.setText("");
         }
-               
-        
     }//GEN-LAST:event_btnAceptarActionPerformed
-
-    private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
-
-    }//GEN-LAST:event_btnAceptarMouseClicked
-
-    private void usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usuarioActionPerformed
-
-    private void contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_contraseñaActionPerformed
 
     private void contraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contraseñaKeyTyped
         char cTeclaPresionada = evt.getKeyChar();
@@ -333,32 +254,9 @@ public class PanelLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_contraseñaKeyTyped
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        // TODO add your handling code here:
-        PanelPreguntasContrasena pnc = new PanelPreguntasContrasena();
-        pnc.setVisible(true);
-    }//GEN-LAST:event_jLabel4MouseClicked
-
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PanelLogin().setVisible(true);
-                
-                 try {
-                    try {
-                        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                        //UIManager.setLookAndFeel(javax.swing.plaf.nimbus.NimbusLookAndFeel.class.getName());
-                    } catch (UnsupportedLookAndFeelException ex) {
-                        Logger.getLogger(PanelLogin.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-				e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-            }
-        });
+        royal_gym.Conexion.conectar();
+        new PanelLogin().setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
