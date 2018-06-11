@@ -164,17 +164,6 @@ public class PanelModificarContrasena extends javax.swing.JFrame
         
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-    public static void main(String args[]) {
-        
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PanelModificarContrasena().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;

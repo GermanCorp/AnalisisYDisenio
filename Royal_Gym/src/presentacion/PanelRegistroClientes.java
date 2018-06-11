@@ -288,7 +288,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         });
 
         jdcFecha.setDateFormatString("dd-MM-yyyy");
-        jdcFecha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jdcFecha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jdcFecha.setInheritsPopupMenu(true);
         jdcFecha.setPreferredSize(new java.awt.Dimension(100, 100));
         jdcFecha.addKeyListener(new java.awt.event.KeyAdapter() {
