@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import static presentacion.ListaClientes.RET_CANCEL;
 import static presentacion.PanelRegistroClientes.tablaClientes;
@@ -80,49 +81,46 @@ public class PanelExpediente extends javax.swing.JPanel {
                 jTextFielddireccion.setText(resultado2.getString("Direccion"));
                 jTextFieldedad.setText(resultado2.getString("Edad"));
                 
-                    jTextFieldestatura.setText(resultado2.getString("Altura"));
-                    jTextFieldpeso.setText(resultado2.getString("Peso"));
-                    jTextFieldmejorhoralla.setText(resultado2.getString("MejorHoraParaLlamar"));
+                jTextFieldestatura.setText(resultado2.getString("Altura"));
+                jTextFieldpeso.setText(resultado2.getString("Peso"));
+                jTextFieldmejorhoralla.setText(resultado2.getString("MejorHoraParaLlamar"));
                     
-                    String fecha = resultado2.getString("FechaDeInicio");
-                    java.util.Date date2 = null;
-                    date2 = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
-                    jDateChooserFechaInicio.setDate(date2);
+                String fecha = resultado2.getString("FechaDeInicio");
+                java.util.Date date2 = null;
+                date2 = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+                jDateChooserFechaInicio.setDate(date2);
                     
-//                    jDateChooserFechaInicio.setDateFormatString("dd/MM/yyyy"); // Sirve para mostrar el formato en el date chooser
-//                    jDateChooserFechaInicio.setDate(new Date(resultado2.getDate("FechaDeInicio").getTime())); // la fecha como tal
-                    //jDateChooserFechaInicio.setDate(resultado2.getDate("FechaDeInicio"));
-                    jTextFieldtelefonocasa.setText(resultado2.getString("TelefonoCasa"));
-                    jTextFieldpesoideal.setText(resultado2.getString("PesoIdeal"));
-                    jCBoxBajar.setSelected(resultado2.getBoolean("PesoQuiereBajar"));
-                    jCBoxsubir.setSelected(resultado2.getBoolean("PesoQuiereSubir"));
-                    jCBoxmantener.setSelected(resultado2.getBoolean("PesoQuiereMantener"));
+                jTextFieldtelefonocasa.setText(resultado2.getString("TelefonoCasa"));
+                jTextFieldpesoideal.setText(resultado2.getString("PesoIdeal"));
+                jCBoxBajar.setSelected(resultado2.getBoolean("PesoQuiereBajar"));
+                jCBoxsubir.setSelected(resultado2.getBoolean("PesoQuiereSubir"));
+                jCBoxmantener.setSelected(resultado2.getBoolean("PesoQuiereMantener"));
 
-                    jCBoxalergias.setSelected(resultado2.getBoolean("Alergias"));
-                    //jCBoxanemia.setSelected(resultado2.getBoolean("Anemia"));
-                    jCBoxansiedad.setSelected(resultado2.getBoolean("Ansiedad"));
-                    jCBoxartritis.setSelected(resultado2.getBoolean("Artritis"));
-                    jCBoxcalambres.setSelected(resultado2.getBoolean("Calambres"));
-                    jCBoxcansancio.setSelected(resultado2.getBoolean("Cansancio"));
-                    jCBoxcelulitis.setSelected(resultado2.getBoolean("Celulitis"));
-                    jCBoxcolesterol.setSelected(resultado2.getBoolean("Colesterol"));
-                    jCBoxcolitis.setSelected(resultado2.getBoolean("Colitis"));
-                    jCBoxdiabetes.setSelected(resultado2.getBoolean("Diabetes"));
-                    jCBoxdolordecabeza.setSelected(resultado2.getBoolean("Dolordecabeza"));
-                    jCBoxdolordecuello.setSelected(resultado2.getBoolean("Dolordecuello"));
-                    jCBoxdoloresdeespalda.setSelected(resultado2.getBoolean("Doloresdeespalda"));
-                    jCBoxdoloresdehueso.setSelected(resultado2.getBoolean("Doloresdehueso"));
-                    jCBoxembarazo.setSelected(resultado2.getBoolean("EmbarazoLactancia"));
-                    jCBoxestrenimiento.setSelected(resultado2.getBoolean("Estreñimiento"));
-                    jCBoxestres.setSelected(resultado2.getBoolean("Estres"));
-                    jCBoxgastritis.setSelected(resultado2.getBoolean("Gastritis"));
-                    jCBoxmalacirculacion.setSelected(resultado2.getBoolean("Malacirculacion"));
-                    jCBoxpresionalta.setSelected(resultado2.getBoolean("PresionAlta"));
-                    jCBoxproblemasderinon.setSelected(resultado2.getBoolean("Problemaderiñon"));
-                    jCBoxproblemasdevesicula.setSelected(resultado2.getBoolean("Problemadevesicula"));
-                    jCBoxretenciondeliquidos.setSelected(resultado2.getBoolean("Retenciondeliquidos"));
-                    jCBoxulcera.setSelected(resultado2.getBoolean("Ulcera"));
-                    jCBoxvarices.setSelected(resultado2.getBoolean("Varices"));
+                jCBoxalergias.setSelected(resultado2.getBoolean("Alergias"));
+                jCBoxanemia.setSelected(resultado2.getBoolean("Anemia"));
+                jCBoxansiedad.setSelected(resultado2.getBoolean("Ansiedad"));
+                jCBoxartritis.setSelected(resultado2.getBoolean("Artritis"));
+                jCBoxcalambres.setSelected(resultado2.getBoolean("Calambres"));
+                jCBoxcansancio.setSelected(resultado2.getBoolean("Cansancio"));
+                jCBoxcelulitis.setSelected(resultado2.getBoolean("Celulitis"));
+                jCBoxcolesterol.setSelected(resultado2.getBoolean("Colesterol"));
+                jCBoxcolitis.setSelected(resultado2.getBoolean("Colitis"));
+                jCBoxdiabetes.setSelected(resultado2.getBoolean("Diabetes"));
+                jCBoxdolordecabeza.setSelected(resultado2.getBoolean("Dolordecabeza"));
+                jCBoxdolordecuello.setSelected(resultado2.getBoolean("Dolordecuello"));
+                jCBoxdoloresdeespalda.setSelected(resultado2.getBoolean("Doloresdeespalda"));
+                jCBoxdoloresdehueso.setSelected(resultado2.getBoolean("Doloresdehueso"));
+                jCBoxembarazo.setSelected(resultado2.getBoolean("EmbarazoLactancia"));
+                jCBoxestrenimiento.setSelected(resultado2.getBoolean("Estreñimiento"));
+                jCBoxestres.setSelected(resultado2.getBoolean("Estres"));
+                jCBoxgastritis.setSelected(resultado2.getBoolean("Gastritis"));
+                jCBoxmalacirculacion.setSelected(resultado2.getBoolean("Malacirculacion"));
+                jCBoxpresionalta.setSelected(resultado2.getBoolean("PresionAlta"));
+                jCBoxproblemasderinon.setSelected(resultado2.getBoolean("Problemaderiñon"));
+                jCBoxproblemasdevesicula.setSelected(resultado2.getBoolean("Problemadevesicula"));
+                jCBoxretenciondeliquidos.setSelected(resultado2.getBoolean("Retenciondeliquidos"));
+                jCBoxulcera.setSelected(resultado2.getBoolean("Ulcera"));
+                jCBoxvarices.setSelected(resultado2.getBoolean("Varices"));
 
                     filas.add(
                             new Object[]{
@@ -448,7 +446,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldpeso, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosClienteLayout.createSequentialGroup()
+                        .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                             .addComponent(labelhoraparallamar)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jTextFieldmejorhoralla))
@@ -495,8 +493,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelpesoideal, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldpesoideal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jTextFieldpesoideal)))
                 .addContainerGap())
         );
         PanelDatosClienteLayout.setVerticalGroup(
@@ -1121,7 +1118,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                 jCBoxmantener.isSelected(),
                 id);
 
-        expediente.actualizarCambiosCorporales(
+        expediente.insertarCambiosCorporales(
                 jtfpeso.getText(),
                 jtfimc.getText(),
                 jtfgrasa.getText(),
@@ -1131,8 +1128,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                 jtfgrasaviceral.getText(),
                 id);
 
-//        DefaultTableModel modeloTablaPagos = new DefaultTableModel(expediente.getCambios(), columnasCambios);
-//        tablacambioscorporales.setModel(modeloTablaPagos);
+
 
         boolean gastritis = jCBoxgastritis.isSelected();
         boolean colitis = jCBoxcolitis.isSelected();
@@ -1155,20 +1151,20 @@ public class PanelExpediente extends javax.swing.JPanel {
         boolean calambres = jCBoxcalambres.isSelected();
         boolean varices = jCBoxvarices.isSelected();
         boolean doloresdehueso = jCBoxdoloresdehueso.isSelected();
-        boolean anemia = jCBoxanemia.isSelected();
+        //boolean anemia = jCBoxanemia.isSelected();
         boolean problemadevesicula = jCBoxproblemasdevesicula.isSelected();
         boolean problemaderiñon = jCBoxproblemasderinon.isSelected();
         boolean celulitis = jCBoxcelulitis.isSelected();
 
         expediente.actualizarProblemasDeSalud(id, gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes, presionAlta,
                 colesterol, alergias, estres, dolordecabeza, dolordecuello, doloresdeespalda, artritis, ansiedad, embarazo,
-                retencionliquidos, malacirculacion, calambres, varices, doloresdehueso, anemia, problemadevesicula,
+                retencionliquidos, malacirculacion, calambres, varices, doloresdehueso,problemadevesicula,
                 problemaderiñon, celulitis);
 
     }//GEN-LAST:event_botonaceptarexpedienteActionPerformed
 
     private void botoncancelarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncancelarexpedienteActionPerformed
-        doClose(RET_CANCEL);
+        
     }//GEN-LAST:event_botoncancelarexpedienteActionPerformed
 
     private void jtfmusculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfmusculoActionPerformed
@@ -1374,7 +1370,7 @@ public class PanelExpediente extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextFielddireccionKeyPressed
 
     private void jTextFielddireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFielddireccionActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jTextFielddireccionActionPerformed
 
     private void jTextFieldnombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldnombreKeyPressed
@@ -1469,20 +1465,13 @@ public class PanelExpediente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jtfgrasaviceralKeyTyped
 
-    private void doClose(int retStatus) {
-        returnStatus = retStatus;
-        setVisible(false);
-        dispose();        
-    }
+    
     
     private Date fechaJCalendar(JDateChooser calendario) {
-    
         Date date = calendario.getDate();
         long d = date.getTime();
         java.sql.Date fecha = new java.sql.Date(d);
         return fecha;
-        
-        
     }
     
 
@@ -1568,7 +1557,5 @@ public class PanelExpediente extends javax.swing.JPanel {
 
     private int returnStatus = RET_CANCEL;
 
-    private void dispose() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 }

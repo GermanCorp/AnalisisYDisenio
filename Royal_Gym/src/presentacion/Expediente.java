@@ -111,9 +111,7 @@ public class Expediente extends javax.swing.JDialog {
         dispose();
     }
 
-    /**
-     * @param args the command line arguments
-     */
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

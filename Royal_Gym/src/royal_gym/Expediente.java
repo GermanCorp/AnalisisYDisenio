@@ -181,32 +181,6 @@ public class Expediente {
     }
     
     
-    public void actualizarCambiosCorporales(String peso,String imc, String grasa, String musculo,String calorias, String edad, String grasaviceral,String id){
-       try {
-            String sql = "update cambioscorporales set peso = ?, imc = ?, porcentajedegrasa = ?, porcentajedemusculo = ?,"
-                    + " calorias = ? , edad = ? , grasaviceral = ? "
-                    + " where id_cliente = ?";
-            
-            
-            
-            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
-            consulta.setString(1, peso);
-            consulta.setString(2, imc);
-            consulta.setString(3, grasa);
-            consulta.setString(4, musculo);
-            consulta.setString(5, calorias);
-            consulta.setString(6, edad);
-            consulta.setString(7, grasaviceral);
-            consulta.setString(8, id);
-            
-            consulta.execute();
-
-        } catch (Exception e) {
-            System.out.println("error en Modificar Cliente" + e.getMessage());
-        } 
-    }
-    
-    
     public void actualizarProblemasDeSalud( String id,    
         boolean gastritis,
         boolean colitis,
@@ -229,7 +203,7 @@ public class Expediente {
         boolean calambres,
         boolean varices,
         boolean doloresdehueso,
-        boolean anemia,
+        //boolean anemia,
         boolean problemadevesicula,
         boolean problemaderiñon,
         boolean celulitis) {
@@ -263,10 +237,10 @@ public class Expediente {
             consulta.setBoolean(20, calambres);
             consulta.setBoolean(21, varices);
             consulta.setBoolean(22, doloresdehueso);
-            consulta.setBoolean(23, anemia);
-            consulta.setBoolean(24, problemadevesicula);
-            consulta.setBoolean(25, problemaderiñon);
-            consulta.setBoolean(26, celulitis);
+            //consulta.setBoolean(23, anemia);
+            consulta.setBoolean(23, problemadevesicula);
+            consulta.setBoolean(24, problemaderiñon);
+            consulta.setBoolean(25, celulitis);
             consulta.execute();
 
         } catch (Exception e) {
