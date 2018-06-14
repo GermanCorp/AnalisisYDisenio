@@ -211,7 +211,7 @@ public class Expediente {
          try {
             String sql = "update  problemasdesalud set Gastritis = ?,Colitis= ?,Estreñimiento= ?,Ulcera= ?,Cansancio= ?,Diabetes= ?,PresionAlta= ?,"
                     + "Colesterol= ?,Alergias= ?,Estres= ?,Dolordecabeza= ?,Dolordecuello= ?,Doloresdeespalda= ?,Artritis= ?,Ansiedad= ?,EmbarazoLactancia= ?,"
-                    + "Retenciondeliquidos= ?,Malacirculacion= ?,Calambres= ?,Varices= ?,Doloresdehueso= ?,Anemia= ?,ProblemadeVesicula= ?,Problemaderiñon= ?,Celulitis= ?"
+                    + "Retenciondeliquidos= ?,Malacirculacion= ?,Calambres= ?,Varices= ?,Doloresdehueso= ?,ProblemadeVesicula= ?,Problemaderiñon= ?,Celulitis= ?"
                      + " where id_cliente = ?";
             
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);

@@ -121,7 +121,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="labelhoraparallamar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextFieldmejorhoralla" max="32767" attributes="0"/>
+                                  <Component id="jFormattedTextField1" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="labeldireccion" min="-2" max="-2" attributes="0"/>
@@ -216,8 +216,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelhoraparallamar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="labelfechanacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldmejorhoralla" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="jTextFieldfechanacimiento" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="jFormattedTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -387,12 +387,6 @@
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFielddireccionKeyTyped"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldmejorhoralla">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldmejorhorallaActionPerformed"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldmejorhorallaKeyPressed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldtelefonotrab">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldtelefonotrabActionPerformed"/>
@@ -459,6 +453,11 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jDateChooserFechaInicioMouseClicked"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jFormattedTextField1"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

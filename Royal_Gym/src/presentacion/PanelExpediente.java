@@ -97,7 +97,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                 jCBoxmantener.setSelected(resultado2.getBoolean("PesoQuiereMantener"));
 
                 jCBoxalergias.setSelected(resultado2.getBoolean("Alergias"));
-                jCBoxanemia.setSelected(resultado2.getBoolean("Anemia"));
+               // jCBoxanemia.setSelected(resultado2.getBoolean("Anemia"));
                 jCBoxansiedad.setSelected(resultado2.getBoolean("Ansiedad"));
                 jCBoxartritis.setSelected(resultado2.getBoolean("Artritis"));
                 jCBoxcalambres.setSelected(resultado2.getBoolean("Calambres"));
@@ -140,7 +140,7 @@ public class PanelExpediente extends javax.swing.JPanel {
             tablacambioscorporales.setModel(modeloTablaPagos);
 
         } catch (Exception ex) {
-            System.out.println("buscarCliente:" + ex.getMessage());
+            System.out.println("Datos del cliente:" + ex.getMessage());
         }
 
     }
@@ -165,7 +165,6 @@ public class PanelExpediente extends javax.swing.JPanel {
         labelpesoideal = new javax.swing.JLabel();
         jTextFieldnombre = new javax.swing.JTextField();
         jTextFielddireccion = new javax.swing.JTextField();
-        jTextFieldmejorhoralla = new javax.swing.JTextField();
         jTextFieldtelefonotrab = new javax.swing.JTextField();
         jTextFieldtelefonocasa = new javax.swing.JTextField();
         jTextFieldestatura = new javax.swing.JTextField();
@@ -175,6 +174,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         jTextFieldpesoideal = new javax.swing.JTextField();
         jTextFieldcelular = new javax.swing.JTextField();
         jDateChooserFechaInicio = new com.toedter.calendar.JDateChooser();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         PanelProblemasdeSalud = new javax.swing.JPanel();
         labelpesosquiere = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -307,17 +307,6 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
-        jTextFieldmejorhoralla.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldmejorhorallaActionPerformed(evt);
-            }
-        });
-        jTextFieldmejorhoralla.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldmejorhorallaKeyPressed(evt);
-            }
-        });
-
         jTextFieldtelefonotrab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldtelefonotrabActionPerformed(evt);
@@ -430,6 +419,8 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
+        jFormattedTextField1.setText("jFormattedTextField1");
+
         javax.swing.GroupLayout PanelDatosClienteLayout = new javax.swing.GroupLayout(PanelDatosCliente);
         PanelDatosCliente.setLayout(PanelDatosClienteLayout);
         PanelDatosClienteLayout.setHorizontalGroup(
@@ -449,7 +440,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                         .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                             .addComponent(labelhoraparallamar)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextFieldmejorhoralla))
+                            .addComponent(jFormattedTextField1))
                         .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                             .addComponent(labeldireccion)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -522,8 +513,8 @@ public class PanelExpediente extends javax.swing.JPanel {
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelhoraparallamar)
                     .addComponent(labelfechanacimiento)
-                    .addComponent(jTextFieldmejorhoralla, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldfechanacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldfechanacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelestatura)
@@ -1102,35 +1093,18 @@ public class PanelExpediente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonaceptarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarexpedienteActionPerformed
- 
-        expediente.actualizarTablaClientes(
-                
-                jTextFieldtelefonotrab.getText(),
-                jTextFielddireccion.getText().trim(),
-                jTextFieldmejorhoralla.getText(),
-                fechaJCalendar(jDateChooserFechaInicio).toString(),
-                jTextFieldtelefonocasa.getText(),
-                jTextFieldcelular.getText(),
-                jtfedad.getText(),
-                jTextFieldpesoideal.getText(),
-                jCBoxsubir.isSelected(),
-                jCBoxBajar.isSelected(),
-                jCBoxmantener.isSelected(),
-                id);
-
-        expediente.insertarCambiosCorporales(
-                jtfpeso.getText(),
-                jtfimc.getText(),
-                jtfgrasa.getText(),
-                jtfmusculo.getText(),
-                jtfcalorias.getText(),
-                jtfedad.getText(),
-                jtfgrasaviceral.getText(),
-                id);
-
-
-
-        boolean gastritis = jCBoxgastritis.isSelected();
+        if ( jTextFieldtelefonotrab.getText().isEmpty()
+                && jTextFielddireccion.getText().isEmpty()
+                && jTextFieldmejorhoralla.getText().isEmpty()
+                && jDateChooserFechaInicio.getDate() == null
+                && jTextFieldtelefonocasa.getText().isEmpty()
+                && jTextFieldcelular.getText().isEmpty()
+                && jtfedad.getText().isEmpty()
+                && jTextFieldpesoideal.getText().isEmpty()
+                ){
+            
+                 
+            boolean gastritis = jCBoxgastritis.isSelected();
         boolean colitis = jCBoxcolitis.isSelected();
         boolean estreñimiento = jCBoxestrenimiento.isSelected();
         boolean ulcera = jCBoxulcera.isSelected();
@@ -1155,11 +1129,84 @@ public class PanelExpediente extends javax.swing.JPanel {
         boolean problemadevesicula = jCBoxproblemasdevesicula.isSelected();
         boolean problemaderiñon = jCBoxproblemasderinon.isSelected();
         boolean celulitis = jCBoxcelulitis.isSelected();
+                
+               expediente. insertarProblemasdeSalud(id, gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes,
+                       presionAlta, colesterol, alergias, estres, dolordecabeza, dolordecuello, doloresdeespalda, artritis,
+                       ansiedad, embarazo, retencionliquidos, malacirculacion, calambres, varices, doloresdehueso, alergias, 
+                       problemadevesicula, problemaderiñon, celulitis);  
+                
+                
 
-        expediente.actualizarProblemasDeSalud(id, gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes, presionAlta,
+                 
+        }else{
+            
+            boolean gastritis = jCBoxgastritis.isSelected();
+        boolean colitis = jCBoxcolitis.isSelected();
+        boolean estreñimiento = jCBoxestrenimiento.isSelected();
+        boolean ulcera = jCBoxulcera.isSelected();
+        boolean cansancio = jCBoxcansancio.isSelected();
+        boolean diabetes = jCBoxdiabetes.isSelected();
+        boolean presionAlta = jCBoxpresionalta.isSelected();
+        boolean colesterol = jCBoxcolesterol.isSelected();
+        boolean alergias = jCBoxalergias.isSelected();
+        boolean estres = jCBoxestres.isSelected();
+        boolean dolordecabeza = jCBoxdolordecabeza.isSelected();
+        boolean dolordecuello = jCBoxdolordecuello.isSelected();
+        boolean doloresdeespalda = jCBoxdoloresdeespalda.isSelected();
+        boolean artritis = jCBoxartritis.isSelected();
+        boolean ansiedad = jCBoxansiedad.isSelected();
+        boolean embarazo = jCBoxembarazo.isSelected();
+        boolean retencionliquidos = jCBoxretenciondeliquidos.isSelected();
+        boolean malacirculacion = jCBoxmalacirculacion.isSelected();
+        boolean calambres = jCBoxcalambres.isSelected();
+        boolean varices = jCBoxvarices.isSelected();
+        boolean doloresdehueso = jCBoxdoloresdehueso.isSelected();
+        //boolean anemia = jCBoxanemia.isSelected();
+        boolean problemadevesicula = jCBoxproblemasdevesicula.isSelected();
+        boolean problemaderiñon = jCBoxproblemasderinon.isSelected();
+        boolean celulitis = jCBoxcelulitis.isSelected();
+        
+        
+         expediente.actualizarProblemasDeSalud(id, gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes, presionAlta,
                 colesterol, alergias, estres, dolordecabeza, dolordecuello, doloresdeespalda, artritis, ansiedad, embarazo,
                 retencionliquidos, malacirculacion, calambres, varices, doloresdehueso,problemadevesicula,
                 problemaderiñon, celulitis);
+        
+        
+        
+        
+
+        
+        }
+
+        
+
+       
+        
+        expediente.actualizarTablaClientes(
+                
+                jTextFieldtelefonotrab.getText(),
+                jTextFielddireccion.getText().trim(),
+                jTextFieldmejorhoralla.getText(),
+                fechaJCalendar(jDateChooserFechaInicio).toString(),
+                jTextFieldtelefonocasa.getText(),
+                jTextFieldcelular.getText(),
+                jtfedad.getText(),
+                jTextFieldpesoideal.getText(),
+                jCBoxsubir.isSelected(),
+                jCBoxBajar.isSelected(),
+                jCBoxmantener.isSelected(),
+                id);
+        
+        expediente.insertarCambiosCorporales(
+                jtfpeso.getText(),
+                jtfimc.getText(),
+                jtfgrasa.getText(),
+                jtfmusculo.getText(),
+                jtfcalorias.getText(),
+                jtfedad.getText(),
+                jtfgrasaviceral.getText(),
+                id);
 
     }//GEN-LAST:event_botonaceptarexpedienteActionPerformed
 
@@ -1351,17 +1398,6 @@ public class PanelExpediente extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldtelefonotrabActionPerformed
 
-    private void jTextFieldmejorhorallaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldmejorhorallaKeyPressed
-        // TODO add your handling code here:
-        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextFieldmejorhorallaKeyPressed
-
-    private void jTextFieldmejorhorallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldmejorhorallaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldmejorhorallaActionPerformed
-
     private void jTextFielddireccionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielddireccionKeyPressed
         // TODO add your handling code here:
         if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
@@ -1511,6 +1547,7 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JCheckBox jCBoxulcera;
     private javax.swing.JCheckBox jCBoxvarices;
     private com.toedter.calendar.JDateChooser jDateChooserFechaInicio;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1526,7 +1563,6 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JTextField jTextFieldedad;
     private javax.swing.JTextField jTextFieldestatura;
     private javax.swing.JTextField jTextFieldfechanacimiento;
-    private javax.swing.JTextField jTextFieldmejorhoralla;
     public static javax.swing.JTextField jTextFieldnombre;
     private javax.swing.JTextField jTextFieldpeso;
     private javax.swing.JTextField jTextFieldpesoideal;
