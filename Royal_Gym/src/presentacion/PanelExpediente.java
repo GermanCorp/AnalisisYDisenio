@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import static presentacion.ListaClientes.RET_CANCEL;
@@ -47,6 +48,8 @@ public class PanelExpediente extends javax.swing.JPanel {
         initComponents();
         this.con = new Conexion();
         con.conectar();
+        
+     
 
         try {
             Statement statement = Conexion.getConexion().createStatement();
@@ -83,7 +86,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                 
                 jTextFieldestatura.setText(resultado2.getString("Altura"));
                 jTextFieldpeso.setText(resultado2.getString("Peso"));
-                jTextFieldmejorhoralla.setText(resultado2.getString("MejorHoraParaLlamar"));
+               // jTextFieldmejorhoralla.setText(resultado2.getString("MejorHoraParaLlamar"));
                     
                 String fecha = resultado2.getString("FechaDeInicio");
                 java.util.Date date2 = null;
@@ -174,7 +177,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         jTextFieldpesoideal = new javax.swing.JTextField();
         jTextFieldcelular = new javax.swing.JTextField();
         jDateChooserFechaInicio = new com.toedter.calendar.JDateChooser();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jFormattedTextField = new javax.swing.JFormattedTextField();
         PanelProblemasdeSalud = new javax.swing.JPanel();
         labelpesosquiere = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -419,7 +422,12 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
-        jFormattedTextField1.setText("jFormattedTextField1");
+        try{
+            JFormattedTextField jFormattedTextField = new JFormattedTextField(new MaskFormatter("##:##"));
+        }catch(java.text.ParseException e){
+            e.printStackTrace();
+        }
+        jFormattedTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
 
         javax.swing.GroupLayout PanelDatosClienteLayout = new javax.swing.GroupLayout(PanelDatosCliente);
         PanelDatosCliente.setLayout(PanelDatosClienteLayout);
@@ -440,7 +448,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                         .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                             .addComponent(labelhoraparallamar)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jFormattedTextField1))
+                            .addComponent(jFormattedTextField))
                         .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                             .addComponent(labeldireccion)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -509,13 +517,17 @@ public class PanelExpediente extends javax.swing.JPanel {
                     .addComponent(labelcelular)
                     .addComponent(jTextFielddireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldcelular, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelhoraparallamar)
-                    .addComponent(labelfechanacimiento)
-                    .addComponent(jTextFieldfechanacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
+                .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelhoraparallamar)
+                            .addComponent(labelfechanacimiento)
+                            .addComponent(jTextFieldfechanacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelestatura)
                     .addComponent(labelpeso)
@@ -1095,7 +1107,7 @@ public class PanelExpediente extends javax.swing.JPanel {
     private void botonaceptarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarexpedienteActionPerformed
         if ( jTextFieldtelefonotrab.getText().isEmpty()
                 && jTextFielddireccion.getText().isEmpty()
-                && jTextFieldmejorhoralla.getText().isEmpty()
+                //&& jTextFieldmejorhoralla.getText().isEmpty()
                 && jDateChooserFechaInicio.getDate() == null
                 && jTextFieldtelefonocasa.getText().isEmpty()
                 && jTextFieldcelular.getText().isEmpty()
@@ -1187,7 +1199,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                 
                 jTextFieldtelefonotrab.getText(),
                 jTextFielddireccion.getText().trim(),
-                jTextFieldmejorhoralla.getText(),
+                //jTextFieldmejorhoralla.getText(),
                 fechaJCalendar(jDateChooserFechaInicio).toString(),
                 jTextFieldtelefonocasa.getText(),
                 jTextFieldcelular.getText(),
@@ -1547,7 +1559,7 @@ public class PanelExpediente extends javax.swing.JPanel {
     private javax.swing.JCheckBox jCBoxulcera;
     private javax.swing.JCheckBox jCBoxvarices;
     private com.toedter.calendar.JDateChooser jDateChooserFechaInicio;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

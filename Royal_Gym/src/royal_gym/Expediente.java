@@ -149,7 +149,7 @@ public class Expediente {
     */
     
     
-    public void actualizarTablaClientes(String telefonoTra, String direccion, String mejorHoraParaLlamar, 
+    public void actualizarTablaClientes(String telefonoTra, String direccion,  
             String fechaInicio, String telefonoCasa , String celular, String edad, String pesoIdeal, Boolean subir, 
             Boolean mantener ,Boolean bajar, String id){
         try {
@@ -163,7 +163,7 @@ public class Expediente {
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, telefonoTra);
             consulta.setString(2, direccion);
-            consulta.setString(3, mejorHoraParaLlamar);
+            //consulta.setString(3, mejorHoraParaLlamar);
             consulta.setString(4, fechaInicio);
             consulta.setString(5, telefonoCasa);
             consulta.setString(6, celular);
