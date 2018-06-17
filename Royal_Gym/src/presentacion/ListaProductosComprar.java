@@ -28,7 +28,7 @@ public class ListaProductosComprar extends javax.swing.JDialog {
     static double descuentoTotal;
     
     Productos productos = new Productos();
-    PanelCompras panelcompras;
+    PanelCompra panelcompras;
     
     
      private final String[] columnasProductos = {
@@ -245,7 +245,7 @@ public class ListaProductosComprar extends javax.swing.JDialog {
             importe = String.valueOf(x);
             double pv = (Double.parseDouble(precioVenta)/1.15);
 
-            modelo = (DefaultTableModel) panelcompras.tablacompras.getModel();
+            modelo = (DefaultTableModel) panelcompras.tablaCompras.getModel();
             String elementosFila [] = {codigo, cantidad, descripcion, df.format(pv),descuento,  df.format(subTotal),   df.format(isv), importe};
             modelo.addRow(elementosFila);
 
@@ -255,7 +255,7 @@ public class ListaProductosComprar extends javax.swing.JDialog {
             descuentoTotal = descuentoTotal + des;
             total = total + calcula - des;
 
-            PanelCompras compras = new PanelCompras(total, total/1.15, total-(total/1.15), descuentoTotal);
+            PanelCompra compras = new PanelCompra(total, total/1.15, total-(total/1.15), descuentoTotal);
             compras.setValoresCompra();
 
             jtfCantidad.setText("1");

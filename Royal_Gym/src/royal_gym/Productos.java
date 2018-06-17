@@ -115,7 +115,7 @@ public class Productos {
     public Object[][] buscarProductos(String descripcion) {
         Object[][] datosProductos = null;
         try {
-            String consulta = "select * FROM productos WHERE descripcion LIKE '%' || ? || '%'";
+            String consulta = "select idproducto, descripcion, unidad, costo, precioventa FROM productos WHERE descripcion LIKE '%' || ? || '%'";
             PreparedStatement statement = Conexion.getConexion().prepareStatement(consulta);
             statement.setString(1, descripcion);
 
@@ -131,8 +131,7 @@ public class Productos {
                             resultado.getString("descripcion"),
                             resultado.getString("unidad"),
                             formatearNumero(resultado.getDouble("costo")),
-                            formatearNumero(resultado.getDouble("precioventa")),
-                            formatearNumero(resultado.getDouble("cantidad"))
+                            formatearNumero(resultado.getDouble("precioventa"))
                         }
                 );
             }
@@ -216,23 +215,6 @@ public class Productos {
             System.out.println(e.getMessage());
         }
         return datosProductos;
-    }
-    
-        public void modificarProducto(String descripcion, String unidad, String costo, String precioventa, String cantidad, String id) {
-        try {
-            String sql = "update productos set descripcion = ?, unidad = ?, costo = ?, precioventa = ?, cantidad = ? where idproducto = ?";
-            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
-            consulta.setString(1, descripcion);
-            consulta.setString(2, unidad);
-            consulta.setString(3, costo);
-            consulta.setString(4, precioventa);
-            consulta.setString(5, cantidad);
-            consulta.setString(6, id);
-            consulta.execute();
-
-        } catch (Exception e) {
-            System.out.println("error en Modificar Cliente" + e.getMessage());
-        }
     }
     
 }
