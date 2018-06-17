@@ -43,6 +43,7 @@
                     <Property name="text" type="java.lang.String" value="Nuevo Usuario"/>
                   </Properties>
                   <Events>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenuItem2MousePressed"/>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
                   </Events>
                 </MenuItem>
@@ -53,6 +54,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Usuarios Registrados"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenuItem3MousePressed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>

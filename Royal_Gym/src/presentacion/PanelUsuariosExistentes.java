@@ -3,36 +3,41 @@ package presentacion;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Conexion;
-import royal_gym.UsuariosExistentes;
+import royal_gym.Usuarios;
 
 public class PanelUsuariosExistentes extends javax.swing.JDialog {
-    
-    UsuariosExistentes UE;
-    Conexion con;
-    
+
+    Usuarios usuarios = new Usuarios();
+
     // columnas de la tabla usuarios existentes
     private final String[] columnasUsuarios = {
-        "N.°",
+        "id",
         "Nombre",
-        "Usuarios Existentes"
+        "Usuario"
     };
 
-    
     public PanelUsuariosExistentes(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.con = new Conexion();
+        setTitle("Usuarios");
         setLocationRelativeTo(null);
         setResizable(false);
-        con.conectar();
-        
-         // Modelo de la tabla de usuarios existentes
-        DefaultTableModel modeloTablaUsuarios = new DefaultTableModel(con.getUsuarios(), columnasUsuarios);
-        tablaUsuariosExistentes.setModel(modeloTablaUsuarios);
+        actualizarTabla();
 
-         
+        // Modelo de la tabla de usuarios existentes
     }
-    
+
+    private void actualizarTabla() {
+        DefaultTableModel modeloTablaUsuarios = new DefaultTableModel(usuarios.getUsuarios(), columnasUsuarios);
+        tablaUsuariosExistentes.setModel(modeloTablaUsuarios);
+        ocultarColumna();
+    }
+
+    private void ocultarColumna() {
+        tablaUsuariosExistentes.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablaUsuariosExistentes.getColumnModel().getColumn(0).setMinWidth(0);
+        tablaUsuariosExistentes.getColumnModel().getColumn(0).setPreferredWidth(0);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -117,16 +122,16 @@ public class PanelUsuariosExistentes extends javax.swing.JDialog {
             PanelUsuariosExistentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelUsuariosExistentesLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(PanelUsuariosExistentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelUsuariosExistentesLayout.createSequentialGroup()
-                        .addGap(0, 301, Short.MAX_VALUE)
-                        .addComponent(btnEliminar)
-                        .addGap(36, 36, 36)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PanelUsuariosExistentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
-                        .addComponent(PanelBusquedaUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(PanelUsuariosExistentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
+                    .addComponent(PanelBusquedaUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(27, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelUsuariosExistentesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEliminar)
+                .addGap(18, 18, 18)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
         PanelUsuariosExistentesLayout.setVerticalGroup(
             PanelUsuariosExistentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,12 +139,12 @@ public class PanelUsuariosExistentes extends javax.swing.JDialog {
                 .addGap(40, 40, 40)
                 .addComponent(PanelBusquedaUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(PanelUsuariosExistentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelUsuariosLayout = new javax.swing.GroupLayout(panelUsuarios);
@@ -150,7 +155,7 @@ public class PanelUsuariosExistentes extends javax.swing.JDialog {
         );
         panelUsuariosLayout.setVerticalGroup(
             panelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelUsuariosExistentes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PanelUsuariosExistentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -178,13 +183,10 @@ public class PanelUsuariosExistentes extends javax.swing.JDialog {
         } else {
 
             int mjs = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea eliminar la fila seleccionada?");
-            if(mjs == JOptionPane.YES_OPTION){
-                String nombres = tablaUsuariosExistentes.getValueAt(r, 1).toString();
-                String usuarios = tablaUsuariosExistentes.getValueAt(r, 1).toString();
-
-                UE.eliminarUsuarios(nombres);
-                DefaultTableModel modeloTablaInventario = new DefaultTableModel(UE.getUsuarios(), columnasUsuarios);
-                tablaUsuariosExistentes.setModel(modeloTablaInventario);
+            if (mjs == JOptionPane.YES_OPTION) {
+                String id = tablaUsuariosExistentes.getValueAt(r, 0).toString();
+                usuarios.eliminarUsuarios(id);
+                actualizarTabla();
                 JOptionPane.showMessageDialog(this, "Usuario eliminado exitosamente");
             }
 
@@ -198,8 +200,9 @@ public class PanelUsuariosExistentes extends javax.swing.JDialog {
 
     private void txtBuscarCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtBuscarCaretUpdate
         // TODO add your handling code here:
-        DefaultTableModel modeloTablaBuscarUsuarios = new DefaultTableModel(con.buscarUsuarios(txtBuscar.getText()), columnasUsuarios);
+        DefaultTableModel modeloTablaBuscarUsuarios = new DefaultTableModel(usuarios.buscarUsuarios(txtBuscar.getText()), columnasUsuarios);
         tablaUsuariosExistentes.setModel(modeloTablaBuscarUsuarios);
+        ocultarColumna();
     }//GEN-LAST:event_txtBuscarCaretUpdate
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -2,17 +2,9 @@ package presentacion;
 
 import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import static presentacion.PanelRegistroClientes.edadMaxima;
-import static presentacion.PanelRegistroClientes.edadMinima;
-import static presentacion.PanelRegistroClientes.tablaClientes;
 import royal_gym.Productos;
 
 public class PanelRegistroProductos extends javax.swing.JPanel {

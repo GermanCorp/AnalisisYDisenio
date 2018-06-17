@@ -14,7 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static royal_gym.Cumpleaneros.resultado;
-import static royal_gym.UsuariosExistentes.resultado;
 
 public class Conexion {
 

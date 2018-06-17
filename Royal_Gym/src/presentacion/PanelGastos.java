@@ -1,6 +1,5 @@
 package presentacion;
 
-import java.awt.event.ItemEvent;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -27,9 +26,18 @@ public class PanelGastos extends javax.swing.JPanel {
 
     public void actualizarTablaProductos() {
         gastos.modeloTablaGastos(tablaGastos);
+        ocultarColumna();
+    }
+
+    public void ocultarColumna() {
         tablaGastos.getColumnModel().getColumn(0).setMaxWidth(0);
         tablaGastos.getColumnModel().getColumn(0).setMinWidth(0);
         tablaGastos.getColumnModel().getColumn(0).setPreferredWidth(0);
+    }
+
+    public void limpiar() {
+        jtfDescripcionGasto.setText("");
+        jtfMontoGasto.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -273,8 +281,7 @@ public class PanelGastos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarRegistroGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRegistroGastoActionPerformed
-        jtfDescripcionGasto.setText("");
-        jtfMontoGasto.setText("");
+        limpiar();
         btnAceptarRegistroGasto.setText("Guardar");
         btnAceptarRegistroGasto.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_guardar_2.png")));
         btnCancelarRegistroGasto.setText("Limpiar");
@@ -310,17 +317,21 @@ public class PanelGastos extends javax.swing.JPanel {
             if (evt.getActionCommand().equals("Guardar")) {
                 gastos.insertarGasto(jtfDescripcionGasto.getText(), jtfMontoGasto.getText(), String.valueOf(fechaActual));
                 gastos.modeloTablaGastos(tablaGastos);
-                jtfDescripcionGasto.setText("");
-                jtfMontoGasto.setText("");
                 royal_gym.VP.jlMensajes.setText("Gasto registrado exitosamente");
+                limpiar();
                 actualizarTablaProductos();
             } else if (evt.getActionCommand().equals("Modificar")) {
                 gastos.modificarGasto(jtfDescripcionGasto.getText(), jtfMontoGasto.getText(), idGasto);
-                actualizarTablaProductos();
                 royal_gym.VP.jlMensajes.setText("Gasto modificado exitosamente");
+                btnAceptarRegistroGasto.setText("Guardar");
+                btnAceptarRegistroGasto.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_guardar_2.png")));
+                btnCancelarRegistroGasto.setText("Limpiar");
+                btnCancelarRegistroGasto.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_limpiar_02.png")));
+                btnEliminarGasto.setEnabled(true);
+                limpiar();
+                actualizarTablaProductos();
             }
         }
-
     }//GEN-LAST:event_btnAceptarRegistroGastoActionPerformed
 
     private void btnAceptarRegistroGastoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAceptarRegistroGastoKeyPressed
@@ -352,9 +363,7 @@ public class PanelGastos extends javax.swing.JPanel {
     private void jtfBuscarGastoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarGastoCaretUpdate
         DefaultTableModel modeloTablaBuscarGasto = new DefaultTableModel(gastos.buscarGasto(jtfBuscarGasto.getText()), columnasGastos);
         tablaGastos.setModel(modeloTablaBuscarGasto);
-        tablaGastos.getColumnModel().getColumn(0).setMaxWidth(0);
-        tablaGastos.getColumnModel().getColumn(0).setMinWidth(0);
-        tablaGastos.getColumnModel().getColumn(0).setPreferredWidth(0);
+        ocultarColumna();
 
     }//GEN-LAST:event_jtfBuscarGastoCaretUpdate
 
@@ -368,7 +377,6 @@ public class PanelGastos extends javax.swing.JPanel {
 
     private void btnEliminarGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarGastoActionPerformed
         int filaSeleccionada = tablaGastos.getSelectedRow();
-        
 
         if (filaSeleccionada == -1) {
             royal_gym.VP.jlMensajes.setText("Seleccione un gasto");
