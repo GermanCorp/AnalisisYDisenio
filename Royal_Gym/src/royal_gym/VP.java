@@ -26,15 +26,16 @@ public class VP extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        panelRegistroClientes1 = new presentacion.PanelRegistroClientes();
         panelVentas1 = new presentacion.PanelVentas();
-        panelRegistroProductos1 = new presentacion.PanelRegistroProductos();
+        panelRegistroClientes1 = new presentacion.PanelRegistroClientes();
+        panelUtilidad1 = new presentacion.PanelUtilidad();
         panelGastos1 = new presentacion.PanelGastos();
         panelInventarioMaquinaria1 = new presentacion.PanelInventarioMaquinaria();
-        panelUtilidad1 = new presentacion.PanelUtilidad();
+        panelRegistroProductos1 = new presentacion.PanelRegistroProductos();
         jlMensajes = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -44,12 +45,12 @@ public class VP extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Clientes.png")), panelRegistroClientes1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Vender.png")), panelVentas1); // NOI18N
-        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Productos.png")), panelRegistroProductos1); // NOI18N
+        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Clientes.png")), panelRegistroClientes1); // NOI18N
+        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Utilidad.png")), panelUtilidad1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Gastos.png")), panelGastos1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Maquinaria.png")), panelInventarioMaquinaria1); // NOI18N
-        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Utilidad.png")), panelUtilidad1); // NOI18N
+        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Productos.png")), panelRegistroProductos1); // NOI18N
 
         getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
@@ -64,6 +65,9 @@ public class VP extends javax.swing.JFrame {
         getContentPane().add(jlMensajes, java.awt.BorderLayout.PAGE_END);
 
         jMenu1.setText("Archivo");
+
+        jMenuItem5.setText("Cerar Sesión");
+        jMenu1.add(jMenuItem5);
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Archivo_Salir.png"))); // NOI18N
         jMenuItem4.setText("Salir");
@@ -159,24 +163,23 @@ public class VP extends javax.swing.JFrame {
         new PanelUsuariosExistentes(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jMenuItem3MousePressed
 
-    
-    
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                        //UIManager.setLookAndFeel(javax.swing.plaf.nimbus.NimbusLookAndFeel.class.getName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-				| UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            //UIManager.setLookAndFeel(javax.swing.plaf.nimbus.NimbusLookAndFeel.class.getName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                | UnsupportedLookAndFeelException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         /* Create and display the form */
         Conexion conectar = new Conexion();
-          conectar.conectar();
+        conectar.conectar();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VP().setVisible(true);
@@ -193,6 +196,7 @@ public class VP extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JTabbedPane jTabbedPane1;
     public static javax.swing.JLabel jlMensajes;
     private presentacion.PanelGastos panelGastos1;

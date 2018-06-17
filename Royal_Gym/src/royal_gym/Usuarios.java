@@ -37,12 +37,13 @@ public class Usuarios {
 
     public Object[][] getUsuarios() {
         Object[][] datosUsuarios = null;
-
         try {
             String consulta = "SELECT id_usuario, nombre, usuario FROM login";
             statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
 
+            statement = Conexion.getConexion().createStatement();
+            resultado = statement.executeQuery(consulta);
             ArrayList<Object[]> filas = new ArrayList<>();
 
             while (resultado.next()) {

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import static royal_gym.Clientes.resultado;
 
 public class Gastos {
 
@@ -112,7 +111,7 @@ public class Gastos {
     // eliminar gasto
     public void eliminarGasto(String id) {
         try {
-            String sql = "Delete from gasto where id_Gasto = ?";
+            String sql = "Delete from cliente where id_Gasto = ?";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, id);
             consulta.execute();
@@ -123,13 +122,14 @@ public class Gastos {
     }
 
     // modificar gasto
-    public void modificarGasto(String descripcion, String monto, String id) {
+    public void modificarGasto(String descripcion, String monto, String fecha, String id) {
         try {
-            String sql = "update gasto set descripcion = ?, Monto = ? where id_gasto = ?";
+            String sql = "update cliente set descripcion = ?, Monto = ?, Fecha = ? where id_gasto = ?";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, descripcion);
             consulta.setString(2, monto);
-            consulta.setString(3, id);
+            consulta.setString(3, fecha);
+            consulta.setString(6, id);
             consulta.execute();
 
         } catch (Exception e) {
