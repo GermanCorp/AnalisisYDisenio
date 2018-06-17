@@ -3,12 +3,8 @@ package royal_gym;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static royal_gym.InventarioMaquinaria.resultado;
 
 public class UsuariosExistentes
 {
@@ -19,19 +15,15 @@ public class UsuariosExistentes
      // método para llenar la tabla de Usuarios Existentes
     public Object[][] getUsuarios() {
         Object[][] datosUsuarios = null;
-
         try {
-            String consulta = "SELECT nombre,usuario FROM login";
+            String consulta = "SELECT nombre, usuario FROM login";
             statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
-            int numeroLista = 1;
-
             ArrayList<Object[]> filas = new ArrayList<>();
 
             while (resultado.next()) {
                 filas.add(
                         new Object[]{
-                            numeroLista++,
                             resultado.getString("nombre"),
                             resultado.getString("usuario")
                         }

@@ -102,7 +102,6 @@ public class ListaProductosComprar extends javax.swing.JDialog {
         cancelButton = new javax.swing.JButton();
 
         setTitle("Productos");
-        setPreferredSize(new java.awt.Dimension(657, 516));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -211,9 +210,7 @@ public class ListaProductosComprar extends javax.swing.JDialog {
     }//GEN-LAST:event_jtfBuscarProductosKeyPressed
 
     private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
-        if(evt.getClickCount()==2){
-             new CantidadAVender(new javax.swing.JDialog(), true).setVisible(true);
-            }
+
     }//GEN-LAST:event_tablaProductosMouseClicked
 
     private void tablaProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMousePressed
