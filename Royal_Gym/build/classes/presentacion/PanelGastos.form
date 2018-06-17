@@ -71,25 +71,31 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jtfDescripcionGasto" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
-                      <Component id="jlmontoGasto" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfMontoGasto" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="btnAceptarRegistroGasto" min="-2" pref="130" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                          <Component id="btnCancelarRegistroGasto" min="-2" pref="130" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jtfDescripcionGasto" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
+                              <Component id="jlmontoGasto" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlDescripcionGAsto" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="btnAceptarRegistroGasto" min="-2" pref="130" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="btnCancelarRegistroGasto" min="-2" pref="130" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jtfMontoGasto" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <Component id="jlDescripcionGAsto" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jlIconoGasto" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="22" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jlIconoGasto" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -106,12 +112,12 @@
                   <Component id="jlmontoGasto" min="-2" pref="20" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="jtfMontoGasto" min="-2" pref="30" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="75" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnAceptarRegistroGasto" alignment="3" min="-2" pref="65" max="-2" attributes="0"/>
                       <Component id="btnCancelarRegistroGasto" alignment="3" min="-2" pref="65" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -122,7 +128,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/iconos/btn_limpiar_02.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Cancelar"/>
+            <Property name="text" type="java.lang.String" value="Limpiar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarRegistroGastoActionPerformed"/>
@@ -230,15 +236,11 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jtfBuscarGasto" max="32767" attributes="0"/>
                       </Group>
-<<<<<<< HEAD
                       <Component id="scrollTablaClientes1" alignment="0" pref="471" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="btnEliminarGasto" min="-2" pref="130" max="-2" attributes="0"/>
                       </Group>
-=======
-                      <Component id="scrollTablaClientes1" pref="471" max="32767" attributes="0"/>
->>>>>>> 952f5d0f75c0422a0b3525fd1065c8168093f0f0
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
@@ -253,7 +255,9 @@
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="scrollTablaClientes1" pref="286" max="32767" attributes="0"/>
+                  <Component id="scrollTablaClientes1" pref="227" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="btnEliminarGasto" min="-2" pref="64" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -313,6 +317,17 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Buscar Gasto:"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnEliminarGasto">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/iconos/btn_eliminar.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Eliminar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarGastoActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

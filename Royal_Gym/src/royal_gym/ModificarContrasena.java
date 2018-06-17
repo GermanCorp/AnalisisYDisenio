@@ -14,7 +14,7 @@ public class ModificarContrasena
     public static int modificarContrasena(String clave) {
 
 		int resultado = 0;
-		String SSQL = "UPDATE Login set contrasena =?";
+		String SSQL = "UPDATE Login set contraseña =?";
 		Connection conect = null;
 
 		try {

@@ -28,7 +28,7 @@ public class ListaProductosComprar extends javax.swing.JDialog {
     static double descuentoTotal;
     
     Productos productos = new Productos();
-    PanelCompra panelcompras;
+    PanelCompras panelcompras;
     
     
      private final String[] columnasProductos = {
@@ -102,6 +102,7 @@ public class ListaProductosComprar extends javax.swing.JDialog {
         cancelButton = new javax.swing.JButton();
 
         setTitle("Productos");
+        setPreferredSize(new java.awt.Dimension(657, 516));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -210,7 +211,9 @@ public class ListaProductosComprar extends javax.swing.JDialog {
     }//GEN-LAST:event_jtfBuscarProductosKeyPressed
 
     private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
-
+        if(evt.getClickCount()==2){
+             new CantidadAVender(new javax.swing.JDialog(), true).setVisible(true);
+            }
     }//GEN-LAST:event_tablaProductosMouseClicked
 
     private void tablaProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMousePressed
@@ -245,7 +248,7 @@ public class ListaProductosComprar extends javax.swing.JDialog {
             importe = String.valueOf(x);
             double pv = (Double.parseDouble(precioVenta)/1.15);
 
-            modelo = (DefaultTableModel) panelcompras.tablaCompras.getModel();
+            modelo = (DefaultTableModel) panelcompras.tablacompras.getModel();
             String elementosFila [] = {codigo, cantidad, descripcion, df.format(pv),descuento,  df.format(subTotal),   df.format(isv), importe};
             modelo.addRow(elementosFila);
 
@@ -255,7 +258,7 @@ public class ListaProductosComprar extends javax.swing.JDialog {
             descuentoTotal = descuentoTotal + des;
             total = total + calcula - des;
 
-            PanelCompra compras = new PanelCompra(total, total/1.15, total-(total/1.15), descuentoTotal);
+            PanelCompras compras = new PanelCompras(total, total/1.15, total-(total/1.15), descuentoTotal);
             compras.setValoresCompra();
 
             jtfCantidad.setText("1");

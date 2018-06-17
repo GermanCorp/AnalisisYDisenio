@@ -237,7 +237,9 @@ public class ListaProductosCompra extends javax.swing.JDialog {
     }//GEN-LAST:event_jtfBuscarProductosKeyPressed
 
     private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
-
+        if(evt.getClickCount()==2){
+            new CantidadAVender(new javax.swing.JDialog(), true).setVisible(true);
+        }
     }//GEN-LAST:event_tablaProductosMouseClicked
 
     private void tablaProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMousePressed

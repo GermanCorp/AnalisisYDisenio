@@ -8,11 +8,6 @@ import royal_gym.Usuarios;
 public class PanelNuevoUsuario extends javax.swing.JDialog {
 
     Usuarios usuario = new Usuarios();
-import royal_gym.NuevoUsuario;
-
-public class PanelNuevoUsuario extends javax.swing.JDialog {
-
-    NuevoUsuario usuario = new NuevoUsuario();
 
     public PanelNuevoUsuario(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
@@ -22,7 +17,6 @@ public class PanelNuevoUsuario extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        this.dispose();
     }
 
     @SuppressWarnings("unchecked")
@@ -47,8 +41,8 @@ public class PanelNuevoUsuario extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(85, 96, 128));
         jPanel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/btn_guardar_2.png"))); // NOI18N
-        btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/btn_guardar.png"))); // NOI18N
         btnAceptar.setText("Guardar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,22 +120,6 @@ public class PanelNuevoUsuario extends javax.swing.JDialog {
                             .addComponent(lblusuario)
                             .addComponent(txtPregunta2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(20, 20, 20))
-                    .addComponent(lblUsuario3)
-                    .addComponent(lblUsuario2)
-                    .addComponent(lblusuario)
-                    .addComponent(lblUsuario4)
-                    .addComponent(lblUsuario1)
-                    .addComponent(txtPregunta1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(btnAceptar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCancelar))
-                        .addComponent(txtPregunta2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,22 +148,6 @@ public class PanelNuevoUsuario extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addComponent(lblUsuario3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(lblUsuario4)
-                .addGap(0, 0, 0)
-                .addComponent(txtPregunta1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(lblUsuario2)
-                .addGap(0, 0, 0)
-                .addComponent(txtPregunta2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -227,21 +189,18 @@ public class PanelNuevoUsuario extends javax.swing.JDialog {
                     txtPregunta2.getText()
                     
             );
-            usuario.nuevoUser(txtNombre.getText(),
-                    txtUser.getText(),
-                    String.valueOf(txtClave.getPassword()),
-                    txtPregunta1.getText(),
-                    txtPregunta2.getText());
+
             txtNombre.setText("");
             txtUser.setText("");
             txtClave.setText("");
             txtPregunta1.setText("");
             txtPregunta2.setText("");
         }
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-
+        // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
