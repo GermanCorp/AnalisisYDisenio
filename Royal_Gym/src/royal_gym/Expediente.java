@@ -93,9 +93,9 @@ public class Expediente {
     }// fin de insertar pago
     
     
-    public void insertarCambiosCorporales(String peso,String imc, String grasa, String musculo,String calorias, String edad, String grasaviceral,String id) {
+    public void insertarCambiosCorporales(String peso,String imc, String grasa, String musculo,String calorias, String edad, String grasaviceral,String id,String fecha) {
         try {
-            String sql = "insert into cambioscorporales(peso, imc, porcentajedegrasa , porcentajedemusculo, calorias, edad , grasaviceral, id_cliente) values(?,?,?,?,?,?,?,?)";
+            String sql = "insert into cambioscorporales(peso, imc, porcentajedegrasa , porcentajedemusculo, calorias, edad , grasaviceral, id_cliente, fecha) values(?,?,?,?,?,?,?,?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             
             consulta.setString(1, peso);
@@ -106,6 +106,7 @@ public class Expediente {
             consulta.setString(6, edad);
             consulta.setString(7, grasaviceral);
             consulta.setString(8, id);
+            consulta.setString(9, fecha);
             
             consulta.execute();
 

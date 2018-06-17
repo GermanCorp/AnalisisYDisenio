@@ -36,6 +36,7 @@ public class PanelExpediente extends javax.swing.JPanel {
     public static String id;
 
     private final String[] columnasCambios = {
+        "Fecha",
         "Peso",
         "Imc",
         "%Grasa",
@@ -70,7 +71,7 @@ public class PanelExpediente extends javax.swing.JPanel {
                     + "ps.Doloresdeespalda,ps.Artritis,ps.Ansiedad,ps.EmbarazoLactancia,\n"
                     + "ps.Retenciondeliquidos,ps.Malacirculacion,ps.Calambres,ps.Varices,ps.Doloresdehueso,\n"
                     + "ps.Anemia, ps.Celulitis,ps.Problemadevesicula,ps.Problemaderiñon,\n"
-                    + "cp.peso, cp.imc,cp.porcentajedegrasa, cp.porcentajedemusculo, cp.calorias,\n"
+                    + "cp.fecha,cp.peso, cp.imc,cp.porcentajedegrasa, cp.porcentajedemusculo, cp.calorias,\n"
                     + "cp.edad, cp.grasaviceral\n"
                     + "from cliente cl \n"
                     + "left outer join problemasdesalud ps on ps.id_cliente = cl.idCliente \n"
@@ -138,6 +139,7 @@ public class PanelExpediente extends javax.swing.JPanel {
 
                     filas.add(
                             new Object[]{
+                                resultado.getString("fecha"),
                                 resultado.getDouble("peso"),
                                 resultado.getDouble("imc"),
                                 resultado.getDouble("porcentajedegrasa"),
@@ -1202,6 +1204,16 @@ public class PanelExpediente extends javax.swing.JPanel {
             
         }
         
+        
+        Calendar c = Calendar.getInstance();
+        int d = c.get(Calendar.DATE);
+        int m = 1 + (c.get(Calendar.MONTH));
+        int a = c.get(Calendar.YEAR);
+
+        String dia = Integer.toString(d);
+        String mes = Integer.toString(m);
+        String anio = Integer.toString(a);
+        String fecha = (anio + "-" + mes + "-" + dia);
        
 
         expediente.insertarCambiosCorporales(
@@ -1212,7 +1224,8 @@ public class PanelExpediente extends javax.swing.JPanel {
                 jtfcalorias.getText(),
                 jtfedad.getText(),
                 jtfgrasaviceral.getText(),
-                id);
+                id,
+                fecha);
 
     }//GEN-LAST:event_botonaceptarexpedienteActionPerformed
 
@@ -1598,6 +1611,8 @@ public class PanelExpediente extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;
+
+   
 
    
 }
