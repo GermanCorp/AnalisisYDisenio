@@ -149,7 +149,7 @@ public class Expediente {
     */
     
     
-    public void actualizarTablaClientes(String telefonoTra, String direccion,  
+    public void actualizarTablaClientes(String telefonoTra, String direccion, String mejorHoraParaLLamar, 
             String fechaInicio, String telefonoCasa , String celular, String edad, String pesoIdeal, Boolean subir, 
             Boolean mantener ,Boolean bajar, String id){
         try {

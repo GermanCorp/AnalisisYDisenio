@@ -3,6 +3,7 @@ package presentacion;
 
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.KeyEvent;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.ParseException;
@@ -48,12 +49,18 @@ public class PanelExpediente extends javax.swing.JPanel {
         initComponents();
         this.con = new Conexion();
         con.conectar();
-        
+        cargarExpediente(id);
      
 
-        try {
-            Statement statement = Conexion.getConexion().createStatement();
-            String consulta2 = "select cl.nombres ||' '||apellidos As nombreCompleto, "
+      
+    }
+    
+    
+    
+    public void cargarExpediente( String id){
+         try {
+           
+            String consulta = "select cl.nombres ||' '||apellidos As nombreCompleto, "
                     + "cl.FechaNacimiento,cl.Altura,cl.Peso, \n"
                     + "cl.TelefonoTrabajo,cl.Direccion,cl.MejorHoraParaLlamar,cl.FechaDeInicio,\n"
                     + "cl.TelefonoCasa,cl.Celular,cl.Edad,cl.PesoIdeal,cl.PesoQuiereSubir,\n"
@@ -62,78 +69,82 @@ public class PanelExpediente extends javax.swing.JPanel {
                     + "ps.Colesterol, ps.Alergias,ps.Estres, ps.Dolordecabeza, ps.Dolordecuello,\n"
                     + "ps.Doloresdeespalda,ps.Artritis,ps.Ansiedad,ps.EmbarazoLactancia,\n"
                     + "ps.Retenciondeliquidos,ps.Malacirculacion,ps.Calambres,ps.Varices,ps.Doloresdehueso,\n"
-                    + "ps.Celulitis,ps.Problemadevesicula,ps.Problemaderiñon,\n"
+                    + "ps.Anemia, ps.Celulitis,ps.Problemadevesicula,ps.Problemaderiñon,\n"
                     + "cp.peso, cp.imc,cp.porcentajedegrasa, cp.porcentajedemusculo, cp.calorias,\n"
                     + "cp.edad, cp.grasaviceral\n"
                     + "from cliente cl \n"
                     + "left outer join problemasdesalud ps on ps.id_cliente = cl.idCliente \n"
                     + "left outer join cambioscorporales cp on ps.id_cliente=cp.id_cliente \n"
-                    + "where cl.idCliente='" + id + "' ";
-            ResultSet resultado2 = statement.executeQuery(consulta2);
+                    + "where cl.idCliente= ?";
+            
+           
+            PreparedStatement statement = Conexion.getConexion().prepareStatement(consulta); // PrepareStatement se utiliza cuando se utilizan consultas que llevan signo de ?
+            statement.setString(1, id); 
+            ResultSet resultado = statement.executeQuery();
 
-            //System.out.println(consulta2); 
+           
             Object[][] datosPago = null;
             ArrayList<Object[]> filas = new ArrayList<>();
 
-            while (resultado2.next()) {
+            while (resultado.next()) {
 
-                jTextFieldnombre.setText(resultado2.getString("NombreCompleto"));
-                jTextFieldfechanacimiento.setText(resultado2.getString("FechaNacimiento"));
-                jTextFieldtelefonotrab.setText(resultado2.getString("TelefonoTrabajo"));
-                jTextFieldcelular.setText(resultado2.getString("Celular"));
-                jTextFielddireccion.setText(resultado2.getString("Direccion"));
-                jTextFieldedad.setText(resultado2.getString("Edad"));
+                jTextFieldnombre.setText(resultado.getString("NombreCompleto"));
+                jTextFieldfechanacimiento.setText(resultado.getString("FechaNacimiento"));
+                jTextFieldtelefonotrab.setText(resultado.getString("TelefonoTrabajo"));
+                jTextFieldcelular.setText(resultado.getString("Celular"));
+                jTextFielddireccion.setText(resultado.getString("Direccion"));
+                jTextFieldedad.setText(resultado.getString("Edad"));
                 
-                jTextFieldestatura.setText(resultado2.getString("Altura"));
-                jTextFieldpeso.setText(resultado2.getString("Peso"));
-               // jTextFieldmejorhoralla.setText(resultado2.getString("MejorHoraParaLlamar"));
+                jTextFieldestatura.setText(resultado.getString("Altura"));
+                jTextFieldpeso.setText(resultado.getString("Peso"));
+                jFormattedTextField.setText(resultado.getString("MejorHoraParaLlamar"));
                     
-                String fecha = resultado2.getString("FechaDeInicio");
+                String fecha = resultado.getString("FechaDeInicio");
                 java.util.Date date2 = null;
                 date2 = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
                 jDateChooserFechaInicio.setDate(date2);
                     
-                jTextFieldtelefonocasa.setText(resultado2.getString("TelefonoCasa"));
-                jTextFieldpesoideal.setText(resultado2.getString("PesoIdeal"));
-                jCBoxBajar.setSelected(resultado2.getBoolean("PesoQuiereBajar"));
-                jCBoxsubir.setSelected(resultado2.getBoolean("PesoQuiereSubir"));
-                jCBoxmantener.setSelected(resultado2.getBoolean("PesoQuiereMantener"));
+                jTextFieldtelefonocasa.setText(resultado.getString("TelefonoCasa"));
+                jTextFieldpesoideal.setText(resultado.getString("PesoIdeal"));
+                jCBoxBajar.setSelected(resultado.getBoolean("PesoQuiereBajar"));
+                jCBoxsubir.setSelected(resultado.getBoolean("PesoQuiereSubir"));
+                jCBoxmantener.setSelected(resultado.getBoolean("PesoQuiereMantener"));
 
-                jCBoxalergias.setSelected(resultado2.getBoolean("Alergias"));
-               // jCBoxanemia.setSelected(resultado2.getBoolean("Anemia"));
-                jCBoxansiedad.setSelected(resultado2.getBoolean("Ansiedad"));
-                jCBoxartritis.setSelected(resultado2.getBoolean("Artritis"));
-                jCBoxcalambres.setSelected(resultado2.getBoolean("Calambres"));
-                jCBoxcansancio.setSelected(resultado2.getBoolean("Cansancio"));
-                jCBoxcelulitis.setSelected(resultado2.getBoolean("Celulitis"));
-                jCBoxcolesterol.setSelected(resultado2.getBoolean("Colesterol"));
-                jCBoxcolitis.setSelected(resultado2.getBoolean("Colitis"));
-                jCBoxdiabetes.setSelected(resultado2.getBoolean("Diabetes"));
-                jCBoxdolordecabeza.setSelected(resultado2.getBoolean("Dolordecabeza"));
-                jCBoxdolordecuello.setSelected(resultado2.getBoolean("Dolordecuello"));
-                jCBoxdoloresdeespalda.setSelected(resultado2.getBoolean("Doloresdeespalda"));
-                jCBoxdoloresdehueso.setSelected(resultado2.getBoolean("Doloresdehueso"));
-                jCBoxembarazo.setSelected(resultado2.getBoolean("EmbarazoLactancia"));
-                jCBoxestrenimiento.setSelected(resultado2.getBoolean("Estreñimiento"));
-                jCBoxestres.setSelected(resultado2.getBoolean("Estres"));
-                jCBoxgastritis.setSelected(resultado2.getBoolean("Gastritis"));
-                jCBoxmalacirculacion.setSelected(resultado2.getBoolean("Malacirculacion"));
-                jCBoxpresionalta.setSelected(resultado2.getBoolean("PresionAlta"));
-                jCBoxproblemasderinon.setSelected(resultado2.getBoolean("Problemaderiñon"));
-                jCBoxproblemasdevesicula.setSelected(resultado2.getBoolean("Problemadevesicula"));
-                jCBoxretenciondeliquidos.setSelected(resultado2.getBoolean("Retenciondeliquidos"));
-                jCBoxulcera.setSelected(resultado2.getBoolean("Ulcera"));
-                jCBoxvarices.setSelected(resultado2.getBoolean("Varices"));
+                jCBoxalergias.setSelected(resultado.getBoolean("Alergias"));
+                //jCBoxanemia.setSelected(resultado.getBoolean("Anemia"));
+                jCBoxansiedad.setSelected(resultado.getBoolean("Ansiedad"));
+                jCBoxartritis.setSelected(resultado.getBoolean("Artritis"));
+                jCBoxcalambres.setSelected(resultado.getBoolean("Calambres"));
+                jCBoxcansancio.setSelected(resultado.getBoolean("Cansancio"));
+                jCBoxcelulitis.setSelected(resultado.getBoolean("Celulitis"));
+                jCBoxcolesterol.setSelected(resultado.getBoolean("Colesterol"));
+                jCBoxcolitis.setSelected(resultado.getBoolean("Colitis"));
+                jCBoxdiabetes.setSelected(resultado.getBoolean("Diabetes"));
+                jCBoxdolordecabeza.setSelected(resultado.getBoolean("Dolordecabeza"));
+                jCBoxdolordecuello.setSelected(resultado.getBoolean("Dolordecuello"));
+                jCBoxdoloresdeespalda.setSelected(resultado.getBoolean("Doloresdeespalda"));
+                jCBoxdoloresdehueso.setSelected(resultado.getBoolean("Doloresdehueso"));
+                jCBoxembarazo.setSelected(resultado.getBoolean("EmbarazoLactancia"));
+                jCBoxestrenimiento.setSelected(resultado.getBoolean("Estreñimiento"));
+                jCBoxestres.setSelected(resultado.getBoolean("Estres"));
+                jCBoxgastritis.setSelected(resultado.getBoolean("Gastritis"));
+                jCBoxmalacirculacion.setSelected(resultado.getBoolean("Malacirculacion"));
+                jCBoxpresionalta.setSelected(resultado.getBoolean("PresionAlta"));
+                jCBoxproblemasderinon.setSelected(resultado.getBoolean("Problemaderiñon"));
+                jCBoxproblemasdevesicula.setSelected(resultado.getBoolean("Problemadevesicula"));
+                jCBoxretenciondeliquidos.setSelected(resultado.getBoolean("Retenciondeliquidos"));
+                jCBoxulcera.setSelected(resultado.getBoolean("Ulcera"));
+                jCBoxvarices.setSelected(resultado.getBoolean("Varices"));
 
                     filas.add(
                             new Object[]{
-                                resultado2.getDouble("peso"),
-                                resultado2.getDouble("imc"),
-                                resultado2.getDouble("porcentajedegrasa"),
-                                resultado2.getDouble("porcentajedemusculo"),
-                                resultado2.getDouble("calorias"),
-                                resultado2.getInt("edad"),
-                                resultado2.getInt("grasaviceral"),});
+                                resultado.getDouble("peso"),
+                                resultado.getDouble("imc"),
+                                resultado.getDouble("porcentajedegrasa"),
+                                resultado.getDouble("porcentajedemusculo"),
+                                resultado.getDouble("calorias"),
+                                resultado.getInt("edad"),
+                                resultado.getInt("grasaviceral"),});
                 
                 datosPago = new Object[filas.size()][];
                 filas.toArray(datosPago);
@@ -146,6 +157,7 @@ public class PanelExpediente extends javax.swing.JPanel {
             System.out.println("Datos del cliente:" + ex.getMessage());
         }
 
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -422,12 +434,11 @@ public class PanelExpediente extends javax.swing.JPanel {
             }
         });
 
-        try{
-            JFormattedTextField jFormattedTextField = new JFormattedTextField(new MaskFormatter("##:##"));
-        }catch(java.text.ParseException e){
-            e.printStackTrace();
+        try {
+            jFormattedTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##??")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
         }
-        jFormattedTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
 
         javax.swing.GroupLayout PanelDatosClienteLayout = new javax.swing.GroupLayout(PanelDatosCliente);
         PanelDatosCliente.setLayout(PanelDatosClienteLayout);
@@ -1105,101 +1116,12 @@ public class PanelExpediente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonaceptarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarexpedienteActionPerformed
-        if ( jTextFieldtelefonotrab.getText().isEmpty()
-                && jTextFielddireccion.getText().isEmpty()
-                //&& jTextFieldmejorhoralla.getText().isEmpty()
-                && jDateChooserFechaInicio.getDate() == null
-                && jTextFieldtelefonocasa.getText().isEmpty()
-                && jTextFieldcelular.getText().isEmpty()
-                && jtfedad.getText().isEmpty()
-                && jTextFieldpesoideal.getText().isEmpty()
-                ){
-            
-                 
-            boolean gastritis = jCBoxgastritis.isSelected();
-        boolean colitis = jCBoxcolitis.isSelected();
-        boolean estreñimiento = jCBoxestrenimiento.isSelected();
-        boolean ulcera = jCBoxulcera.isSelected();
-        boolean cansancio = jCBoxcansancio.isSelected();
-        boolean diabetes = jCBoxdiabetes.isSelected();
-        boolean presionAlta = jCBoxpresionalta.isSelected();
-        boolean colesterol = jCBoxcolesterol.isSelected();
-        boolean alergias = jCBoxalergias.isSelected();
-        boolean estres = jCBoxestres.isSelected();
-        boolean dolordecabeza = jCBoxdolordecabeza.isSelected();
-        boolean dolordecuello = jCBoxdolordecuello.isSelected();
-        boolean doloresdeespalda = jCBoxdoloresdeespalda.isSelected();
-        boolean artritis = jCBoxartritis.isSelected();
-        boolean ansiedad = jCBoxansiedad.isSelected();
-        boolean embarazo = jCBoxembarazo.isSelected();
-        boolean retencionliquidos = jCBoxretenciondeliquidos.isSelected();
-        boolean malacirculacion = jCBoxmalacirculacion.isSelected();
-        boolean calambres = jCBoxcalambres.isSelected();
-        boolean varices = jCBoxvarices.isSelected();
-        boolean doloresdehueso = jCBoxdoloresdehueso.isSelected();
-        //boolean anemia = jCBoxanemia.isSelected();
-        boolean problemadevesicula = jCBoxproblemasdevesicula.isSelected();
-        boolean problemaderiñon = jCBoxproblemasderinon.isSelected();
-        boolean celulitis = jCBoxcelulitis.isSelected();
-                
-               expediente. insertarProblemasdeSalud(id, gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes,
-                       presionAlta, colesterol, alergias, estres, dolordecabeza, dolordecuello, doloresdeespalda, artritis,
-                       ansiedad, embarazo, retencionliquidos, malacirculacion, calambres, varices, doloresdehueso, alergias, 
-                       problemadevesicula, problemaderiñon, celulitis);  
-                
-                
-
-                 
-        }else{
-            
-            boolean gastritis = jCBoxgastritis.isSelected();
-        boolean colitis = jCBoxcolitis.isSelected();
-        boolean estreñimiento = jCBoxestrenimiento.isSelected();
-        boolean ulcera = jCBoxulcera.isSelected();
-        boolean cansancio = jCBoxcansancio.isSelected();
-        boolean diabetes = jCBoxdiabetes.isSelected();
-        boolean presionAlta = jCBoxpresionalta.isSelected();
-        boolean colesterol = jCBoxcolesterol.isSelected();
-        boolean alergias = jCBoxalergias.isSelected();
-        boolean estres = jCBoxestres.isSelected();
-        boolean dolordecabeza = jCBoxdolordecabeza.isSelected();
-        boolean dolordecuello = jCBoxdolordecuello.isSelected();
-        boolean doloresdeespalda = jCBoxdoloresdeespalda.isSelected();
-        boolean artritis = jCBoxartritis.isSelected();
-        boolean ansiedad = jCBoxansiedad.isSelected();
-        boolean embarazo = jCBoxembarazo.isSelected();
-        boolean retencionliquidos = jCBoxretenciondeliquidos.isSelected();
-        boolean malacirculacion = jCBoxmalacirculacion.isSelected();
-        boolean calambres = jCBoxcalambres.isSelected();
-        boolean varices = jCBoxvarices.isSelected();
-        boolean doloresdehueso = jCBoxdoloresdehueso.isSelected();
-        //boolean anemia = jCBoxanemia.isSelected();
-        boolean problemadevesicula = jCBoxproblemasdevesicula.isSelected();
-        boolean problemaderiñon = jCBoxproblemasderinon.isSelected();
-        boolean celulitis = jCBoxcelulitis.isSelected();
-        
-        
-         expediente.actualizarProblemasDeSalud(id, gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes, presionAlta,
-                colesterol, alergias, estres, dolordecabeza, dolordecuello, doloresdeespalda, artritis, ansiedad, embarazo,
-                retencionliquidos, malacirculacion, calambres, varices, doloresdehueso,problemadevesicula,
-                problemaderiñon, celulitis);
-        
-        
-        
-        
-
-        
-        }
-
-        
-
        
-        
-        expediente.actualizarTablaClientes(
+         expediente.actualizarTablaClientes(
                 
                 jTextFieldtelefonotrab.getText(),
                 jTextFielddireccion.getText().trim(),
-                //jTextFieldmejorhoralla.getText(),
+                jFormattedTextField.getText(),
                 fechaJCalendar(jDateChooserFechaInicio).toString(),
                 jTextFieldtelefonocasa.getText(),
                 jTextFieldcelular.getText(),
@@ -1208,8 +1130,80 @@ public class PanelExpediente extends javax.swing.JPanel {
                 jCBoxsubir.isSelected(),
                 jCBoxBajar.isSelected(),
                 jCBoxmantener.isSelected(),
-                id);
+                id);   
+                         
+            
+        boolean gastritis = jCBoxgastritis.isSelected();
+        boolean colitis = jCBoxcolitis.isSelected();
+        boolean estreñimiento = jCBoxestrenimiento.isSelected();
+        boolean ulcera = jCBoxulcera.isSelected();
+        boolean cansancio = jCBoxcansancio.isSelected();
+        boolean diabetes = jCBoxdiabetes.isSelected();
+        boolean presionAlta = jCBoxpresionalta.isSelected();
+        boolean colesterol = jCBoxcolesterol.isSelected();
+        boolean alergias = jCBoxalergias.isSelected();
+        boolean estres = jCBoxestres.isSelected();
+        boolean dolordecabeza = jCBoxdolordecabeza.isSelected();
+        boolean dolordecuello = jCBoxdolordecuello.isSelected();
+        boolean doloresdeespalda = jCBoxdoloresdeespalda.isSelected();
+        boolean artritis = jCBoxartritis.isSelected();
+        boolean ansiedad = jCBoxansiedad.isSelected();
+        boolean embarazo = jCBoxembarazo.isSelected();
+        boolean retencionliquidos = jCBoxretenciondeliquidos.isSelected();
+        boolean malacirculacion = jCBoxmalacirculacion.isSelected();
+        boolean calambres = jCBoxcalambres.isSelected();
+        boolean varices = jCBoxvarices.isSelected();
+        boolean doloresdehueso = jCBoxdoloresdehueso.isSelected();
+        //boolean anemia = jCBoxanemia.isSelected();
+        boolean problemadevesicula = jCBoxproblemasdevesicula.isSelected();
+        boolean problemaderiñon = jCBoxproblemasderinon.isSelected();
+        boolean celulitis = jCBoxcelulitis.isSelected();
         
+        
+              
+        if(jCBoxgastritis.isSelected()== false
+            && jCBoxcolitis.isSelected()== false
+            && jCBoxestrenimiento.isSelected() == false
+            && jCBoxulcera.isSelected()== false
+            && jCBoxcansancio.isSelected()== false
+            && jCBoxdiabetes.isSelected()== false
+            && jCBoxpresionalta.isSelected()== false
+            && jCBoxcolesterol.isSelected()== false
+            && jCBoxalergias.isSelected()== false
+            && jCBoxestres.isSelected()== false
+            && jCBoxdolordecabeza.isSelected()== false
+            && jCBoxdolordecuello.isSelected()== false
+            && jCBoxdoloresdeespalda.isSelected()== false
+            && jCBoxartritis.isSelected()== false
+            && jCBoxansiedad.isSelected()== false
+            && jCBoxembarazo.isSelected()== false
+            && jCBoxretenciondeliquidos.isSelected()== false
+            && jCBoxmalacirculacion.isSelected()== false
+            && jCBoxcalambres.isSelected()== false
+            && jCBoxvarices.isSelected()== false
+            && jCBoxdoloresdehueso.isSelected()== false
+            && jCBoxanemia.isSelected()== false
+            && jCBoxproblemasdevesicula.isSelected()== false
+            && jCBoxproblemasderinon.isSelected()== false
+            && jCBoxcelulitis.isSelected()== false
+            ){
+            
+            expediente.insertarProblemasdeSalud(id, gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes,
+                    presionAlta, colesterol, alergias, estres, dolordecabeza, dolordecuello, doloresdeespalda, artritis,
+                    ansiedad, embarazo, retencionliquidos, malacirculacion, calambres, varices, doloresdehueso, alergias,
+                    problemadevesicula, problemaderiñon, celulitis);
+        }else{
+            
+            
+            expediente.actualizarProblemasDeSalud(id, gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes, presionAlta,
+                colesterol, alergias, estres, dolordecabeza, dolordecuello, doloresdeespalda, artritis, ansiedad, embarazo,
+                retencionliquidos, malacirculacion, calambres, varices, doloresdehueso,problemadevesicula,
+                problemaderiñon, celulitis);
+            
+        }
+        
+       
+
         expediente.insertarCambiosCorporales(
                 jtfpeso.getText(),
                 jtfimc.getText(),
