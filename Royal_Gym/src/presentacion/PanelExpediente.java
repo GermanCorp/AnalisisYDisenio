@@ -15,11 +15,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import static presentacion.ListaClientes.RET_CANCEL;
-import static presentacion.PanelRegistroClientes.tablaClientes;
 import static presentacion.PanelRegistroPagos.jTextFieldNombreCliente;
 import static presentacion.PanelVentas.jtablaProductosAVender;
 import royal_gym.Conexion;
 import royal_gym.Expediente;
+import static presentacion.PanelRegistroClientes.tablaInventarioEquipo;
 
 /**
  *

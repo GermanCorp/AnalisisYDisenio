@@ -13,7 +13,11 @@ public class PanelUsuariosExistentes extends javax.swing.JDialog {
     private final String[] columnasUsuarios = {
         "id",
         "Nombre",
-        "Usuario"
+        "Usuario",
+        "Contraseña",
+        "Pregunta A",
+        "Pregunta B",
+        "Cargo"
     };
 
     public PanelUsuariosExistentes(javax.swing.JDialog parent, boolean modal) {
@@ -28,7 +32,7 @@ public class PanelUsuariosExistentes extends javax.swing.JDialog {
     }
 
     private void actualizarTabla() {
-        DefaultTableModel modeloTablaUsuarios = new DefaultTableModel(usuarios.getUsuarios(), columnasUsuarios);
+        DefaultTableModel modeloTablaUsuarios = new DefaultTableModel(usuarios.buscarUsuarios(RecuperarContraseña.usuario), columnasUsuarios);
         tablaUsuariosExistentes.setModel(modeloTablaUsuarios);
         ocultarColumna();
     }
@@ -195,12 +199,12 @@ public class PanelUsuariosExistentes extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelUsuariosExistentes;
-    private javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelUsuarios;
     private javax.swing.JTable tablaUsuariosExistentes;
-    private javax.swing.JTextField txtBuscar;
+    public javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
