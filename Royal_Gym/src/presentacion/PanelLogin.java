@@ -145,6 +145,11 @@ public class PanelLogin extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Olvidé la contraseña");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         lblSalida.setFont(new java.awt.Font("Century Gothic", 3, 14)); // NOI18N
         lblSalida.setForeground(new java.awt.Color(255, 255, 255));
@@ -253,6 +258,16 @@ public class PanelLogin extends javax.swing.JFrame {
             btnAceptar.doClick();
         }
     }//GEN-LAST:event_contraseñaKeyTyped
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                    | UnsupportedLookAndFeelException e) {
+                e.printStackTrace();
+            } 
+        new RecuperarContraseña(new javax.swing.JDialog(), true).setVisible(true);
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     public static void main(String args[]) {
         royal_gym.Conexion.conectar();
