@@ -830,12 +830,11 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             jdcFecha.setDate(date2);
             jtfAltura.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 4).toString());
             jtfPeso.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 5).toString());
-
         }
     }//GEN-LAST:event_tablaClientesMouseClicked
 
     private void btnExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpedienteActionPerformed
-
+        new Expediente(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_btnExpedienteActionPerformed
 
 
