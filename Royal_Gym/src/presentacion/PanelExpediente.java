@@ -17,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
 import static presentacion.ListaClientes.RET_CANCEL;
 import static presentacion.PanelRegistroClientes.tablaClientes;
 import static presentacion.PanelRegistroPagos.jTextFieldNombreCliente;
-import static presentacion.PanelRegistroPagos.tablaPagos;
 import static presentacion.PanelVentas.jtablaProductosAVender;
 import royal_gym.Conexion;
 import royal_gym.Expediente;
@@ -34,6 +33,7 @@ public class PanelExpediente extends javax.swing.JPanel {
     public static String id;
 
     private final String[] columnasCambios = {
+        "Fecha",
         "Peso",
         "Imc",
         "%Grasa",
@@ -1518,7 +1518,7 @@ public class PanelExpediente extends javax.swing.JPanel {
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
-        dispose();        
+               
     }
     
     private Date fechaJCalendar(JDateChooser calendario) {
@@ -1614,7 +1614,5 @@ public class PanelExpediente extends javax.swing.JPanel {
 
     private int returnStatus = RET_CANCEL;
 
-    private void dispose() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }
