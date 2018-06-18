@@ -93,9 +93,9 @@ public class Expediente {
     }// fin de insertar pago
     
     
-    public void insertarCambiosCorporales(String peso,String imc, String grasa, String musculo,String calorias, String edad, String grasaviceral,String id) {
+    public void insertarCambiosCorporales(String peso,String imc, String grasa, String musculo,String calorias, String edad, String grasaviceral,String id, String fecha) {
         try {
-            String sql = "insert into cambioscorporales(peso, imc, porcentajedegrasa , porcentajedemusculo, calorias, edad , grasaviceral, id_cliente) values(?,?,?,?,?,?,?,?)";
+            String sql = "insert into cambioscorporales(peso, imc, porcentajedegrasa , porcentajedemusculo, calorias, edad , grasaviceral, id_cliente, fecha) values(?,?,?,?,?,?,?,?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             
             consulta.setString(1, peso);
@@ -106,6 +106,7 @@ public class Expediente {
             consulta.setString(6, edad);
             consulta.setString(7, grasaviceral);
             consulta.setString(8, id);
+            consulta.setString(9, fecha);
             
             consulta.execute();
 
@@ -198,6 +199,7 @@ public class Expediente {
             consulta.setString(6, edad);
             consulta.setString(7, grasaviceral);
             consulta.setString(8, id);
+         
             
             consulta.execute();
 
@@ -229,7 +231,7 @@ public class Expediente {
         boolean calambres,
         boolean varices,
         boolean doloresdehueso,
-        boolean anemia,
+        //boolean anemia,
         boolean problemadevesicula,
         boolean problemaderiñon,
         boolean celulitis) {
@@ -237,7 +239,7 @@ public class Expediente {
          try {
             String sql = "update  problemasdesalud set Gastritis = ?,Colitis= ?,Estreñimiento= ?,Ulcera= ?,Cansancio= ?,Diabetes= ?,PresionAlta= ?,"
                     + "Colesterol= ?,Alergias= ?,Estres= ?,Dolordecabeza= ?,Dolordecuello= ?,Doloresdeespalda= ?,Artritis= ?,Ansiedad= ?,EmbarazoLactancia= ?,"
-                    + "Retenciondeliquidos= ?,Malacirculacion= ?,Calambres= ?,Varices= ?,Doloresdehueso= ?,Anemia= ?,ProblemadeVesicula= ?,Problemaderiñon= ?,Celulitis= ?"
+                    + "Retenciondeliquidos= ?,Malacirculacion= ?,Calambres= ?,Varices= ?,Doloresdehueso= ?,ProblemadeVesicula= ?,Problemaderiñon= ?,Celulitis= ?"
                      + " where id_cliente = ?";
             
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
@@ -263,10 +265,10 @@ public class Expediente {
             consulta.setBoolean(20, calambres);
             consulta.setBoolean(21, varices);
             consulta.setBoolean(22, doloresdehueso);
-            consulta.setBoolean(23, anemia);
-            consulta.setBoolean(24, problemadevesicula);
-            consulta.setBoolean(25, problemaderiñon);
-            consulta.setBoolean(26, celulitis);
+           // consulta.setBoolean(23, anemia);
+            consulta.setBoolean(23, problemadevesicula);
+            consulta.setBoolean(24, problemaderiñon);
+            consulta.setBoolean(25, celulitis);
             consulta.execute();
 
         } catch (Exception e) {
