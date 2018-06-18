@@ -1,19 +1,22 @@
 package presentacion;
 
 import javax.swing.JOptionPane;
+import royal_gym.LoginEntrar;
 
 /**
  *
  * @author alxcr
  */
 public class RecuperarContraseña extends javax.swing.JDialog {
-
+    
+    public static String usuario = "";
+    
     public RecuperarContraseña(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -125,23 +128,22 @@ public class RecuperarContraseña extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
         txtPregunta1.setText("");
         txtPregunta2.setText("");
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
-
         if (txtPregunta1.getText().equals("") && txtPregunta2.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Debe responder la pregunta1/pregunta 2", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (txtPregunta1.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe responder la pregunta 1", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (txtPregunta2.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe responder la pregunta 2", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (LoginEntrar.recuperarPass(txtUsuario.getText(), txtPregunta1.getText(), txtPregunta2.getText()) == 1) {
+            JOptionPane.showMessageDialog(null, "Se cambiara la contraseña");
         } else {
-
+            JOptionPane.showMessageDialog(null, "Los datos no coinciden");
         }
 
     }//GEN-LAST:event_btnAceptarActionPerformed

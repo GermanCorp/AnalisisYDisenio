@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import royal_gym.LoginEntrar;
 import royal_gym.Productos;
 
 public class PanelRegistroProductos extends javax.swing.JPanel {
@@ -19,6 +20,10 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     public PanelRegistroProductos() {
         initComponents();
         actualizarTablaProductos();
+        if (LoginEntrar.esAdministrador(PanelLogin.nUsuario) == 0) {
+            jbEliminar.setVisible(false);
+            jMenuItemEliminar.setVisible(false);
+        }
     }
 
     // oculta la primera columna de la tabla
@@ -617,7 +622,6 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         int filaSeleccionada = tablaProductos.getSelectedRow();
-        
 
         if (filaSeleccionada == -1) {
             royal_gym.VP.jlMensajes.setText("Seleccione un producto");

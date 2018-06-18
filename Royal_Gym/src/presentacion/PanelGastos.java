@@ -4,11 +4,11 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import static presentacion.PanelRegistroClientes.tablaClientes;
 import royal_gym.Conexion;
 import royal_gym.Conexion;
 import royal_gym.Gastos;
 import royal_gym.Gastos;
+import static presentacion.PanelRegistroClientes.tablaInventarioEquipo;
 
 public class PanelGastos extends javax.swing.JPanel {
 

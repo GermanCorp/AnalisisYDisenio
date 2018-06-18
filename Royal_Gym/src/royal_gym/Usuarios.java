@@ -39,7 +39,7 @@ public class Usuarios {
         Object[][] datosUsuarios = null;
 
         try {
-            String consulta = "SELECT id_usuario, nombre, usuario FROM login";
+            String consulta = "SELECT * FROM login";
             statement = Conexion.getConexion().createStatement();
             resultado = statement.executeQuery(consulta);
 
@@ -50,7 +50,11 @@ public class Usuarios {
                         new Object[]{
                             resultado.getString("id_usuario"),
                             resultado.getString("nombre"),
-                            resultado.getString("usuario")
+                            resultado.getString("usuario"),
+                            resultado.getString("contraseña"),
+                            resultado.getString("mascota"),
+                            resultado.getString("madre"),
+                            resultado.getString("cargo")
                         }
                 );
             }
@@ -66,7 +70,7 @@ public class Usuarios {
     public Object[][] buscarUsuarios(String Nombre) {
         Object[][] datosUsuarios = null;
         try {
-            String consulta = "SELECT id_usuario, nombre, usuario FROM Login where nombre like'%' || ? || '%'";
+            String consulta = "SELECT * FROM Login where nombre like'%' || ? || '%'";
             PreparedStatement statement = Conexion.getConexion().prepareStatement(consulta);
             statement.setString(1, Nombre);
 
@@ -78,7 +82,11 @@ public class Usuarios {
                         new Object[]{
                             resultado.getString("id_usuario"),
                             resultado.getString("nombre"),
-                            resultado.getString("usuario")
+                            resultado.getString("usuario"),
+                            resultado.getString("contraseña"),
+                            resultado.getString("mascota"),
+                            resultado.getString("madre"),
+                            resultado.getString("cargo")
                         }
                 );
             }

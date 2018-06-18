@@ -12,6 +12,8 @@ import royal_gym.VP;
 
 public class PanelLogin extends javax.swing.JFrame {
 
+    public static String nUsuario ="";
+    
     public PanelLogin() {
         initComponents();
         setLocationRelativeTo(null);
@@ -238,6 +240,7 @@ public class PanelLogin extends javax.swing.JFrame {
                 e.printStackTrace();
             }
 
+            nUsuario = usuario.getText();
             VP vp = new VP();
             vp.setVisible(true);
             vp.setLocationRelativeTo(null);

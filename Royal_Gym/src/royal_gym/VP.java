@@ -2,9 +2,12 @@ package royal_gym;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.JFrame;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import presentacion.Configuracion;
+import presentacion.PanelLogin;
 import presentacion.PanelNuevoUsuario;
 import presentacion.PanelUsuariosExistentes;
 
@@ -19,6 +22,10 @@ public class VP extends javax.swing.JFrame {
         setIconImage(icon);
         setTitle("Royal Gym");
         initComponents();
+        if (LoginEntrar.esAdministrador(PanelLogin.nUsuario) == 0) {
+            jMenu2.setVisible(false);
+            jTabbedPane1.setEnabledAt(jTabbedPane1.indexOfComponent(panelUtilidad1), false);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -35,7 +42,8 @@ public class VP extends javax.swing.JFrame {
         jlMensajes = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuCerrarSesion = new javax.swing.JMenuItem();
+        jMenuSalir = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -65,14 +73,23 @@ public class VP extends javax.swing.JFrame {
 
         jMenu1.setText("Archivo");
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Archivo_Salir.png"))); // NOI18N
-        jMenuItem4.setText("Salir");
-        jMenuItem4.addMouseListener(new java.awt.event.MouseAdapter() {
+        jMenuCerrarSesion.setIcon(new javax.swing.ImageIcon("C:\\Users\\alxcr\\Documents\\GitHub\\AnalisisYDisenio\\Royal_Gym\\src\\iconos\\Cambiar_usuario.png")); // NOI18N
+        jMenuCerrarSesion.setText("Cerrar Sesión");
+        jMenuCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jMenuItem4MousePressed(evt);
+                jMenuCerrarSesionMousePressed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMenu1.add(jMenuCerrarSesion);
+
+        jMenuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Archivo_Salir.png"))); // NOI18N
+        jMenuSalir.setText("Salir");
+        jMenuSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuSalirMousePressed(evt);
+            }
+        });
+        jMenu1.add(jMenuSalir);
 
         jMenuBar1.add(jMenu1);
 
@@ -145,11 +162,11 @@ public class VP extends javax.swing.JFrame {
         new Configuracion(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jMenuItem1MousePressed
 
-    private void jMenuItem4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem4MousePressed
+    private void jMenuSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuSalirMousePressed
         // TODO add your handling code here:
         System.exit(0);
         Conexion.cerrar();
-    }//GEN-LAST:event_jMenuItem4MousePressed
+    }//GEN-LAST:event_jMenuSalirMousePressed
 
     private void jMenuItem2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2MousePressed
         new PanelNuevoUsuario(new javax.swing.JDialog(), true).setVisible(true);
@@ -159,24 +176,29 @@ public class VP extends javax.swing.JFrame {
         new PanelUsuariosExistentes(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jMenuItem3MousePressed
 
-    
-    
+    private void jMenuCerrarSesionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuCerrarSesionMousePressed
+        this.dispose();
+        PanelLogin vp = new PanelLogin();
+        vp.setVisible(true);
+        vp.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jMenuCerrarSesionMousePressed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                        //UIManager.setLookAndFeel(javax.swing.plaf.nimbus.NimbusLookAndFeel.class.getName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-				| UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            //UIManager.setLookAndFeel(javax.swing.plaf.nimbus.NimbusLookAndFeel.class.getName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                | UnsupportedLookAndFeelException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         /* Create and display the form */
         Conexion conectar = new Conexion();
-          conectar.conectar();
+        conectar.conectar();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VP().setVisible(true);
@@ -189,10 +211,11 @@ public class VP extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuCerrarSesion;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuSalir;
     private javax.swing.JTabbedPane jTabbedPane1;
     public static javax.swing.JLabel jlMensajes;
     private presentacion.PanelGastos panelGastos1;
