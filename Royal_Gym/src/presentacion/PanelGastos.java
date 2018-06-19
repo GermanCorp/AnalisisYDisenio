@@ -8,7 +8,7 @@ import royal_gym.Conexion;
 import royal_gym.Conexion;
 import royal_gym.Gastos;
 import royal_gym.Gastos;
-import static presentacion.PanelRegistroClientes.tablaInventarioEquipo;
+import static presentacion.PanelRegistroClientes.tablaClientes;
 
 public class PanelGastos extends javax.swing.JPanel {
 

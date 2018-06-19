@@ -31,7 +31,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     //Constructor
     public PanelRegistroClientes() {
         initComponents();
-        clientes.modeloTablaCliente(columnasClientes, tablaInventarioEquipo);
+        clientes.modeloTablaCliente(columnasClientes, tablaClientes);
         ocultarColumna();
         if(LoginEntrar.esAdministrador(PanelLogin.nUsuario) == 0){
             btnEliminarCliente.setVisible(false);
@@ -80,9 +80,9 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     }
 
     private void ocultarColumna() {
-        tablaInventarioEquipo.getColumnModel().getColumn(0).setMaxWidth(0);
-        tablaInventarioEquipo.getColumnModel().getColumn(0).setMinWidth(0);
-        tablaInventarioEquipo.getColumnModel().getColumn(0).setPreferredWidth(0);
+        tablaClientes.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablaClientes.getColumnModel().getColumn(0).setMinWidth(0);
+        tablaClientes.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
 
     @SuppressWarnings("unchecked")
@@ -112,7 +112,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         PanelTabla = new javax.swing.JPanel();
         scrollTablaClientes = new javax.swing.JScrollPane();
-        tablaInventarioEquipo = new javax.swing.JTable(){
+        tablaClientes = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex){
                 return false;
             }
@@ -376,8 +376,8 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         PanelTabla.setBackground(new java.awt.Color(85, 96, 128));
         PanelTabla.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Clientes Registrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        tablaInventarioEquipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        tablaInventarioEquipo.setModel(new javax.swing.table.DefaultTableModel(
+        tablaClientes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -388,10 +388,10 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tablaInventarioEquipo.setAutoscrolls(true);
-        tablaInventarioEquipo.setComponentPopupMenu(jPopupMenu1);
-        tablaInventarioEquipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tablaInventarioEquipo.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaClientes.setAutoscrolls(true);
+        tablaClientes.setComponentPopupMenu(jPopupMenu1);
+        tablaClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaClientesMouseClicked(evt);
             }
@@ -402,7 +402,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 tablaClientesMouseReleased(evt);
             }
         });
-        scrollTablaClientes.setViewportView(tablaInventarioEquipo);
+        scrollTablaClientes.setViewportView(tablaClientes);
 
         jtfBuscarCliente.setToolTipText("");
         jtfBuscarCliente.addCaretListener(new javax.swing.event.CaretListener() {
@@ -462,11 +462,11 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtfBuscarCliente))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelTablaLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
+                        .addGap(51, 51, 51)
                         .addComponent(btnEliminarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(20, 20, 20))
         );
         PanelTablaLayout.setVerticalGroup(
@@ -477,9 +477,9 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                     .addComponent(jtfBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollTablaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                 .addGap(27, 27, 27)
-                .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
@@ -607,7 +607,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 jtfPeso.setText("");
 
                 JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
-                clientes.modeloTablaCliente(columnasClientes, tablaInventarioEquipo);
+                clientes.modeloTablaCliente(columnasClientes, tablaClientes);
                 ocultarColumna();
 
             } else if (evt.getActionCommand().equals("Modificar")) {
@@ -633,7 +633,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 btnCancelarRegistroCliente.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_limpiar_02.png")));
                 //JOptionPane.showMessageDialog(this, "Modificacion Exitosa", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
                 royal_gym.VP.jlMensajes.setText("Cliente editado exitosamente");
-                clientes.modeloTablaCliente(columnasClientes, tablaInventarioEquipo);
+                clientes.modeloTablaCliente(columnasClientes, tablaClientes);
                 ocultarColumna();
 
             }
@@ -687,7 +687,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
 
     private void jtfBuscarClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarClienteCaretUpdate
         DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(clientes.buscarCliente(jtfBuscarCliente.getText(), jtfBuscarCliente.getText()), columnasClientes);
-        tablaInventarioEquipo.setModel(modeloTablaBuscarClientes);
+        tablaClientes.setModel(modeloTablaBuscarClientes);
         ocultarColumna();
     }//GEN-LAST:event_jtfBuscarClienteCaretUpdate
 
@@ -705,8 +705,8 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
 
     private void tablaClientesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMousePressed
         Point point = evt.getPoint();
-        int currentRow = tablaInventarioEquipo.rowAtPoint(point);
-        tablaInventarioEquipo.setRowSelectionInterval(currentRow, currentRow);
+        int currentRow = tablaClientes.rowAtPoint(point);
+        tablaClientes.setRowSelectionInterval(currentRow, currentRow);
     }//GEN-LAST:event_tablaClientesMousePressed
 
     private void jMenuItemModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemModificarMouseClicked
@@ -726,12 +726,12 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         btnCancelarRegistroCliente.setText("Cancelar");
         btnCancelarRegistroCliente.setIcon(new ImageIcon(Class.class.getResource("/iconos/Cancelar.png")));
 
-        int filaseleccionada = tablaInventarioEquipo.getSelectedRow();
-        idCliente = (tablaInventarioEquipo.getValueAt(filaseleccionada, 0).toString());
+        int filaseleccionada = tablaClientes.getSelectedRow();
+        idCliente = (tablaClientes.getValueAt(filaseleccionada, 0).toString());
 
-        jtfNombreCliente.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 1).toString());
-        jtfApellidoCliente.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 2).toString());
-        String date = tablaInventarioEquipo.getValueAt(filaseleccionada, 3).toString();
+        jtfNombreCliente.setText(tablaClientes.getValueAt(filaseleccionada, 1).toString());
+        jtfApellidoCliente.setText(tablaClientes.getValueAt(filaseleccionada, 2).toString());
+        String date = tablaClientes.getValueAt(filaseleccionada, 3).toString();
         java.util.Date date2 = null;
         try {
             date2 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
@@ -739,22 +739,22 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             Logger.getLogger(PanelRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
         jdcFecha.setDate(date2);
-        jtfAltura.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 4).toString());
-        jtfPeso.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 5).toString());
+        jtfAltura.setText(tablaClientes.getValueAt(filaseleccionada, 4).toString());
+        jtfPeso.setText(tablaClientes.getValueAt(filaseleccionada, 5).toString());
 
     }//GEN-LAST:event_jMenuItemModificarMousePressed
 
     private void jMenuItemEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemEliminarMousePressed
         // TODO add your handling code here:
         jPopupMenu1.setVisible(false);
-        int filaSeleccionada = tablaInventarioEquipo.getSelectedRow();
-        String nombreCliente = tablaInventarioEquipo.getValueAt(filaSeleccionada, 1).toString();
-        String apellidos = tablaInventarioEquipo.getValueAt(filaSeleccionada, 2).toString();
-        String nacimiento = tablaInventarioEquipo.getValueAt(filaSeleccionada, 3).toString();
+        int filaSeleccionada = tablaClientes.getSelectedRow();
+        String nombreCliente = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
+        String apellidos = tablaClientes.getValueAt(filaSeleccionada, 2).toString();
+        String nacimiento = tablaClientes.getValueAt(filaSeleccionada, 3).toString();
         int mjs = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea eliminar a " + nombreCliente + " ?");
         if (mjs == JOptionPane.YES_OPTION) {
             clientes.eliminarCliente(nombreCliente, apellidos, nacimiento);
-            clientes.modeloTablaCliente(columnasClientes, tablaInventarioEquipo);
+            clientes.modeloTablaCliente(columnasClientes, tablaClientes);
             JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente");
         }
     }//GEN-LAST:event_jMenuItemEliminarMousePressed
@@ -765,29 +765,29 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
 
     private void jMenuItemExpedienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemExpedienteMousePressed
 
-        int filaSeleccionada = tablaInventarioEquipo.getSelectedRow();
+        int filaSeleccionada = tablaClientes.getSelectedRow();
         PanelExpediente rc = new PanelExpediente();
-        rc.id = tablaInventarioEquipo.getValueAt(filaSeleccionada, 0).toString();
+        rc.id = tablaClientes.getValueAt(filaSeleccionada, 0).toString();
 
         jPopupMenu1.setVisible(false);
         new Expediente(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jMenuItemExpedienteMousePressed
 
     private void btnEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteActionPerformed
-        int filaSeleccionada = tablaInventarioEquipo.getSelectedRow();
+        int filaSeleccionada = tablaClientes.getSelectedRow();
 
         if (filaSeleccionada == -1) {
             //JOptionPane.showMessageDialog(null, "Seleccione un cliente", "Advertencia", JOptionPane.WARNING_MESSAGE);
             royal_gym.VP.jlMensajes.setText("Seleccione un cliente");
         } else {
 
-            String nombres = tablaInventarioEquipo.getValueAt(filaSeleccionada, 1).toString();
-            String apellidos = tablaInventarioEquipo.getValueAt(filaSeleccionada, 2).toString();
-            String nacimiento = tablaInventarioEquipo.getValueAt(filaSeleccionada, 3).toString();
+            String nombres = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
+            String apellidos = tablaClientes.getValueAt(filaSeleccionada, 2).toString();
+            String nacimiento = tablaClientes.getValueAt(filaSeleccionada, 3).toString();
             int mjs = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea eliminar a " + nombres + " ?");
             if (mjs == JOptionPane.YES_OPTION) {
                 clientes.eliminarCliente(nombres, apellidos, nacimiento);
-                clientes.modeloTablaCliente(columnasClientes, tablaInventarioEquipo);
+                clientes.modeloTablaCliente(columnasClientes, tablaClientes);
                 ocultarColumna();
                 //JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente");
                 royal_gym.VP.jlMensajes.setText("Cliente eliminado exitosamente");
@@ -815,12 +815,12 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             btnCancelarRegistroCliente.setText("Cancelar");
             btnCancelarRegistroCliente.setIcon(new ImageIcon(Class.class.getResource("/iconos/Cancelar.png")));
 
-            int filaseleccionada = tablaInventarioEquipo.getSelectedRow();
-            idCliente = (tablaInventarioEquipo.getValueAt(filaseleccionada, 0).toString());
+            int filaseleccionada = tablaClientes.getSelectedRow();
+            idCliente = (tablaClientes.getValueAt(filaseleccionada, 0).toString());
 
-            jtfNombreCliente.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 1).toString());
-            jtfApellidoCliente.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 2).toString());
-            String date = tablaInventarioEquipo.getValueAt(filaseleccionada, 3).toString();
+            jtfNombreCliente.setText(tablaClientes.getValueAt(filaseleccionada, 1).toString());
+            jtfApellidoCliente.setText(tablaClientes.getValueAt(filaseleccionada, 2).toString());
+            String date = tablaClientes.getValueAt(filaseleccionada, 3).toString();
             java.util.Date date2 = null;
             try {
                 date2 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
@@ -828,8 +828,8 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 Logger.getLogger(PanelRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
             }
             jdcFecha.setDate(date2);
-            jtfAltura.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 4).toString());
-            jtfPeso.setText(tablaInventarioEquipo.getValueAt(filaseleccionada, 5).toString());
+            jtfAltura.setText(tablaClientes.getValueAt(filaseleccionada, 4).toString());
+            jtfPeso.setText(tablaClientes.getValueAt(filaseleccionada, 5).toString());
         }
     }//GEN-LAST:event_tablaClientesMouseClicked
 
@@ -866,6 +866,6 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     private javax.swing.JTextField jtfPeso;
     private javax.swing.JPanel panelDatosCliente;
     private javax.swing.JScrollPane scrollTablaClientes;
-    public static javax.swing.JTable tablaInventarioEquipo;
+    public static javax.swing.JTable tablaClientes;
     // End of variables declaration//GEN-END:variables
 }

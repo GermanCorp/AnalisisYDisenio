@@ -19,7 +19,7 @@ import static presentacion.PanelRegistroPagos.jTextFieldNombreCliente;
 import static presentacion.PanelVentas.jtablaProductosAVender;
 import royal_gym.Conexion;
 import royal_gym.Expediente;
-import static presentacion.PanelRegistroClientes.tablaInventarioEquipo;
+import static presentacion.PanelRegistroClientes.tablaClientes;
 
 /**
  *
