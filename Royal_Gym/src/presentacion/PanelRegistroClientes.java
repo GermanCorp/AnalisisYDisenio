@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Clientes;
 import royal_gym.Conexion;
-import royal_gym.LoginEntrar;
 
 public class PanelRegistroClientes extends javax.swing.JPanel {
 
@@ -837,10 +836,10 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfBuscarClienteMouseClicked
 
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
-        // TODO add your handling code here:
         int filaseleccionada = tablaClientes.getSelectedRow();
         idCliente = (tablaClientes.getValueAt(filaseleccionada, 0).toString());
         royal_gym.VP.jlMensajes.setText("");
+        
         if (evt.getClickCount() == 2) {
             btnExpediente.setEnabled(false);
             btnEliminarCliente.setEnabled(false);
@@ -864,6 +863,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             jdcFecha.setDate(date2);
             jtfAltura.setText(tablaClientes.getValueAt(filaseleccionada, 4).toString());
             jtfPeso.setText(tablaClientes.getValueAt(filaseleccionada, 5).toString());
+            
         }
     }//GEN-LAST:event_tablaClientesMouseClicked
 
