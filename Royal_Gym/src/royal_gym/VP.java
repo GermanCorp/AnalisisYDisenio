@@ -2,8 +2,6 @@ package royal_gym;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import presentacion.Configuracion;
@@ -22,10 +20,10 @@ public class VP extends javax.swing.JFrame {
         setIconImage(icon);
         setTitle("Royal Gym");
         initComponents();
-        if (LoginEntrar.esAdministrador(PanelLogin.nUsuario) == 0) {
-            jMenu2.setVisible(false);
-            jTabbedPane1.setEnabledAt(jTabbedPane1.indexOfComponent(panelUtilidad1), false);
-        }
+        panelRegistroClientes1.setPermiso(LoginEntrar.isADMIN());
+        panelRegistroProductos1.setPermiso(LoginEntrar.isADMIN());
+        jMenu2.setVisible(LoginEntrar.isADMIN());
+        jTabbedPane1.setEnabledAt(jTabbedPane1.indexOfComponent(panelUtilidad1), LoginEntrar.isADMIN());
     }
 
     @SuppressWarnings("unchecked")
@@ -145,7 +143,6 @@ public class VP extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jlMensajesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlMensajesMouseClicked
-        // TODO add your handling code here:
         royal_gym.VP.jlMensajes.setText("");
     }//GEN-LAST:event_jlMensajesMouseClicked
 

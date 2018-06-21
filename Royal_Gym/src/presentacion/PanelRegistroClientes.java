@@ -23,7 +23,11 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     private static Statement statement;
     static ResultSet resultado;
     Clientes clientes = new Clientes();
-    private String idCliente;
+    private static String idCliente;
+
+    public static String getIdCliente() {
+        return idCliente;
+    }
 
     //Columnas de la tabla Clientes
     private final String[] columnasClientes = {"Id", "Nombres", "Apellidos", "Fecha de Nacimiento", "Altura", "Peso", "Masa Corporal", "Clasificación"};
@@ -33,10 +37,19 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         initComponents();
         clientes.modeloTablaCliente(columnasClientes, tablaClientes);
         ocultarColumna();
-        if(LoginEntrar.esAdministrador(PanelLogin.nUsuario) == 0){
-            btnEliminarCliente.setVisible(false);
-            jMenuItemEliminar.setVisible(false);
-        }
+    }
+
+    public void setPermiso(boolean permiso) {
+        btnEliminarCliente.setVisible(permiso);
+        jMenuItemEliminar.setVisible(permiso);
+    }
+
+    public void limpiar() {
+        jtfNombreCliente.setText("");
+        jtfApellidoCliente.setText("");
+        jdcFecha.setDate(null);
+        jtfAltura.setText("");
+        jtfPeso.setText("");
     }
 
     // Devuelve la edad permitida
@@ -464,7 +477,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelTablaLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
+                        .addGap(50, 50, 50)
                         .addComponent(btnEliminarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(20, 20, 20))
@@ -508,6 +521,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRegistroClienteActionPerformed
+        btnExpediente.setEnabled(true);
         btnEliminarCliente.setEnabled(true);
         jtfNombreCliente.setText("");
         jtfApellidoCliente.setText("");
@@ -607,11 +621,19 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 jtfPeso.setText("");
 
                 JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
+                new Thread(() -> {
+                    try {
+                        Thread.sleep(1000);
+                        royal_gym.VP.jlMensajes.setText("");
+                    } catch (InterruptedException ex) {
+                    }
+                }).start();
                 clientes.modeloTablaCliente(columnasClientes, tablaClientes);
                 ocultarColumna();
 
             } else if (evt.getActionCommand().equals("Modificar")) {
 
+                btnExpediente.setEnabled(true);
                 btnEliminarCliente.setEnabled(true);
                 clientes.modificarClientes(
                         idCliente,
@@ -633,6 +655,13 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 btnCancelarRegistroCliente.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_limpiar_02.png")));
                 //JOptionPane.showMessageDialog(this, "Modificacion Exitosa", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
                 royal_gym.VP.jlMensajes.setText("Cliente editado exitosamente");
+                new Thread(() -> {
+                    try {
+                        Thread.sleep(1000);
+                        royal_gym.VP.jlMensajes.setText("");
+                    } catch (InterruptedException ex) {
+                    }
+                }).start();
                 clientes.modeloTablaCliente(columnasClientes, tablaClientes);
                 ocultarColumna();
 
@@ -764,11 +793,6 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_jMenuItemExpedienteActionPerformed
 
     private void jMenuItemExpedienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemExpedienteMousePressed
-
-        int filaSeleccionada = tablaClientes.getSelectedRow();
-        PanelExpediente rc = new PanelExpediente();
-        rc.id = tablaClientes.getValueAt(filaSeleccionada, 0).toString();
-
         jPopupMenu1.setVisible(false);
         new Expediente(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jMenuItemExpedienteMousePressed
@@ -790,7 +814,15 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 clientes.modeloTablaCliente(columnasClientes, tablaClientes);
                 ocultarColumna();
                 //JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente");
+
                 royal_gym.VP.jlMensajes.setText("Cliente eliminado exitosamente");
+                new Thread(() -> {
+                    try {
+                        Thread.sleep(1000);
+                        royal_gym.VP.jlMensajes.setText("");
+                    } catch (InterruptedException ex) {
+                    }
+                }).start();
             }
         }
 
@@ -806,16 +838,18 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
 
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
         // TODO add your handling code here:
+        int filaseleccionada = tablaClientes.getSelectedRow();
+        idCliente = (tablaClientes.getValueAt(filaseleccionada, 0).toString());
         royal_gym.VP.jlMensajes.setText("");
         if (evt.getClickCount() == 2) {
-
+            btnExpediente.setEnabled(false);
             btnEliminarCliente.setEnabled(false);
             btnAceptarRegistroCliente.setText("Modificar");
             btnAceptarRegistroCliente.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_modificar.png")));
             btnCancelarRegistroCliente.setText("Cancelar");
             btnCancelarRegistroCliente.setIcon(new ImageIcon(Class.class.getResource("/iconos/Cancelar.png")));
 
-            int filaseleccionada = tablaClientes.getSelectedRow();
+            filaseleccionada = tablaClientes.getSelectedRow();
             idCliente = (tablaClientes.getValueAt(filaseleccionada, 0).toString());
 
             jtfNombreCliente.setText(tablaClientes.getValueAt(filaseleccionada, 1).toString());
@@ -835,6 +869,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
 
     private void btnExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpedienteActionPerformed
         new Expediente(new javax.swing.JDialog(), true).setVisible(true);
+        limpiar();
     }//GEN-LAST:event_btnExpedienteActionPerformed
 
 

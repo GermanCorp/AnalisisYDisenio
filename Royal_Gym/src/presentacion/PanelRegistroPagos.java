@@ -5,7 +5,6 @@
  */
 package presentacion;
 
-import com.mxrck.autocompleter.TextAutoCompleter;
 import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;

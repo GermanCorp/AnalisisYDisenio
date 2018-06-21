@@ -38,8 +38,8 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="panelDatosPago" pref="550" max="32767" attributes="0"/>
-                  <Component id="PanelTablaPagos" pref="550" max="32767" attributes="0"/>
+                  <Component id="panelDatosPago" pref="540" max="32767" attributes="0"/>
+                  <Component id="PanelTablaPagos" pref="540" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>

@@ -1,28 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentacion;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
-import royal_gym.Clientes;
 import royal_gym.Conexion;
-import royal_gym.Ventas;
 
 /**
  *
  * @author Alexis
  */
+
 public class PanelVentas extends javax.swing.JPanel {
 
     public static double total = 0;
@@ -502,6 +495,13 @@ public class PanelVentas extends javax.swing.JPanel {
         if (total == 0) {
             //JOptionPane.showMessageDialog(null, "No hay ninguna venta que guardar");
             royal_gym.VP.jlMensajes.setText("No hay ninguna venta que guardar");
+            new Thread(() -> {
+                try {
+                    Thread.sleep(1000);
+                    royal_gym.VP.jlMensajes.setText("");
+                } catch (InterruptedException ex) {
+                }
+            }).start();
         } else {
             try {
                 for (int i = 0; i < jtablaProductosAVender.getRowCount(); i++) {
@@ -546,6 +546,13 @@ public class PanelVentas extends javax.swing.JPanel {
             descuento = 0;
             setValoresVenta();
             royal_gym.VP.jlMensajes.setText("¡Venta registrada exitosamente!");
+            new Thread(() -> {
+                try {
+                    Thread.sleep(1000);
+                    royal_gym.VP.jlMensajes.setText("");
+                } catch (InterruptedException ex) {
+                }
+            }).start();
             nfac += 1;
             jtfNumeoFactura.setText(fac.format(nfac));
         }
@@ -572,8 +579,6 @@ public class PanelVentas extends javax.swing.JPanel {
 
             setValoresVenta();
         }
-
-        //jtfNumeoFactura.setText(String.valueOf(total));
     }//GEN-LAST:event_jbEliminarFilaActionPerformed
 
 

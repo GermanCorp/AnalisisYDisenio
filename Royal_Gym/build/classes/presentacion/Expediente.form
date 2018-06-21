@@ -34,7 +34,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jScrollPane1" pref="845" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="552" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
               <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -82,6 +82,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botoncancelarexpedienteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonaceptarexpediente">
           <Properties>
@@ -161,16 +164,16 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                      <Component id="labeldireccion" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="labelnombre" min="-2" max="-2" attributes="0"/>
                                               <Component id="labeltelefonotrabajo" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="labeldireccion" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="labelnombre" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="jTextFieldtelefonotrab" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jTextFielddireccion" max="32767" attributes="0"/>
@@ -231,7 +234,7 @@
                                       <Component id="jDateChooserFechaInicio" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="jTextFieldnombre" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="labelfechainicio" alignment="2" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labeldireccion" alignment="2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelnombre" alignment="2" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="2" attributes="0">
@@ -267,9 +270,9 @@
                                       <Component id="jTextFieldtelefonotrab" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="2" attributes="0">
-                                      <Component id="labelnombre" alignment="2" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextFielddireccion" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jTextFielddireccion" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="labeldireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="2" attributes="0">
@@ -1192,7 +1195,7 @@
                     <Component class="javax.swing.JTable" name="tablacambioscorporales">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
+                          <Table columnCount="4" rowCount="0">
                             <Column editable="true" title="Title 1" type="java.lang.Object"/>
                             <Column editable="true" title="Title 2" type="java.lang.Object"/>
                             <Column editable="true" title="Title 3" type="java.lang.Object"/>

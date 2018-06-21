@@ -13,6 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import static presentacion.ListaClientes.RET_CANCEL;
 import static presentacion.PanelRegistroPagos.jTextFieldNombreCliente;
@@ -47,10 +48,7 @@ public class PanelExpediente extends javax.swing.JPanel {
         initComponents();
         this.con = new Conexion();
         con.conectar();
-        cargarExpediente(id);
-     
-
-      
+        cargarExpediente(id);      
     }
     
     
@@ -959,10 +957,7 @@ public class PanelExpediente extends javax.swing.JPanel {
 
         tablacambioscorporales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"

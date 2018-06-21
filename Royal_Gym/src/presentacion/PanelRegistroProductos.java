@@ -20,10 +20,11 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     public PanelRegistroProductos() {
         initComponents();
         actualizarTablaProductos();
-        if (LoginEntrar.esAdministrador(PanelLogin.nUsuario) == 0) {
-            jbEliminar.setVisible(false);
-            jMenuItemEliminar.setVisible(false);
-        }
+    }
+
+    public void setPermiso(boolean permiso) {
+        jbEliminar.setVisible(false);
+        jMenuItemEliminar.setVisible(false);
     }
 
     // oculta la primera columna de la tabla

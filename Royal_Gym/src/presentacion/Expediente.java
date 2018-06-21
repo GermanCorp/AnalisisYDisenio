@@ -1,4 +1,14 @@
 package presentacion;
+
+import java.awt.GraphicsEnvironment;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import static presentacion.PanelExpediente.jTextFieldnombre;
+import royal_gym.Conexion;
+
 /**
  *
  * @author alxcr
@@ -8,8 +18,95 @@ public class Expediente extends javax.swing.JDialog {
     public Expediente(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds());
         setLocationRelativeTo(null);
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
+        cargarExpediente(PanelRegistroClientes.getIdCliente());
+    }
+
+    public void cargarExpediente(String id) {
+        try {
+            String consulta = "SELECT * FROM cliente AS cl "
+                    + "LEFT OUTER JOIN problemasdesalud ps on ps.id_cliente = cl.idCliente "
+                    + "LEFT OUTER JOIN cambioscorporales cp on ps.id_cliente=cp.id_cliente "
+                    + "where cl.idCliente= ?";
+
+            PreparedStatement statement = Conexion.getConexion().prepareStatement(consulta); // PrepareStatement se utiliza cuando se utilizan consultas que llevan signo de ?
+            statement.setString(1, id);
+            ResultSet resultado = statement.executeQuery();
+
+            //Object[][] datosPago = null;
+            //ArrayList<Object[]> filas = new ArrayList<>();
+            while (resultado.next()) {
+
+                jTextFieldnombre.setText(resultado.getString("Nombres") + " " + resultado.getString("Apellidos"));
+                jTextFieldfechanacimiento.setText(resultado.getString("FechaNacimiento"));
+                jTextFieldtelefonotrab.setText(resultado.getString("TelefonoTrabajo"));
+                jTextFieldcelular.setText(resultado.getString("Celular"));
+                jTextFielddireccion.setText(resultado.getString("Direccion"));
+                jTextFieldedad.setText(resultado.getString("Edad"));
+                jTextFieldestatura.setText(resultado.getString("Altura"));
+                jTextFieldpeso.setText(resultado.getString("Peso"));
+                jFormattedTextField.setText(resultado.getString("MejorHoraParaLlamar"));
+
+                String fecha = resultado.getString("FechaDeInicio");
+                java.util.Date date2 = null;
+                date2 = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+                jDateChooserFechaInicio.setDate(date2);
+
+                jTextFieldtelefonocasa.setText(resultado.getString("TelefonoCasa"));
+                jTextFieldpesoideal.setText(resultado.getString("PesoIdeal"));
+                
+                jCBoxBajar.setSelected(resultado.getBoolean("PesoQuiereBajar"));
+                jCBoxsubir.setSelected(resultado.getBoolean("PesoQuiereSubir"));
+                jCBoxmantener.setSelected(resultado.getBoolean("PesoQuiereMantener"));
+                jCBoxalergias.setSelected(resultado.getBoolean("Alergias"));
+                //jCBoxanemia.setSelected(resultado.getBoolean("Anemia"));
+                jCBoxansiedad.setSelected(resultado.getBoolean("Ansiedad"));
+                jCBoxartritis.setSelected(resultado.getBoolean("Artritis"));
+                jCBoxcalambres.setSelected(resultado.getBoolean("Calambres"));
+                jCBoxcansancio.setSelected(resultado.getBoolean("Cansancio"));
+                jCBoxcelulitis.setSelected(resultado.getBoolean("Celulitis"));
+                jCBoxcolesterol.setSelected(resultado.getBoolean("Colesterol"));
+                jCBoxcolitis.setSelected(resultado.getBoolean("Colitis"));
+                jCBoxdiabetes.setSelected(resultado.getBoolean("Diabetes"));
+                jCBoxdolordecabeza.setSelected(resultado.getBoolean("Dolordecabeza"));
+                jCBoxdolordecuello.setSelected(resultado.getBoolean("Dolordecuello"));
+                jCBoxdoloresdeespalda.setSelected(resultado.getBoolean("Doloresdeespalda"));
+                jCBoxdoloresdehueso.setSelected(resultado.getBoolean("Doloresdehueso"));
+                jCBoxembarazo.setSelected(resultado.getBoolean("EmbarazoLactancia"));
+                jCBoxestrenimiento.setSelected(resultado.getBoolean("Estreñimiento"));
+                jCBoxestres.setSelected(resultado.getBoolean("Estres"));
+                jCBoxgastritis.setSelected(resultado.getBoolean("Gastritis"));
+                jCBoxmalacirculacion.setSelected(resultado.getBoolean("Malacirculacion"));
+                jCBoxpresionalta.setSelected(resultado.getBoolean("PresionAlta"));
+                jCBoxproblemasderinon.setSelected(resultado.getBoolean("Problemaderiñon"));
+                jCBoxproblemasdevesicula.setSelected(resultado.getBoolean("Problemadevesicula"));
+                jCBoxretenciondeliquidos.setSelected(resultado.getBoolean("Retenciondeliquidos"));
+                jCBoxulcera.setSelected(resultado.getBoolean("Ulcera"));
+                jCBoxvarices.setSelected(resultado.getBoolean("Varices"));
+
+                /*filas.add(
+                        new Object[]{
+                            resultado.getString("fecha"),
+                            resultado.getDouble("peso"),
+                            resultado.getDouble("imc"),
+                            resultado.getDouble("porcentajedegrasa"),
+                            resultado.getDouble("porcentajedemusculo"),
+                            resultado.getDouble("calorias"),
+                            resultado.getInt("edad"),
+                            resultado.getInt("grasaviceral"),});
+
+                datosPago = new Object[filas.size()][];
+                filas.toArray(datosPago);*/
+            }
+
+            //DefaultTableModel modeloTablaPagos = new DefaultTableModel(datosPago, columnasCambios);
+            //tablacambioscorporales.setModel(modeloTablaPagos);
+        } catch (Exception ex) {
+            System.out.println("Datos del cliente:" + ex.getMessage());
+        }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -104,6 +201,11 @@ public class Expediente extends javax.swing.JDialog {
 
         botoncancelarexpediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Eliminar_fila.png"))); // NOI18N
         botoncancelarexpediente.setText("Salir");
+        botoncancelarexpediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botoncancelarexpedienteActionPerformed(evt);
+            }
+        });
 
         botonaceptarexpediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/btn_guardar_2.png"))); // NOI18N
         botonaceptarexpediente.setText("Guardar");
@@ -208,12 +310,12 @@ public class Expediente extends javax.swing.JDialog {
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                    .addGap(33, 33, 33)
-                                    .addComponent(labeltelefonotrabajo))
-                                .addComponent(labeldireccion, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(labelnombre, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(labeldireccion, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(PanelDatosClienteLayout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(labelnombre)
+                                    .addComponent(labeltelefonotrabajo))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextFieldtelefonotrab, javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +365,7 @@ public class Expediente extends javax.swing.JDialog {
                             .addComponent(jDateChooserFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelfechainicio)
-                            .addComponent(labeldireccion))
+                            .addComponent(labelnombre))
                         .addGap(5, 5, 5)
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(labeltelefonocasa)
@@ -290,9 +392,9 @@ public class Expediente extends javax.swing.JDialog {
                             .addComponent(labeltelefonotrabajo)
                             .addComponent(jTextFieldtelefonotrab, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(5, 5, 5)
-                        .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(labelnombre)
-                            .addComponent(jTextFielddireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFielddireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labeldireccion))
                         .addGap(5, 5, 5)
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(labelhoraparallamar)
@@ -555,10 +657,7 @@ public class Expediente extends javax.swing.JDialog {
 
         tablacambioscorporales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -686,13 +785,17 @@ public class Expediente extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botoncancelarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncancelarexpedienteActionPerformed
+        dispose();
+    }//GEN-LAST:event_botoncancelarexpedienteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelCambiosCorporales;
