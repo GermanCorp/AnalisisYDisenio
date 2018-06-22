@@ -33,24 +33,6 @@ public class LoginEntrar {
                 
         return res;
     }
-    
-    /*public static int esAdministrador(String usuario) {
-        int res = 0;
-        try {
-            String SSQL = "SELECT * FROM Login WHERE usuario = ? AND cargo = 'Administrador'";
-            PreparedStatement pst = Conexion.getConexion().prepareStatement(SSQL);
-            pst.setString(1, usuario);
-            resultado = pst.executeQuery();
-
-            if (resultado.next()) {
-                res = 1;
-                ADMIN = true;
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return res;
-    }*/
         
     public static int recuperarPass(String usuario, String preguntaA, String preguntaB) {
         int res = 0;

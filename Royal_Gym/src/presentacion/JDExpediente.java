@@ -4,14 +4,14 @@ import java.awt.GraphicsEnvironment;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
-import static presentacion.PanelExpediente.jTextFieldnombre;
+import static presentacion.PanelVentas.resultado;
 import royal_gym.Conexion;
 import royal_gym.Expediente;
+import royal_gym.Expediente2;
 
 /**
  *
@@ -30,8 +30,10 @@ public class JDExpediente extends javax.swing.JDialog {
         cargarExpediente(PanelRegistroClientes.getIdCliente());
         btnAgregar.setHorizontalTextPosition(SwingConstants.CENTER);
         btnAgregar.setVerticalTextPosition(SwingConstants.BOTTOM);
+        actualizarTablaCambios();
     }
 
+    // limpia los textfield de cambios
     public void limpiarCambios() {
         jtfpeso.setText("");
         jtfimc.setText("");
@@ -42,6 +44,15 @@ public class JDExpediente extends javax.swing.JDialog {
         jtfgrasaviceral.setText("");
     }
 
+    // llenar la tabla de cambios
+    public void actualizarTablaCambios() {
+        Expediente2 expediente = new Expediente2();
+        String[] columnasCambios = {"idCliente", "id_Cambio", "Peso", "IMC", "Porcentaje de Grasa", "Porcentaje de Músculo", "Calorias", "Edad", "Grasa Viceral", "Fecha"};
+        DefaultTableModel modeloTablaCambios = new DefaultTableModel(expediente.getCambiosCorporales(PanelRegistroClientes.getIdCliente()), columnasCambios);
+        tablacambioscorporales.setModel(modeloTablaCambios);
+    }
+
+    // obtienen los datos del expediente
     public void cargarExpediente(String id) {
         try {
             String consulta = "SELECT * FROM cliente AS cl "
@@ -855,7 +866,7 @@ public class JDExpediente extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        Expediente expediente = new Expediente();
+        Expediente2 expediente = new Expediente2();
         expediente.insertarCambiosCorporales(
                 jtfpeso.getText(),
                 jtfimc.getText(),
@@ -866,7 +877,19 @@ public class JDExpediente extends javax.swing.JDialog {
                 jtfgrasaviceral.getText(),
                 PanelRegistroClientes.getIdCliente(),
                 String.valueOf(fechaActual));
+        
+        expediente.insertarTotal(
+                jtfpeso.getText(),
+                jtfimc.getText(),
+                jtfgrasa.getText(),
+                jtfmusculo.getText(),
+                jtfcalorias.getText(),
+                jtfedad.getText(),
+                jtfgrasaviceral.getText(),
+                PanelRegistroClientes.getIdCliente(),
+                String.valueOf(fechaActual));
         limpiarCambios();
+        actualizarTablaCambios();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -953,4 +976,5 @@ public class JDExpediente extends javax.swing.JDialog {
     private javax.swing.JLabel labeltelefonotrabajo;
     private javax.swing.JTable tablacambioscorporales;
     // End of variables declaration//GEN-END:variables
+
 }
