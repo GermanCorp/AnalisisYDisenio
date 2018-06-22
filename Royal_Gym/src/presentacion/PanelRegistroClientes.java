@@ -793,7 +793,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
 
     private void jMenuItemExpedienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemExpedienteMousePressed
         jPopupMenu1.setVisible(false);
-        new Expediente(new javax.swing.JDialog(), true).setVisible(true);
+        new JDExpediente(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jMenuItemExpedienteMousePressed
 
     private void btnEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteActionPerformed
@@ -868,7 +868,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_tablaClientesMouseClicked
 
     private void btnExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpedienteActionPerformed
-        new Expediente(new javax.swing.JDialog(), true).setVisible(true);
+        new JDExpediente(new javax.swing.JDialog(), true).setVisible(true);
         limpiar();
     }//GEN-LAST:event_btnExpedienteActionPerformed
 
