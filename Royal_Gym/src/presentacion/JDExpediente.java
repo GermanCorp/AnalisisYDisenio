@@ -8,9 +8,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
-import static presentacion.PanelVentas.resultado;
 import royal_gym.Conexion;
-import royal_gym.Expediente;
 import royal_gym.Expediente2;
 
 /**
@@ -31,6 +29,16 @@ public class JDExpediente extends javax.swing.JDialog {
         btnAgregar.setHorizontalTextPosition(SwingConstants.CENTER);
         btnAgregar.setVerticalTextPosition(SwingConstants.BOTTOM);
         actualizarTablaCambios();
+        ocultarColumna();
+    }
+    
+     private void ocultarColumna() {
+        tablacambioscorporales.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablacambioscorporales.getColumnModel().getColumn(0).setMinWidth(0);
+        tablacambioscorporales.getColumnModel().getColumn(0).setPreferredWidth(0);
+        tablacambioscorporales.getColumnModel().getColumn(1).setMaxWidth(1);
+        tablacambioscorporales.getColumnModel().getColumn(1).setMinWidth(1);
+        tablacambioscorporales.getColumnModel().getColumn(1).setPreferredWidth(1);
     }
 
     // limpia los textfield de cambios
@@ -360,7 +368,7 @@ public class JDExpediente extends javax.swing.JDialog {
                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
 
         jPanel1.setBackground(new java.awt.Color(85, 96, 128));
@@ -820,11 +828,12 @@ public class JDExpediente extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(20, 20, 20))
         );
         jPanel3Layout.setVerticalGroup(
@@ -833,7 +842,7 @@ public class JDExpediente extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(PanelCambiosCorporales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -890,6 +899,7 @@ public class JDExpediente extends javax.swing.JDialog {
                 String.valueOf(fechaActual));
         limpiarCambios();
         actualizarTablaCambios();
+        ocultarColumna();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

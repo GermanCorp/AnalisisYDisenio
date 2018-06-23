@@ -2,8 +2,6 @@ package royal_gym;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -41,7 +39,7 @@ public class Expediente2 {
 
             pst1.setString(1, ((rpeso) > Double.parseDouble(peso)) ? "Disminuyó " + String.valueOf(pstPeso) + " Lbs" : "Aumentó " + String.valueOf(pstPeso*-1)+  " Lbs");
             pst1.setString(2, ((rimc) > Double.parseDouble(imc)) ? "Disminuyó en " + String.valueOf(pstImc) : "Aumentó en " + String.valueOf(pstImc * -1));
-            pst1.setString(3, ((rgrasa) > Double.parseDouble(grasa)) ? "Disminuyó en " + String.valueOf(pstGrasa) + "%" : "Aumentó en " + String.valueOf(pstGrasa * -1) + "%");
+            pst1.setString(3, ((rgrasa) > Double.parseDouble(grasa)) ? "Disminuyó " + String.valueOf(pstGrasa) + "%" : "Aumentó " + String.valueOf(pstGrasa * -1) + "%");
             pst1.setString(4, ((rmusculo) > Double.parseDouble(musculo)) ? "Disminuyó en " + String.valueOf(pstMusculo) : "Aumentó en " + String.valueOf(pstMusculo * -1));
             pst1.setString(5, ((rcalorias) > Double.parseDouble(calorias)) ? "Disminuyó en " + String.valueOf(pstCalorias) : "Aumentó en " + String.valueOf(pstCalorias * -1));
             pst1.setString(6, ((redad) > Double.parseDouble(edad)) ? "Disminuyó en " + String.valueOf(pstEdad) : "Aumentó en " + String.valueOf(pstEdad * -1));
