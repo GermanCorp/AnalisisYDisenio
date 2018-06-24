@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Conexion;
 import royal_gym.Expediente2;
@@ -872,6 +873,7 @@ public class JDExpediente extends javax.swing.JDialog {
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         JOptionPane.showMessageDialog(null, "Toma fotografia");
+        SwingUtilities.invokeLater(new WebCamView());
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
