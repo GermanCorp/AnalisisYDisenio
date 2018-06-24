@@ -20,10 +20,7 @@ import static presentacion.PanelVentas.subTotal;
 import static presentacion.PanelVentas.total;
 import royal_gym.Conexion;
 
-/**
- *
- * @author Jazmin Vargas
- */
+
 public class PanelCompra extends javax.swing.JPanel {
 
     public static double totalCompra = 0;
@@ -34,7 +31,6 @@ public class PanelCompra extends javax.swing.JPanel {
     java.util.Date date = new Date();
     java.sql.Date fechaActual = new java.sql.Date(date.getTime());
     
-    
     private static Statement statement;
     DecimalFormat df = new DecimalFormat("#,##0.00");
     DecimalFormat fac = new DecimalFormat("00000000");
@@ -44,7 +40,7 @@ public class PanelCompra extends javax.swing.JPanel {
         initComponents();
     }
     
-     public PanelCompra(double totalCompra, double subTotalCompra, double isvCompra, double descuentoCompra) {
+    public PanelCompra(double totalCompra, double subTotalCompra, double isvCompra, double descuentoCompra) {
         this.totalCompra = totalCompra;
         this.subTotalCompra= subTotalCompra;
         this.isvCompra = isvCompra;
