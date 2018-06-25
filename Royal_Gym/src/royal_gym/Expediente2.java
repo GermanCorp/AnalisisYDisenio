@@ -48,7 +48,7 @@ public class Expediente2 {
             pst1.setString(9, fecha);
             pst1.execute();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Primer Registro Exitoso" + e);
+            JOptionPane.showMessageDialog(null, "Debe ser la primera ver que se registra, ¡Bienvenido!");
         }
     }
 

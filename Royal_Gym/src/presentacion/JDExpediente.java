@@ -1,13 +1,15 @@
 package presentacion;
 
 import java.awt.GraphicsEnvironment;
+import java.awt.Image;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Conexion;
 import royal_gym.Expediente2;
@@ -31,15 +33,37 @@ public class JDExpediente extends javax.swing.JDialog {
         btnAgregar.setVerticalTextPosition(SwingConstants.BOTTOM);
         actualizarTablaCambios();
         ocultarColumna();
+        getImagenPerfil();
     }
-    
-     private void ocultarColumna() {
+
+    private void ocultarColumna() {
         tablacambioscorporales.getColumnModel().getColumn(0).setMaxWidth(0);
         tablacambioscorporales.getColumnModel().getColumn(0).setMinWidth(0);
         tablacambioscorporales.getColumnModel().getColumn(0).setPreferredWidth(0);
         tablacambioscorporales.getColumnModel().getColumn(1).setMaxWidth(1);
         tablacambioscorporales.getColumnModel().getColumn(1).setMinWidth(1);
         tablacambioscorporales.getColumnModel().getColumn(1).setPreferredWidth(1);
+    }
+
+    public void getImagenPerfil() {
+        try {
+            String consulta = "select foto from cliente where idCliente = ?";
+            PreparedStatement pst = Conexion.getConexion().prepareStatement(consulta);
+            pst.setString(1, PanelRegistroClientes.getIdCliente());
+            ResultSet st = pst.executeQuery();
+
+            while (st.next()) {
+                byte[] imagen = st.getBytes("foto");
+                //jlFotoPerfil.setIcon(new ImageIcon(imagen));
+
+                ImageIcon fot = new ImageIcon(imagen);
+                Icon icono = new ImageIcon(fot.getImage().getScaledInstance(275, jlFotoPerfil.getHeight(), Image.SCALE_DEFAULT));
+                jlFotoPerfil.setIcon(icono);
+                this.repaint();
+            }
+        } catch (Exception ex) {
+            jlFotoPerfil.setIcon(new ImageIcon(Class.class.getResource("/iconos/sinFoto.png")));
+        }
     }
 
     // limpia los textfield de cambios
@@ -153,7 +177,6 @@ public class JDExpediente extends javax.swing.JDialog {
         tablacambioscorporales = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         PanelDatosCliente = new javax.swing.JPanel();
         labelnombre = new javax.swing.JLabel();
@@ -212,6 +235,7 @@ public class JDExpediente extends javax.swing.JDialog {
         jCBoxproblemasdevesicula = new javax.swing.JCheckBox();
         jCBoxproblemasderinon = new javax.swing.JCheckBox();
         jCBoxcelulitis = new javax.swing.JCheckBox();
+        jlFotoPerfil = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Expediente");
@@ -374,15 +398,6 @@ public class JDExpediente extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(85, 96, 128));
 
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/sinFoto.png"))); // NOI18N
-        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
-            }
-        });
-
         jTabbedPane1.setBackground(new java.awt.Color(85, 96, 128));
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
@@ -496,11 +511,11 @@ public class JDExpediente extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(jTextFieldestatura, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                                .addComponent(jTextFieldestatura, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                                 .addGap(24, 24, 24)
                                 .addComponent(labelpeso)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldpeso, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
+                                .addComponent(jTextFieldpeso, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
                             .addComponent(jFormattedTextField))))
                 .addGap(28, 28, 28)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -799,24 +814,33 @@ public class JDExpediente extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/problemasDeSAlud.png")), PanelProblemasdeSalud); // NOI18N
 
+        jlFotoPerfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlFotoPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/sinFoto.png"))); // NOI18N
+        jlFotoPerfil.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jlFotoPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlFotoPerfilMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
+                .addComponent(jlFotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 904, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlFotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -871,11 +895,6 @@ public class JDExpediente extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_botoncancelarexpedienteActionPerformed
 
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        JOptionPane.showMessageDialog(null, "Toma fotografia");
-        SwingUtilities.invokeLater(new WebCamView());
-    }//GEN-LAST:event_jLabel9MouseClicked
-
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         Expediente2 expediente = new Expediente2();
         expediente.insertarCambiosCorporales(
@@ -888,7 +907,7 @@ public class JDExpediente extends javax.swing.JDialog {
                 jtfgrasaviceral.getText(),
                 PanelRegistroClientes.getIdCliente(),
                 String.valueOf(fechaActual));
-        
+
         expediente.insertarTotal(
                 jtfpeso.getText(),
                 jtfimc.getText(),
@@ -903,6 +922,10 @@ public class JDExpediente extends javax.swing.JDialog {
         actualizarTablaCambios();
         ocultarColumna();
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void jlFotoPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlFotoPerfilMouseClicked
+         new OpcionFotoPefil(new javax.swing.JDialog(), true).setVisible(true);
+    }//GEN-LAST:event_jlFotoPerfilMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelCambiosCorporales;
@@ -949,7 +972,6 @@ public class JDExpediente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -966,6 +988,7 @@ public class JDExpediente extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldpesoideal;
     private javax.swing.JTextField jTextFieldtelefonocasa;
     private javax.swing.JTextField jTextFieldtelefonotrab;
+    public static javax.swing.JLabel jlFotoPerfil;
     private javax.swing.JTextField jtfcalorias;
     private javax.swing.JTextField jtfedad;
     private javax.swing.JTextField jtfgrasa;
