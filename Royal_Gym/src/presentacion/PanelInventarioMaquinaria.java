@@ -303,6 +303,8 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
             evt.consume();
         }
+        
+      
 
         ValidarLetras.soloLetras(evt);
         if ((int) evt.getKeyChar() > 32 && (int) evt.getKeyChar() <= 47
@@ -318,18 +320,12 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
             evt.consume();
         }
+        
+         if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
 
-        int limit = 4;
-        if (jtfCantidadEquipo.getText().length() == limit) {
-            evt.consume();
-        }
-        ValidarNumeros.soloNumeros(evt);
-        if ((int) evt.getKeyChar() >= 32 && (int) evt.getKeyChar() <= 47
-                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
-                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
-            evt.consume();
-            jtfCantidadEquipo.setCursor(null);
-        }
+         }        
+
     }//GEN-LAST:event_jtfCantidadEquipoKeyTyped
 
     private void btnAceptarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarInventarioActionPerformed
@@ -345,17 +341,17 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
 
         } else if (evt.getActionCommand().equals("Guardar")) {
             maquinaria.insertarInventario(
-                    jtfNombreEquipo.getText(),
+                    jtfNombreEquipo.getText().trim(),
                     jtfCantidadEquipo.getText(),
-                    taDescripcionEquipo.getText());
+                    taDescripcionEquipo.getText().trim());
             limpiar();
             actualizarTabla();
 
         } else if (evt.getActionCommand().equals("Modificar")) {
             maquinaria.ModificarInventario(
-                    jtfNombreEquipo.getText(),
+                    jtfNombreEquipo.getText().trim(),
                     jtfCantidadEquipo.getText(),
-                    taDescripcionEquipo.getText(),
+                    taDescripcionEquipo.getText().trim(),
                     idMaquina);
 
             btnAceptarInventario.setText("Guardar");
@@ -407,7 +403,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
     }//GEN-LAST:event_tablaInventarioEquipoMouseClicked
 
     private void jtfBuscarInventarioCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarInventarioCaretUpdate
-        DefaultTableModel modeloTablaBuscarInventario = new DefaultTableModel(maquinaria.buscarInventario(jtfBuscarInventario.getText()), columnasInventario);
+        DefaultTableModel modeloTablaBuscarInventario = new DefaultTableModel(maquinaria.buscarInventario(jtfBuscarInventario.getText().trim()), columnasInventario);
         tablaInventarioEquipo.setModel(modeloTablaBuscarInventario);
         ocultarColumna();
     }//GEN-LAST:event_jtfBuscarInventarioCaretUpdate

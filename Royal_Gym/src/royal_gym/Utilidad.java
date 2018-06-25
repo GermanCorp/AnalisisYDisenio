@@ -70,7 +70,7 @@ public class Utilidad {
         Object[][] datosPago = null;
 
         try {
-            String consulta = "Select Fecha, Descripcion, Monto from gasto where Fecha between ? and ?";
+            String consulta = "Select * from Salidas where Fecha between ? and ?";
 
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setString(1, fechaInicio);
@@ -86,7 +86,7 @@ public class Utilidad {
                         new Object[]{
                             numeroLista++,
                             resultado.getString("Fecha"),
-                            resultado.getString("Descripcion"),
+                            resultado.getString("Nombre"),
                             resultado.getString("Monto")
                         }
                 );
