@@ -11,6 +11,7 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Productos;
 
@@ -20,7 +21,7 @@ public class ListaProductosCompra extends javax.swing.JDialog {
     static double descuentoTotal;
     
     Productos productos = new Productos();
-    PanelCompras panelcompras;
+    PanelCompra panelcompra;
     
     
      private final String[] columnasProductos = {
@@ -40,7 +41,12 @@ public class ListaProductosCompra extends javax.swing.JDialog {
 
     ListaProductosCompra(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
-        initComponents();setLocationRelativeTo(panelcompras);
+        initComponents();
+        okButton.setHorizontalTextPosition( SwingConstants.CENTER );
+        okButton.setVerticalTextPosition( SwingConstants.BOTTOM );
+        cancelButton.setHorizontalTextPosition( SwingConstants.CENTER );
+        cancelButton.setVerticalTextPosition( SwingConstants.BOTTOM );
+        setLocationRelativeTo(panelcompra);
 
        
         String cancelName = "cancel";
@@ -247,12 +253,14 @@ public class ListaProductosCompra extends javax.swing.JDialog {
     }//GEN-LAST:event_tablaProductosMousePressed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-
+         double calcula;
+         double des;
+        
         DefaultTableModel modelo;
         int filaSeleccinada = tablaProductos.getSelectedRow();
         String codigo;
         String descripcion;
-        String precioVenta;
+        String precioCompra;
         String cantidad;
         String importe;
         String descuento;
@@ -263,29 +271,36 @@ public class ListaProductosCompra extends javax.swing.JDialog {
             modelo = (DefaultTableModel) tablaProductos.getModel();
             codigo = tablaProductos.getValueAt(filaSeleccinada, 0).toString();
             descripcion = tablaProductos.getValueAt(filaSeleccinada, 1).toString();
-            precioVenta = tablaProductos.getValueAt(filaSeleccinada, 2).toString();
+            precioCompra = tablaProductos.getValueAt(filaSeleccinada, 2).toString();
             cantidad = jtfCantidad.getText();
             descuento = jtfDescuento.getText();
 
             DecimalFormat df = new DecimalFormat("#,##0.00");
-            double x = ((Double.parseDouble(precioVenta) * Integer.parseInt(cantidad)) - Double.parseDouble(descuento));
-            double isv = (x-(x/1.15));
-            double subTotal = (x/1.15);
-            importe = String.valueOf(x);
-            double pv = (Double.parseDouble(precioVenta)/1.15);
+            double totalPorProductoCompra = ((Double.parseDouble(precioCompra) * Integer.parseInt(cantidad)) - Double.parseDouble(descuento));
+            double isv = (totalPorProductoCompra-(totalPorProductoCompra/1.15));
+            double subTotal = (totalPorProductoCompra/1.15);
+            //importe = String.valueOf(totalPorProductoCompra);
+            //double pv = (Double.parseDouble(precioVenta)/1.15);
 
-            modelo = (DefaultTableModel) panelcompras.tablacompras.getModel();
-            String elementosFila [] = {codigo, cantidad, descripcion, df.format(pv),descuento,  df.format(subTotal),   df.format(isv), importe};
+            modelo = (DefaultTableModel) panelcompra.tablaCompras.getModel();
+            String elementosFila [] = {codigo, cantidad, descripcion, df.format(Double.parseDouble(precioCompra)/1.15)
+                    ,descuento,  df.format(subTotal),   df.format(isv), df.format(totalPorProductoCompra)};
             modelo.addRow(elementosFila);
 
-            double calcula  = (Double.parseDouble(precioVenta)* Integer.parseInt(jtfCantidad.getText()));
-            double des = (Double.parseDouble(descuento));
+            calcula  = (Double.parseDouble(precioCompra)* Integer.parseInt(jtfCantidad.getText()));
+            des = (Double.parseDouble(descuento));
 
-            descuentoTotal = descuentoTotal + des;
-            total = total + calcula - des;
+           // descuentoTotal = descuentoTotal + des;
+            //total = total + calcula - des;
 
-            PanelCompras compras = new PanelCompras(total, total/1.15, total-(total/1.15), descuentoTotal);
-            compras.setValoresCompra();
+            
+            PanelCompra.totalCompra =  PanelCompra.totalCompra + calcula - des;
+            PanelCompra.subTotalCompra =  PanelCompra.totalCompra/1.15;
+            PanelCompra.isvCompra =  PanelCompra.totalCompra-( PanelCompra.totalCompra/1.15);
+            PanelCompra.descuentoCompra = PanelVentas.descuento + des;
+            
+            panelcompra = new PanelCompra(PanelCompra.totalCompra, PanelCompra.subTotalCompra, PanelCompra.isvCompra, PanelCompra.descuentoCompra);
+            panelcompra.setValoresCompra();
 
             jtfCantidad.setText("1");
             jtfDescuento.setText("0");
