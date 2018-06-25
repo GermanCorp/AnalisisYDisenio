@@ -11,13 +11,9 @@ import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
-import static presentacion.PanelVentas.descuento;
-import static presentacion.PanelVentas.isv;
-import static presentacion.PanelVentas.jtablaProductosAVender;
-import static presentacion.PanelVentas.numeroFactura;
-import static presentacion.PanelVentas.subTotal;
-import static presentacion.PanelVentas.total;
+
 import royal_gym.Conexion;
 
 
@@ -32,19 +28,33 @@ public class PanelCompra extends javax.swing.JPanel {
     java.sql.Date fechaActual = new java.sql.Date(date.getTime());
     
     private static Statement statement;
-    DecimalFormat df = new DecimalFormat("#,##0.00");
-    DecimalFormat fac = new DecimalFormat("00000000");
-    int nfac = numeroFactura();
+    DecimalFormat dF = new DecimalFormat("#,##0.00");
+    DecimalFormat factura = new DecimalFormat("00000000");
+    
     
     public PanelCompra() {
         initComponents();
+                
+        botonAgregarCompra.setHorizontalTextPosition(SwingConstants.CENTER);
+        botonAgregarCompra.setVerticalTextPosition(SwingConstants.BOTTOM);
+        botonGuardarCompra.setHorizontalTextPosition(SwingConstants.CENTER);
+        botonGuardarCompra.setVerticalTextPosition(SwingConstants.BOTTOM);
+        botonEliminar.setHorizontalTextPosition(SwingConstants.CENTER);
+        botonEliminar.setVerticalTextPosition(SwingConstants.BOTTOM);
+        //jtfNumeoFactura.setText(factura.format(numeroFacturaCompra));
     }
     
+     //retorna el ultimo numero de factura
+   
+    
+    
+    
+    
     public PanelCompra(double totalCompra, double subTotalCompra, double isvCompra, double descuentoCompra) {
-        this.totalCompra = totalCompra;
-        this.subTotalCompra= subTotalCompra;
-        this.isvCompra = isvCompra;
-        this.descuentoCompra = descuentoCompra;
+        PanelCompra.totalCompra = totalCompra;
+        PanelCompra.subTotalCompra= subTotalCompra;
+        PanelCompra.isvCompra = isvCompra;
+        PanelCompra.descuentoCompra = descuentoCompra;
     }
 
     public static double getTotalCompra() {
@@ -80,10 +90,10 @@ public class PanelCompra extends javax.swing.JPanel {
     }
       
     public void setValoresCompra(){
-        jTextFieldSubTotalCompra.setText("L. " + df.format(subTotalCompra));
-        jTextFieldISVCompra.setText("L." + df.format(isvCompra));
-        jTextFieldDescuentoCompra.setText("- L. " + df.format(descuentoCompra));
-        jTextFieldTotalCompra.setText("L. " + df.format(totalCompra));
+        jTextFieldSubTotalCompra.setText("L. " + dF.format(subTotalCompra));
+        jTextFieldISVCompra.setText("L." + dF.format(isvCompra));
+        jTextFieldDescuentoCompra.setText("- L. " + dF.format(descuentoCompra));
+        jTextFieldTotalCompra.setText("L. " + dF.format(totalCompra));
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -302,7 +312,7 @@ public class PanelCompra extends javax.swing.JPanel {
                 for (int i = 0; i < tablaCompras.getRowCount(); i++) {
                     PreparedStatement pStatement = Conexion.getConexion().prepareStatement("insert into detalleFacturaCompra(fecha, factura, idProducto, cantidad, descuento) values (?, ?,?,?,?)");
                     pStatement.setString(1, String.valueOf(fechaActual));
-                    pStatement.setString(2, String.valueOf(nfac));
+                    pStatement.setString(2, jtfNumeoFactura.getText());
                     pStatement.setString(3, tablaCompras.getValueAt(i, 0).toString());
                     pStatement.setString(4, tablaCompras.getValueAt(i, 1).toString());
                     pStatement.setString(5, tablaCompras.getValueAt(i, 4).toString());
@@ -337,14 +347,13 @@ public class PanelCompra extends javax.swing.JPanel {
         for (int i = tablaCompras.getRowCount() -1; i >= 0; i--){
             modelo.removeRow(i);
         }
-        total = 0;
-            subTotal = 0;
-            isv = 0;
-            descuento = 0;
+            totalCompra = 0;
+            subTotalCompra = 0;
+            isvCompra = 0;
+            descuentoCompra = 0;
             setValoresCompra();
             royal_gym.VP.jlMensajes.setText("¡Compra registrada exitosamente!");
-            nfac += 1;
-            jtfNumeoFactura.setText(fac.format(nfac));
+          
     }//GEN-LAST:event_botonGuardarCompraActionPerformed
 
     private void jTextFieldTotalCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTotalCompraActionPerformed
