@@ -106,7 +106,7 @@
     <Component class="javax.swing.JButton" name="okButton">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/src/iconos/Agregar_Cliente_2.png"/>
+          <Image iconType="3" name="/iconos/Agregar_Cliente_2.png"/>
         </Property>
       </Properties>
       <Events>
@@ -116,7 +116,7 @@
     <Component class="javax.swing.JButton" name="cancelButton">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/src/iconos/Eliminar_fila.png"/>
+          <Image iconType="3" name="/iconos/Eliminar_fila.png"/>
         </Property>
       </Properties>
       <Events>
