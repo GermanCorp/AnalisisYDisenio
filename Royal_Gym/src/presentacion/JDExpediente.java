@@ -924,7 +924,9 @@ public class JDExpediente extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jlFotoPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlFotoPerfilMouseClicked
-         new OpcionFotoPefil(new javax.swing.JDialog(), true).setVisible(true);
+        if (evt.getClickCount() == 2) { 
+        new OpcionFotoPefil(new javax.swing.JDialog(), true).setVisible(true);
+        }
     }//GEN-LAST:event_jlFotoPerfilMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -38,7 +38,7 @@ public class Camara extends javax.swing.JDialog {
                 //Conexion.cerrar();
             //}
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al tomar Foto " + e);
+            JOptionPane.showMessageDialog(null, "Error al tomar Foto: \n" + e);
         }
 
         try {
