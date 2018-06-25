@@ -12,6 +12,7 @@ import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import static presentacion.ListaClientes.RET_CANCEL;
 import static presentacion.ListaClientes.RET_OK;
@@ -43,6 +44,10 @@ public class JDialogListaClientes extends javax.swing.JDialog {
     public JDialogListaClientes(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        okButton.setHorizontalTextPosition( SwingConstants.CENTER );
+        okButton.setVerticalTextPosition( SwingConstants.BOTTOM );
+        cancelButton.setHorizontalTextPosition( SwingConstants.CENTER );
+        cancelButton.setVerticalTextPosition( SwingConstants.BOTTOM );
         
          setLocationRelativeTo(pagos);
 
@@ -113,14 +118,14 @@ public class JDialogListaClientes extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jTableClientes);
 
-        okButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/iconos/Agregar_Cliente_2.png"))); // NOI18N
+        okButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Agregar_Cliente_2.png"))); // NOI18N
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);
             }
         });
 
-        cancelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/iconos/Eliminar_fila.png"))); // NOI18N
+        cancelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Eliminar_fila.png"))); // NOI18N
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
