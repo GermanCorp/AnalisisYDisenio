@@ -38,6 +38,7 @@ public class VP extends javax.swing.JFrame {
         panelGastos1 = new presentacion.PanelGastos();
         panelInventarioMaquinaria1 = new presentacion.PanelInventarioMaquinaria();
         panelUtilidad1 = new presentacion.PanelUtilidad();
+        panelCompra1 = new presentacion.PanelCompra();
         jlMensajes = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -58,6 +59,7 @@ public class VP extends javax.swing.JFrame {
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Gastos.png")), panelGastos1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Maquinaria.png")), panelInventarioMaquinaria1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Utilidad.png")), panelUtilidad1); // NOI18N
+        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Compras.png")), panelCompra1); // NOI18N
 
         getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
@@ -217,6 +219,7 @@ public class VP extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuSalir;
     private javax.swing.JTabbedPane jTabbedPane1;
     public static javax.swing.JLabel jlMensajes;
+    private presentacion.PanelCompra panelCompra1;
     private presentacion.PanelGastos panelGastos1;
     private presentacion.PanelInventarioMaquinaria panelInventarioMaquinaria1;
     private presentacion.PanelRegistroClientes panelRegistroClientes1;
