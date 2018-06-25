@@ -32,6 +32,7 @@ public class VP extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         panelRegistroClientes1 = new presentacion.PanelRegistroClientes();
+        panelRegistroPagos1 = new presentacion.PanelRegistroPagos();
         panelVentas1 = new presentacion.PanelVentas();
         panelRegistroProductos1 = new presentacion.PanelRegistroProductos();
         panelGastos1 = new presentacion.PanelGastos();
@@ -51,6 +52,7 @@ public class VP extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Clientes.png")), panelRegistroClientes1); // NOI18N
+        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Pagos.png")), panelRegistroPagos1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Vender.png")), panelVentas1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Productos.png")), panelRegistroProductos1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Gastos.png")), panelGastos1); // NOI18N
@@ -59,7 +61,7 @@ public class VP extends javax.swing.JFrame {
 
         getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
-        jlMensajes.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jlMensajes.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jlMensajes.setForeground(new java.awt.Color(255, 0, 0));
         jlMensajes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlMensajes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -218,6 +220,7 @@ public class VP extends javax.swing.JFrame {
     private presentacion.PanelGastos panelGastos1;
     private presentacion.PanelInventarioMaquinaria panelInventarioMaquinaria1;
     private presentacion.PanelRegistroClientes panelRegistroClientes1;
+    private presentacion.PanelRegistroPagos panelRegistroPagos1;
     private presentacion.PanelRegistroProductos panelRegistroProductos1;
     private presentacion.PanelUtilidad panelUtilidad1;
     private presentacion.PanelVentas panelVentas1;
