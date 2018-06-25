@@ -263,7 +263,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Lbs.");
+        jLabel7.setText("Kgs.");
 
         btnAceptarRegistroCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/btn_guardar_2.png"))); // NOI18N
         btnAceptarRegistroCliente.setText("Guardar");
@@ -714,7 +714,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_panelDatosClienteFocusGained
 
     private void jtfBuscarClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarClienteCaretUpdate
-        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(clientes.buscarCliente(jtfBuscarCliente.getText(), jtfBuscarCliente.getText()), columnasClientes);
+        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(clientes.buscarCliente(jtfBuscarCliente.getText().trim(), jtfBuscarCliente.getText().trim()), columnasClientes);
         tablaClientes.setModel(modeloTablaBuscarClientes);
         ocultarColumna();
     }//GEN-LAST:event_jtfBuscarClienteCaretUpdate
