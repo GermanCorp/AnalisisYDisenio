@@ -33,10 +33,10 @@ public class Camara extends javax.swing.JDialog {
             pst.setString(2, PanelRegistroClientes.getIdCliente());
             pst.execute();
 
-            if (pst.executeUpdate() > 0) {
-                JOptionPane.showMessageDialog(null, "Captura Exitosa");
+            //if (pst.executeUpdate() > 0) {
+                //JOptionPane.showMessageDialog(null, "Captura Exitosa");
                 //Conexion.cerrar();
-            }
+            //}
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al tomar Foto " + e);
         }

@@ -41,6 +41,7 @@ public class OpcionFotoPefil extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         btnArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/seleccinarArchivo.png"))); // NOI18N
         btnArchivo.addActionListener(new java.awt.event.ActionListener() {
