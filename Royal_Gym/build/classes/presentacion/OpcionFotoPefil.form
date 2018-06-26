@@ -37,7 +37,7 @@
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
-          <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
+          <Component id="jLabel3" alignment="0" pref="234" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
