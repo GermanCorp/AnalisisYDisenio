@@ -542,6 +542,17 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
             btnAceptarRegistroCliente.doClick();
         }
+        
+         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
+            evt.consume();
+        }
+        
+        
+        Character s = evt.getKeyChar();
+        
+        if(!Character.isLetter(s) && s != KeyEvent.VK_SPACE){
+            evt.consume();   
+        }
     }//GEN-LAST:event_jtfNombreClienteKeyTyped
 
     private void jtfApellidoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfApellidoClienteActionPerformed
@@ -553,6 +564,17 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
             btnAceptarRegistroCliente.doClick();
+        }
+        
+         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
+            evt.consume();
+        }
+        
+        
+        Character s = evt.getKeyChar();
+        
+        if(!Character.isLetter(s) && s != KeyEvent.VK_SPACE){
+            evt.consume();   
         }
     }//GEN-LAST:event_jtfApellidoClienteKeyTyped
 
@@ -592,9 +614,13 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "ingrese Toda la Información", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jtfNombreCliente.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el NOMBRE del Cliente", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jtfApellidoCliente.getText().isEmpty()) {
+        }else if(String.valueOf(jtfNombreCliente.getText().charAt(1)).equals(" ")){
+            JOptionPane.showMessageDialog(null,"Los primeros digitos en el Nombre es un espacio en blanco"); 
+        }else if (jtfApellidoCliente.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el APELLLIDO del Cliente", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jdcFecha.getDate() == null) {
+        }else if(String.valueOf(jtfApellidoCliente.getText().charAt(1)).equals(" ")){
+            JOptionPane.showMessageDialog(null,"Los primeros digitos en el Apellido es un espacio en blanco");   
+        }else if (jdcFecha.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Debe seleccinar la FECHA de nacimiento", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jdcFecha.getCalendar().get(Calendar.YEAR) > menorEdadPermitida) {
             JOptionPane.showMessageDialog(this, "El cliente debe ser mayor de " + edadMinima() + " años", "Error!", JOptionPane.ERROR_MESSAGE);
@@ -607,8 +633,8 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         } else {
 
             if (evt.getActionCommand().equals("Guardar")) {
-                clientes.insertarCliente(jtfNombreCliente.getText(),
-                        jtfApellidoCliente.getText(),
+                clientes.insertarCliente(jtfNombreCliente.getText().trim(),
+                        jtfApellidoCliente.getText().trim(),
                         fechaJCalendar(jdcFecha).toString(),
                         jtfAltura.getText(),
                         jtfPeso.getText());
@@ -636,8 +662,8 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 btnEliminarCliente.setEnabled(true);
                 clientes.modificarClientes(
                         idCliente,
-                        jtfNombreCliente.getText(),
-                        jtfApellidoCliente.getText(),
+                        jtfNombreCliente.getText().trim(),
+                        jtfApellidoCliente.getText().trim(),
                         fechaJCalendar(jdcFecha).toString(),
                         jtfAltura.getText(),
                         jtfPeso.getText());

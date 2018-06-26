@@ -149,4 +149,176 @@ public class Expediente2 {
             System.out.println("Excepcion en metodo getCambiosCorporales en la clase expediente2 " + e.getMessage());
         }
     }
-}
+    
+    
+      public void insertarProblemasdeSalud(
+            String id,
+            boolean gastritis,
+            boolean colitis,
+            boolean estreñimiento,
+            boolean ulcera,
+            boolean cansancio,
+            boolean diabetes,
+            boolean presionAlta,
+            boolean colesterol,
+            boolean alergias,
+            boolean estres,
+            boolean dolordecabeza,
+            boolean dolordecuello,
+            boolean doloresdeespalda,
+            boolean artritis,
+            boolean ansiedad,
+            boolean embarazo,
+            boolean retencionliquidos,
+            boolean malacirculacion,
+            boolean calambres,
+            boolean varices,
+            boolean doloresdehueso,
+            boolean anemia,
+            boolean problemadevesicula,
+            boolean problemaderiñon,
+            boolean celulitis) {
+
+        try {
+            String sql = "insert into problemasdesalud(id_cliente,Gastritis,Colitis,Estreñimiento,Ulcera,Cansancio,Diabetes,PresionAlta,"
+                    + "Colesterol,Alergias,Estres,Dolordecabeza,Dolordecuello,Doloresdeespalda,Artritis,Ansiedad,EmbarazoLactancia,"
+                    + "Retenciondeliquidos,Malacirculacion,Calambres,Varices,Doloresdehueso,Anemia,ProblemadeVesicula,Problemaderiñon,Celulitis)"
+                    + " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
+
+            consulta.setString(1, id);
+            consulta.setBoolean(2, gastritis);
+            consulta.setBoolean(3, colitis);
+            consulta.setBoolean(4, estreñimiento);
+            consulta.setBoolean(5, ulcera);
+            consulta.setBoolean(6, cansancio);
+            consulta.setBoolean(7, diabetes);
+            consulta.setBoolean(8, presionAlta);
+            consulta.setBoolean(9, colesterol);
+            consulta.setBoolean(10, alergias);
+            consulta.setBoolean(11, estres);
+            consulta.setBoolean(12, dolordecabeza);
+            consulta.setBoolean(13, dolordecuello);
+            consulta.setBoolean(14, doloresdeespalda);
+            consulta.setBoolean(15, artritis);
+            consulta.setBoolean(16, ansiedad);
+            consulta.setBoolean(17, embarazo);
+            consulta.setBoolean(18, retencionliquidos);
+            consulta.setBoolean(19, malacirculacion);
+            consulta.setBoolean(20, calambres);
+            consulta.setBoolean(21, varices);
+            consulta.setBoolean(22, doloresdehueso);
+            consulta.setBoolean(23, anemia);
+            consulta.setBoolean(24, problemadevesicula);
+            consulta.setBoolean(25, problemaderiñon);
+            consulta.setBoolean(26, celulitis);
+            consulta.execute();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+        }
+        
+      }
+      
+      
+      public void actualizarTablaClientes(String telefonoTra, String direccion, String mejorHoraParaLlamar,
+            String fechaInicio, String telefonoCasa, String celular, String edad, String pesoIdeal, Boolean subir,
+            Boolean mantener, Boolean bajar, String id) {
+        try {
+            String sql = "update cliente set TelefonoTrabajo = ?, Direccion = ?, MejorHoraParaLlamar = ?, FechaDeInicio = ?,"
+                    + " TelefonoCasa = ? , Celular = ? , Edad = ? , PesoIdeal = ? , PesoQuiereSubir = ?,PesoQuiereMantener = ?, PesoQuiereBajar = ? "
+                    + " where idCliente = ?";
+
+            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
+            consulta.setString(1, telefonoTra);
+            consulta.setString(2, direccion);
+            consulta.setString(3, mejorHoraParaLlamar);
+            consulta.setString(4, fechaInicio);
+            consulta.setString(5, telefonoCasa);
+            consulta.setString(6, celular);
+            consulta.setString(7, edad);
+            consulta.setString(8, pesoIdeal);
+            consulta.setBoolean(9, subir);
+            consulta.setBoolean(10, mantener);
+            consulta.setBoolean(11, bajar);
+            consulta.setString(12, id);
+            consulta.execute();
+
+        } catch (Exception e) {
+            System.out.println("error en Modificar Cliente" + e.getMessage());
+        }
+        
+      }
+      
+      
+       public void actualizarProblemasDeSalud(String id,
+            boolean gastritis,
+            boolean colitis,
+            boolean estreñimiento,
+            boolean ulcera,
+            boolean cansancio,
+            boolean diabetes,
+            boolean presionAlta,
+            boolean colesterol,
+            boolean alergias,
+            boolean estres,
+            boolean dolordecabeza,
+            boolean dolordecuello,
+            boolean doloresdeespalda,
+            boolean artritis,
+            boolean ansiedad,
+            boolean embarazo,
+            boolean retencionliquidos,
+            boolean malacirculacion,
+            boolean calambres,
+            boolean varices,
+            boolean doloresdehueso,
+            //boolean anemia,
+            boolean problemadevesicula,
+            boolean problemaderiñon,
+            boolean celulitis) {
+
+        try {
+            String sql = "update  problemasdesalud set Gastritis = ?,Colitis= ?,Estreñimiento= ?,Ulcera= ?,Cansancio= ?,Diabetes= ?,PresionAlta= ?,"
+                    + "Colesterol= ?,Alergias= ?,Estres= ?,Dolordecabeza= ?,Dolordecuello= ?,Doloresdeespalda= ?,Artritis= ?,Ansiedad= ?,EmbarazoLactancia= ?,"
+                    + "Retenciondeliquidos= ?,Malacirculacion= ?,Calambres= ?,Varices= ?,Doloresdehueso= ?,ProblemadeVesicula= ?,Problemaderiñon= ?,Celulitis= ?"
+                    + " where id_cliente = ?";
+
+            PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
+            consulta.setString(1, id);
+            consulta.setBoolean(2, gastritis);
+            consulta.setBoolean(3, colitis);
+            consulta.setBoolean(4, estreñimiento);
+            consulta.setBoolean(5, ulcera);
+            consulta.setBoolean(6, cansancio);
+            consulta.setBoolean(7, diabetes);
+            consulta.setBoolean(8, presionAlta);
+            consulta.setBoolean(9, colesterol);
+            consulta.setBoolean(10, alergias);
+            consulta.setBoolean(11, estres);
+            consulta.setBoolean(12, dolordecabeza);
+            consulta.setBoolean(13, dolordecuello);
+            consulta.setBoolean(14, doloresdeespalda);
+            consulta.setBoolean(15, artritis);
+            consulta.setBoolean(16, ansiedad);
+            consulta.setBoolean(17, embarazo);
+            consulta.setBoolean(18, retencionliquidos);
+            consulta.setBoolean(19, malacirculacion);
+            consulta.setBoolean(20, calambres);
+            consulta.setBoolean(21, varices);
+            consulta.setBoolean(22, doloresdehueso);
+            // consulta.setBoolean(23, anemia);
+            consulta.setBoolean(23, problemadevesicula);
+            consulta.setBoolean(24, problemaderiñon);
+            consulta.setBoolean(25, celulitis);
+            consulta.execute();
+
+        } catch (Exception e) {
+            System.out.println("error en Modificar Cliente" + e.getMessage());
+        }
+
+    }
+
+        
+    }
