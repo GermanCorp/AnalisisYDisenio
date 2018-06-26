@@ -203,7 +203,7 @@ public class JDialogListaClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void jTextFieldBuscarClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextFieldBuscarClienteCaretUpdate
-         DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(clientes.buscarCliente(jTextFieldBuscarCliente.getText(),jTextFieldBuscarCliente.getText()), columnasClientes);
+         DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(clientes.buscarCliente(jTextFieldBuscarCliente.getText().trim(),jTextFieldBuscarCliente.getText()), columnasClientes);
         jTableClientes.setModel(modeloTablaBuscarClientes);
     }//GEN-LAST:event_jTextFieldBuscarClienteCaretUpdate
 

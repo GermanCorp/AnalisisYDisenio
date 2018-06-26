@@ -239,7 +239,7 @@ public class ListaClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_tablaClientesMousePressed
 
     private void jtfBuscarClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarClienteCaretUpdate
-        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(clientes.buscarCliente(jtfBuscarCliente.getText(),jtfBuscarCliente.getText()), columnasClientes);
+        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(clientes.buscarCliente(jtfBuscarCliente.getText().trim(),jtfBuscarCliente.getText()), columnasClientes);
         tablaClientes.setModel(modeloTablaBuscarClientes);
     }//GEN-LAST:event_jtfBuscarClienteCaretUpdate
 

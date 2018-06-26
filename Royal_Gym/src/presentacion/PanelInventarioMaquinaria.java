@@ -91,6 +91,9 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
             }
         });
         jtfNombreEquipo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfNombreEquipoKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfNombreEquipoKeyTyped(evt);
             }
@@ -133,8 +136,19 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("<html> <center>Inventario de<center> <center> Equipo<center>");
 
+        jScrollPane4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jScrollPane4KeyTyped(evt);
+            }
+        });
+
         taDescripcionEquipo.setColumns(20);
         taDescripcionEquipo.setRows(5);
+        taDescripcionEquipo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                taDescripcionEquipoKeyTyped(evt);
+            }
+        });
         jScrollPane4.setViewportView(taDescripcionEquipo);
 
         javax.swing.GroupLayout PanelDatosLayout = new javax.swing.GroupLayout(PanelDatos);
@@ -217,7 +231,6 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tablaInventarioEquipo);
 
-        jtfBuscarInventario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jtfBuscarInventario.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 jtfBuscarInventarioCaretUpdate(evt);
@@ -254,7 +267,6 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
                         .addComponent(jtfBuscarInventario))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(20, 20, 20))
@@ -304,9 +316,6 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
             evt.consume();
         }
         
-      
-
-        ValidarLetras.soloLetras(evt);
         if ((int) evt.getKeyChar() > 32 && (int) evt.getKeyChar() <= 47
                 || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
                 || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
@@ -321,24 +330,32 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
             evt.consume();
         }
         
-         if(!Character.isDigit(evt.getKeyChar())){
+        
+         if(!Character.isDigit(evt.getKeyChar())) {
             evt.consume();
 
-         }        
+         } 
+         
+           
+            
 
     }//GEN-LAST:event_jtfCantidadEquipoKeyTyped
 
     private void btnAceptarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarInventarioActionPerformed
         //validaciones para los JTextField 1,2 y textArea1 para campos vacios
-        if (jtfNombreEquipo.getText().equals("") && jtfCantidadEquipo.getText().equals("") && taDescripcionEquipo.getText().equals("")) {
+       if (String.valueOf(jtfNombreEquipo.getText().charAt(1)).equals(" ")){
+            JOptionPane.showMessageDialog(null,"Los primeros digitos en el Nombre es un espacio en blanco");
+        }else if(jtfNombreEquipo.getText().equals("") && jtfCantidadEquipo.getText().equals("") && taDescripcionEquipo.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (jtfNombreEquipo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el nombre del Equipo", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jtfCantidadEquipo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la cantidad de Equipo", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (taDescripcionEquipo.getText().isEmpty()) {
+        } else if (String.valueOf(taDescripcionEquipo.getText().charAt(1)).equals(" ")){
+            JOptionPane.showMessageDialog(null,"Los primeros digitos en la Descripcion es un espacio en blanco");    
+        }else if(taDescripcionEquipo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la descripcion del Equipo", "Error!", JOptionPane.ERROR_MESSAGE);
-
+       
         } else if (evt.getActionCommand().equals("Guardar")) {
             maquinaria.insertarInventario(
                     jtfNombreEquipo.getText().trim(),
@@ -425,6 +442,28 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
     private void jtfBuscarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfBuscarInventarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfBuscarInventarioActionPerformed
+
+    private void jtfNombreEquipoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreEquipoKeyPressed
+        
+    }//GEN-LAST:event_jtfNombreEquipoKeyPressed
+
+    private void jScrollPane4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jScrollPane4KeyTyped
+        
+    }//GEN-LAST:event_jScrollPane4KeyTyped
+
+    private void taDescripcionEquipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taDescripcionEquipoKeyTyped
+         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
+            evt.consume();
+        } 
+        
+        
+        
+        if ((int) evt.getKeyChar() > 32 && (int) evt.getKeyChar() <= 47
+                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
+                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_taDescripcionEquipoKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelDatos;

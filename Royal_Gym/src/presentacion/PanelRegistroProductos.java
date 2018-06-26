@@ -216,25 +216,23 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosClienteLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jtfDescripcionProducto)
-                        .addComponent(jcbMedidaProducto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(panelDatosClienteLayout.createSequentialGroup()
-                            .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel6))
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addGroup(panelDatosClienteLayout.createSequentialGroup()
-                            .addComponent(btnAceptarRegistroProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                            .addComponent(btnCancelarRegistroProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jtfCantidad, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jtfPrecioProducto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                        .addComponent(jtfCostoProducto, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addComponent(jtfDescripcionProducto)
+                    .addComponent(jcbMedidaProducto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelDatosClienteLayout.createSequentialGroup()
+                        .addComponent(btnAceptarRegistroProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addComponent(btnCancelarRegistroProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfCostoProducto)
+                    .addGroup(panelDatosClienteLayout.createSequentialGroup()
+                        .addGroup(panelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel6))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jtfPrecioProducto)
+                    .addComponent(jtfCantidad))
                 .addGap(20, 20, 20))
         );
         panelDatosClienteLayout.setVerticalGroup(
@@ -415,6 +413,17 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
             btnAceptarRegistroProducto.doClick();
         }
+        
+         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
+            evt.consume();
+        }
+        
+        if ((int) evt.getKeyChar() > 32 && (int) evt.getKeyChar() <= 47
+                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
+                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
+            evt.consume();
+            
+        }
     }//GEN-LAST:event_jtfDescripcionProductoKeyTyped
 
     private void jtfCostoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCostoProductoActionPerformed
@@ -427,6 +436,10 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
             btnAceptarRegistroProducto.doClick();
         }
+         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
+            evt.consume();
+        }
+        
         if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
             evt.consume();
         }
@@ -443,7 +456,9 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
                 && jtfPrecioProducto.getText().isEmpty()
                 && jtfCantidad.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "ingrese Toda la Información", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jtfDescripcionProducto.getText().isEmpty()) {
+        } else if(String.valueOf(jtfDescripcionProducto.getText().charAt(1)).equals(" ")){
+            JOptionPane.showMessageDialog(null,"Los primeros digitos en la Descripcion es un espacio en blanco");    
+        }else if (jtfDescripcionProducto.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la descripción del producto", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jtfCostoProducto.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el costo del producto", "Error!", JOptionPane.ERROR_MESSAGE);
@@ -455,7 +470,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
 
             if (evt.getActionCommand().equals("Guardar")) {
                 productos.insertarProducto(
-                        jtfDescripcionProducto.getText(),
+                        jtfDescripcionProducto.getText().trim(),
                         jcbMedidaProducto.getSelectedItem().toString(),
                         jtfCostoProducto.getText(), jtfPrecioProducto.getText(),
                         jtfCantidad.getText());
@@ -470,7 +485,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
             } else if (evt.getActionCommand().equals("Modificar")) {
                 jbEliminar.setEnabled(true);
                 productos.modificarProducto(
-                        jtfDescripcionProducto.getText(),
+                        jtfDescripcionProducto.getText().trim(),
                         jcbMedidaProducto.getSelectedItem().toString(),
                         jtfCostoProducto.getText(),
                         jtfPrecioProducto.getText(),
@@ -516,6 +531,11 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
             btnAceptarRegistroProducto.doClick();
         }
+        
+         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
+            evt.consume();
+        }
+        
         if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
             evt.consume();
         }
@@ -529,7 +549,7 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     }//GEN-LAST:event_panelDatosClienteFocusGained
 
     private void jtfBuscarProductosCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarProductosCaretUpdate
-        DefaultTableModel modeloTablaBuscarProductos = new DefaultTableModel(productos.buscarProductos(jtfBuscarProductos.getText()), columnasProductos);
+        DefaultTableModel modeloTablaBuscarProductos = new DefaultTableModel(productos.buscarProductos(jtfBuscarProductos.getText().trim()), columnasProductos);
         tablaProductos.setModel(modeloTablaBuscarProductos);
         ocultarColumna();
     }//GEN-LAST:event_jtfBuscarProductosCaretUpdate
@@ -591,7 +611,15 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfCantidadKeyReleased
 
     private void jtfCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCantidadKeyTyped
-        // TODO add your handling code here:
+         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
+            evt.consume();
+        } 
+        
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+
+        }
+
     }//GEN-LAST:event_jtfCantidadKeyTyped
 
     private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked

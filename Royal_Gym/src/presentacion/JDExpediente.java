@@ -1,7 +1,9 @@
 package presentacion;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -11,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
+import static presentacion.PanelExpediente.id;
 import royal_gym.Conexion;
 import royal_gym.Expediente2;
 
@@ -255,6 +258,11 @@ public class JDExpediente extends javax.swing.JDialog {
 
         botonaceptarexpediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/btn_guardar_2.png"))); // NOI18N
         botonaceptarexpediente.setText("Guardar");
+        botonaceptarexpediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonaceptarexpedienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -318,7 +326,6 @@ public class JDExpediente extends javax.swing.JDialog {
         ));
         jScrollPane2.setViewportView(tablacambioscorporales);
 
-        btnAgregar.setIcon(new javax.swing.ImageIcon("C:\\Users\\alxcr\\Documents\\GitHub\\AnalisisYDisenio\\Royal_Gym\\src\\iconos\\agregar.png")); // NOI18N
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -455,10 +462,25 @@ public class JDExpediente extends javax.swing.JDialog {
         jTextFieldnombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jTextFielddireccion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFielddireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFielddireccionKeyTyped(evt);
+            }
+        });
 
         jTextFieldtelefonotrab.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldtelefonotrab.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldtelefonotrabKeyTyped(evt);
+            }
+        });
 
         jTextFieldtelefonocasa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldtelefonocasa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldtelefonocasaKeyTyped(evt);
+            }
+        });
 
         jTextFieldestatura.setEditable(false);
         jTextFieldestatura.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -469,16 +491,26 @@ public class JDExpediente extends javax.swing.JDialog {
         jTextFieldpeso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jTextFieldedad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldedad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldedadKeyTyped(evt);
+            }
+        });
 
         jTextFieldpesoideal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jTextFieldcelular.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldcelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldcelularKeyTyped(evt);
+            }
+        });
 
         jDateChooserFechaInicio.setDateFormatString("yyyy-MM-dd");
         jDateChooserFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         try {
-            jFormattedTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+            jFormattedTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##??")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -610,16 +642,31 @@ public class JDExpediente extends javax.swing.JDialog {
         jCBoxBajar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxBajar.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxBajar.setText("Bajar");
+        jCBoxBajar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxBajarActionPerformed(evt);
+            }
+        });
 
         jCBoxmantener.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxmantener.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxmantener.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxmantener.setText("Mantener");
+        jCBoxmantener.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxmantenerActionPerformed(evt);
+            }
+        });
 
         jCBoxsubir.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxsubir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxsubir.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxsubir.setText("Subir");
+        jCBoxsubir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxsubirActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(85, 96, 128));
         jPanel2.setLayout(new java.awt.GridLayout(5, 0));
@@ -929,6 +976,192 @@ public class JDExpediente extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jlFotoPerfilMouseClicked
 
+    private void botonaceptarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarexpedienteActionPerformed
+        
+        
+        Expediente2 expediente = new Expediente2();
+        if(String.valueOf(jTextFielddireccion.getText().charAt(1)).equals(" ")){
+            JOptionPane.showMessageDialog(null,"Los primeros digitos en la Direccion es un espacio en blanco");
+        expediente.actualizarTablaClientes(
+                
+                jTextFieldtelefonotrab.getText(),
+                jTextFielddireccion.getText().trim(),
+                jFormattedTextField.getText(),
+                fechaJCalendar(jDateChooserFechaInicio).toString(),
+                jTextFieldtelefonocasa.getText(),
+                jTextFieldcelular.getText(),
+                jtfedad.getText(),
+                jTextFieldpesoideal.getText(),
+                jCBoxsubir.isSelected(),
+                jCBoxBajar.isSelected(),
+                jCBoxmantener.isSelected(),
+                id);   
+                         
+        }else{    
+        boolean gastritis = jCBoxgastritis.isSelected();
+        boolean colitis = jCBoxcolitis.isSelected();
+        boolean estreñimiento = jCBoxestrenimiento.isSelected();
+        boolean ulcera = jCBoxulcera.isSelected();
+        boolean cansancio = jCBoxcansancio.isSelected();
+        boolean diabetes = jCBoxdiabetes.isSelected();
+        boolean presionAlta = jCBoxpresionalta.isSelected();
+        boolean colesterol = jCBoxcolesterol.isSelected();
+        boolean alergias = jCBoxalergias.isSelected();
+        boolean estres = jCBoxestres.isSelected();
+        boolean dolordecabeza = jCBoxdolordecabeza.isSelected();
+        boolean dolordecuello = jCBoxdolordecuello.isSelected();
+        boolean doloresdeespalda = jCBoxdoloresdeespalda.isSelected();
+        boolean artritis = jCBoxartritis.isSelected();
+        boolean ansiedad = jCBoxansiedad.isSelected();
+        boolean embarazo = jCBoxembarazo.isSelected();
+        boolean retencionliquidos = jCBoxretenciondeliquidos.isSelected();
+        boolean malacirculacion = jCBoxmalacirculacion.isSelected();
+        boolean calambres = jCBoxcalambres.isSelected();
+        boolean varices = jCBoxvarices.isSelected();
+        boolean doloresdehueso = jCBoxdoloresdehueso.isSelected();
+        //boolean anemia = jCBoxanemia.isSelected();
+        boolean problemadevesicula = jCBoxproblemasdevesicula.isSelected();
+        boolean problemaderiñon = jCBoxproblemasderinon.isSelected();
+        boolean celulitis = jCBoxcelulitis.isSelected();
+        
+        
+              
+        if(jCBoxgastritis.isSelected()== false
+            && jCBoxcolitis.isSelected()== false
+            && jCBoxestrenimiento.isSelected() == false
+            && jCBoxulcera.isSelected()== false
+            && jCBoxcansancio.isSelected()== false
+            && jCBoxdiabetes.isSelected()== false
+            && jCBoxpresionalta.isSelected()== false
+            && jCBoxcolesterol.isSelected()== false
+            && jCBoxalergias.isSelected()== false
+            && jCBoxestres.isSelected()== false
+            && jCBoxdolordecabeza.isSelected()== false
+            && jCBoxdolordecuello.isSelected()== false
+            && jCBoxdoloresdeespalda.isSelected()== false
+            && jCBoxartritis.isSelected()== false
+            && jCBoxansiedad.isSelected()== false
+            && jCBoxembarazo.isSelected()== false
+            && jCBoxretenciondeliquidos.isSelected()== false
+            && jCBoxmalacirculacion.isSelected()== false
+            && jCBoxcalambres.isSelected()== false
+            && jCBoxvarices.isSelected()== false
+            && jCBoxdoloresdehueso.isSelected()== false
+            && jCBoxanemia.isSelected()== false
+            && jCBoxproblemasdevesicula.isSelected()== false
+            && jCBoxproblemasderinon.isSelected()== false
+            && jCBoxcelulitis.isSelected()== false
+            ){
+            
+            expediente.insertarProblemasdeSalud(id, gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes,
+                    presionAlta, colesterol, alergias, estres, dolordecabeza, dolordecuello, doloresdeespalda, artritis,
+                    ansiedad, embarazo, retencionliquidos, malacirculacion, calambres, varices, doloresdehueso, alergias,
+                    problemadevesicula, problemaderiñon, celulitis);
+        }else{
+            
+            
+            expediente.actualizarProblemasDeSalud(id, gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes, presionAlta,
+                colesterol, alergias, estres, dolordecabeza, dolordecuello, doloresdeespalda, artritis, ansiedad, embarazo,
+                retencionliquidos, malacirculacion, calambres, varices, doloresdehueso,problemadevesicula,
+                problemaderiñon, celulitis);
+            
+        }
+            
+        }
+    }//GEN-LAST:event_botonaceptarexpedienteActionPerformed
+
+    private void jCBoxsubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxsubirActionPerformed
+         if(jCBoxsubir.isSelected()){
+           jCBoxBajar.setSelected(false);
+           jCBoxmantener.setSelected(false);
+            
+        }
+    }//GEN-LAST:event_jCBoxsubirActionPerformed
+
+    private void jCBoxBajarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxBajarActionPerformed
+        if(jCBoxBajar.isSelected()){
+           jCBoxsubir.setSelected(false);
+           jCBoxmantener.setSelected(false);
+            
+        }
+    }//GEN-LAST:event_jCBoxBajarActionPerformed
+
+    private void jCBoxmantenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxmantenerActionPerformed
+        if( jCBoxmantener.isSelected()){
+           jCBoxsubir.setSelected(false);
+           jCBoxBajar.setSelected(false);
+            
+        }
+    }//GEN-LAST:event_jCBoxmantenerActionPerformed
+
+    private void jTextFieldtelefonotrabKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonotrabKeyTyped
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+        
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jTextFieldtelefonotrabKeyTyped
+
+    private void jTextFieldtelefonocasaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonocasaKeyTyped
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+        
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jTextFieldtelefonocasaKeyTyped
+
+    private void jTextFieldcelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldcelularKeyTyped
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+        
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jTextFieldcelularKeyTyped
+
+    private void jTextFieldedadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldedadKeyTyped
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+        
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_jTextFieldedadKeyTyped
+
+    private void jTextFielddireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielddireccionKeyTyped
+        if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
+            evt.consume();
+        }
+        
+        
+        Character s = evt.getKeyChar();
+        
+        if(!Character.isLetter(s) && s != KeyEvent.VK_SPACE){
+            evt.consume();   
+        }
+    }//GEN-LAST:event_jTextFielddireccionKeyTyped
+
+     private Date fechaJCalendar(JDateChooser calendario) {
+    
+        Date date = calendario.getDate();
+        long d = date.getTime();
+        java.sql.Date fecha = new java.sql.Date(d);
+        return fecha;
+        
+        
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelCambiosCorporales;
     private javax.swing.JPanel PanelDatosCliente;
