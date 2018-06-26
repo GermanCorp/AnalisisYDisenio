@@ -294,7 +294,17 @@ public class PanelGastos extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfDescripcionGastoActionPerformed
 
     private void jtfDescripcionGastoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDescripcionGastoKeyTyped
-        // TODO add your handling code here:
+           if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
+            evt.consume();
+        }
+        
+        if ((int) evt.getKeyChar() > 32 && (int) evt.getKeyChar() <= 47
+                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
+                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
+            evt.consume();
+
+           
+        }
     }//GEN-LAST:event_jtfDescripcionGastoKeyTyped
 
     private void jtfMontoGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfMontoGastoActionPerformed
@@ -302,26 +312,37 @@ public class PanelGastos extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfMontoGastoActionPerformed
 
     private void jtfMontoGastoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfMontoGastoKeyTyped
-        // TODO add your handling code here:
+         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
+            evt.consume();
+        }
+        
+        
+         if(!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+
+         } 
     }//GEN-LAST:event_jtfMontoGastoKeyTyped
 
     private void btnAceptarRegistroGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroGastoActionPerformed
         if (jtfDescripcionGasto.getText().isEmpty()
                 && jtfMontoGasto.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "ingrese Toda la Información", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jtfDescripcionGasto.getText().isEmpty()) {
+        } else if(String.valueOf(jtfDescripcionGasto.getText().charAt(1)).equals(" ")){
+            JOptionPane.showMessageDialog(null,"Los primeros digitos en la Descripcion es un espacio en blanco");
+            
+        }else if (jtfDescripcionGasto.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar la descripción del gasto", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jtfMontoGasto.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el monto del producto", "Error!", JOptionPane.ERROR_MESSAGE);
         } else {
             if (evt.getActionCommand().equals("Guardar")) {
-                gastos.insertarGasto(jtfDescripcionGasto.getText(), jtfMontoGasto.getText(), String.valueOf(fechaActual));
+                gastos.insertarGasto(jtfDescripcionGasto.getText().trim(), jtfMontoGasto.getText(), String.valueOf(fechaActual));
                 gastos.modeloTablaGastos(tablaGastos);
                 royal_gym.VP.jlMensajes.setText("Gasto registrado exitosamente");
                 limpiar();
                 actualizarTablaProductos();
             } else if (evt.getActionCommand().equals("Modificar")) {
-                gastos.modificarGasto(jtfDescripcionGasto.getText(), jtfMontoGasto.getText(), idGasto);
+                gastos.modificarGasto(jtfDescripcionGasto.getText().trim(), jtfMontoGasto.getText(), idGasto);
                 royal_gym.VP.jlMensajes.setText("Gasto modificado exitosamente");
                 btnAceptarRegistroGasto.setText("Guardar");
                 btnAceptarRegistroGasto.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_guardar_2.png")));
@@ -361,7 +382,7 @@ public class PanelGastos extends javax.swing.JPanel {
     }//GEN-LAST:event_tablaGastosMouseClicked
 
     private void jtfBuscarGastoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarGastoCaretUpdate
-        DefaultTableModel modeloTablaBuscarGasto = new DefaultTableModel(gastos.buscarGasto(jtfBuscarGasto.getText()), columnasGastos);
+        DefaultTableModel modeloTablaBuscarGasto = new DefaultTableModel(gastos.buscarGasto(jtfBuscarGasto.getText().trim()), columnasGastos);
         tablaGastos.setModel(modeloTablaBuscarGasto);
         ocultarColumna();
 

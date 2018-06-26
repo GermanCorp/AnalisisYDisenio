@@ -143,6 +143,12 @@ public class PanelCompra extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("FACTURA No.:");
 
+        jtfNumeoFactura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfNumeoFacturaKeyTyped(evt);
+            }
+        });
+
         botonAgregarCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Agregar_Producto.png"))); // NOI18N
         botonAgregarCompra.setText("Producto");
         botonAgregarCompra.addActionListener(new java.awt.event.ActionListener() {
@@ -348,7 +354,7 @@ public class PanelCompra extends javax.swing.JPanel {
             for (int i = 0; i < tablaCompras.getRowCount(); i++) {
                 PreparedStatement pStatement = Conexion.getConexion().prepareStatement("insert into detalleFacturaCompra(fecha, factura, idProducto, cantidad, descuento) values (?, ?,?,?,?)");
                 pStatement.setString(1, String.valueOf(fechaActual));
-                pStatement.setString(2, jtfNumeoFactura.getText());
+                pStatement.setString(2, jtfNumeoFactura.getText().trim());
                 pStatement.setString(3, tablaCompras.getValueAt(i, 0).toString());
                 pStatement.setString(4, tablaCompras.getValueAt(i, 1).toString());
                 pStatement.setString(5, tablaCompras.getValueAt(i, 4).toString());
@@ -393,6 +399,18 @@ public class PanelCompra extends javax.swing.JPanel {
     private void botonAgregarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarCompraActionPerformed
         new ListaProductosComprar(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_botonAgregarCompraActionPerformed
+
+    private void jtfNumeoFacturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNumeoFacturaKeyTyped
+        if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
+            evt.consume();
+        }
+        
+        
+         if(!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+
+         } 
+    }//GEN-LAST:event_jtfNumeoFacturaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -452,7 +452,12 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
     }//GEN-LAST:event_jScrollPane4KeyTyped
 
     private void taDescripcionEquipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taDescripcionEquipoKeyTyped
-          
+         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
+            evt.consume();
+        } 
+        
+        
+        
         if ((int) evt.getKeyChar() > 32 && (int) evt.getKeyChar() <= 47
                 || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
                 || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {

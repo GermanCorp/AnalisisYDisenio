@@ -224,6 +224,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtfNumeoFactura">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtfNumeoFacturaKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonAgregarCompra">
           <Properties>

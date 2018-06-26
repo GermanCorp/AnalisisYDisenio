@@ -247,7 +247,7 @@ public class ListaProductosComprar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtfBuscarProductosCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarProductosCaretUpdate
-        DefaultTableModel modeloTablaBuscarProductos = new DefaultTableModel(productos.buscarListaProductos(jtfBuscarProductos.getText()), columnasProductos);
+        DefaultTableModel modeloTablaBuscarProductos = new DefaultTableModel(productos.buscarListaProductos(jtfBuscarProductos.getText().trim()), columnasProductos);
         tablaProductos.setModel(modeloTablaBuscarProductos);
     }//GEN-LAST:event_jtfBuscarProductosCaretUpdate
 
