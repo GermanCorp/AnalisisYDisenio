@@ -32,7 +32,7 @@ public class PanelUsuariosExistentes extends javax.swing.JDialog {
     }
 
     private void actualizarTabla() {
-        DefaultTableModel modeloTablaUsuarios = new DefaultTableModel(usuarios.buscarUsuarios(RecuperarContraseña.usuario), columnasUsuarios);
+        DefaultTableModel modeloTablaUsuarios = new DefaultTableModel(usuarios.getUsuarios(), columnasUsuarios);
         tablaUsuariosExistentes.setModel(modeloTablaUsuarios);
         ocultarColumna();
     }

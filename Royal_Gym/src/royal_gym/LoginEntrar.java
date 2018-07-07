@@ -52,4 +52,15 @@ public class LoginEntrar {
         }
         return res;
     }
+    
+    public void setPass(String pass, String user){
+        try {
+            String sSQL = "UPDATE Login SET contraseña = ? WHERE usuario = ?";
+            PreparedStatement pst = Conexion.getConexion().prepareStatement(sSQL);
+            pst.setString(1, pass);
+            pst.setString(2, user);
+            pst.execute();
+        } catch (Exception e) {
+        }
+    }
 }

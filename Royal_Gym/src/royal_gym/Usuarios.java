@@ -20,15 +20,16 @@ public class Usuarios {
     }
 
     //metodo para insertar un nuevo usuario a la base de datos
-    public void nuevoUser(String nombre, String User, String Pass, String PreguntaA, String PreguntaB) {
+    public void nuevoUser(String nombre, String User, String Pass, String PreguntaA, String PreguntaB, String tipoUsuario) {
         try {
-            String sql = "insert into login (nombre,usuario, contraseña, mascota, madre) values (?,?,?,?,?)";
+            String sql = "insert into login (nombre, usuario, contraseña, mascota, madre, cargo) values (?,?,?,?,?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, nombre);
             consulta.setString(2, User);
             consulta.setString(3, Pass);
             consulta.setString(4, PreguntaA);
             consulta.setString(5, PreguntaB);
+            consulta.setString(6, tipoUsuario);
             consulta.execute();
         } catch (Exception e) {
             System.out.println(e.getMessage());

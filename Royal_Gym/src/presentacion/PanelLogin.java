@@ -2,7 +2,6 @@ package presentacion;
 
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
-import royal_gym.Conexion;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.UIManager;
@@ -16,6 +15,10 @@ public class PanelLogin extends javax.swing.JFrame {
     
     public PanelLogin() {
         initComponents();
+        centrar();
+    }
+    
+    private void centrar(){
         setLocationRelativeTo(null);
     }
 
@@ -43,6 +46,22 @@ public class PanelLogin extends javax.swing.JFrame {
 
         panelLogin.setBackground(new java.awt.Color(85, 96, 128));
         panelLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        panelLogin.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                panelLoginMouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                panelLoginMouseMoved(evt);
+            }
+        });
+        panelLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelLoginMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                panelLoginMouseReleased(evt);
+            }
+        });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Login_4.png"))); // NOI18N
@@ -239,7 +258,6 @@ public class PanelLogin extends javax.swing.JFrame {
                     | UnsupportedLookAndFeelException e) {
                 e.printStackTrace();
             }
-
             nUsuario = usuario.getText();
             VP vp = new VP();
             vp.setVisible(true);
@@ -271,6 +289,37 @@ public class PanelLogin extends javax.swing.JFrame {
             } 
         new RecuperarContraseña(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jLabel4MouseClicked
+    private boolean agarrado = false;
+    private void panelLoginMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelLoginMousePressed
+        agarrado = true;
+        x = getX();
+        y = getY();
+        xm = evt.getXOnScreen();
+        ym = evt.getYOnScreen();
+    }//GEN-LAST:event_panelLoginMousePressed
+
+    private void panelLoginMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelLoginMouseReleased
+        agarrado = false;
+    }//GEN-LAST:event_panelLoginMouseReleased
+
+    private int x =0;
+    private int y =0;    
+    private int xm =0;
+    private int ym =0;
+    
+    private void panelLoginMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelLoginMouseMoved
+
+    }//GEN-LAST:event_panelLoginMouseMoved
+
+    private void panelLoginMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelLoginMouseDragged
+        // TODO add your handling code here:
+        // System.out.println(evt);
+        if(agarrado){
+            int dx = evt.getXOnScreen() - xm;
+            int dy = evt.getYOnScreen() - ym;
+            setLocation(x+dx, y+dy);
+        }
+    }//GEN-LAST:event_panelLoginMouseDragged
 
     public static void main(String args[]) {
         royal_gym.Conexion.conectar();

@@ -2,8 +2,6 @@ package royal_gym;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import presentacion.Configuracion;
 import presentacion.PanelLogin;
 import presentacion.PanelNuevoUsuario;
@@ -165,8 +163,8 @@ public class VP extends javax.swing.JFrame {
 
     private void jMenuSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuSalirMousePressed
         // TODO add your handling code here:
-        System.exit(0);
         Conexion.cerrar();
+        System.exit(0);
     }//GEN-LAST:event_jMenuSalirMousePressed
 
     private void jMenuItem2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2MousePressed
@@ -184,28 +182,6 @@ public class VP extends javax.swing.JFrame {
         vp.setLocationRelativeTo(null);
     }//GEN-LAST:event_jMenuCerrarSesionMousePressed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            //UIManager.setLookAndFeel(javax.swing.plaf.nimbus.NimbusLookAndFeel.class.getName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-                | UnsupportedLookAndFeelException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        /* Create and display the form */
-        Conexion conectar = new Conexion();
-        conectar.conectar();
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VP().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;

@@ -50,7 +50,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         jtfAltura.setText("");
         jtfPeso.setText("");
     }
-
+    
     // Devuelve la edad permitida
     public static int edadMinima() {
         int edadM = 0;
@@ -541,17 +541,15 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
             btnAceptarRegistroCliente.doClick();
-        }
-        
+        }        
          if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
             evt.consume();
         }
-        
-        
+         
         Character s = evt.getKeyChar();
         
-        if(!Character.isLetter(s) && s != KeyEvent.VK_SPACE){
-            evt.consume();   
+        if(!Character.isLetter(s) && s != KeyEvent.VK_SPACE ){
+            evt.consume();             
         }
     }//GEN-LAST:event_jtfNombreClienteKeyTyped
 
@@ -569,8 +567,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
          if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
             evt.consume();
         }
-        
-        
+                
         Character s = evt.getKeyChar();
         
         if(!Character.isLetter(s) && s != KeyEvent.VK_SPACE){
@@ -615,11 +612,11 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         } else if (jtfNombreCliente.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el NOMBRE del Cliente", "Error!", JOptionPane.ERROR_MESSAGE);
         }else if(String.valueOf(jtfNombreCliente.getText().charAt(1)).equals(" ")){
-            JOptionPane.showMessageDialog(null,"Los primeros digitos en el Nombre es un espacio en blanco"); 
+            JOptionPane.showMessageDialog(null,"No se permiten espacios en vacios al inicio de los Nombres"); 
         }else if (jtfApellidoCliente.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el APELLLIDO del Cliente", "Error!", JOptionPane.ERROR_MESSAGE);
         }else if(String.valueOf(jtfApellidoCliente.getText().charAt(1)).equals(" ")){
-            JOptionPane.showMessageDialog(null,"Los primeros digitos en el Apellido es un espacio en blanco");   
+            JOptionPane.showMessageDialog(null,"No se permiten espacios en vacios al inicio de los Apellidos");   
         }else if (jdcFecha.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Debe seleccinar la FECHA de nacimiento", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jdcFecha.getCalendar().get(Calendar.YEAR) > menorEdadPermitida) {
@@ -645,7 +642,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 jtfAltura.setText("");
                 jtfPeso.setText("");
 
-                JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
+                royal_gym.VP.jlMensajes.setText("Cliente registrado exitosamente");
                 new Thread(() -> {
                     try {
                         Thread.sleep(1000);

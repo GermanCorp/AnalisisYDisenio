@@ -7,15 +7,13 @@ import royal_gym.LoginEntrar;
  *
  * @author alxcr
  */
-public class RecuperarContraseña extends javax.swing.JDialog {
-    
-    public static String user;
-    
-    public RecuperarContraseña(javax.swing.JDialog parent, boolean modal) {
+public class CambiarContraseña extends javax.swing.JDialog {
+    public CambiarContraseña(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("Olvidé la contraseña");
+        jtfUsuario.setText(RecuperarContraseña.user);
+        setTitle("Cambiar contraseña");
     }
     
     @SuppressWarnings("unchecked")
@@ -27,8 +25,8 @@ public class RecuperarContraseña extends javax.swing.JDialog {
         lblClaveNueva = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
-        txtPregunta1 = new javax.swing.JTextField();
-        txtPregunta2 = new javax.swing.JTextField();
+        jtfContra = new javax.swing.JTextField();
+        jtfConfirmarContra = new javax.swing.JTextField();
         lblUsuario = new javax.swing.JLabel();
         jtfUsuario = new javax.swing.JTextField();
 
@@ -40,11 +38,11 @@ public class RecuperarContraseña extends javax.swing.JDialog {
 
         lblClaveActual.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblClaveActual.setForeground(new java.awt.Color(255, 255, 255));
-        lblClaveActual.setText("Cual es el nombre de tu mascota?");
+        lblClaveActual.setText("Nueva Contraseña:");
 
         lblClaveNueva.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblClaveNueva.setForeground(new java.awt.Color(255, 255, 255));
-        lblClaveNueva.setText("Cual es el nombre de tu madre?");
+        lblClaveNueva.setText("Confirmar Contraseña:");
 
         btnCancelar.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -62,14 +60,15 @@ public class RecuperarContraseña extends javax.swing.JDialog {
             }
         });
 
-        txtPregunta1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfContra.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        txtPregunta2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfConfirmarContra.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         lblUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsuario.setText("Usuario");
+        lblUsuario.setText("Usuario:");
 
+        jtfUsuario.setEditable(false);
         jtfUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout PanelNuevaContraseñaLayout = new javax.swing.GroupLayout(PanelNuevaContraseña);
@@ -85,8 +84,8 @@ public class RecuperarContraseña extends javax.swing.JDialog {
                         .addComponent(btnCancelar))
                     .addGroup(PanelNuevaContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(lblUsuario)
-                        .addComponent(txtPregunta2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtPregunta1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfConfirmarContra, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfContra, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblClaveNueva)
                         .addComponent(lblClaveActual)
                         .addComponent(jtfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -102,11 +101,11 @@ public class RecuperarContraseña extends javax.swing.JDialog {
                 .addGap(20, 20, 20)
                 .addComponent(lblClaveActual)
                 .addGap(0, 0, 0)
-                .addComponent(txtPregunta1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfContra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(lblClaveNueva)
                 .addGap(0, 0, 0)
-                .addComponent(txtPregunta2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfConfirmarContra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(PanelNuevaContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
@@ -133,18 +132,17 @@ public class RecuperarContraseña extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        if (txtPregunta1.getText().equals("") && txtPregunta2.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Debe responder la pregunta1/pregunta 2", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (txtPregunta1.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe responder la pregunta 1", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (txtPregunta2.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe responder la pregunta 2", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (LoginEntrar.recuperarPass(jtfUsuario.getText(), txtPregunta1.getText(), txtPregunta2.getText()) == 1) {
-            user = jtfUsuario.getText();
-            new CambiarContraseña(new javax.swing.JDialog(), true).setVisible(true);
+        if (jtfContra.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese la nueva contraseña", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfConfirmarContra.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Confirme la contraseña", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if (jtfContra.getText().trim().equals(jtfConfirmarContra.getText().trim())) {
+            LoginEntrar login = new LoginEntrar();
+            login.setPass(jtfContra.getText(), RecuperarContraseña.user);
+            JOptionPane.showMessageDialog(null, "Se cambió la contraseña exitosamente");
             dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Los datos no coinciden");
+            JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
         }
 
     }//GEN-LAST:event_btnAceptarActionPerformed
@@ -154,11 +152,11 @@ public class RecuperarContraseña extends javax.swing.JDialog {
     private javax.swing.JPanel PanelNuevaContraseña;
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JTextField jtfConfirmarContra;
+    private javax.swing.JTextField jtfContra;
     private javax.swing.JTextField jtfUsuario;
     private javax.swing.JLabel lblClaveActual;
     private javax.swing.JLabel lblClaveNueva;
     private javax.swing.JLabel lblUsuario;
-    private javax.swing.JTextField txtPregunta1;
-    private javax.swing.JTextField txtPregunta2;
     // End of variables declaration//GEN-END:variables
 }

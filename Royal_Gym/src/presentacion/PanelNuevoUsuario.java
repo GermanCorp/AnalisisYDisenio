@@ -36,6 +36,8 @@ public class PanelNuevoUsuario extends javax.swing.JDialog {
         txtNombre = new javax.swing.JTextField();
         txtUser = new javax.swing.JTextField();
         txtClave = new javax.swing.JPasswordField();
+        lblUsuario5 = new javax.swing.JLabel();
+        jcbTipoUsuario = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -96,34 +98,48 @@ public class PanelNuevoUsuario extends javax.swing.JDialog {
         txtClave.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtClave.setBorder(null);
 
+        lblUsuario5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblUsuario5.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuario5.setText("Tipo de usuario:");
+
+        jcbTipoUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jcbTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Invitado", "Administrador" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUsuario1)
-                    .addComponent(txtPregunta1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblUsuario5)
+                    .addComponent(txtPregunta1)
                     .addComponent(lblUsuario4)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblUsuario2)
+                    .addComponent(txtPregunta2)
+                    .addComponent(txtClave)
+                    .addComponent(txtNombre)
+                    .addComponent(lblUsuario1)
+                    .addComponent(txtUser)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblUsuario3)
-                            .addComponent(lblUsuario2)
-                            .addComponent(lblusuario)
-                            .addComponent(txtPregunta2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblusuario))
+                        .addGap(225, 225, 225))
+                    .addComponent(jcbTipoUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(lblUsuario5)
+                .addGap(3, 3, 3)
+                .addComponent(jcbTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(lblUsuario1)
                 .addGap(0, 0, 0)
@@ -144,7 +160,7 @@ public class PanelNuevoUsuario extends javax.swing.JDialog {
                 .addComponent(lblUsuario2)
                 .addGap(0, 0, 0)
                 .addComponent(txtPregunta2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -186,7 +202,8 @@ public class PanelNuevoUsuario extends javax.swing.JDialog {
                     txtUser.getText(), 
                     String.valueOf(txtClave.getPassword()),
                     txtPregunta1.getText(), 
-                    txtPregunta2.getText()
+                    txtPregunta2.getText(),
+                    jcbTipoUsuario.getSelectedItem().toString()
                     
             );
 
@@ -212,10 +229,12 @@ public class PanelNuevoUsuario extends javax.swing.JDialog {
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> jcbTipoUsuario;
     private javax.swing.JLabel lblUsuario1;
     private javax.swing.JLabel lblUsuario2;
     private javax.swing.JLabel lblUsuario3;
     private javax.swing.JLabel lblUsuario4;
+    private javax.swing.JLabel lblUsuario5;
     private javax.swing.JLabel lblusuario;
     public static javax.swing.JPasswordField txtClave;
     private javax.swing.JTextField txtNombre;
