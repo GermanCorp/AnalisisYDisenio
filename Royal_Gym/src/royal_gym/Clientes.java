@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,6 +15,9 @@ public class Clientes {
     private static Statement statement;
     static ResultSet resultado;
     private int datos = 0;
+
+    java.util.Date date = new Date();
+    java.sql.Date fechaActual = new java.sql.Date(date.getTime());
 
     public Clientes() {
 
@@ -92,13 +96,14 @@ public class Clientes {
     // <editor-fold defaultstate="collapsed" desc="Método para insertar un cliente">  
     public void insertarCliente(String nombres, String apellidos, String fechaNacimiento, String altura, String peso) {
         try {
-            String sql = "insert into cliente (nombres, apellidos, fechaNacimiento, altura, peso) values (?,?,?,?,?)";
+            String sql = "insert into cliente (nombres, apellidos, fechaNacimiento, altura, peso,fechaDeInicio) values (?,?,?,?,?,?)";
             PreparedStatement consulta = Conexion.getConexion().prepareStatement(sql);
             consulta.setString(1, nombres);
             consulta.setString(2, apellidos);
             consulta.setString(3, fechaNacimiento);
             consulta.setString(4, altura);
             consulta.setString(5, peso);
+            consulta.setString(6, String.valueOf(fechaActual));
             consulta.execute();
         } catch (Exception e) {
             System.out.println(e.getMessage());

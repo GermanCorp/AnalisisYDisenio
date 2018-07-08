@@ -159,10 +159,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -198,10 +197,23 @@
                               <Component id="jtfgrasaviceral" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                               <Component id="btnAgregar" min="-2" pref="88" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="221" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jPanel6" max="32767" attributes="0"/>
+                                  <Component id="jPanel5" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -234,8 +246,24 @@
                           <Component id="btnAgregar" min="-2" pref="70" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="138" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jScrollPane2" pref="138" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="2" attributes="0">
+                                  <Component id="jLabel9" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jPanel5" alignment="2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="2" attributes="0">
+                                  <Component id="jLabel10" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jPanel6" alignment="2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -360,11 +388,84 @@
             </Container>
             <Component class="javax.swing.JButton" name="btnAgregar">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/iconos/agregar.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Agregar"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarActionPerformed"/>
               </Events>
+            </Component>
+            <Container class="javax.swing.JPanel" name="jPanel5">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="36" green="43" red="e0" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+            </Container>
+            <Component class="javax.swing.JLabel" name="jLabel9">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Aument&#xf3;"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JPanel" name="jPanel6">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="41" green="c9" red="97" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+            </Container>
+            <Component class="javax.swing.JLabel" name="jLabel10">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Disminuy&#xf3;"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -382,7 +483,7 @@
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="jlFotoPerfil" min="-2" pref="188" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jTabbedPane1" pref="904" max="32767" attributes="0"/>
+                      <Component id="jTabbedPane1" pref="899" max="32767" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -451,8 +552,8 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jTextFieldtelefonotrab" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextFielddireccion" max="32767" attributes="0"/>
+                                          <Component id="jtfTelefonoTrabajo" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jtfDireccion" max="32767" attributes="0"/>
                                           <Component id="jTextFieldnombre" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -464,13 +565,13 @@
                                       <EmptySpace min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
-                                              <Component id="jTextFieldestatura" pref="84" max="32767" attributes="0"/>
+                                              <Component id="jTextFieldestatura" pref="82" max="32767" attributes="0"/>
                                               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                               <Component id="labelpeso" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextFieldpeso" pref="83" max="32767" attributes="0"/>
+                                              <Component id="jTextFieldpeso" pref="82" max="32767" attributes="0"/>
                                           </Group>
-                                          <Component id="jFormattedTextField" max="32767" attributes="0"/>
+                                          <Component id="jtfMejorHora" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -485,16 +586,16 @@
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jTextFieldedad" pref="84" max="32767" attributes="0"/>
+                                      <Component id="jTextFieldedad" pref="83" max="32767" attributes="0"/>
                                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                                       <Component id="labelpesoideal" min="-2" pref="70" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextFieldpesoideal" pref="84" max="32767" attributes="0"/>
+                                      <Component id="jTextFieldpesoideal" pref="83" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="jDateChooserFechaInicio" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldtelefonocasa" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jtfTelefonoCasas" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextFieldfechanacimiento" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldcelular" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jtfCelular" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jtfFechaInicio" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           </Group>
@@ -507,20 +608,20 @@
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="2" attributes="0">
-                                          <Component id="jDateChooserFechaInicio" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
                                           <Component id="jTextFieldnombre" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
                                           <Component id="labelfechainicio" alignment="2" min="-2" max="-2" attributes="0"/>
                                           <Component id="labelnombre" alignment="2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jtfFechaInicio" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="2" attributes="0">
                                           <Component id="labeltelefonocasa" alignment="2" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldtelefonocasa" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Component id="jtfTelefonoCasas" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="2" attributes="0">
                                           <Component id="labelcelular" alignment="2" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldcelular" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Component id="jtfCelular" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="2" attributes="0">
@@ -543,17 +644,17 @@
                                       <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="2" attributes="0">
                                           <Component id="labeltelefonotrabajo" alignment="2" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldtelefonotrab" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Component id="jtfTelefonoTrabajo" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jTextFielddireccion" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Component id="jtfDireccion" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                           <Component id="labeldireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="2" attributes="0">
                                           <Component id="labelhoraparallamar" alignment="2" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jFormattedTextField" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Component id="jtfMejorHora" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="2" attributes="0">
@@ -718,34 +819,34 @@
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextFielddireccion">
+                    <Component class="javax.swing.JTextField" name="jtfDireccion">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="14" style="0"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFielddireccionKeyTyped"/>
+                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtfDireccionKeyTyped"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextFieldtelefonotrab">
+                    <Component class="javax.swing.JTextField" name="jtfTelefonoTrabajo">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="14" style="0"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldtelefonotrabKeyTyped"/>
+                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtfTelefonoTrabajoKeyTyped"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextFieldtelefonocasa">
+                    <Component class="javax.swing.JTextField" name="jtfTelefonoCasas">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="14" style="0"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldtelefonocasaKeyTyped"/>
+                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtfTelefonoCasasKeyTyped"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldestatura">
@@ -766,6 +867,7 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldpeso">
                       <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="14" style="0"/>
                         </Property>
@@ -773,6 +875,7 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldedad">
                       <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="14" style="0"/>
                         </Property>
@@ -788,29 +891,33 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextFieldcelular">
+                    <Component class="javax.swing.JTextField" name="jtfCelular">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="14" style="0"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldcelularKeyTyped"/>
+                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtfCelularKeyTyped"/>
                       </Events>
                     </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserFechaInicio">
+                    <Component class="javax.swing.JFormattedTextField" name="jtfMejorHora">
                       <Properties>
-                        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
+                        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                          <Format format="##:##" subtype="-1" type="5"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value=""/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="14" style="0"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtfMejorHoraKeyTyped"/>
+                      </Events>
                     </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField">
+                    <Component class="javax.swing.JTextField" name="jtfFechaInicio">
                       <Properties>
-                        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                          <Format format="##:##??" subtype="-1" type="5"/>
-                        </Property>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="14" style="0"/>
                         </Property>

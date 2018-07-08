@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.Icon;
@@ -46,6 +47,23 @@ public class JDExpediente extends javax.swing.JDialog {
         tablacambioscorporales.getColumnModel().getColumn(1).setMaxWidth(1);
         tablacambioscorporales.getColumnModel().getColumn(1).setMinWidth(1);
         tablacambioscorporales.getColumnModel().getColumn(1).setPreferredWidth(1);
+    }
+
+    private boolean hayProblemasDeSalud() {
+        boolean res = false;
+        try {
+            String SSQL = "SELECT * FROM problemasdesalud WHERE id_cliente = ? ";
+            PreparedStatement pst = Conexion.getConexion().prepareStatement(SSQL);
+            pst.setString(1, PanelRegistroClientes.getIdCliente());
+            ResultSet resultado = pst.executeQuery();
+
+            if (resultado.next()) {
+                res = true;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return res;
     }
 
     public void getImagenPerfil() {
@@ -103,20 +121,20 @@ public class JDExpediente extends javax.swing.JDialog {
             while (resultado.next()) {
                 jTextFieldnombre.setText(resultado.getString("Nombres") + " " + resultado.getString("Apellidos"));
                 jTextFieldfechanacimiento.setText(resultado.getString("FechaNacimiento"));
-                jTextFieldtelefonotrab.setText(resultado.getString("TelefonoTrabajo"));
-                jTextFieldcelular.setText(resultado.getString("Celular"));
-                jTextFielddireccion.setText(resultado.getString("Direccion"));
+                jtfTelefonoTrabajo.setText(resultado.getString("TelefonoTrabajo"));
+                jtfCelular.setText(resultado.getString("Celular"));
+                jtfDireccion.setText(resultado.getString("Direccion"));
                 jTextFieldedad.setText(resultado.getString("Edad"));
                 jTextFieldestatura.setText(resultado.getString("Altura"));
                 jTextFieldpeso.setText(resultado.getString("Peso"));
-                jFormattedTextField.setText(resultado.getString("MejorHoraParaLlamar"));
+                jtfMejorHora.setText(resultado.getString("MejorHoraParaLlamar"));
 
                 String fecha = resultado.getString("FechaDeInicio");
                 java.util.Date date2 = null;
                 date2 = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
-                jDateChooserFechaInicio.setDate(date2);
+                jtfFechaInicio.setText(String.valueOf(fechaActual));
 
-                jTextFieldtelefonocasa.setText(resultado.getString("TelefonoCasa"));
+                jtfTelefonoCasas.setText(resultado.getString("TelefonoCasa"));
                 jTextFieldpesoideal.setText(resultado.getString("PesoIdeal"));
 
                 jCBoxBajar.setSelected(resultado.getBoolean("PesoQuiereBajar"));
@@ -149,7 +167,7 @@ public class JDExpediente extends javax.swing.JDialog {
                 jCBoxvarices.setSelected(resultado.getBoolean("Varices"));
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "El cliente tiene datos que no han sido actualizados en el expediente");
+            //JOptionPane.showMessageDialog(null, "El cliente tiene datos que no han sido actualizados en el expediente");
         }
     }
 
@@ -179,6 +197,10 @@ public class JDExpediente extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablacambioscorporales = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         PanelDatosCliente = new javax.swing.JPanel();
@@ -195,17 +217,17 @@ public class JDExpediente extends javax.swing.JDialog {
         labeledad = new javax.swing.JLabel();
         labelpesoideal = new javax.swing.JLabel();
         jTextFieldnombre = new javax.swing.JTextField();
-        jTextFielddireccion = new javax.swing.JTextField();
-        jTextFieldtelefonotrab = new javax.swing.JTextField();
-        jTextFieldtelefonocasa = new javax.swing.JTextField();
+        jtfDireccion = new javax.swing.JTextField();
+        jtfTelefonoTrabajo = new javax.swing.JTextField();
+        jtfTelefonoCasas = new javax.swing.JTextField();
         jTextFieldestatura = new javax.swing.JTextField();
         jTextFieldfechanacimiento = new javax.swing.JTextField();
         jTextFieldpeso = new javax.swing.JTextField();
         jTextFieldedad = new javax.swing.JTextField();
         jTextFieldpesoideal = new javax.swing.JTextField();
-        jTextFieldcelular = new javax.swing.JTextField();
-        jDateChooserFechaInicio = new com.toedter.calendar.JDateChooser();
-        jFormattedTextField = new javax.swing.JFormattedTextField();
+        jtfCelular = new javax.swing.JTextField();
+        jtfMejorHora = new javax.swing.JFormattedTextField();
+        jtfFechaInicio = new javax.swing.JTextField();
         PanelProblemasdeSalud = new javax.swing.JPanel();
         labelpesosquiere = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -326,6 +348,7 @@ public class JDExpediente extends javax.swing.JDialog {
         ));
         jScrollPane2.setViewportView(tablacambioscorporales);
 
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/agregar.png"))); // NOI18N
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -333,15 +356,48 @@ public class JDExpediente extends javax.swing.JDialog {
             }
         });
 
+        jPanel5.setBackground(new java.awt.Color(224, 67, 54));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Aumentó");
+
+        jPanel6.setBackground(new java.awt.Color(151, 201, 65));
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Disminuyó");
+
         javax.swing.GroupLayout PanelCambiosCorporalesLayout = new javax.swing.GroupLayout(PanelCambiosCorporales);
         PanelCambiosCorporales.setLayout(PanelCambiosCorporalesLayout);
         PanelCambiosCorporalesLayout.setHorizontalGroup(
             PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
                 .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
                     .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel3))
@@ -370,9 +426,19 @@ public class JDExpediente extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtfgrasaviceral, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 221, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))))
+                .addGap(20, 20, 20))
         );
         PanelCambiosCorporalesLayout.setVerticalGroup(
             PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,8 +465,19 @@ public class JDExpediente extends javax.swing.JDialog {
                             .addComponent(jtfedad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
+                .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                        .addGap(10, 10, 10))
+                    .addGroup(PanelCambiosCorporalesLayout.createSequentialGroup()
+                        .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel9)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(PanelCambiosCorporalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel10)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jPanel1.setBackground(new java.awt.Color(85, 96, 128));
@@ -461,24 +538,24 @@ public class JDExpediente extends javax.swing.JDialog {
         jTextFieldnombre.setEditable(false);
         jTextFieldnombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jTextFielddireccion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFielddireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtfDireccion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextFielddireccionKeyTyped(evt);
+                jtfDireccionKeyTyped(evt);
             }
         });
 
-        jTextFieldtelefonotrab.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldtelefonotrab.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtfTelefonoTrabajo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfTelefonoTrabajo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextFieldtelefonotrabKeyTyped(evt);
+                jtfTelefonoTrabajoKeyTyped(evt);
             }
         });
 
-        jTextFieldtelefonocasa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldtelefonocasa.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtfTelefonoCasas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfTelefonoCasas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextFieldtelefonocasaKeyTyped(evt);
+                jtfTelefonoCasasKeyTyped(evt);
             }
         });
 
@@ -488,8 +565,10 @@ public class JDExpediente extends javax.swing.JDialog {
         jTextFieldfechanacimiento.setEditable(false);
         jTextFieldfechanacimiento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jTextFieldpeso.setEditable(false);
         jTextFieldpeso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jTextFieldedad.setEditable(false);
         jTextFieldedad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldedad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -499,22 +578,28 @@ public class JDExpediente extends javax.swing.JDialog {
 
         jTextFieldpesoideal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jTextFieldcelular.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldcelular.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtfCelular.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfCelular.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextFieldcelularKeyTyped(evt);
+                jtfCelularKeyTyped(evt);
             }
         });
 
-        jDateChooserFechaInicio.setDateFormatString("yyyy-MM-dd");
-        jDateChooserFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         try {
-            jFormattedTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##??")));
+            jtfMejorHora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfMejorHora.setText("");
+        jtfMejorHora.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfMejorHora.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfMejorHoraKeyTyped(evt);
+            }
+        });
+
+        jtfFechaInicio.setEditable(false);
+        jtfFechaInicio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout PanelDatosClienteLayout = new javax.swing.GroupLayout(PanelDatosCliente);
         PanelDatosCliente.setLayout(PanelDatosClienteLayout);
@@ -533,8 +618,8 @@ public class JDExpediente extends javax.swing.JDialog {
                                     .addComponent(labeltelefonotrabajo))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldtelefonotrab, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFielddireccion)
+                            .addComponent(jtfTelefonoTrabajo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfDireccion)
                             .addComponent(jTextFieldnombre, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -543,12 +628,12 @@ public class JDExpediente extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(jTextFieldestatura, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                                .addComponent(jTextFieldestatura, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                                 .addGap(24, 24, 24)
                                 .addComponent(labelpeso)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldpeso, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
-                            .addComponent(jFormattedTextField))))
+                                .addComponent(jTextFieldpeso, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
+                            .addComponent(jtfMejorHora))))
                 .addGap(28, 28, 28)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelfechanacimiento)
@@ -559,15 +644,15 @@ public class JDExpediente extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelDatosClienteLayout.createSequentialGroup()
-                        .addComponent(jTextFieldedad, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                        .addComponent(jTextFieldedad, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelpesoideal, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldpesoideal, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
-                    .addComponent(jDateChooserFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldtelefonocasa)
+                        .addComponent(jTextFieldpesoideal, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
+                    .addComponent(jtfTelefonoCasas)
                     .addComponent(jTextFieldfechanacimiento)
-                    .addComponent(jTextFieldcelular))
+                    .addComponent(jtfCelular)
+                    .addComponent(jtfFechaInicio))
                 .addGap(10, 10, 10))
         );
         PanelDatosClienteLayout.setVerticalGroup(
@@ -577,18 +662,18 @@ public class JDExpediente extends javax.swing.JDialog {
                     .addGroup(PanelDatosClienteLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jDateChooserFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelfechainicio)
-                            .addComponent(labelnombre))
+                            .addComponent(labelnombre)
+                            .addComponent(jtfFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(5, 5, 5)
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(labeltelefonocasa)
-                            .addComponent(jTextFieldtelefonocasa, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtfTelefonoCasas, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(5, 5, 5)
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(labelcelular)
-                            .addComponent(jTextFieldcelular, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtfCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(5, 5, 5)
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(labelfechanacimiento)
@@ -605,15 +690,15 @@ public class JDExpediente extends javax.swing.JDialog {
                         .addGap(50, 50, 50)
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(labeltelefonotrabajo)
-                            .addComponent(jTextFieldtelefonotrab, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtfTelefonoTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(5, 5, 5)
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFielddireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labeldireccion))
                         .addGap(5, 5, 5)
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(labelhoraparallamar)
-                            .addComponent(jFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtfMejorHora, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(5, 5, 5)
                         .addGroup(PanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(labelestatura)
@@ -878,7 +963,7 @@ public class JDExpediente extends javax.swing.JDialog {
                 .addGap(22, 22, 22)
                 .addComponent(jlFotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 904, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 899, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
@@ -971,33 +1056,26 @@ public class JDExpediente extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jlFotoPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlFotoPerfilMouseClicked
-        if (evt.getClickCount() == 2) { 
-        new OpcionFotoPefil(new javax.swing.JDialog(), true).setVisible(true);
+        if (evt.getClickCount() == 2) {
+            new OpcionFotoPefil(new javax.swing.JDialog(), true).setVisible(true);
         }
     }//GEN-LAST:event_jlFotoPerfilMouseClicked
 
     private void botonaceptarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarexpedienteActionPerformed
-        
-        
         Expediente2 expediente = new Expediente2();
-        if(String.valueOf(jTextFielddireccion.getText().charAt(1)).equals(" ")){
-            JOptionPane.showMessageDialog(null,"Los primeros digitos en la Direccion es un espacio en blanco");
-        expediente.actualizarTablaClientes(
-                
-                jTextFieldtelefonotrab.getText(),
-                jTextFielddireccion.getText().trim(),
-                jFormattedTextField.getText(),
-                fechaJCalendar(jDateChooserFechaInicio).toString(),
-                jTextFieldtelefonocasa.getText(),
-                jTextFieldcelular.getText(),
+
+        expediente.actualizarTablaClientes(jtfTelefonoTrabajo.getText(),
+                jtfDireccion.getText().trim(),
+                jtfMejorHora.getText(),
+                jtfTelefonoCasas.getText(),
+                jtfCelular.getText(),
                 jtfedad.getText(),
                 jTextFieldpesoideal.getText(),
                 jCBoxsubir.isSelected(),
                 jCBoxBajar.isSelected(),
                 jCBoxmantener.isSelected(),
-                id);   
-                         
-        }else{    
+                PanelRegistroClientes.getIdCliente());
+
         boolean gastritis = jCBoxgastritis.isSelected();
         boolean colitis = jCBoxcolitis.isSelected();
         boolean estreñimiento = jCBoxestrenimiento.isSelected();
@@ -1019,149 +1097,142 @@ public class JDExpediente extends javax.swing.JDialog {
         boolean calambres = jCBoxcalambres.isSelected();
         boolean varices = jCBoxvarices.isSelected();
         boolean doloresdehueso = jCBoxdoloresdehueso.isSelected();
-        //boolean anemia = jCBoxanemia.isSelected();
+        boolean anemia = jCBoxanemia.isSelected();
         boolean problemadevesicula = jCBoxproblemasdevesicula.isSelected();
         boolean problemaderiñon = jCBoxproblemasderinon.isSelected();
         boolean celulitis = jCBoxcelulitis.isSelected();
-        
-        
-              
-        if(jCBoxgastritis.isSelected()== false
-            && jCBoxcolitis.isSelected()== false
-            && jCBoxestrenimiento.isSelected() == false
-            && jCBoxulcera.isSelected()== false
-            && jCBoxcansancio.isSelected()== false
-            && jCBoxdiabetes.isSelected()== false
-            && jCBoxpresionalta.isSelected()== false
-            && jCBoxcolesterol.isSelected()== false
-            && jCBoxalergias.isSelected()== false
-            && jCBoxestres.isSelected()== false
-            && jCBoxdolordecabeza.isSelected()== false
-            && jCBoxdolordecuello.isSelected()== false
-            && jCBoxdoloresdeespalda.isSelected()== false
-            && jCBoxartritis.isSelected()== false
-            && jCBoxansiedad.isSelected()== false
-            && jCBoxembarazo.isSelected()== false
-            && jCBoxretenciondeliquidos.isSelected()== false
-            && jCBoxmalacirculacion.isSelected()== false
-            && jCBoxcalambres.isSelected()== false
-            && jCBoxvarices.isSelected()== false
-            && jCBoxdoloresdehueso.isSelected()== false
-            && jCBoxanemia.isSelected()== false
-            && jCBoxproblemasdevesicula.isSelected()== false
-            && jCBoxproblemasderinon.isSelected()== false
-            && jCBoxcelulitis.isSelected()== false
-            ){
-            
-            expediente.insertarProblemasdeSalud(id, gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes,
+    
+        if (hayProblemasDeSalud()) {
+            expediente.actualizarProblemasDeSalud(
+                    PanelRegistroClientes.getIdCliente(), 
+                    gastritis, 
+                    colitis, 
+                    estreñimiento, 
+                    ulcera, 
+                    cansancio, 
+                    diabetes,
+                    presionAlta, 
+                    colesterol, 
+                    alergias, 
+                    estres, 
+                    dolordecabeza, 
+                    dolordecuello, 
+                    doloresdeespalda, 
+                    artritis,
+                    ansiedad, 
+                    embarazo, 
+                    retencionliquidos, 
+                    malacirculacion, 
+                    calambres, 
+                    varices,
+                    doloresdehueso, 
+                    anemia,
+                    problemadevesicula, 
+                    problemaderiñon, 
+                    celulitis);
+
+        } else {
+            expediente.insertarProblemasdeSalud(PanelRegistroClientes.getIdCliente(), gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes,
                     presionAlta, colesterol, alergias, estres, dolordecabeza, dolordecuello, doloresdeespalda, artritis,
-                    ansiedad, embarazo, retencionliquidos, malacirculacion, calambres, varices, doloresdehueso, alergias,
+                    ansiedad, embarazo, retencionliquidos, malacirculacion, calambres, varices, doloresdehueso, anemia,
                     problemadevesicula, problemaderiñon, celulitis);
-        }else{
-            
-            
-            expediente.actualizarProblemasDeSalud(id, gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes, presionAlta,
-                colesterol, alergias, estres, dolordecabeza, dolordecuello, doloresdeespalda, artritis, ansiedad, embarazo,
-                retencionliquidos, malacirculacion, calambres, varices, doloresdehueso,problemadevesicula,
-                problemaderiñon, celulitis);
-            
         }
-            
-        }
+
     }//GEN-LAST:event_botonaceptarexpedienteActionPerformed
 
     private void jCBoxsubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxsubirActionPerformed
-         if(jCBoxsubir.isSelected()){
-           jCBoxBajar.setSelected(false);
-           jCBoxmantener.setSelected(false);
-            
+        if (jCBoxsubir.isSelected()) {
+            jCBoxBajar.setSelected(false);
+            jCBoxmantener.setSelected(false);
+
         }
     }//GEN-LAST:event_jCBoxsubirActionPerformed
 
     private void jCBoxBajarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxBajarActionPerformed
-        if(jCBoxBajar.isSelected()){
-           jCBoxsubir.setSelected(false);
-           jCBoxmantener.setSelected(false);
-            
+        if (jCBoxBajar.isSelected()) {
+            jCBoxsubir.setSelected(false);
+            jCBoxmantener.setSelected(false);
+
         }
     }//GEN-LAST:event_jCBoxBajarActionPerformed
 
     private void jCBoxmantenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxmantenerActionPerformed
-        if( jCBoxmantener.isSelected()){
-           jCBoxsubir.setSelected(false);
-           jCBoxBajar.setSelected(false);
-            
+        if (jCBoxmantener.isSelected()) {
+            jCBoxsubir.setSelected(false);
+            jCBoxBajar.setSelected(false);
+
         }
     }//GEN-LAST:event_jCBoxmantenerActionPerformed
 
-    private void jTextFieldtelefonotrabKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonotrabKeyTyped
+    private void jtfTelefonoTrabajoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoTrabajoKeyTyped
         if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
-        
+
         if (!Character.isDigit(evt.getKeyChar())) {
             evt.consume();
 
         }
-    }//GEN-LAST:event_jTextFieldtelefonotrabKeyTyped
+    }//GEN-LAST:event_jtfTelefonoTrabajoKeyTyped
 
-    private void jTextFieldtelefonocasaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldtelefonocasaKeyTyped
+    private void jtfTelefonoCasasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoCasasKeyTyped
         if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
-        
+
         if (!Character.isDigit(evt.getKeyChar())) {
             evt.consume();
 
         }
-    }//GEN-LAST:event_jTextFieldtelefonocasaKeyTyped
+    }//GEN-LAST:event_jtfTelefonoCasasKeyTyped
 
-    private void jTextFieldcelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldcelularKeyTyped
+    private void jtfCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCelularKeyTyped
         if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
-        
+
         if (!Character.isDigit(evt.getKeyChar())) {
             evt.consume();
 
         }
-    }//GEN-LAST:event_jTextFieldcelularKeyTyped
+    }//GEN-LAST:event_jtfCelularKeyTyped
 
     private void jTextFieldedadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldedadKeyTyped
         if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
-        
+
         if (!Character.isDigit(evt.getKeyChar())) {
             evt.consume();
 
         }
     }//GEN-LAST:event_jTextFieldedadKeyTyped
 
-    private void jTextFielddireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielddireccionKeyTyped
+    private void jtfDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDireccionKeyTyped
         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
             evt.consume();
         }
-        
-        
-        Character s = evt.getKeyChar();
-        
-        if(!Character.isLetter(s) && s != KeyEvent.VK_SPACE){
-            evt.consume();   
-        }
-    }//GEN-LAST:event_jTextFielddireccionKeyTyped
 
-     private Date fechaJCalendar(JDateChooser calendario) {
-    
+        Character s = evt.getKeyChar();
+
+        if (!Character.isLetter(s) && s != KeyEvent.VK_SPACE) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfDireccionKeyTyped
+
+    private void jtfMejorHoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfMejorHoraKeyTyped
+    }//GEN-LAST:event_jtfMejorHoraKeyTyped
+
+    private Date fechaJCalendar(JDateChooser calendario) {
+
         Date date = calendario.getDate();
         long d = date.getTime();
         java.sql.Date fecha = new java.sql.Date(d);
         return fecha;
-        
-        
+
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelCambiosCorporales;
     private javax.swing.JPanel PanelDatosCliente;
@@ -1197,9 +1268,8 @@ public class JDExpediente extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCBoxsubir;
     private javax.swing.JCheckBox jCBoxulcera;
     private javax.swing.JCheckBox jCBoxvarices;
-    private com.toedter.calendar.JDateChooser jDateChooserFechaInicio;
-    private javax.swing.JFormattedTextField jFormattedTextField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1207,23 +1277,28 @@ public class JDExpediente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextFieldcelular;
-    private javax.swing.JTextField jTextFielddireccion;
     private javax.swing.JTextField jTextFieldedad;
     private javax.swing.JTextField jTextFieldestatura;
     private javax.swing.JTextField jTextFieldfechanacimiento;
     public static javax.swing.JTextField jTextFieldnombre;
     private javax.swing.JTextField jTextFieldpeso;
     private javax.swing.JTextField jTextFieldpesoideal;
-    private javax.swing.JTextField jTextFieldtelefonocasa;
-    private javax.swing.JTextField jTextFieldtelefonotrab;
     public static javax.swing.JLabel jlFotoPerfil;
+    private javax.swing.JTextField jtfCelular;
+    private javax.swing.JTextField jtfDireccion;
+    private javax.swing.JTextField jtfFechaInicio;
+    private javax.swing.JFormattedTextField jtfMejorHora;
+    private javax.swing.JTextField jtfTelefonoCasas;
+    private javax.swing.JTextField jtfTelefonoTrabajo;
     private javax.swing.JTextField jtfcalorias;
     private javax.swing.JTextField jtfedad;
     private javax.swing.JTextField jtfgrasa;
