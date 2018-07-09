@@ -390,6 +390,7 @@ public class JDExpediente extends javax.swing.JDialog {
             }
         });
 
+        tablacambioscorporales.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         tablacambioscorporales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -1208,7 +1209,7 @@ public class JDExpediente extends javax.swing.JDialog {
 
     private void botoncancelarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncancelarexpedienteActionPerformed
         if (debeGuardar) {
-            int mjs = JOptionPane.showConfirmDialog(this, "Los Datos que no hayan sido guardados se perderán\n ¿Está seguro que desea salir?");
+            int mjs = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea salir sin guardar?");
             if (mjs == JOptionPane.YES_OPTION) {
                 dispose();
             }
@@ -1274,8 +1275,8 @@ public class JDExpediente extends javax.swing.JDialog {
                 jtfedad.getText(),
                 jTextFieldpesoideal.getText(),
                 jCBoxsubir.isSelected(),
-                jCBoxBajar.isSelected(),
                 jCBoxmantener.isSelected(),
+                jCBoxBajar.isSelected(),                
                 PanelRegistroClientes.getIdCliente());
 
         boolean gastritis = jCBoxgastritis.isSelected();

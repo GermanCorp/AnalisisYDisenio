@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
@@ -15,7 +16,8 @@ public class FormatoTablaCambios extends DefaultTableCellRenderer {
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 
-        JLabel cell = new JLabel(value.toString());
+        JLabel cell = new JLabel(value.toString(), SwingConstants.CENTER);
+        //cell.setFont(new java.awt.Font("Centuty Gothic", 0, 12));
         cell.setOpaque(true);
         //double valor = Double.parseDouble(value.toString());
 

@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -312,6 +313,8 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        tablaPagos.setAutoCreateRowSorter(true);
+        tablaPagos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         tablaPagos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -484,9 +487,12 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         m = 1 + (c.get(Calendar.MONTH));
         a = c.get(Calendar.YEAR);
 
-        dia = Integer.toString(d);
-        mes = Integer.toString(m);
-        anio = Integer.toString(a);
+        DecimalFormat df = new DecimalFormat("00");
+
+        dia = df.format(d);
+        mes = df.format(m);
+        anio = df.format(a);
+
         fecha = (anio + "-" + mes + "-" + dia);
 
         int comboBoxTiempoPago = jcbTiempoPago.getSelectedIndex();

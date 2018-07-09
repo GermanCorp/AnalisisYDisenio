@@ -26,6 +26,7 @@ public class FormatoTabla extends DefaultTableCellRenderer {
 
         JLabel p = new JLabel(o.toString());
         p.setOpaque(true);
+        
         if (i1 == 7) {
             String[] parts = o.toString().split("-");
             String a = parts[0];
@@ -34,6 +35,13 @@ public class FormatoTabla extends DefaultTableCellRenderer {
                 p.setBackground(Color.orange);
             }
         }
+        
+        if(bln){
+            //cell.setBackground(new Color(0, 120, 215));
+            p.setBackground(new Color(0, 0, 0));
+            p.setForeground(Color.WHITE);
+        }
+        
         return p;
     }
 
