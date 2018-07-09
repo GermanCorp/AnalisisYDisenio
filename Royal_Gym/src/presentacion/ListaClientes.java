@@ -1,10 +1,13 @@
 package presentacion;
 
-
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
@@ -12,6 +15,7 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
+import static presentacion.PanelRegistroClientes.tablaClientes;
 import royal_gym.Clientes;
 import royal_gym.Conexion;
 
@@ -20,33 +24,35 @@ import royal_gym.Conexion;
  * @author alxcr
  */
 public class ListaClientes extends javax.swing.JDialog {
-    
+
     String cliente = "";
-    private final Conexion con;
     Clientes clientes = new Clientes();
     PanelVentas pventas;
     private final String[] columnasClientes = {
         "No.",
-        "Nombre"
+        "Nombre",
+        "",
+        ""
     };
-    
-    /** A return status code - returned if Cancel button has been pressed */
+
+    /**
+     * A return status code - returned if Cancel button has been pressed
+     */
     public static final int RET_CANCEL = 0;
-    /** A return status code - returned if OK button has been pressed */
+    /**
+     * A return status code - returned if OK button has been pressed
+     */
     public static final int RET_OK = 1;
 
     //Constructor
     public ListaClientes(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
-        
+
         initComponents();
-        okButton.setHorizontalTextPosition( SwingConstants.CENTER );
-        okButton.setVerticalTextPosition( SwingConstants.BOTTOM );
-        cancelButton.setHorizontalTextPosition( SwingConstants.CENTER );
-        cancelButton.setVerticalTextPosition( SwingConstants.BOTTOM );
-        //getContentPane().setBackground( new java.awt.Color(85,96,128));
-        //setBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds());
-        //setSize(this.getToolkit().getScreenSize()); 
+        okButton.setHorizontalTextPosition(SwingConstants.CENTER);
+        okButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+        cancelButton.setHorizontalTextPosition(SwingConstants.CENTER);
+        cancelButton.setVerticalTextPosition(SwingConstants.BOTTOM);
         setLocationRelativeTo(pventas);
 
         // Close the dialog when Esc is pressed
@@ -60,21 +66,68 @@ public class ListaClientes extends javax.swing.JDialog {
                 doClose(RET_CANCEL);
             }
         });
-        
-        con = new Conexion();
-        DefaultTableModel modeloTablaClientes = new DefaultTableModel(con.getCliente(), columnasClientes);
-        tablaClientes.setModel(modeloTablaClientes);
+
+        llenarTabla();
     }
 
-    /** @return the return status of this dialog - one of RET_OK or RET_CANCEL */
+    private void llenarTabla() {
+        DefaultTableModel modeloTablaClientes = new DefaultTableModel(getClientes(""), columnasClientes);
+        tablaClientes.setModel(modeloTablaClientes);
+        ocultarColumna();
+    }
+
+    private void ocultarColumna() {
+        tablaClientes.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablaClientes.getColumnModel().getColumn(0).setMinWidth(0);
+        tablaClientes.getColumnModel().getColumn(0).setPreferredWidth(0);
+
+        tablaClientes.getColumnModel().getColumn(2).setMaxWidth(0);
+        tablaClientes.getColumnModel().getColumn(2).setMinWidth(0);
+        tablaClientes.getColumnModel().getColumn(2).setPreferredWidth(0);
+
+        tablaClientes.getColumnModel().getColumn(3).setMaxWidth(0);
+        tablaClientes.getColumnModel().getColumn(3).setMinWidth(0);
+        tablaClientes.getColumnModel().getColumn(3).setPreferredWidth(0);
+    }
+
+    public Object[][] getClientes(String nombres) {
+        Object[][] datosCliente = null;
+        try {
+            String consulta = "Select idCliente, nombres, apellidos, celular, direccion FROM cliente WHERE nombres ||' '||apellidos  LIKE '%' || ? || '%' ORDER BY nombres";
+            PreparedStatement statement = Conexion.getConexion().prepareStatement(consulta);
+            statement.setString(1, nombres);
+            ResultSet resultado = statement.executeQuery();
+
+            ArrayList<Object[]> filas = new ArrayList<>();
+
+            while (resultado.next()) {
+                filas.add(
+                        new Object[]{
+                            resultado.getString("idCliente"),
+                            resultado.getString("Nombres") + " " + resultado.getString("apellidos"),
+                            resultado.getString("celular"),
+                            resultado.getString("direccion"),}
+                );
+            }
+            datosCliente = new Object[filas.size()][];
+            filas.toArray(datosCliente);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return datosCliente;
+    }
+
+    /**
+     * @return the return status of this dialog - one of RET_OK or RET_CANCEL
+     */
     public int getReturnStatus() {
         return returnStatus;
     }
 
-    /** This method is called from within the constructor to
-     * initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is
-     * always regenerated by the Form Editor.
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -117,23 +170,12 @@ public class ListaClientes extends javax.swing.JDialog {
 
         tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Título 1"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaClientesMouseClicked(evt);
@@ -171,7 +213,7 @@ public class ListaClientes extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -207,29 +249,42 @@ public class ListaClientes extends javax.swing.JDialog {
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         doClose(RET_OK);
         int filaSeleccionada = tablaClientes.getSelectedRow();
-            String nombreCliente = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
-            cliente = nombreCliente;  
-            PanelVentas ventas = new PanelVentas(cliente);
-            ventas.setNombreCliente();
+        String nombreCliente = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
+        cliente = nombreCliente;
+        PanelVentas ventas = new PanelVentas(cliente);
+        ventas.setNombreCliente();
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         doClose(RET_CANCEL);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    /** Closes the dialog */
+    /**
+     * Closes the dialog
+     */
     private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
         doClose(RET_CANCEL);
     }//GEN-LAST:event_closeDialog
 
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
-        if(evt.getClickCount()==2){
-        doClose(RET_OK);
-        int filaSeleccionada = tablaClientes.getSelectedRow();
+        if (evt.getClickCount() == 2) {
+            int filaSeleccionada = tablaClientes.getSelectedRow();
+
             String nombreCliente = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
-            cliente = nombreCliente;  
-            PanelVentas ventas = new PanelVentas(cliente);
-            ventas.setNombreCliente();
+            PanelVentas.jtfNombre.setText("NOMBRE: " + nombreCliente);
+
+            try {
+                String celular = tablaClientes.getValueAt(filaSeleccionada, 2).toString();
+                String direccion = tablaClientes.getValueAt(filaSeleccionada, 3).toString();
+
+                PanelVentas.jtfTelefono.setText("TEL: " + celular);
+                PanelVentas.jtfDireccion.setText("DIRECCIÓN: " + direccion);
+            } catch (Exception e) {
+                PanelVentas.jtfTelefono.setText("TEL: " + "N/A");
+                PanelVentas.jtfDireccion.setText("DIRECCIÓN: " + "N/A");
+            }
+            
+            doClose(RET_OK);
         }
     }//GEN-LAST:event_tablaClientesMouseClicked
 
@@ -239,8 +294,9 @@ public class ListaClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_tablaClientesMousePressed
 
     private void jtfBuscarClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfBuscarClienteCaretUpdate
-        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(clientes.buscarCliente(jtfBuscarCliente.getText().trim(),jtfBuscarCliente.getText()), columnasClientes);
+        DefaultTableModel modeloTablaBuscarClientes = new DefaultTableModel(getClientes(jtfBuscarCliente.getText().trim()), columnasClientes);
         tablaClientes.setModel(modeloTablaBuscarClientes);
+        ocultarColumna();
     }//GEN-LAST:event_jtfBuscarClienteCaretUpdate
 
     private void jtfBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfBuscarClienteActionPerformed

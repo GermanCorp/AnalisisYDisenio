@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Clientes;
 import royal_gym.Conexion;
+import royal_gym.Mensaje;
 
 public class PanelRegistroClientes extends javax.swing.JPanel {
 
@@ -388,6 +389,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         PanelTabla.setBackground(new java.awt.Color(85, 96, 128));
         PanelTabla.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Clientes Registrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
+        tablaClientes.setAutoCreateRowSorter(true);
         tablaClientes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -490,11 +492,11 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scrollTablaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
-                .addGap(27, 27, 27)
+                .addGap(28, 28, 28)
                 .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -642,14 +644,8 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 jtfAltura.setText("");
                 jtfPeso.setText("");
 
-                royal_gym.VP.jlMensajes.setText("Cliente registrado exitosamente");
-                new Thread(() -> {
-                    try {
-                        Thread.sleep(1000);
-                        royal_gym.VP.jlMensajes.setText("");
-                    } catch (InterruptedException ex) {
-                    }
-                }).start();
+                Mensaje.setMensaje("Cliente Registrado exitosamente");
+                        
                 clientes.modeloTablaCliente(columnasClientes, tablaClientes);
                 ocultarColumna();
 
@@ -675,15 +671,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 btnAceptarRegistroCliente.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_guardar_2.png")));
                 btnCancelarRegistroCliente.setText("Limpiar");
                 btnCancelarRegistroCliente.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_limpiar_02.png")));
-                //JOptionPane.showMessageDialog(this, "Modificacion Exitosa", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
-                royal_gym.VP.jlMensajes.setText("Cliente editado exitosamente");
-                new Thread(() -> {
-                    try {
-                        Thread.sleep(1000);
-                        royal_gym.VP.jlMensajes.setText("");
-                    } catch (InterruptedException ex) {
-                    }
-                }).start();
+                Mensaje.setMensaje("Cliente editado exitosamente");
                 clientes.modeloTablaCliente(columnasClientes, tablaClientes);
                 ocultarColumna();
 
@@ -823,8 +811,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
         int filaSeleccionada = tablaClientes.getSelectedRow();
 
         if (filaSeleccionada == -1) {
-            //JOptionPane.showMessageDialog(null, "Seleccione un cliente", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            royal_gym.VP.jlMensajes.setText("Seleccione un cliente");
+            Mensaje.setMensaje("Seleccione un cliente");
         } else {
 
             String nombres = tablaClientes.getValueAt(filaSeleccionada, 1).toString();
@@ -835,16 +822,7 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
                 clientes.eliminarCliente(nombres, apellidos, nacimiento);
                 clientes.modeloTablaCliente(columnasClientes, tablaClientes);
                 ocultarColumna();
-                //JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente");
-
-                royal_gym.VP.jlMensajes.setText("Cliente eliminado exitosamente");
-                new Thread(() -> {
-                    try {
-                        Thread.sleep(1000);
-                        royal_gym.VP.jlMensajes.setText("");
-                    } catch (InterruptedException ex) {
-                    }
-                }).start();
+                Mensaje.setMensaje("Cliente Eliminado exitosamente");
             }
         }
 
@@ -861,7 +839,6 @@ public class PanelRegistroClientes extends javax.swing.JPanel {
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
         int filaseleccionada = tablaClientes.getSelectedRow();
         idCliente = (tablaClientes.getValueAt(filaseleccionada, 0).toString());
-        royal_gym.VP.jlMensajes.setText("");
         
         if (evt.getClickCount() == 2) {
             btnExpediente.setEnabled(false);

@@ -61,7 +61,7 @@ public class VP extends javax.swing.JFrame {
 
         getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
-        jlMensajes.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jlMensajes.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         jlMensajes.setForeground(new java.awt.Color(255, 0, 0));
         jlMensajes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlMensajes.addMouseListener(new java.awt.event.MouseAdapter() {

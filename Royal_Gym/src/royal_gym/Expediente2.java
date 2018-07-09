@@ -2,6 +2,7 @@ package royal_gym;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -36,17 +37,7 @@ public class Expediente2 {
             double pstCalorias = rcalorias - Double.parseDouble(calorias);
             double pstEdad = redad - Double.parseDouble(edad);
             double pstViceral = rviceral - Double.parseDouble(grasaviceral);
-
-            /*pst1.setString(1, ((rpeso) > Double.parseDouble(peso)) ? "Disminuyó " + String.valueOf(pstPeso) + " Lbs" : "Aumentó " + String.valueOf(pstPeso*-1)+  " Lbs");
-            pst1.setString(2, ((rimc) > Double.parseDouble(imc)) ? "Disminuyó en " + String.valueOf(pstImc) : "Aumentó en " + String.valueOf(pstImc * -1));
-            pst1.setString(3, ((rgrasa) > Double.parseDouble(grasa)) ? "Disminuyó " + String.valueOf(pstGrasa) + "%" : "Aumentó " + String.valueOf(pstGrasa * -1) + "%");
-            pst1.setString(4, ((rmusculo) > Double.parseDouble(musculo)) ? "Disminuyó en " + String.valueOf(pstMusculo) : "Aumentó en " + String.valueOf(pstMusculo * -1));
-            pst1.setString(5, ((rcalorias) > Double.parseDouble(calorias)) ? "Disminuyó en " + String.valueOf(pstCalorias) : "Aumentó en " + String.valueOf(pstCalorias * -1));
-            pst1.setString(6, ((redad) > Double.parseDouble(edad)) ? "Disminuyó en " + String.valueOf(pstEdad) : "Aumentó en " + String.valueOf(pstEdad * -1));
-            pst1.setString(7, ((rviceral) > Double.parseDouble(grasaviceral)) ? "Disminuyó en " + String.valueOf(pstViceral) : "Aumentó en " + String.valueOf(pstViceral * -1));
-            pst1.setString(8, id);
-            pst1.setString(9, fecha);
-            pst1.execute();*/
+            
             pst1.setDouble(1, pstPeso * -1);
             pst1.setDouble(2, pstImc * -1);
             pst1.setDouble(3, pstGrasa * -1);
@@ -110,7 +101,7 @@ public class Expediente2 {
         try {
             String consulta = "SELECT * FROM cambioscorporales WHERE id_cliente = ?";
             PreparedStatement statement = Conexion.getConexion().prepareStatement(consulta);
-            statement.setString(1, id);;
+            statement.setString(1, id);
 
             ResultSet resultado = statement.executeQuery();
 
@@ -311,7 +302,7 @@ public class Expediente2 {
             consulta.setBoolean(16, embarazo);
             consulta.setBoolean(17, retencionliquidos);
             consulta.setBoolean(18, malacirculacion);
-            consulta.setBoolean(29, calambres);
+            consulta.setBoolean(19, calambres);
             consulta.setBoolean(20, varices);
             consulta.setBoolean(21, doloresdehueso);
             consulta.setBoolean(22, anemia);

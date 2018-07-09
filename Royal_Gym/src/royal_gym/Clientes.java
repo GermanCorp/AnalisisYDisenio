@@ -162,22 +162,6 @@ public class Clientes {
         }
     }
 
-    public String getCliente() {
-        String datosCliente = null;
-        try {
-            String consulta = "Select nombres ||' '||apellidos as NombreCompleto FROM cliente";
-            PreparedStatement cliente = Conexion.getConexion().prepareStatement(consulta);
-            resultado = statement.executeQuery(consulta);
-
-            while (resultado.next()) {
-                datosCliente = resultado.getString(1);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return datosCliente;
-    }
-
     public void modificarClientes(String id, String nombres, String apellidos, String nacimiento, String altura, String peso) {
         try {
             String sql = "update cliente set nombres = ?, apellidos = ?, fechaNacimiento = ?, altura = ?, peso = ? where idCliente = ?";

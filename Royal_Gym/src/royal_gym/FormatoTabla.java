@@ -5,50 +5,39 @@
  */
 package royal_gym;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import presentacion.PanelRegistroClientes;
-import presentacion.PanelRegistroPagos;
 
 //  if(String.valueOf(table.getValueAt(row,5)).equals("ACTIVO"))  setForeground(Color.blue);
 public class FormatoTabla extends DefaultTableCellRenderer {
-  
+
     @Override
     public Component getTableCellRendererComponent(JTable jtable, Object o, boolean bln, boolean bln1, int i, int i1) {
-       
+
         Calendar c1 = Calendar.getInstance();
-        int mes = c1.get(Calendar.MONTH)+1;
+        int mes = c1.get(Calendar.MONTH) + 1;
         int anio = c1.get(Calendar.YEAR);
         String mess = Integer.toString(mes);
         String anioo = Integer.toString(anio);
-       
+
         JLabel p = new JLabel(o.toString());
         p.setOpaque(true);
-       if (i1 == 7)
-       {
+        if (i1 == 7) {
             String[] parts = o.toString().split("-");
-             String a = parts[0];
-             String m = parts[1];            
-        if( (a == null ? anioo == null : a.equals(anioo)) && (m == null ? mess == null : m.equals(mess))) {  
-           p.setBackground(Color.orange);
-        
+            String a = parts[0];
+            String m = parts[1];
+            if ((a == null ? anioo == null : a.equals(anioo)) && (m == null ? mess == null : m.equals(mess))) {
+                p.setBackground(Color.orange);
+            }
         }
-     }
-       return p;
-    }  
-   
-}
+        return p;
+    }
 
+}
 
 //     
 //        Date fechaActual = Calendar.getInstance().getTime();
@@ -69,7 +58,7 @@ public class FormatoTabla extends DefaultTableCellRenderer {
 //            
 //    }
 //        
-       /* 
+/* 
         JLabel celda = new JLabel() {
             @Override
             public void paint(Graphics g) {
@@ -90,10 +79,8 @@ public class FormatoTabla extends DefaultTableCellRenderer {
 
         };
         
-*/     
-
-
-/*
+ */
+ /*
 
  //tablaPagos.setDefaultRenderer (Object.class, new FormatoTabla());
     @Override 
@@ -158,4 +145,4 @@ public class FormatoTabla extends DefaultTableCellRenderer {
     }
    
 }       
-*/
+ */

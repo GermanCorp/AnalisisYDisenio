@@ -10,12 +10,12 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Conexion;
+import royal_gym.Mensaje;
 
 /**
  *
  * @author Alexis
  */
-
 public class PanelVentas extends javax.swing.JPanel {
 
     public static double total = 0;
@@ -455,14 +455,10 @@ public class PanelVentas extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfDireccionActionPerformed
 
     private void jbAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarProductoActionPerformed
-        royal_gym.VP.jlMensajes.setText("");
         new ListaProductos(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jbAgregarProductoActionPerformed
 
     private void jbAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarClienteActionPerformed
-        //NewOkCancelDialog clientes = new ListaClientes(new javax.swing.JDialog(), true);
-        //clientes.setVisible(true);
-        royal_gym.VP.jlMensajes.setText("");
         new ListaClientes(new javax.swing.JDialog(), true).setVisible(true);
     }//GEN-LAST:event_jbAgregarClienteActionPerformed
 
@@ -494,15 +490,10 @@ public class PanelVentas extends javax.swing.JPanel {
         DefaultTableModel modelo;
         if (total == 0) {
             //JOptionPane.showMessageDialog(null, "No hay ninguna venta que guardar");
-            royal_gym.VP.jlMensajes.setText("No hay ninguna venta que guardar");
-            new Thread(() -> {
-                try {
-                    Thread.sleep(1000);
-                    royal_gym.VP.jlMensajes.setText("");
-                } catch (InterruptedException ex) {
-                }
-            }).start();
-        } else {
+            Mensaje.setMensaje("No hay ninguna venta que guardar");
+        } else if(jtfNombre.getText().equals("NOMBRE:")){
+            Mensaje.setMensaje("Seleccione un cliente");
+        }else {
             try {
                 for (int i = 0; i < jtablaProductosAVender.getRowCount(); i++) {
                     PreparedStatement pStatement = Conexion.getConexion().prepareStatement("insert into detallefactura(fecha, factura, idProducto, cantidad, descuento) values (?, ?,?,?,?)");
@@ -544,15 +535,11 @@ public class PanelVentas extends javax.swing.JPanel {
             subTotal = 0;
             isv = 0;
             descuento = 0;
+            jtfNombre.setText("NOMBRE:");
+            jtfTelefono.setText("TEL:");
+            jtfDireccion.setText("DIRECCION:");
             setValoresVenta();
-            royal_gym.VP.jlMensajes.setText("¡Venta registrada exitosamente!");
-            new Thread(() -> {
-                try {
-                    Thread.sleep(1000);
-                    royal_gym.VP.jlMensajes.setText("");
-                } catch (InterruptedException ex) {
-                }
-            }).start();
+            Mensaje.setMensaje("Venta registrada Exitosamente");
             nfac += 1;
             jtfNumeoFactura.setText(fac.format(nfac));
         }
@@ -563,8 +550,7 @@ public class PanelVentas extends javax.swing.JPanel {
         int filaSeleccinada = jtablaProductosAVender.getSelectedRow();
 
         if (filaSeleccinada == -1) {
-            //JOptionPane.showMessageDialog(null, "Seleccione un producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            royal_gym.VP.jlMensajes.setText("Seleccione un Producto");
+            Mensaje.setMensaje("Seleccione un producto");
         } else {
             Double totalPorProducto = (Double.parseDouble(jtablaProductosAVender.getValueAt(filaSeleccinada, 7).toString()));
             Double descuentoPorProducto = (Double.parseDouble(jtablaProductosAVender.getValueAt(filaSeleccinada, 4).toString()));
@@ -596,12 +582,12 @@ public class PanelVentas extends javax.swing.JPanel {
     private javax.swing.JButton jbEliminarFila;
     public static javax.swing.JTable jtablaProductosAVender;
     private static javax.swing.JTextField jtfDescuento;
-    private javax.swing.JTextField jtfDireccion;
+    public static javax.swing.JTextField jtfDireccion;
     private static javax.swing.JTextField jtfISV;
-    private static javax.swing.JTextField jtfNombre;
+    public static javax.swing.JTextField jtfNombre;
     private javax.swing.JTextField jtfNumeoFactura;
     private static javax.swing.JTextField jtfSubTotal;
-    private javax.swing.JTextField jtfTelefono;
+    public static javax.swing.JTextField jtfTelefono;
     private static javax.swing.JTextField jtfTotalVenta;
     // End of variables declaration//GEN-END:variables
 }

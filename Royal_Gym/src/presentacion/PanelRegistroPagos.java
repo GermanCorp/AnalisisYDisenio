@@ -27,21 +27,21 @@ import royal_gym.Pagos;
  * @author alxcr
  */
 public class PanelRegistroPagos extends javax.swing.JPanel {
-    
-    int filaseleccionadatablapagos;   
+
+    int filaseleccionadatablapagos;
     Pagos pagos = new Pagos();
-     //final Conexion con = new Conexion();
-     public static String cliente;
-     int d,m,a,df,mf,af, totalanio,totalmes, mess, diaa,annio;
-     int tm = 0;
-     int an = 0;
-     int me = 0;
-     int td = 0;
-     String dia,mes,anio,fecha,tiempo,totalme,anioo,totalm,totalan,totald,mees,totaldi ;
-     String fechaFinal = "";
-     private static Statement statement;
-     static ResultSet resultado;
-   
+    //final Conexion con = new Conexion();
+    public static String cliente;
+    int d, m, a, df, mf, af, totalanio, totalmes, mess, diaa, annio;
+    int tm = 0;
+    int an = 0;
+    int me = 0;
+    int td = 0;
+    String dia, mes, anio, fecha, tiempo, totalme, anioo, totalm, totalan, totald, mees, totaldi;
+    String fechaFinal = "";
+    private static Statement statement;
+    static ResultSet resultado;
+
     // columnas de la tabla pagos
     private final String[] columnasPagos = {
         "No.",
@@ -51,22 +51,20 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         "Tipo de Pago",
         "Tipo de Plan",
         "Fecha de Pago",
-        "Fecha de Vencimiento",
-    };
-    
+        "Fecha de Vencimiento",};
+
     public PanelRegistroPagos() {
         initComponents();
         //con.conectar();
         jcbPagoPlan.setEnabled(false);
-        
+
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(pagos.getPago(), columnasPagos);
         tablaPagos.setModel(modeloTablaPagos);
-       
-        tablaPagos.setDefaultRenderer (Object.class, new FormatoTabla());
-            
+
+        tablaPagos.setDefaultRenderer(Object.class, new FormatoTabla());
+
     }
-    
-    
+
     public PanelRegistroPagos(String cliente) {
         this.cliente = cliente;
     }
@@ -79,11 +77,10 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         this.cliente = cliente;
     }
 
-   
-    public void setNombreCliente(){
+    public void setNombreCliente() {
         jTextFieldNombreCliente.setText(getCliente());
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -427,14 +424,14 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
 
     private void jtfMontoAPagarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfMontoAPagarKeyPressed
         // TODO add your handling code here:
-        if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jtfMontoAPagarKeyPressed
 
     private void jtfMontoAPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfMontoAPagarKeyTyped
-       
-        if(!Character.isDigit(evt.getKeyChar())){
+
+        if (!Character.isDigit(evt.getKeyChar())) {
             evt.consume();
 
         }
@@ -452,14 +449,14 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
 
     private void jtfTiempoAPagarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTiempoAPagarKeyPressed
         // TODO add your handling code here:
-        if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jtfTiempoAPagarKeyPressed
 
     private void jtfTiempoAPagarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTiempoAPagarKeyTyped
         Number n = evt.getKeyCode();
-        if(!Character.isDigit(evt.getKeyChar())){
+        if (!Character.isDigit(evt.getKeyChar())) {
             evt.consume();
         }
 
@@ -475,116 +472,111 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     }//GEN-LAST:event_jcbPagoPlanActionPerformed
 
     private void jbPagoAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoAceptarActionPerformed
-        
-        String fechaActual;
-         
-         Date fechaSistema = new Date();
-         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-         fechaActual = formato.format(fechaSistema);
-        
-        
-         Calendar c = Calendar.getInstance();
-         d = c.get(Calendar.DATE);
-         m = 1 + (c.get(Calendar.MONTH));
-         a = c.get(Calendar.YEAR);
 
-         dia = Integer.toString(d);
-         mes = Integer.toString(m);
-         anio = Integer.toString(a);
-         fecha = (anio + "-" + mes + "-" + dia);
-        
-         int comboBoxTiempoPago = jcbTiempoPago.getSelectedIndex(); 
-         int comboBoxPagoPlan = jcbPagoPlan.getSelectedIndex();
-         
-         //validaciones para campos vacios
+        String fechaActual;
+
+        Date fechaSistema = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        fechaActual = formato.format(fechaSistema);
+
+        Calendar c = Calendar.getInstance();
+        d = c.get(Calendar.DATE);
+        m = 1 + (c.get(Calendar.MONTH));
+        a = c.get(Calendar.YEAR);
+
+        dia = Integer.toString(d);
+        mes = Integer.toString(m);
+        anio = Integer.toString(a);
+        fecha = (anio + "-" + mes + "-" + dia);
+
+        int comboBoxTiempoPago = jcbTiempoPago.getSelectedIndex();
+        int comboBoxPagoPlan = jcbPagoPlan.getSelectedIndex();
+
+        //validaciones para campos vacios
         if (jTextFieldNombreCliente.getText().isEmpty()
                 && jtfMontoAPagar.getText().isEmpty()
                 && jtfTiempoAPagar.getText().isEmpty()
                 && comboBoxTiempoPago == 0
-                && comboBoxPagoPlan == 0) 
-        {
+                && comboBoxPagoPlan == 0) {
             JOptionPane.showMessageDialog(this, "ingrese Toda la Información", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jTextFieldNombreCliente.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el NOMBRE del Cliente", "Error!", JOptionPane.ERROR_MESSAGE);
         } else if (jtfMontoAPagar.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el MONTO a pagar", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jtfTiempoAPagar. getText().isEmpty()) {
+        } else if (jtfTiempoAPagar.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el TIEMPO a pagar", "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if (jcbTiempoPago.getSelectedIndex()== 0) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar el TIEMPO a pagar" , "Error!", JOptionPane.ERROR_MESSAGE);
-        } else if ((jcbTiempoPago.getSelectedIndex()== 2)&& (jcbPagoPlan.getSelectedIndex()== 0)) {
+        } else if (jcbTiempoPago.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar el TIEMPO a pagar", "Error!", JOptionPane.ERROR_MESSAGE);
+        } else if ((jcbTiempoPago.getSelectedIndex() == 2) && (jcbPagoPlan.getSelectedIndex() == 0)) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar el TIPO DE PLAN a pagar", "Error!", JOptionPane.ERROR_MESSAGE);
-       
+
         } else {
-            
-         tiempo = jtfTiempoAPagar.getText();
-         mess = Integer.parseInt(tiempo);
-         diaa = Integer.parseInt(tiempo);
-         annio = Integer.parseInt(tiempo);
-        
-         //sumar dias a la fecha
-          if(jcbTiempoPago.getSelectedIndex() == 1)
-          {
-            int totaldia = d + diaa;
-            if(totaldia >30){
-                td = totaldia - 30;
-                me = m + 1;
-             
-                String totald = Integer.toString(td);
-                String mees = Integer.toString(me);
-                fechaFinal = (anio+ "-" + mees + "-" + totald);
-            }else{
-                String totaldi = Integer.toString(totaldia);
-                fechaFinal = (anio + "-" + mes + "-" +  totaldi);
-             }   
-          } 
-         
-         //Sumar meses a la fecha actual
-         if(jcbTiempoPago.getSelectedIndex() == 2)
-         {
-            totalmes = m + mess;
-            if(totalmes >12){
-            tm = totalmes - 12;
-            an = a + 1;
-             
-            totalme = Integer.toString(tm);
-            anioo = Integer.toString(an);
-            fechaFinal = (anioo+ "-" + totalme + "-" + dia);
-            }else{
-            totalm = Integer.toString(totalmes);
-            fechaFinal = (anio + "-" + totalm + "-" + dia);
-            
-            }   
-        }    
-         
-         //sumar anio  a la fecha actual
-          if(jcbTiempoPago.getSelectedIndex() == 3)
-           {
+
+            tiempo = jtfTiempoAPagar.getText();
+            mess = Integer.parseInt(tiempo);
+            diaa = Integer.parseInt(tiempo);
+            annio = Integer.parseInt(tiempo);
+
+            //sumar dias a la fecha
+            if (jcbTiempoPago.getSelectedIndex() == 1) {
+                int totaldia = d + diaa;
+                if (totaldia > 30) {
+                    td = totaldia - 30;
+                    me = m + 1;
+
+                    String totald = Integer.toString(td);
+                    String mees = Integer.toString(me);
+                    fechaFinal = (anio + "-" + mees + "-" + totald);
+                } else {
+                    String totaldi = Integer.toString(totaldia);
+                    fechaFinal = (anio + "-" + mes + "-" + totaldi);
+                }
+            }
+
+            //Sumar meses a la fecha actual
+            if (jcbTiempoPago.getSelectedIndex() == 2) {
+                totalmes = m + mess;
+                if (totalmes > 12) {
+                    tm = totalmes - 12;
+                    an = a + 1;
+
+                    totalme = Integer.toString(tm);
+                    anioo = Integer.toString(an);
+                    fechaFinal = (anioo + "-" + totalme + "-" + dia);
+                } else {
+                    totalm = Integer.toString(totalmes);
+                    fechaFinal = (anio + "-" + totalm + "-" + dia);
+
+                }
+            }
+
+            //sumar anio  a la fecha actual
+            if (jcbTiempoPago.getSelectedIndex() == 3) {
                 totalanio = a + annio;
-                totalan = Integer.toString( totalanio);
+                totalan = Integer.toString(totalanio);
                 fechaFinal = (totalan + "-" + mes + "-" + dia);
             }
             if (jcbPagoPlan.getSelectedIndex() != 0) {
                 pagos.insertarPagos(jTextFieldNombreCliente.getText(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
-                jcbTiempoPago.getSelectedItem().toString(), jcbPagoPlan.getSelectedItem().toString(), fechaActual,fechaFinal);
+                        jcbTiempoPago.getSelectedItem().toString(), jcbPagoPlan.getSelectedItem().toString(), fechaActual, fechaFinal);
             } else {
-                 pagos.insertarPagos(jTextFieldNombreCliente.getText(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
-                 jcbTiempoPago.getSelectedItem().toString(), "No aplica", fechaActual,fechaFinal);
+                pagos.insertarPagos(jTextFieldNombreCliente.getText(), jtfMontoAPagar.getText(), jtfTiempoAPagar.getText(),
+                        jcbTiempoPago.getSelectedItem().toString(), "No aplica", fechaActual, fechaFinal);
             }
-        
-        jTextFieldNombreCliente.setText("");
-        jtfMontoAPagar.setText("");
-        jtfTiempoAPagar.setText("");
-        jcbTiempoPago.setSelectedIndex(0);
-        jcbPagoPlan.setSelectedIndex(0);
 
-        JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
-        DefaultTableModel modeloTablaPagos = new DefaultTableModel(pagos.getPago(),columnasPagos);
-        tablaPagos.setModel(modeloTablaPagos);
+            jTextFieldNombreCliente.setText("");
+            jtfMontoAPagar.setText("");
+            jtfTiempoAPagar.setText("");
+            jcbTiempoPago.setSelectedIndex(0);
+            jcbPagoPlan.setSelectedIndex(0);
+
+            JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            DefaultTableModel modeloTablaPagos = new DefaultTableModel(pagos.getPago(), columnasPagos);
+            tablaPagos.setModel(modeloTablaPagos);
         }
     }//GEN-LAST:event_jbPagoAceptarActionPerformed
 
-    
+
     private void jbPagoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagoCancelarActionPerformed
         jTextFieldNombreCliente.setText("");
         jtfMontoAPagar.setText("");
@@ -594,22 +586,21 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     }//GEN-LAST:event_jbPagoCancelarActionPerformed
 
     private void jcbTiempoPagoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbTiempoPagoItemStateChanged
-     
+
     }//GEN-LAST:event_jcbTiempoPagoItemStateChanged
 
     private void jcbTiempoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTiempoPagoActionPerformed
-       if(jcbTiempoPago.getSelectedIndex() == 2){
-           jcbPagoPlan.setEnabled(true);
-           
-       }else{
-          jcbPagoPlan.setEnabled(false); 
-       }
+        if (jcbTiempoPago.getSelectedIndex() == 2) {
+            jcbPagoPlan.setEnabled(true);
+
+        } else {
+            jcbPagoPlan.setEnabled(false);
+        }
     }//GEN-LAST:event_jcbTiempoPagoActionPerformed
 
     private void jtfbuscarpagoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtfbuscarpagoCaretUpdate
         // TODO add your handling code here:
 
-        
         DefaultTableModel modeloTablaPagos = new DefaultTableModel(pagos.buscarPago(jtfbuscarpago.getText().trim()), columnasPagos);
         tablaPagos.setModel(modeloTablaPagos);
     }//GEN-LAST:event_jtfbuscarpagoCaretUpdate
@@ -620,7 +611,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
 
     private void jtfbuscarpagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfbuscarpagoKeyPressed
 
-        if(evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()){
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
             evt.consume();
         }
     }//GEN-LAST:event_jtfbuscarpagoKeyPressed
@@ -629,13 +620,13 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         // TODO add your handling code here:
         Character s = evt.getKeyChar();
 
-        if(!Character.isLetter(s) && s != KeyEvent.VK_SPACE){
+        if (!Character.isLetter(s) && s != KeyEvent.VK_SPACE) {
             evt.consume();
         }
 
         int limit = 10;
-        if (jtfbuscarpago.getText().length() == limit) { 
-            
+        if (jtfbuscarpago.getText().length() == limit) {
+
             evt.consume();
 
         }
@@ -644,46 +635,44 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     private void combobuscarportipoplanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combobuscarportipoplanItemStateChanged
         // TODO add your handling code here:
         int tf = combobuscarportipoplan.getSelectedIndex();
-				switch (tf) {
-				
-				case 0:
-					//String idt = filtro.getText();
-					DefaultTableModel modeloTablaPagos = new DefaultTableModel(pagos.getClienteTipoPlan(combobuscarportipoplan.getSelectedItem().toString()), columnasPagos);
-                                        tablaPagos.setModel(modeloTablaPagos);
-					break;
-				case 1:
-					 DefaultTableModel modeloTablaPagos1 = new DefaultTableModel(pagos.getClienteTipoPlan(combobuscarportipoplan.getSelectedItem().toString()), columnasPagos);
-                                         tablaPagos.setModel(modeloTablaPagos1);
-					break;
-				case 2:
-					
-					 DefaultTableModel modeloTablaPagos2 = new DefaultTableModel(pagos.getClienteTipoPlan(combobuscarportipoplan.getSelectedItem().toString()), columnasPagos);
-                                         tablaPagos.setModel(modeloTablaPagos2);
-					break;
-                                        
-                                case 3:
-                                    
-                                        DefaultTableModel modeloTablaPagos3 = new DefaultTableModel(pagos.getClienteTipoPlan(combobuscarportipoplan.getSelectedItem().toString()), columnasPagos);
-                                         tablaPagos.setModel(modeloTablaPagos3);
-					break;
-                                    
-                                case 4:    
-					
-					 DefaultTableModel modeloTablaPagos4 = new DefaultTableModel(pagos.getClienteTipoPlan(combobuscarportipoplan.getSelectedItem().toString()), columnasPagos);
-                                         tablaPagos.setModel(modeloTablaPagos4);
-					break;  
-                                        
-                                        
-                                case 5:    
-					
-					 DefaultTableModel modeloTablaPagos5 = new DefaultTableModel(pagos.getPago(), columnasPagos);
-                                         tablaPagos.setModel(modeloTablaPagos5);
-					break;          
-					
-				}
-			
-        
-        
+        switch (tf) {
+
+            case 0:
+                //String idt = filtro.getText();
+                DefaultTableModel modeloTablaPagos = new DefaultTableModel(pagos.getClienteTipoPlan(combobuscarportipoplan.getSelectedItem().toString()), columnasPagos);
+                tablaPagos.setModel(modeloTablaPagos);
+                break;
+            case 1:
+                DefaultTableModel modeloTablaPagos1 = new DefaultTableModel(pagos.getClienteTipoPlan(combobuscarportipoplan.getSelectedItem().toString()), columnasPagos);
+                tablaPagos.setModel(modeloTablaPagos1);
+                break;
+            case 2:
+
+                DefaultTableModel modeloTablaPagos2 = new DefaultTableModel(pagos.getClienteTipoPlan(combobuscarportipoplan.getSelectedItem().toString()), columnasPagos);
+                tablaPagos.setModel(modeloTablaPagos2);
+                break;
+
+            case 3:
+
+                DefaultTableModel modeloTablaPagos3 = new DefaultTableModel(pagos.getClienteTipoPlan(combobuscarportipoplan.getSelectedItem().toString()), columnasPagos);
+                tablaPagos.setModel(modeloTablaPagos3);
+                break;
+
+            case 4:
+
+                DefaultTableModel modeloTablaPagos4 = new DefaultTableModel(pagos.getClienteTipoPlan(combobuscarportipoplan.getSelectedItem().toString()), columnasPagos);
+                tablaPagos.setModel(modeloTablaPagos4);
+                break;
+
+            case 5:
+
+                DefaultTableModel modeloTablaPagos5 = new DefaultTableModel(pagos.getPago(), columnasPagos);
+                tablaPagos.setModel(modeloTablaPagos5);
+                break;
+
+        }
+
+
     }//GEN-LAST:event_combobuscarportipoplanItemStateChanged
 
     private void combobuscarportipoplanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobuscarportipoplanActionPerformed
@@ -691,25 +680,23 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
     }//GEN-LAST:event_combobuscarportipoplanActionPerformed
 
     private void botonAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarClienteActionPerformed
-         
+
         new JDialogListaClientes(new javax.swing.JDialog(), true).setVisible(true);
-        
+
     }//GEN-LAST:event_botonAgregarClienteActionPerformed
 
     private void tablaPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPagosMouseClicked
-        if(evt.getClickCount()==2)
-         {
-        filaseleccionadatablapagos = tablaPagos.getSelectedRow();
-        jTextFieldNombreCliente.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 1).toString());
-        jtfMontoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 2).toString());
-        jtfTiempoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 3).toString());
-        jcbTiempoPago.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 4));
-        jcbPagoPlan.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 5));
-         }
+        if (evt.getClickCount() == 2) {
+            filaseleccionadatablapagos = tablaPagos.getSelectedRow();
+            jTextFieldNombreCliente.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 1).toString());
+            jtfMontoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 2).toString());
+            jtfTiempoAPagar.setText(tablaPagos.getValueAt(filaseleccionadatablapagos, 3).toString());
+            jcbTiempoPago.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 4));
+            jcbPagoPlan.setSelectedItem(tablaPagos.getValueAt(filaseleccionadatablapagos, 5));
+        }
     }//GEN-LAST:event_tablaPagosMouseClicked
 
 
-     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelTablaPagos;
     private javax.swing.JButton botonAgregarCliente;

@@ -7,16 +7,16 @@ import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
+import java.text.DecimalFormat;
 import java.util.Date;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
-import static presentacion.PanelExpediente.id;
 import royal_gym.Conexion;
 import royal_gym.Expediente2;
+import royal_gym.FormatoTablaCambios;
 
 /**
  *
@@ -26,6 +26,8 @@ public class JDExpediente extends javax.swing.JDialog {
 
     java.util.Date date = new Date();
     java.sql.Date fechaActual = new java.sql.Date(date.getTime());
+    boolean debeGuardar = false;
+    boolean debeInsertar = false;
 
     public JDExpediente(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
@@ -59,6 +61,8 @@ public class JDExpediente extends javax.swing.JDialog {
 
             if (resultado.next()) {
                 res = true;
+            } else {
+                res = false;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -104,6 +108,7 @@ public class JDExpediente extends javax.swing.JDialog {
         String[] columnasCambios = {"idCliente", "id_Cambio", "Peso", "IMC", "Porcentaje de Grasa", "Porcentaje de Músculo", "Calorias", "Edad", "Grasa Viceral", "Fecha"};
         DefaultTableModel modeloTablaCambios = new DefaultTableModel(expediente.getCambiosCorporales(PanelRegistroClientes.getIdCliente()), columnasCambios);
         tablacambioscorporales.setModel(modeloTablaCambios);
+        tablacambioscorporales.setDefaultRenderer(Object.class, new FormatoTablaCambios());
     }
 
     // obtienen los datos del expediente
@@ -118,24 +123,29 @@ public class JDExpediente extends javax.swing.JDialog {
             statement.setString(1, id);
             ResultSet resultado = statement.executeQuery();
 
+            String sQLEdad = "select (julianday('now') - julianday(c.FechaNacimiento))/365 as edad from cliente as c where idCliente = ?";
+            PreparedStatement pst = Conexion.getConexion().prepareStatement(sQLEdad);
+            pst.setString(1, id);
+            ResultSet rs = pst.executeQuery();
+            int edad = rs.getInt("edad");
+            //double pesoIdeal = (resultado.getDouble("Altura") - 100) + ((edad/10)*0.9);
+
             while (resultado.next()) {
                 jTextFieldnombre.setText(resultado.getString("Nombres") + " " + resultado.getString("Apellidos"));
                 jTextFieldfechanacimiento.setText(resultado.getString("FechaNacimiento"));
                 jtfTelefonoTrabajo.setText(resultado.getString("TelefonoTrabajo"));
                 jtfCelular.setText(resultado.getString("Celular"));
                 jtfDireccion.setText(resultado.getString("Direccion"));
-                jTextFieldedad.setText(resultado.getString("Edad"));
-                jTextFieldestatura.setText(resultado.getString("Altura"));
-                jTextFieldpeso.setText(resultado.getString("Peso"));
+                jTextFieldedad.setText(String.valueOf(edad) + " años");
+                jTextFieldestatura.setText(resultado.getString("Altura") + " metros");
+                jTextFieldpeso.setText(resultado.getString("Peso") + " kg");
                 jtfMejorHora.setText(resultado.getString("MejorHoraParaLlamar"));
-
-                String fecha = resultado.getString("FechaDeInicio");
-                java.util.Date date2 = null;
-                date2 = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
-                jtfFechaInicio.setText(String.valueOf(fechaActual));
-
+                jtfFechaInicio.setText(resultado.getString("FechaDeInicio"));
                 jtfTelefonoCasas.setText(resultado.getString("TelefonoCasa"));
-                jTextFieldpesoideal.setText(resultado.getString("PesoIdeal"));
+                double altura = resultado.getDouble("Altura") * 100;
+                double pesoIdeal = altura - 100 - ((altura / 150) / 4);
+                DecimalFormat df = new DecimalFormat("##.##");
+                jTextFieldpesoideal.setText(df.format(pesoIdeal) + " kg");
 
                 jCBoxBajar.setSelected(resultado.getBoolean("PesoQuiereBajar"));
                 jCBoxsubir.setSelected(resultado.getBoolean("PesoQuiereSubir"));
@@ -314,29 +324,71 @@ public class JDExpediente extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Peso:");
 
+        jtfpeso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfpesoKeyTyped(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("IMC:");
+
+        jtfimc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfimcKeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("%Grasa:");
 
+        jtfgrasa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfgrasaKeyTyped(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("%Musculo:");
+
+        jtfmusculo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfmusculoKeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Calorias:");
 
+        jtfcalorias.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfcaloriasKeyTyped(evt);
+            }
+        });
+
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Edad/B:");
 
+        jtfedad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfedadKeyTyped(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Grasa Viceral:");
+
+        jtfgrasaviceral.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfgrasaviceralKeyTyped(evt);
+            }
+        });
 
         tablacambioscorporales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -486,6 +538,11 @@ public class JDExpediente extends javax.swing.JDialog {
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
         PanelDatosCliente.setBackground(new java.awt.Color(85, 96, 128));
+        PanelDatosCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelDatosClienteMouseClicked(evt);
+            }
+        });
 
         labelnombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelnombre.setForeground(new java.awt.Color(255, 255, 255));
@@ -576,6 +633,7 @@ public class JDExpediente extends javax.swing.JDialog {
             }
         });
 
+        jTextFieldpesoideal.setEditable(false);
         jTextFieldpesoideal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jtfCelular.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -760,150 +818,275 @@ public class JDExpediente extends javax.swing.JDialog {
         jCBoxgastritis.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxgastritis.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxgastritis.setText("Gastritis");
+        jCBoxgastritis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxgastritisActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxgastritis);
 
         jCBoxcolitis.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxcolitis.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxcolitis.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxcolitis.setText("Colitis");
+        jCBoxcolitis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxcolitisActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxcolitis);
 
         jCBoxestrenimiento.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxestrenimiento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxestrenimiento.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxestrenimiento.setText("Estrenimiento");
+        jCBoxestrenimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxestrenimientoActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxestrenimiento);
 
         jCBoxcansancio.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxcansancio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxcansancio.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxcansancio.setText("Cansancio");
+        jCBoxcansancio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxcansancioActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxcansancio);
 
         jCBoxulcera.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxulcera.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxulcera.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxulcera.setText("Ulcera");
+        jCBoxulcera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxulceraActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxulcera);
 
         jCBoxdiabetes.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxdiabetes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxdiabetes.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxdiabetes.setText("Diabetes");
+        jCBoxdiabetes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxdiabetesActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxdiabetes);
 
         jCBoxpresionalta.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxpresionalta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxpresionalta.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxpresionalta.setText("Presion Alta");
+        jCBoxpresionalta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxpresionaltaActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxpresionalta);
 
         jCBoxcolesterol.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxcolesterol.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxcolesterol.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxcolesterol.setText("Colesterol");
+        jCBoxcolesterol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxcolesterolActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxcolesterol);
 
         jCBoxalergias.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxalergias.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxalergias.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxalergias.setText("Alergias");
+        jCBoxalergias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxalergiasActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxalergias);
 
         jCBoxestres.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxestres.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxestres.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxestres.setText("Estres");
+        jCBoxestres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxestresActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxestres);
 
         jCBoxdolordecabeza.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxdolordecabeza.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxdolordecabeza.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxdolordecabeza.setText("Dolor de Cabeza");
+        jCBoxdolordecabeza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxdolordecabezaActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxdolordecabeza);
 
         jCBoxdolordecuello.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxdolordecuello.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxdolordecuello.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxdolordecuello.setText("Dolor de Cuello");
+        jCBoxdolordecuello.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxdolordecuelloActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxdolordecuello);
 
         jCBoxdoloresdeespalda.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxdoloresdeespalda.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxdoloresdeespalda.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxdoloresdeespalda.setText("Dolores de Espalda");
+        jCBoxdoloresdeespalda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxdoloresdeespaldaActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxdoloresdeespalda);
 
         jCBoxartritis.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxartritis.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxartritis.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxartritis.setText("Artritis");
+        jCBoxartritis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxartritisActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxartritis);
 
         jCBoxansiedad.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxansiedad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxansiedad.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxansiedad.setText("Ansiedad");
+        jCBoxansiedad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxansiedadActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxansiedad);
 
         jCBoxembarazo.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxembarazo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxembarazo.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxembarazo.setText("Embarazo/Lactancia");
+        jCBoxembarazo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxembarazoActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxembarazo);
 
         jCBoxretenciondeliquidos.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxretenciondeliquidos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxretenciondeliquidos.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxretenciondeliquidos.setText("Retencion de Liquidos");
+        jCBoxretenciondeliquidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxretenciondeliquidosActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxretenciondeliquidos);
 
         jCBoxmalacirculacion.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxmalacirculacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxmalacirculacion.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxmalacirculacion.setText("Mala Circulacion");
+        jCBoxmalacirculacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxmalacirculacionActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxmalacirculacion);
 
         jCBoxcalambres.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxcalambres.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxcalambres.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxcalambres.setText("Calambres");
+        jCBoxcalambres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxcalambresActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxcalambres);
 
         jCBoxvarices.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxvarices.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxvarices.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxvarices.setText("Varices");
+        jCBoxvarices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxvaricesActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxvarices);
 
         jCBoxdoloresdehueso.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxdoloresdehueso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxdoloresdehueso.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxdoloresdehueso.setText("Dolores de Hueso");
+        jCBoxdoloresdehueso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxdoloresdehuesoActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxdoloresdehueso);
 
         jCBoxanemia.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxanemia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxanemia.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxanemia.setText("Anemia");
+        jCBoxanemia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxanemiaActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxanemia);
 
         jCBoxproblemasdevesicula.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxproblemasdevesicula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxproblemasdevesicula.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxproblemasdevesicula.setText("Problemas de Vesicula");
+        jCBoxproblemasdevesicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxproblemasdevesiculaActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxproblemasdevesicula);
 
         jCBoxproblemasderinon.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxproblemasderinon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxproblemasderinon.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxproblemasderinon.setText("Problemas de Rinon");
+        jCBoxproblemasderinon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxproblemasderinonActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxproblemasderinon);
 
         jCBoxcelulitis.setBackground(new java.awt.Color(85, 96, 128));
         jCBoxcelulitis.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCBoxcelulitis.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxcelulitis.setText("Celulitis");
+        jCBoxcelulitis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxcelulitisActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCBoxcelulitis);
 
         javax.swing.GroupLayout PanelProblemasdeSaludLayout = new javax.swing.GroupLayout(PanelProblemasdeSalud);
@@ -969,7 +1152,7 @@ public class JDExpediente extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlFotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1024,35 +1207,54 @@ public class JDExpediente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botoncancelarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncancelarexpedienteActionPerformed
-        dispose();
+        if (debeGuardar) {
+            int mjs = JOptionPane.showConfirmDialog(this, "Los Datos que no hayan sido guardados se perderán\n ¿Está seguro que desea salir?");
+            if (mjs == JOptionPane.YES_OPTION) {
+                dispose();
+            }
+        } else {
+            dispose();
+        }
+
+
     }//GEN-LAST:event_botoncancelarexpedienteActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        Expediente2 expediente = new Expediente2();
-        expediente.insertarCambiosCorporales(
-                jtfpeso.getText(),
-                jtfimc.getText(),
-                jtfgrasa.getText(),
-                jtfmusculo.getText(),
-                jtfcalorias.getText(),
-                jtfedad.getText(),
-                jtfgrasaviceral.getText(),
-                PanelRegistroClientes.getIdCliente(),
-                String.valueOf(fechaActual));
+        if (jtfpeso.getText().equals("") || jtfimc.getText().equals("")
+                || jtfgrasa.getText().equals("")
+                || jtfmusculo.getText().equals("")
+                || jtfcalorias.getText().equals("")
+                || jtfedad.getText().equals("")
+                || jtfgrasaviceral.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Toda la información de cambios corporales es requerida");
+        } else {
+            Expediente2 expediente = new Expediente2();
+            expediente.insertarCambiosCorporales(
+                    jtfpeso.getText(),
+                    jtfimc.getText(),
+                    jtfgrasa.getText(),
+                    jtfmusculo.getText(),
+                    jtfcalorias.getText(),
+                    jtfedad.getText(),
+                    jtfgrasaviceral.getText(),
+                    PanelRegistroClientes.getIdCliente(),
+                    "");
 
-        expediente.insertarTotal(
-                jtfpeso.getText(),
-                jtfimc.getText(),
-                jtfgrasa.getText(),
-                jtfmusculo.getText(),
-                jtfcalorias.getText(),
-                jtfedad.getText(),
-                jtfgrasaviceral.getText(),
-                PanelRegistroClientes.getIdCliente(),
-                String.valueOf(fechaActual));
-        limpiarCambios();
-        actualizarTablaCambios();
-        ocultarColumna();
+            expediente.insertarTotal(
+                    jtfpeso.getText(),
+                    jtfimc.getText(),
+                    jtfgrasa.getText(),
+                    jtfmusculo.getText(),
+                    jtfcalorias.getText(),
+                    jtfedad.getText(),
+                    jtfgrasaviceral.getText(),
+                    PanelRegistroClientes.getIdCliente(),
+                    String.valueOf(fechaActual));
+            limpiarCambios();
+            actualizarTablaCambios();
+            ocultarColumna();
+            debeInsertar = false;
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jlFotoPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlFotoPerfilMouseClicked
@@ -1063,7 +1265,7 @@ public class JDExpediente extends javax.swing.JDialog {
 
     private void botonaceptarexpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonaceptarexpedienteActionPerformed
         Expediente2 expediente = new Expediente2();
-
+        debeGuardar = false;
         expediente.actualizarTablaClientes(jtfTelefonoTrabajo.getText(),
                 jtfDireccion.getText().trim(),
                 jtfMejorHora.getText(),
@@ -1101,35 +1303,13 @@ public class JDExpediente extends javax.swing.JDialog {
         boolean problemadevesicula = jCBoxproblemasdevesicula.isSelected();
         boolean problemaderiñon = jCBoxproblemasderinon.isSelected();
         boolean celulitis = jCBoxcelulitis.isSelected();
-    
+
         if (hayProblemasDeSalud()) {
             expediente.actualizarProblemasDeSalud(
-                    PanelRegistroClientes.getIdCliente(), 
-                    gastritis, 
-                    colitis, 
-                    estreñimiento, 
-                    ulcera, 
-                    cansancio, 
-                    diabetes,
-                    presionAlta, 
-                    colesterol, 
-                    alergias, 
-                    estres, 
-                    dolordecabeza, 
-                    dolordecuello, 
-                    doloresdeespalda, 
-                    artritis,
-                    ansiedad, 
-                    embarazo, 
-                    retencionliquidos, 
-                    malacirculacion, 
-                    calambres, 
-                    varices,
-                    doloresdehueso, 
-                    anemia,
-                    problemadevesicula, 
-                    problemaderiñon, 
-                    celulitis);
+                    PanelRegistroClientes.getIdCliente(), gastritis, colitis, estreñimiento, ulcera, cansancio,
+                    diabetes, presionAlta, colesterol, alergias, estres, dolordecabeza, dolordecuello, doloresdeespalda,
+                    artritis, ansiedad, embarazo, retencionliquidos, malacirculacion, calambres, varices, doloresdehueso,
+                    anemia, problemadevesicula, problemaderiñon, celulitis);
 
         } else {
             expediente.insertarProblemasdeSalud(PanelRegistroClientes.getIdCliente(), gastritis, colitis, estreñimiento, ulcera, cansancio, diabetes,
@@ -1137,6 +1317,16 @@ public class JDExpediente extends javax.swing.JDialog {
                     ansiedad, embarazo, retencionliquidos, malacirculacion, calambres, varices, doloresdehueso, anemia,
                     problemadevesicula, problemaderiñon, celulitis);
         }
+        botonaceptarexpediente.setText("Guardado");
+        botonaceptarexpediente.setIcon(new ImageIcon(Class.class.getResource("/iconos/Aceptar.png")));
+        new Thread(() -> {
+            try {
+                Thread.sleep(2000);
+                botonaceptarexpediente.setText("Guardar");
+                botonaceptarexpediente.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_guardar_2.png")));
+            } catch (InterruptedException ex) {
+            }
+        }).start();
 
     }//GEN-LAST:event_botonaceptarexpedienteActionPerformed
 
@@ -1146,6 +1336,7 @@ public class JDExpediente extends javax.swing.JDialog {
             jCBoxmantener.setSelected(false);
 
         }
+        debeGuardar = true;
     }//GEN-LAST:event_jCBoxsubirActionPerformed
 
     private void jCBoxBajarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxBajarActionPerformed
@@ -1154,6 +1345,7 @@ public class JDExpediente extends javax.swing.JDialog {
             jCBoxmantener.setSelected(false);
 
         }
+        debeGuardar = true;
     }//GEN-LAST:event_jCBoxBajarActionPerformed
 
     private void jCBoxmantenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxmantenerActionPerformed
@@ -1162,6 +1354,7 @@ public class JDExpediente extends javax.swing.JDialog {
             jCBoxBajar.setSelected(false);
 
         }
+        debeGuardar = true;
     }//GEN-LAST:event_jCBoxmantenerActionPerformed
 
     private void jtfTelefonoTrabajoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoTrabajoKeyTyped
@@ -1173,6 +1366,7 @@ public class JDExpediente extends javax.swing.JDialog {
             evt.consume();
 
         }
+        debeGuardar = true;
     }//GEN-LAST:event_jtfTelefonoTrabajoKeyTyped
 
     private void jtfTelefonoCasasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoCasasKeyTyped
@@ -1184,6 +1378,7 @@ public class JDExpediente extends javax.swing.JDialog {
             evt.consume();
 
         }
+        debeGuardar = true;
     }//GEN-LAST:event_jtfTelefonoCasasKeyTyped
 
     private void jtfCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCelularKeyTyped
@@ -1195,6 +1390,7 @@ public class JDExpediente extends javax.swing.JDialog {
             evt.consume();
 
         }
+        debeGuardar = true;
     }//GEN-LAST:event_jtfCelularKeyTyped
 
     private void jTextFieldedadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldedadKeyTyped
@@ -1218,10 +1414,188 @@ public class JDExpediente extends javax.swing.JDialog {
         if (!Character.isLetter(s) && s != KeyEvent.VK_SPACE) {
             evt.consume();
         }
+        debeGuardar = true;
     }//GEN-LAST:event_jtfDireccionKeyTyped
 
     private void jtfMejorHoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfMejorHoraKeyTyped
+        debeGuardar = true;
     }//GEN-LAST:event_jtfMejorHoraKeyTyped
+
+    private void PanelDatosClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelDatosClienteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PanelDatosClienteMouseClicked
+
+    private void jCBoxgastritisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxgastritisActionPerformed
+        // TODO add your handling code here:
+        debeGuardar = true;
+    }//GEN-LAST:event_jCBoxgastritisActionPerformed
+
+    private void jCBoxdiabetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxdiabetesActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxdiabetesActionPerformed
+
+    private void jCBoxdolordecabezaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxdolordecabezaActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxdolordecabezaActionPerformed
+
+    private void jCBoxembarazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxembarazoActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxembarazoActionPerformed
+
+    private void jCBoxdoloresdehuesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxdoloresdehuesoActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxdoloresdehuesoActionPerformed
+
+    private void jCBoxcolitisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxcolitisActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxcolitisActionPerformed
+
+    private void jCBoxpresionaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxpresionaltaActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxpresionaltaActionPerformed
+
+    private void jCBoxdolordecuelloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxdolordecuelloActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxdolordecuelloActionPerformed
+
+    private void jCBoxretenciondeliquidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxretenciondeliquidosActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxretenciondeliquidosActionPerformed
+
+    private void jCBoxanemiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxanemiaActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxanemiaActionPerformed
+
+    private void jCBoxestrenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxestrenimientoActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxestrenimientoActionPerformed
+
+    private void jCBoxcolesterolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxcolesterolActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxcolesterolActionPerformed
+
+    private void jCBoxdoloresdeespaldaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxdoloresdeespaldaActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxdoloresdeespaldaActionPerformed
+
+    private void jCBoxmalacirculacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxmalacirculacionActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxmalacirculacionActionPerformed
+
+    private void jCBoxproblemasdevesiculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxproblemasdevesiculaActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxproblemasdevesiculaActionPerformed
+
+    private void jCBoxcansancioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxcansancioActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxcansancioActionPerformed
+
+    private void jCBoxalergiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxalergiasActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxalergiasActionPerformed
+
+    private void jCBoxartritisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxartritisActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxartritisActionPerformed
+
+    private void jCBoxcalambresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxcalambresActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxcalambresActionPerformed
+
+    private void jCBoxproblemasderinonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxproblemasderinonActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxproblemasderinonActionPerformed
+
+    private void jCBoxulceraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxulceraActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxulceraActionPerformed
+
+    private void jCBoxestresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxestresActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxestresActionPerformed
+
+    private void jCBoxansiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxansiedadActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxansiedadActionPerformed
+
+    private void jCBoxvaricesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxvaricesActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxvaricesActionPerformed
+
+    private void jCBoxcelulitisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxcelulitisActionPerformed
+        debeGuardar = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxcelulitisActionPerformed
+
+    private void jtfpesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfpesoKeyTyped
+
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && jtfpeso.getText().contains(".")) {
+            evt.consume();
+        }
+        debeInsertar = true;
+    }//GEN-LAST:event_jtfpesoKeyTyped
+
+    private void jtfimcKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfimcKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && jtfimc.getText().contains(".")) {
+            evt.consume();
+        }
+        debeInsertar = true;
+    }//GEN-LAST:event_jtfimcKeyTyped
+
+    private void jtfgrasaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfgrasaKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && jtfgrasa.getText().contains(".")) {
+            evt.consume();
+        }
+        debeInsertar = true;
+    }//GEN-LAST:event_jtfgrasaKeyTyped
+
+    private void jtfmusculoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfmusculoKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && jtfmusculo.getText().contains(".")) {
+            evt.consume();
+        }
+        debeInsertar = true;
+    }//GEN-LAST:event_jtfmusculoKeyTyped
+
+    private void jtfcaloriasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfcaloriasKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && jtfcalorias.getText().contains(".")) {
+            evt.consume();
+        }
+        debeInsertar = true;
+    }//GEN-LAST:event_jtfcaloriasKeyTyped
+
+    private void jtfedadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfedadKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && jtfedad.getText().contains(".")) {
+            evt.consume();
+        }
+        debeInsertar = true;
+    }//GEN-LAST:event_jtfedadKeyTyped
+
+    private void jtfgrasaviceralKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfgrasaviceralKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && jtfgrasaviceral.getText().contains(".")) {
+            evt.consume();
+        }
+        debeInsertar = true;
+    }//GEN-LAST:event_jtfgrasaviceralKeyTyped
 
     private Date fechaJCalendar(JDateChooser calendario) {
 
