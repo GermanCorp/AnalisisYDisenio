@@ -2,6 +2,8 @@ package presentacion;
 
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
@@ -47,7 +49,10 @@ public class ListaClientes extends javax.swing.JDialog {
     //Constructor
     public ListaClientes(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
-
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/iconos/Herramientas_configuracion_3.png"));
+        setIconImage(icon);
+        setTitle("Clientes");
+        
         initComponents();
         okButton.setHorizontalTextPosition(SwingConstants.CENTER);
         okButton.setVerticalTextPosition(SwingConstants.BOTTOM);

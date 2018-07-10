@@ -8,6 +8,8 @@ package presentacion;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ItemEvent;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +33,11 @@ public class PanelUtilidad extends javax.swing.JPanel {
 
     Utilidad utilidad = new Utilidad();
     public PanelUtilidad() {
+        
+    
+   
+    
+       
         initComponents();
         
     }

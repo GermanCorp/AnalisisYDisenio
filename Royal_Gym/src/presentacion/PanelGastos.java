@@ -100,6 +100,9 @@ public class PanelGastos extends javax.swing.JPanel {
             }
         });
         jtfDescripcionGasto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfDescripcionGastoKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfDescripcionGastoKeyTyped(evt);
             }
@@ -112,6 +115,9 @@ public class PanelGastos extends javax.swing.JPanel {
             }
         });
         jtfMontoGasto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfMontoGastoKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfMontoGastoKeyTyped(evt);
             }
@@ -241,8 +247,7 @@ public class PanelGastos extends javax.swing.JPanel {
                     .addComponent(scrollTablaClientes1, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelTablaGastosLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnEliminarGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnEliminarGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
         );
         PanelTablaGastosLayout.setVerticalGroup(
@@ -295,16 +300,9 @@ public class PanelGastos extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfDescripcionGastoActionPerformed
 
     private void jtfDescripcionGastoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDescripcionGastoKeyTyped
-        if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
-            evt.consume();
-        }
+       
         
-        
-        Character s = evt.getKeyChar();
-        
-        if(!Character.isLetter(s) && s != KeyEvent.VK_SPACE){
-            evt.consume();   
-        }
+      
     }//GEN-LAST:event_jtfDescripcionGastoKeyTyped
 
     private void jtfMontoGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfMontoGastoActionPerformed
@@ -312,15 +310,13 @@ public class PanelGastos extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfMontoGastoActionPerformed
 
     private void jtfMontoGastoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfMontoGastoKeyTyped
-         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
-            evt.consume();
-        }
-        
         
          if(!Character.isDigit(evt.getKeyChar())) {
             evt.consume();
 
          } 
+         
+  
     }//GEN-LAST:event_jtfMontoGastoKeyTyped
 
     private void btnAceptarRegistroGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroGastoActionPerformed
@@ -412,6 +408,18 @@ public class PanelGastos extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_btnEliminarGastoActionPerformed
+
+    private void jtfDescripcionGastoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDescripcionGastoKeyPressed
+         if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfDescripcionGastoKeyPressed
+
+    private void jtfMontoGastoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfMontoGastoKeyPressed
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfMontoGastoKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

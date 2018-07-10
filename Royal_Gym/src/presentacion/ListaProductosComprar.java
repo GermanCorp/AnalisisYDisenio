@@ -5,6 +5,8 @@
  */
 package presentacion;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
@@ -48,6 +50,9 @@ public class ListaProductosComprar extends javax.swing.JDialog {
      
     public ListaProductosComprar(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/iconos/Herramientas_configuracion_3.png"));
+        setIconImage(icon);
+        setTitle("Productos");
         
         initComponents();
         okButton.setHorizontalTextPosition( SwingConstants.CENTER );
@@ -261,8 +266,59 @@ public class ListaProductosComprar extends javax.swing.JDialog {
 
     private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
         if(evt.getClickCount()==2){
-             new CantidadAVender(new javax.swing.JDialog(), true).setVisible(true);
-            }
+         double calcula;
+         double des;
+        
+        DefaultTableModel modelo;
+        int filaSeleccinada = tablaProductos.getSelectedRow();
+        String codigo;
+        String descripcion;
+        String precioCompra;
+        String cantidad;
+        String importe;
+        String descuento;
+
+        if(filaSeleccinada == -1){
+            JOptionPane.showMessageDialog(null, "Debe seleccinar un producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }else{
+            modelo = (DefaultTableModel) tablaProductos.getModel();
+            codigo = tablaProductos.getValueAt(filaSeleccinada, 0).toString();
+            descripcion = tablaProductos.getValueAt(filaSeleccinada, 1).toString();
+            precioCompra = tablaProductos.getValueAt(filaSeleccinada, 2).toString();
+            cantidad = jtfCantidad.getText();
+            descuento = jtfDescuento.getText();
+
+            DecimalFormat df = new DecimalFormat("#,##0.00");
+            double totalPorProductoCompra = ((Double.parseDouble(precioCompra) * Integer.parseInt(cantidad)) - Double.parseDouble(descuento));
+            double isv = (totalPorProductoCompra-(totalPorProductoCompra/1.15));
+            double subTotal = (totalPorProductoCompra/1.15);
+            //importe = String.valueOf(totalPorProductoCompra);
+            //double pv = (Double.parseDouble(precioVenta)/1.15);
+
+            modelo = (DefaultTableModel) panelcompra.tablaCompras.getModel();
+            String elementosFila [] = {codigo, cantidad, descripcion, df.format(Double.parseDouble(precioCompra)/1.15)
+                    ,descuento,  df.format(subTotal),   df.format(isv), df.format(totalPorProductoCompra)};
+            modelo.addRow(elementosFila);
+
+            calcula  = (Double.parseDouble(precioCompra)* Integer.parseInt(jtfCantidad.getText()));
+            des = (Double.parseDouble(descuento));
+
+           // descuentoTotal = descuentoTotal + des;
+            //total = total + calcula - des;
+
+            
+            PanelCompra.totalCompra =  PanelCompra.totalCompra + calcula - des;
+            PanelCompra.subTotalCompra =  PanelCompra.totalCompra/1.15;
+            PanelCompra.isvCompra =  PanelCompra.totalCompra-( PanelCompra.totalCompra/1.15);
+            PanelCompra.descuentoCompra = PanelVentas.descuento + des;
+            
+            panelcompra = new PanelCompra(PanelCompra.totalCompra, PanelCompra.subTotalCompra, PanelCompra.isvCompra, PanelCompra.descuentoCompra);
+            panelcompra.setValoresCompra();
+
+            jtfCantidad.setText("1");
+            jtfDescuento.setText("0");
+        }
+        }
     }//GEN-LAST:event_tablaProductosMouseClicked
 
     private void tablaProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMousePressed

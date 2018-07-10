@@ -142,6 +142,9 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
             }
         });
         jtfDescripcionProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfDescripcionProductoKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfDescripcionProductoKeyTyped(evt);
             }
@@ -154,6 +157,9 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
             }
         });
         jtfCostoProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfCostoProductoKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfCostoProductoKeyTyped(evt);
             }
@@ -179,6 +185,9 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
             }
         });
         jtfPrecioProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfPrecioProductoKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtfPrecioProductoKeyReleased(evt);
             }
@@ -201,6 +210,9 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
             }
         });
         jtfCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfCantidadKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtfCantidadKeyReleased(evt);
             }
@@ -409,14 +421,11 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfDescripcionProductoActionPerformed
 
     private void jtfDescripcionProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDescripcionProductoKeyTyped
-        char cTeclaPresionada = evt.getKeyChar();
+       /* char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
             btnAceptarRegistroProducto.doClick();
-        }
+        }*/
         
-         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
-            evt.consume();
-        }
         
         if ((int) evt.getKeyChar() > 32 && (int) evt.getKeyChar() <= 47
                 || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
@@ -431,15 +440,12 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfCostoProductoActionPerformed
 
     private void jtfCostoProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCostoProductoKeyTyped
-
+/*
         char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
             btnAceptarRegistroProducto.doClick();
         }
-         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
-            evt.consume();
-        }
-        
+         */
         if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
             evt.consume();
         }
@@ -526,15 +532,13 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfPrecioProductoKeyReleased
 
     private void jtfPrecioProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPrecioProductoKeyTyped
-
+        /*
         char cTeclaPresionada = evt.getKeyChar();
         if (cTeclaPresionada == KeyEvent.VK_ENTER) {
             btnAceptarRegistroProducto.doClick();
-        }
+        }*/
         
-         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
-            evt.consume();
-        }
+        
         
         if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
             evt.consume();
@@ -611,9 +615,6 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfCantidadKeyReleased
 
     private void jtfCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCantidadKeyTyped
-         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
-            evt.consume();
-        } 
         
         if(!Character.isDigit(evt.getKeyChar())){
             evt.consume();
@@ -665,6 +666,30 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_jbEliminarActionPerformed
+
+    private void jtfDescripcionProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDescripcionProductoKeyPressed
+         if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfDescripcionProductoKeyPressed
+
+    private void jtfCostoProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCostoProductoKeyPressed
+         if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfCostoProductoKeyPressed
+
+    private void jtfPrecioProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPrecioProductoKeyPressed
+         if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfPrecioProductoKeyPressed
+
+    private void jtfCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCantidadKeyPressed
+         if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfCantidadKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelTabla;

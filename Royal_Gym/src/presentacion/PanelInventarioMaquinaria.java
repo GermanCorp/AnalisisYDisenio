@@ -105,6 +105,9 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
 
         jtfCantidadEquipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfCantidadEquipo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfCantidadEquipoKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfCantidadEquipoKeyTyped(evt);
             }
@@ -145,6 +148,9 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
         taDescripcionEquipo.setColumns(20);
         taDescripcionEquipo.setRows(5);
         taDescripcionEquipo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                taDescripcionEquipoKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 taDescripcionEquipoKeyTyped(evt);
             }
@@ -312,9 +318,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfNombreEquipoActionPerformed
 
     private void jtfNombreEquipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreEquipoKeyTyped
-        if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
-            evt.consume();
-        }
+        
         
         if ((int) evt.getKeyChar() > 32 && (int) evt.getKeyChar() <= 47
                 || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
@@ -326,9 +330,6 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfNombreEquipoKeyTyped
 
     private void jtfCantidadEquipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCantidadEquipoKeyTyped
-        if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
-            evt.consume();
-        }
         
         
          if(!Character.isDigit(evt.getKeyChar())) {
@@ -444,7 +445,9 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfBuscarInventarioActionPerformed
 
     private void jtfNombreEquipoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreEquipoKeyPressed
-        
+if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
     }//GEN-LAST:event_jtfNombreEquipoKeyPressed
 
     private void jScrollPane4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jScrollPane4KeyTyped
@@ -452,9 +455,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
     }//GEN-LAST:event_jScrollPane4KeyTyped
 
     private void taDescripcionEquipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taDescripcionEquipoKeyTyped
-         if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
-            evt.consume();
-        } 
+         
         
         
         
@@ -464,6 +465,18 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
             evt.consume();
         }
     }//GEN-LAST:event_taDescripcionEquipoKeyTyped
+
+    private void jtfCantidadEquipoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCantidadEquipoKeyPressed
+       if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfCantidadEquipoKeyPressed
+
+    private void taDescripcionEquipoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taDescripcionEquipoKeyPressed
+       if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_taDescripcionEquipoKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelDatos;

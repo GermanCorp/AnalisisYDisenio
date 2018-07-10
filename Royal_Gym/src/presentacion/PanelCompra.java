@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import royal_gym.Conexion;
+import royal_gym.Mensaje;
 
 
 public class PanelCompra extends javax.swing.JPanel {
@@ -133,6 +134,11 @@ public class PanelCompra extends javax.swing.JPanel {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tablaCompras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaComprasMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tablaCompras);
@@ -325,8 +331,7 @@ public class PanelCompra extends javax.swing.JPanel {
         int filaSeleccinada = tablaCompras.getSelectedRow();
 
         if(filaSeleccinada == -1){
-            JOptionPane.showMessageDialog(null, "Seleccione un producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            //royal_gym.VP.jlMensajes.setText("Seleccione un Producto");
+             Mensaje.setMensaje("Seleccione un producto");
         }else{
             Double totalPorProducto = (Double.parseDouble(tablaCompras.getValueAt(filaSeleccinada, 7).toString()));
             Double descuentoPorProducto = (Double.parseDouble(tablaCompras.getValueAt(filaSeleccinada, 4).toString()));
@@ -346,8 +351,8 @@ public class PanelCompra extends javax.swing.JPanel {
     private void botonGuardarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarCompraActionPerformed
         DefaultTableModel modelo;
         if(totalCompra == 0){
-            JOptionPane.showMessageDialog(null, "No hay ninguna compra que guardar");
-            //royal_gym.VP.jlMensajes.setText("No hay ninguna compra que guardar");
+            Mensaje.setMensaje("No hay ninguna venta que guardar");
+            
         }else
 
         try {
@@ -392,7 +397,7 @@ public class PanelCompra extends javax.swing.JPanel {
         isvCompra = 0;
         descuentoCompra = 0;
         setValoresCompra();
-        royal_gym.VP.jlMensajes.setText("¡Compra registrada exitosamente!");
+        Mensaje.setMensaje("Compra registrada Exitosamente");
 
     }//GEN-LAST:event_botonGuardarCompraActionPerformed
 
@@ -411,6 +416,10 @@ public class PanelCompra extends javax.swing.JPanel {
 
          } 
     }//GEN-LAST:event_jtfNumeoFacturaKeyTyped
+
+    private void tablaComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaComprasMouseClicked
+       royal_gym.VP.jlMensajes.setText("");
+    }//GEN-LAST:event_tablaComprasMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
