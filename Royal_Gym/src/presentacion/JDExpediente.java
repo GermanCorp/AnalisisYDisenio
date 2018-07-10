@@ -3,6 +3,7 @@ package presentacion;
 import com.toedter.calendar.JDateChooser;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,6 +41,9 @@ public class JDExpediente extends javax.swing.JDialog {
         actualizarTablaCambios();
         ocultarColumna();
         getImagenPerfil();
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/iconos/Herramientas_configuracion_3.png"));
+        setIconImage(icon);
+
     }
 
     private void ocultarColumna() {
