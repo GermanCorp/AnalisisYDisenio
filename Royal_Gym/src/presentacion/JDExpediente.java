@@ -325,6 +325,9 @@ public class JDExpediente extends javax.swing.JDialog {
         jLabel1.setText("Peso:");
 
         jtfpeso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfpesoKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfpesoKeyTyped(evt);
             }
@@ -335,6 +338,9 @@ public class JDExpediente extends javax.swing.JDialog {
         jLabel3.setText("IMC:");
 
         jtfimc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfimcKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfimcKeyTyped(evt);
             }
@@ -345,6 +351,9 @@ public class JDExpediente extends javax.swing.JDialog {
         jLabel4.setText("%Grasa:");
 
         jtfgrasa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfgrasaKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfgrasaKeyTyped(evt);
             }
@@ -355,6 +364,9 @@ public class JDExpediente extends javax.swing.JDialog {
         jLabel5.setText("%Musculo:");
 
         jtfmusculo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfmusculoKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfmusculoKeyTyped(evt);
             }
@@ -365,6 +377,9 @@ public class JDExpediente extends javax.swing.JDialog {
         jLabel6.setText("Calorias:");
 
         jtfcalorias.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfcaloriasKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfcaloriasKeyTyped(evt);
             }
@@ -375,6 +390,9 @@ public class JDExpediente extends javax.swing.JDialog {
         jLabel7.setText("Edad/B:");
 
         jtfedad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfedadKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfedadKeyTyped(evt);
             }
@@ -385,6 +403,9 @@ public class JDExpediente extends javax.swing.JDialog {
         jLabel8.setText("Grasa Viceral:");
 
         jtfgrasaviceral.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfgrasaviceralKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfgrasaviceralKeyTyped(evt);
             }
@@ -605,6 +626,9 @@ public class JDExpediente extends javax.swing.JDialog {
 
         jtfTelefonoTrabajo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfTelefonoTrabajo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfTelefonoTrabajoKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfTelefonoTrabajoKeyTyped(evt);
             }
@@ -612,6 +636,9 @@ public class JDExpediente extends javax.swing.JDialog {
 
         jtfTelefonoCasas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfTelefonoCasas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfTelefonoCasasKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfTelefonoCasasKeyTyped(evt);
             }
@@ -639,17 +666,19 @@ public class JDExpediente extends javax.swing.JDialog {
 
         jtfCelular.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtfCelularKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfCelularKeyTyped(evt);
             }
         });
 
         try {
-            jtfMejorHora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+            jtfMejorHora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##??")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jtfMejorHora.setText("");
         jtfMejorHora.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfMejorHora.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1359,9 +1388,7 @@ public class JDExpediente extends javax.swing.JDialog {
     }//GEN-LAST:event_jCBoxmantenerActionPerformed
 
     private void jtfTelefonoTrabajoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoTrabajoKeyTyped
-        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
-            evt.consume();
-        }
+        
 
         if (!Character.isDigit(evt.getKeyChar())) {
             evt.consume();
@@ -1371,9 +1398,7 @@ public class JDExpediente extends javax.swing.JDialog {
     }//GEN-LAST:event_jtfTelefonoTrabajoKeyTyped
 
     private void jtfTelefonoCasasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoCasasKeyTyped
-        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
-            evt.consume();
-        }
+        
 
         if (!Character.isDigit(evt.getKeyChar())) {
             evt.consume();
@@ -1383,9 +1408,7 @@ public class JDExpediente extends javax.swing.JDialog {
     }//GEN-LAST:event_jtfTelefonoCasasKeyTyped
 
     private void jtfCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCelularKeyTyped
-        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
-            evt.consume();
-        }
+        
 
         if (!Character.isDigit(evt.getKeyChar())) {
             evt.consume();
@@ -1406,15 +1429,7 @@ public class JDExpediente extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldedadKeyTyped
 
     private void jtfDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDireccionKeyTyped
-        if (evt.isControlDown() && evt.isAltDown() && evt.isShiftDown()) {
-            evt.consume();
-        }
-
-        Character s = evt.getKeyChar();
-
-        if (!Character.isLetter(s) && s != KeyEvent.VK_SPACE) {
-            evt.consume();
-        }
+        
         debeGuardar = true;
     }//GEN-LAST:event_jtfDireccionKeyTyped
 
@@ -1597,6 +1612,66 @@ public class JDExpediente extends javax.swing.JDialog {
         }
         debeInsertar = true;
     }//GEN-LAST:event_jtfgrasaviceralKeyTyped
+
+    private void jtfTelefonoTrabajoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoTrabajoKeyPressed
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfTelefonoTrabajoKeyPressed
+
+    private void jtfTelefonoCasasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoCasasKeyPressed
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfTelefonoCasasKeyPressed
+
+    private void jtfCelularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCelularKeyPressed
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfCelularKeyPressed
+
+    private void jtfpesoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfpesoKeyPressed
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfpesoKeyPressed
+
+    private void jtfimcKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfimcKeyPressed
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfimcKeyPressed
+
+    private void jtfgrasaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfgrasaKeyPressed
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfgrasaKeyPressed
+
+    private void jtfmusculoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfmusculoKeyPressed
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfmusculoKeyPressed
+
+    private void jtfcaloriasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfcaloriasKeyPressed
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfcaloriasKeyPressed
+
+    private void jtfedadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfedadKeyPressed
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfedadKeyPressed
+
+    private void jtfgrasaviceralKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfgrasaviceralKeyPressed
+        if (evt.isControlDown() || evt.isAltDown() || evt.isShiftDown()) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfgrasaviceralKeyPressed
 
     private Date fechaJCalendar(JDateChooser calendario) {
 
