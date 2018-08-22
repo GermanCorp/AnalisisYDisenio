@@ -24,7 +24,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
         jTabbedPane1 = new javax.swing.JTabbedPane();
         panelRegistroClientes1 = new presentacion.PanelRegistroClientes();
         panelCumpleaneros1 = new presentacion.PanelCumpleaneros();
-        panelRegistroPagos1 = new presentacion.PanelRegistroPagos();
         panelInventarioMaquinaria1 = new presentacion.PanelInventarioMaquinaria();
         panelRegistroProductos1 = new presentacion.PanelRegistroProductos();
         panelVentas1 = new presentacion.PanelVentas();
@@ -49,7 +48,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
         });
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Clientes.png")), panelRegistroClientes1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Cumpleañeros.png")), panelCumpleaneros1); // NOI18N
-        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Pagos.png")), panelRegistroPagos1); // NOI18N
 
         panelInventarioMaquinaria1.setPreferredSize(new java.awt.Dimension(919, 584));
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Maquinaria.png")), panelInventarioMaquinaria1); // NOI18N
@@ -152,7 +150,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 921, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
         );
 
         pack();
@@ -236,7 +234,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
     private presentacion.PanelCumpleaneros panelCumpleaneros1;
     private presentacion.PanelInventarioMaquinaria panelInventarioMaquinaria1;
     private presentacion.PanelRegistroClientes panelRegistroClientes1;
-    private presentacion.PanelRegistroPagos panelRegistroPagos1;
     private presentacion.PanelRegistroProductos panelRegistroProductos1;
     private presentacion.PanelUtilidad panelUtilidad1;
     private presentacion.PanelVentas panelVentas1;

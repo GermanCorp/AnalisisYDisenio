@@ -1,11 +1,9 @@
 package presentacion;
 
 import java.awt.Point;
-import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import royal_gym.LoginEntrar;
 import royal_gym.Productos;
 
 public class PanelRegistroProductos extends javax.swing.JPanel {

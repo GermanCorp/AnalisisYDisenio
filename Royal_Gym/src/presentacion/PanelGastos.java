@@ -10,6 +10,7 @@ import royal_gym.Conexion;
 import royal_gym.Gastos;
 import royal_gym.Gastos;
 import static presentacion.PanelRegistroClientes.tablaClientes;
+import royal_gym.Mensaje;
 
 public class PanelGastos extends javax.swing.JPanel {
 
@@ -247,7 +248,8 @@ public class PanelGastos extends javax.swing.JPanel {
                     .addComponent(scrollTablaClientes1, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelTablaGastosLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnEliminarGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnEliminarGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(20, 20, 20))
         );
         PanelTablaGastosLayout.setVerticalGroup(
@@ -259,9 +261,9 @@ public class PanelGastos extends javax.swing.JPanel {
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scrollTablaClientes1, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(btnEliminarGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -334,7 +336,7 @@ public class PanelGastos extends javax.swing.JPanel {
             if (evt.getActionCommand().equals("Guardar")) {
                 gastos.insertarGasto(jtfDescripcionGasto.getText().trim(), jtfMontoGasto.getText(), String.valueOf(fechaActual));
                 gastos.modeloTablaGastos(tablaGastos);
-                royal_gym.VP.jlMensajes.setText("Gasto registrado exitosamente");
+                Mensaje.setMensaje("Gasto registrado Exitosamente");
                 limpiar();
                 actualizarTablaProductos();
             } else if (evt.getActionCommand().equals("Modificar")) {
@@ -403,7 +405,7 @@ public class PanelGastos extends javax.swing.JPanel {
             if (mjs == JOptionPane.YES_OPTION) {
                 gastos.eliminarGasto(idGasto);
                 actualizarTablaProductos();
-                royal_gym.VP.jlMensajes.setText("Eliminado exitosamente");
+                Mensaje.setMensaje("Eliminado Exitosamente");
             }
 
         }

@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Conexion;
 import royal_gym.InventarioMaquinaria;
+import royal_gym.Mensaje;
 import royal_gym.Validaciones;
 
 public class PanelInventarioMaquinaria extends javax.swing.JPanel {
@@ -273,6 +274,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
                         .addComponent(jtfBuscarInventario))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(20, 20, 20))
@@ -286,9 +288,9 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -364,6 +366,8 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
                     taDescripcionEquipo.getText().trim());
             limpiar();
             actualizarTabla();
+            jbEliminar.setEnabled(true);
+            Mensaje.setMensaje("Maquina Registrada Exitosamente");
 
         } else if (evt.getActionCommand().equals("Modificar")) {
             maquinaria.ModificarInventario(
@@ -374,11 +378,12 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
 
             btnAceptarInventario.setText("Guardar");
             btnAceptarInventario.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_guardar_2.png")));
-            btnAceptarInventario.setText("Limpiar");
-            btnAceptarInventario.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_limpiar_02.png")));
+            btnCancelarInventario.setText("Limpiar");
+            btnCancelarInventario.setIcon(new ImageIcon(Class.class.getResource("/iconos/btn_limpiar_02.png")));
             actualizarTabla();
             limpiar();
-            JOptionPane.showMessageDialog(null, "Registro modificado con exito");
+            Mensaje.setMensaje("Maquinaria modificada exitosamente");
+            jbEliminar.setEnabled(true);
         }
     }//GEN-LAST:event_btnAceptarInventarioActionPerformed
 
@@ -435,7 +440,7 @@ public class PanelInventarioMaquinaria extends javax.swing.JPanel {
             if (mjs == JOptionPane.YES_OPTION) {
                 maquinaria.eliminarInventario(idMaquina);
                 actualizarTabla();
-                JOptionPane.showMessageDialog(this, "Articulo eliminado exitosamente");
+                Mensaje.setMensaje("Maquina Eliminada exitosamente");
             }
         }
     }//GEN-LAST:event_jbEliminarActionPerformed
