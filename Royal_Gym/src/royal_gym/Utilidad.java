@@ -14,8 +14,8 @@ public class Utilidad {
     
     private Connection conexion;
     private static Statement statement;
-    public double totalIngresos = 0;
-    public double totalGastos = 0;
+    public static double  totalIngresos = 0;
+    public static double totalGastos = 0;
     
     
     public Utilidad(){
