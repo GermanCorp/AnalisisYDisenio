@@ -283,7 +283,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(Paneltotales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
-                .addComponent(PaneltablaUtilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 48, Short.MAX_VALUE)
+                .addComponent(PaneltablaUtilidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -351,7 +351,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
             tablautilidadingresos.setModel(modeloTablaUtilidadIngresos);
 
             totali = utilidad.totalIngresos;
-            jlTotalIngresos.setText("L. "+df.format(totali));
+            jlTotalIngresos.setText("L. " + df.format(utilidad.totalIngresos));
             jlTotalGastos.setText("L. 0.00");
             jlTotalUtilidad.setText("L. 0.00");
 
@@ -359,10 +359,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
             PaneltablaUtilidad.setVisible(false);
             jScrollPane5.setVisible(false);
             Paneltotales.setVisible(false);
-
-
         }
-              
     }//GEN-LAST:event_tbingresosItemStateChanged
 
     private void tbingresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbingresosActionPerformed
@@ -385,7 +382,7 @@ public class PanelUtilidad extends javax.swing.JPanel {
             tablautilidadingresos.setModel(modeloTablaUtilidadGastos);
 
              totalg = utilidad.totalGastos;
-            jlTotalGastos.setText("L. "+df.format(totalg));
+            jlTotalGastos.setText("L. "+ df.format(totalg));
             jlTotalIngresos.setText("L. 0.00");
             jlTotalUtilidad.setText("L. 0.00");
             
@@ -395,9 +392,6 @@ public class PanelUtilidad extends javax.swing.JPanel {
             PaneltablaUtilidad.setVisible(false);
             jScrollPane5.setVisible(false);
             Paneltotales.setVisible(false);
-            
-            
-
         }
         
         

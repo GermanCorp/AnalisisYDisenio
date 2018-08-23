@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Conexion;
 import royal_gym.FormatoTabla;
+import royal_gym.Mensaje;
 import royal_gym.Pagos;
 
 /**
@@ -379,7 +380,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
         );
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Vencimiento del Pago.");
+        jLabel3.setText("Vencen en este mes");
 
         javax.swing.GroupLayout PanelTablaPagosLayout = new javax.swing.GroupLayout(PanelTablaPagos);
         PanelTablaPagos.setLayout(PanelTablaPagosLayout);
@@ -609,7 +610,7 @@ public class PanelRegistroPagos extends javax.swing.JPanel {
             jcbTiempoPago.setSelectedIndex(0);
             jcbPagoPlan.setSelectedIndex(0);
 
-            JOptionPane.showMessageDialog(this, "Registro Exitoso", "Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            Mensaje.setMensaje("Pago Exitoso");
             DefaultTableModel modeloTablaPagos = new DefaultTableModel(pagos.getPago(), columnasPagos);
             tablaPagos.setModel(modeloTablaPagos);
         }

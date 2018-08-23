@@ -105,7 +105,7 @@ public class Utilidad {
         Object[][] datosPago = null;
 
         try {
-            String consulta = "Select fecha_pago, cliente, monto from pagos where fecha_pago between ? and ? ";
+            String consulta = "Select * from Ingresos where fecha between ? and ? ";
 
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setString(1, fechaInicio);
@@ -116,13 +116,13 @@ public class Utilidad {
             ArrayList<Object[]> filas = new ArrayList<>();
            
             while (resultado.next()) {
-                totalIngresos += resultado.getDouble("monto");
+                totalIngresos += resultado.getDouble("total");
                 filas.add(
                         new Object[]{
                             numeroLista++,
-                            resultado.getString("fecha_pago"),
-                            resultado.getString("cliente"),
-                            resultado.getString("monto"),}
+                            resultado.getString("fecha"),
+                            resultado.getString("decripcion"),
+                            resultado.getString("total"),}
                 );
             }
             datosPago = new Object[filas.size()][];

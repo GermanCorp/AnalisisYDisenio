@@ -33,6 +33,7 @@ public class VP extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         panelRegistroClientes1 = new presentacion.PanelRegistroClientes();
         panelRegistroPagos1 = new presentacion.PanelRegistroPagos();
+        panelCumpleaneros1 = new presentacion.PanelCumpleaneros();
         panelVentas1 = new presentacion.PanelVentas();
         panelCompra1 = new presentacion.PanelCompra();
         panelRegistroProductos1 = new presentacion.PanelRegistroProductos();
@@ -48,13 +49,13 @@ public class VP extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Clientes.png")), panelRegistroClientes1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Pagos.png")), panelRegistroPagos1); // NOI18N
+        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Cumpleañeros.png")), panelCumpleaneros1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Vender.png")), panelVentas1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Compras.png")), panelCompra1); // NOI18N
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/iconos/Pestaña_Productos.png")), panelRegistroProductos1); // NOI18N
@@ -122,14 +123,6 @@ public class VP extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem3);
 
-        jMenuItem4.setText("Editar Usuario Actual");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem4);
-
         jMenu2.add(jMenu5);
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Herramientas_configuracion_2.png"))); // NOI18N
@@ -191,10 +184,6 @@ public class VP extends javax.swing.JFrame {
         vp.setLocationRelativeTo(null);
     }//GEN-LAST:event_jMenuCerrarSesionMousePressed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
@@ -205,11 +194,11 @@ public class VP extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuSalir;
     private javax.swing.JTabbedPane jTabbedPane1;
     public static javax.swing.JLabel jlMensajes;
     private presentacion.PanelCompra panelCompra1;
+    private presentacion.PanelCumpleaneros panelCumpleaneros1;
     private presentacion.PanelGastos panelGastos1;
     private presentacion.PanelInventarioMaquinaria panelInventarioMaquinaria1;
     private presentacion.PanelRegistroClientes panelRegistroClientes1;

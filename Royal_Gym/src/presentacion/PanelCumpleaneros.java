@@ -1,13 +1,7 @@
 package presentacion;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import royal_gym.Conexion;
-import royal_gym.Cumpleaneros;
 
 public class PanelCumpleaneros extends javax.swing.JPanel {
     
@@ -23,10 +17,6 @@ public class PanelCumpleaneros extends javax.swing.JPanel {
 
     public PanelCumpleaneros() {
         initComponents();
-        this.con = new Conexion();
-        con.conectar();
-         
-         // Modelo de la tabla de cumpleaneros
         DefaultTableModel modeloTablaCumpleaneros = new DefaultTableModel(con.getCumpleaneros(), columnasCumpleaneros);
         tablaDeCumpleaneros.setModel(modeloTablaCumpleaneros);   
     }

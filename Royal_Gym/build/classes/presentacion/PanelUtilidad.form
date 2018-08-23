@@ -37,7 +37,7 @@
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Component id="PaneltablaUtilidad" pref="48" max="32767" attributes="0"/>
+              <Component id="PaneltablaUtilidad" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>

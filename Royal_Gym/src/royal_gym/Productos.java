@@ -71,7 +71,7 @@ public class Productos {
                             //numeroLista++,
                             resultado.getInt("idproducto"),
                             resultado.getString("descripcion"),
-                            formatearNumero(resultado.getDouble("precioventa"))
+                            resultado.getDouble("precioventa")
                         }
                 );
             }
@@ -100,7 +100,7 @@ public class Productos {
                             //numeroLista++,
                             resultado.getInt("idproducto"),
                             resultado.getString("descripcion"),
-                            formatearNumero(resultado.getDouble("costo"))
+                            resultado.getDouble("costo")
                         }
                 );
             }

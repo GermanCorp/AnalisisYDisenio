@@ -21,8 +21,8 @@ public class PanelRegistroProductos extends javax.swing.JPanel {
     }
 
     public void setPermiso(boolean permiso) {
-        jbEliminar.setVisible(false);
-        jMenuItemEliminar.setVisible(false);
+        jbEliminar.setVisible(permiso);
+        jMenuItemEliminar.setVisible(permiso);
     }
 
     // oculta la primera columna de la tabla
